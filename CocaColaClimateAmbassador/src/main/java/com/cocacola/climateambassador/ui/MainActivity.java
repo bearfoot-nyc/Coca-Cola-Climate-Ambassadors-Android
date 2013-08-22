@@ -6,14 +6,17 @@ import android.view.Menu;
 
 import com.cocacola.climateambassador.R;
 
-public class MainActivity extends Activity {
+import javax.inject.Inject;
+
+import timber.log.Timber;
+
+public class MainActivity extends CaActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -3,7 +3,7 @@ package com.cocacola.climateambassador;
 import android.app.Application;
 import android.content.Context;
 
-import javax.inject.Inject;
+import com.cocacola.climateambassador.modules.ClimateAmbassadorModule;
 
 import dagger.ObjectGraph;
 
