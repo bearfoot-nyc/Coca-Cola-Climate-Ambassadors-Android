@@ -27,7 +27,6 @@ public class DocumentViewerDelegate {
         this.mContext = mContext;
     }
 
-
     public void startPdfViewerActivity(String fileName) {
         startPdfViewerActivity(fileName, mContext);
     }
