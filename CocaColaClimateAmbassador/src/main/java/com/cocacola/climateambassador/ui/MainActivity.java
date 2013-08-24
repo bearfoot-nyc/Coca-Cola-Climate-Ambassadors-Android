@@ -8,6 +8,7 @@ import com.cocacola.climateambassador.R;
 
 import javax.inject.Inject;
 
+import butterknife.OnClick;
 import timber.log.Timber;
 
 public class MainActivity extends CaActivity {
@@ -20,9 +21,10 @@ public class MainActivity extends CaActivity {
         setContentView(R.layout.activity_main);
     }
 
-    private void startDocActivity() {
+    @OnClick(R.id.home_btn_internal)
+    public void startSectionActivity() {
         try {
-//            mDocumentManager.startPdfViewerActivity("wizards-ticket.pdf", this);
+            mDocumentManager.startPdfViewerActivity("wizards-ticket.pdf", this);
         } catch(ActivityNotFoundException e) {
             // TODO Launch an intent to download in Play Store
             Log.e(e, "No Activity for Viewing PDFs");

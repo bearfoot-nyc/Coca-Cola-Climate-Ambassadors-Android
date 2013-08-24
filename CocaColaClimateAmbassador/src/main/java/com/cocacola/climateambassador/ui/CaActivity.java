@@ -7,6 +7,7 @@ import com.cocacola.climateambassador.CaApplication;
 
 import javax.inject.Inject;
 
+import butterknife.Views;
 import timber.log.Timber;
 
 /**
@@ -22,4 +23,11 @@ public class CaActivity extends Activity {
         super.onCreate(savedInstanceState);
         CaApplication.getObjectGraph(getApplicationContext()).inject(this);
     }
+
+    @Override
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+        Views.inject(this);
+    }
+
 }

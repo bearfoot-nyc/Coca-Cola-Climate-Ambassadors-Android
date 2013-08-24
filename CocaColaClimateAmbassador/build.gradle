@@ -24,6 +24,7 @@ dependencies {
     compile group: 'com.squareup.dagger', name: 'dagger-compiler', version: '1.0.1', optional: 'true'
 
     compile 'com.jakewharton.timber:timber:1.1.+'
+    compile 'com.jakewharton:butterknife:2.0.1'
 
 }
 
