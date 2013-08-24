@@ -21,7 +21,7 @@ public class MainActivity extends CaActivity {
         setContentView(R.layout.activity_main);
 
         try {
-            mDocumentManager.startPdfViewerActivity("wizards-ticket.pdf", this);
+//            mDocumentManager.startPdfViewerActivity("wizards-ticket.pdf", this);
         } catch(ActivityNotFoundException e) {
             // TODO Launch an intent to download in Play Store
             Log.e(e, "No Activity for Viewing PDFs");
