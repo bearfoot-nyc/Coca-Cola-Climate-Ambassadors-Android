@@ -12,14 +12,15 @@ import timber.log.Timber;
 
 public class MainActivity extends CaActivity {
 
-    @Inject Timber Log;
     @Inject DocumentViewerDelegate mDocumentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
 
+    private void startDocActivity() {
         try {
 //            mDocumentManager.startPdfViewerActivity("wizards-ticket.pdf", this);
         } catch(ActivityNotFoundException e) {
