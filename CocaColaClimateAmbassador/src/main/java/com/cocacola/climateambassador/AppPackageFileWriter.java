@@ -71,7 +71,7 @@ public class AppPackageFileWriter {
 
     }
 
-    private String[] getAllAssets() {
+    public String[] getAllAssets() {
 
         AssetManager assetManager = mContext.getAssets();
 
