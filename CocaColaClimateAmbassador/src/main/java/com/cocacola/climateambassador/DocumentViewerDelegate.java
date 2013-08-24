@@ -34,9 +34,7 @@ public class DocumentViewerDelegate {
     public void startPdfViewerActivity(String fileName, Context context) {
 
         if(isActivityForIntentAvailable("application/pdf")) {
-            Uri path = createUriFromFileName(fileName);
-            Intent intent = createViewerIntent(context, path, PDF_TYPE);
-
+            Intent intent = createViewerIntent(context, fileName, PDF_TYPE);
             context.startActivity(intent);
         }
 
@@ -47,10 +45,18 @@ public class DocumentViewerDelegate {
         return Uri.fromFile(pdfFile);
     }
 
-    private Intent createViewerIntent(Context context, Uri path, String docType) {
+    private Intent createViewerIntent(Context context, String fileName, String docType) {
+//
+//        Intent intent = new Intent(Intent.ACTION_VIEW);
+//        intent.setDataAndType(path, docType);
+//
+//        if(context instanceof CaApplication) {
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        }
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(path, docType);
+
+        intent.setDataAndType(Uri.parse(CaProvider.CONTENT_URI + fileName), docType);
 
         if(context instanceof CaApplication) {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

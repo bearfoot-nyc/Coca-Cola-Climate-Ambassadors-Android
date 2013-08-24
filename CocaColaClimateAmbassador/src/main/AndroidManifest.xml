@@ -28,6 +28,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+                android:name=".CaProvider"
+                android:authorities="content://com.cocacola.climateambassador.files"
+                android:exported="true"/>
     </application>
 
 </manifest>
