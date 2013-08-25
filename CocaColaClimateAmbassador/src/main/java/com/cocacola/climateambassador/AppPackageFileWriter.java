@@ -4,10 +4,8 @@ import android.content.Context;
 import android.content.res.AssetManager;
 
 import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.inject.Inject;
@@ -38,8 +36,7 @@ public class AppPackageFileWriter {
         String[] assets = getAllAssets();
 
         // Get access to private package dir
-        File pkgDir = mContext.getFilesDir();
-
+        File pkgDir = mContext.getFilesDir(); // /data/data/com.cocacola.climateambassador/files
 
         // Open each file
         for(String asset : assets) {
@@ -53,7 +50,14 @@ public class AppPackageFileWriter {
 
     private void writeToPkgDir(File pkgDir, String fileName) {
 
-        File file = new File(pkgDir, fileName);
+        String docsPath = pkgDir.getAbsolutePath() + File.separator + "docs";
+
+        File docsDir = new File(docsPath);
+        if (!docsDir.exists()) {
+            docsDir.mkdirs();
+        }
+
+        File file = new File(docsDir, fileName);
 
         try {
 
@@ -78,7 +82,7 @@ public class AppPackageFileWriter {
         String files[] = null;
 
         try {
-            files = assetManager.list("pdf");
+            files = assetManager.list("docs");
         } catch (IOException e) {
             e.printStackTrace();
             Log.e(e, "no assets");

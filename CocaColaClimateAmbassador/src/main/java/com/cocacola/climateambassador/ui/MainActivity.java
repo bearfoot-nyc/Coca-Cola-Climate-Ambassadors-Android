@@ -29,28 +29,15 @@ public class MainActivity extends CaActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         mAppPackageFileWriter.writeAssetsToPackageDir();
 
-    }
+        File filesDir = getFilesDir();
+        String[] list = filesDir.list();
 
-    public void writeFile() {
+        Log.i("list.length=%s", list.length);
 
-        String path = getApplicationContext().getFilesDir() + "/testDir/";
-        File file = new File(path);
-        file.mkdirs();
-        path += "testlab.txt";
-        OutputStream myOutput;
-        try {
-            myOutput = new BufferedOutputStream(new FileOutputStream(path,true));
-//            write(myOutput, new String("TEST").getBytes());
-            myOutput.flush();
-            myOutput.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        for(String filename : list) {
+            Log.i("filename=%s", filename);
         }
 
     }
@@ -58,7 +45,7 @@ public class MainActivity extends CaActivity {
     @OnClick(R.id.home_btn_internal)
     public void startSectionActivity() {
         try {
-            mDocumentManager.startPdfViewerActivity("pdf/resume.pdf", this);
+            mDocumentManager.startPdfViewerActivity("resume.pdf", this);
         } catch(ActivityNotFoundException e) {
             // TODO Launch an intent to download in Play Store
             Log.e(e, "No Activity for Viewing PDFs");
