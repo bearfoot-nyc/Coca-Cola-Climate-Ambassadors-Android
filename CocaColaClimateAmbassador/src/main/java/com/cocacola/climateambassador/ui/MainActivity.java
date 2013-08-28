@@ -1,25 +1,49 @@
 package com.cocacola.climateambassador.ui;
 
+import android.app.ActionBar;
 import android.content.ActivityNotFoundException;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.cocacola.climateambassador.Adapters.MenuListAdapter;
 import com.cocacola.climateambassador.AppPackageFileWriter;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.R;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 
 import javax.inject.Inject;
 
+import butterknife.InjectView;
 import butterknife.OnClick;
+import butterknife.Views;
 
 public class MainActivity extends CaActivity {
 
+    private final String welcomeString = "WELCOME TO THE COCA COLA CLIMATE AMBASSADOR APP!";
+    private final String toolDescriptionString = "This tool connects you with training materials and presentations to engage colleagues and " +
+            "suppliers in reducing carbon along your value chain.";
+    private final String navString = "Click below to access our Internal Training Content and Tools for " +
+            "External Supplier Meetings, or use the side menu to navigate all content";
+
+
+    public String[] mDrawerOptions = {"Add Nav Drawer Options Here"};
+    public ListView mDrawerList;
+    public DrawerLayout mDrawerLayout;
+    static MenuListAdapter mMenuAdapter;
+    private ActionBarDrawerToggle mDrawerToggle;
+    int []icon;
+
+    @InjectView(R.id.welcome) TextView welcomeText;
+    @InjectView(R.id.tool_description) TextView toolDescriptionText;
+    @InjectView(R.id.navigation_text) TextView navigationText;
     @Inject DocumentViewerDelegate mDocumentManager;
     @Inject
     AppPackageFileWriter mAppPackageFileWriter;
@@ -28,6 +52,55 @@ public class MainActivity extends CaActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Views.inject(this);
+
+        welcomeText.setText(welcomeString);
+        toolDescriptionText.setText(toolDescriptionString);
+        navigationText.setText(navString);
+
+
+        //Set up the Navigation Drawer
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        mDrawerList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        // set a custom shadow that overlays the main content when the drawer opens
+        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        // set up the drawer's list view with items and click listener
+
+
+        //Removed Subtitle
+        icon = new int[] {0, 0,  0, 0};
+
+        mMenuAdapter = new MenuListAdapter(this, mDrawerOptions, icon);
+
+        mDrawerList.setAdapter(mMenuAdapter);
+
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+        getActionBar().setDisplayShowTitleEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,                  /* host Activity */
+                mDrawerLayout,         /* DrawerLayout object */
+                R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret */
+                R.string.drawer_open,  /* "open drawer" description for accessibility */
+                R.string.drawer_close  /* "close drawer" description for accessibility */
+        ) {
+            public void onDrawerClosed(View view) {
+                // getSupportActionBar().setTitle(mTitle);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                // getSupportActionBar().setTitle(mDrawerTitle);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+        };
+
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
 
         mAppPackageFileWriter.writeAssetsToPackageDir();
 
@@ -51,5 +124,63 @@ public class MainActivity extends CaActivity {
             Log.e(e, "No Activity for Viewing PDFs");
         }
     }
-    
+
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            selectItem(position);
+        }
+    }
+
+    private void selectItem(int position) {
+
+        // update the main content by replacing fragments
+        if(position == 0) {
+
+            mDrawerLayout.closeDrawer(mDrawerList);
+            getActionBar().setDisplayShowTitleEnabled(false);
+            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+
+        }  else if(position == 1) {
+
+
+            mDrawerLayout.closeDrawer(mDrawerList);
+
+            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            getActionBar().setDisplayShowTitleEnabled(true);
+            getActionBar().setTitle("Your Watchlist");
+
+
+        }else {
+            //do nothing
+            mDrawerLayout.closeDrawer(mDrawerList);
+        }
+
+
+
+
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home) {
+
+            if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
+                mDrawerLayout.closeDrawer(mDrawerList);
+            } else {
+                mDrawerLayout.openDrawer(mDrawerList);
+            }
+        } else {
+            // do nothing
+        }
+
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
 }
