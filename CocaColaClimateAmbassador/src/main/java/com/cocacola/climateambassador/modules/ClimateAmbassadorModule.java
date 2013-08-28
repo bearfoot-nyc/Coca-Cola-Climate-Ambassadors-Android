@@ -5,6 +5,7 @@ import android.content.Context;
 import com.cocacola.climateambassador.BuildConfig;
 import com.cocacola.climateambassador.CaApplication;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
+import com.cocacola.climateambassador.ui.InternalTrainingOverview;
 import com.cocacola.climateambassador.ui.MainActivity;
 
 import javax.inject.Singleton;
@@ -20,7 +21,8 @@ import timber.log.Timber;
 @Module(injects = {
         CaApplication.class,
         MainActivity.class,
-        DocumentViewerDelegate.class
+        DocumentViewerDelegate.class,
+        InternalTrainingOverview.class,
 })
 public class ClimateAmbassadorModule {
 
@@ -39,4 +41,8 @@ public class ClimateAmbassadorModule {
     Timber provideTimber() {
         return BuildConfig.DEBUG ? Timber.DEBUG : Timber.PROD;
     }
+
+//    @Provides @Singleton
+//    ActionBar provideActionBar() {
+//    }
 }

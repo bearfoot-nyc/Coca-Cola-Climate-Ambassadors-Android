@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -14,29 +15,22 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 
-import com.cocacola.climateambassador.adapters.MenuListAdapter;
 import com.cocacola.climateambassador.AppPackageFileWriter;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.adapters.MenuListAdapter;
 
 import java.io.File;
 
 import javax.inject.Inject;
 
-import butterknife.InjectView;
 import butterknife.OnClick;
 import butterknife.Views;
 
-public class MainActivity extends CaActivity implements SearchView.OnQueryTextListener{
+public class MainActivity extends CaActivity implements SearchView.OnQueryTextListener {
 
-    //Constants
-    private final String welcomeString = "WELCOME TO THE COCA COLA CLIMATE AMBASSADOR APP!";
-    private final String toolDescriptionString = "This tool connects you with training materials and presentations to engage colleagues and " +
-            "suppliers in reducing carbon along your value chain.";
-    private final String navString = "Click below to access our Internal Training Content and Tools for " +
-            "External Supplier Meetings, or use the side menu to navigate all content";
+
     private final int CLIMATE_GOALS_POS = 0;
     private final int BUSINESS_CASE_POS = 1;
     private final int KEY_INTERVENTIONS_POS = 2;
@@ -45,20 +39,17 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
     private final int SUPPLIER_GUIDE_POS = 5;
 
 
-
     public String[] mDrawerOptions = {"Add Nav Drawer Options Here"};
     public ListView mDrawerList;
     public DrawerLayout mDrawerLayout;
     static MenuListAdapter mMenuAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
-    int []icon;
+    int[] icon;
 
     private SearchView mSearchView;
 
-    @InjectView(R.id.welcome) TextView welcomeText;
-    @InjectView(R.id.tool_description) TextView toolDescriptionText;
-    @InjectView(R.id.navigation_text) TextView navigationText;
-    @Inject DocumentViewerDelegate mDocumentManager;
+    @Inject
+    DocumentViewerDelegate mDocumentManager;
     @Inject
     AppPackageFileWriter mAppPackageFileWriter;
 
@@ -68,9 +59,7 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
         setContentView(R.layout.activity_main);
         Views.inject(this);
 
-        welcomeText.setText(welcomeString);
-        toolDescriptionText.setText(toolDescriptionString);
-        navigationText.setText(navString);
+
 
 
         //Set up the Navigation Drawer
@@ -83,7 +72,7 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
 
 
         //Removed Subtitle
-        icon = new int[] {0, 0,  0, 0};
+        icon = new int[]{0, 0, 0, 0};
 
         mMenuAdapter = new MenuListAdapter(this, mDrawerOptions, icon);
 
@@ -115,6 +104,7 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
+        setUpHomeScreen();
 
         mAppPackageFileWriter.writeAssetsToPackageDir();
 
@@ -123,17 +113,22 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
 
         Log.i("list.length=%s", list.length);
 
-        for(String filename : list) {
+        for (String filename : list) {
             Log.i("filename=%s", filename);
         }
 
+    }
+
+    private void setUpHomeScreen() {
+        MainFragment fragment = new MainFragment();
+        getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
     }
 
     @OnClick(R.id.home_btn_internal)
     public void startSectionActivity() {
         try {
             mDocumentManager.startPdfViewerActivity("resume.pdf", this);
-        } catch(ActivityNotFoundException e) {
+        } catch (ActivityNotFoundException e) {
             // TODO Launch an intent to download in Play Store
             Log.e(e, "No Activity for Viewing PDFs");
         }
@@ -149,13 +144,16 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
     private void selectItem(int position) {
 
         // update the main content by replacing fragments
-        if(position == CLIMATE_GOALS_POS) {
+        if (position == CLIMATE_GOALS_POS) {
+
+            InternalTrainingOverview fragment = new InternalTrainingOverview();
+            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
 
             mDrawerLayout.closeDrawer(mDrawerList);
             getActionBar().setDisplayShowTitleEnabled(false);
             getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
-        }  else if(position == BUSINESS_CASE_POS) {
+        } else if (position == BUSINESS_CASE_POS) {
 
 
             mDrawerLayout.closeDrawer(mDrawerList);
@@ -168,33 +166,19 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
         } else if (position == KEY_INTERVENTIONS_POS) {
 
 
+        } else if (position == ENGAGING_SUPPLIERS_POS) {
 
 
+        } else if (position == SUPPLIERS_OVERVIEW_POS) {
 
 
-        } else if(position == ENGAGING_SUPPLIERS_POS) {
+        } else if (position == SUPPLIER_GUIDE_POS) {
 
 
-
-
-
-
-         } else if(position == SUPPLIERS_OVERVIEW_POS) {
-
-
-
-
-        }  else if(position == SUPPLIER_GUIDE_POS) {
-
-
-
-
-        }  else {
+        } else {
             //do nothing
             mDrawerLayout.closeDrawer(mDrawerList);
         }
-
-
 
 
     }
@@ -205,13 +189,11 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
 
         getMenuInflater().inflate(R.menu.main, menu);
         SearchManager searchManager = (SearchManager) this.getSystemService(Context.SEARCH_SERVICE);
-        mSearchView = (SearchView) menu.findItem(R.id.action_search_support).getActionView();
+        mSearchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         mSearchView.setSearchableInfo(searchManager.getSearchableInfo(this.getComponentName()));
         mSearchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
         mSearchView.setOnQueryTextListener(this);
         mSearchView.setQueryHint("Search");
-
-        super.onCreateOptionsMenu(menu);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -240,12 +222,23 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
         } else {
             // do nothing
         }
-
-
-
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Pass any configuration change to the drawer toggles
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
 
 
 }
