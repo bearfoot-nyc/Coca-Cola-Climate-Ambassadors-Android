@@ -8,35 +8,73 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="18" />
 
-    <supports-screens
-          android:requiresSmallestWidthDp="720" />
+    <supports-screens android:requiresSmallestWidthDp="720" />
 
     <application
-        android:name=".CaApplication"
+        android:name="com.cocacola.climateambassador.CaApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:logo="@drawable/ic_logo"
         android:label="@string/app_name"
+        android:logo="@drawable/ic_logo"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.cocacola.climateambassador.ui.MainActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
-            android:screenOrientation="landscape"
-            android:configChanges="orientation|keyboardHidden">
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
-                android:name="android.support.v4.content.FileProvider"
-                android:authorities="com.cocacola.climateambassador.foobar"
-                android:grantUriPermissions="true"
-                android:exported="false">
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.cocacola.climateambassador.foobar"
+            android:exported="false"
+            android:grantUriPermissions="true" >
             <meta-data
-                    android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/paths" />
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/paths" />
         </provider>
+
+        <activity
+            android:name="com.cocacola.climateambassador.modules.BusinessCaseModule"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_activity_business_case_module"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.cocacola.climateambassador.modules.KeyInterventionsModule"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_activity_key_interventions_module"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.cocacola.climateambassador.modules.EngagingSuppliersModule"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_activity_engaging_suppliers_module"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.cocacola.climateambassador.ui.InternalTrainingOverview"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_activity_internal_training_overview"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.cocacola.climateambassador.ui.SupplierOverview"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_activity_supplier_overview"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".ui.SupplierGuideActivity"
+            android:label="@string/title_activity_supplier_guide"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape">
+        </activity>
     </application>
 
 </manifest>

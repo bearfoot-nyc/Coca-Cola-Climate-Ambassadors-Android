@@ -7,7 +7,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +16,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import com.cocacola.climateambassador.Adapters.MenuListAdapter;
+import com.cocacola.climateambassador.adapters.MenuListAdapter;
 import com.cocacola.climateambassador.AppPackageFileWriter;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.R;
@@ -32,11 +31,19 @@ import butterknife.Views;
 
 public class MainActivity extends CaActivity implements SearchView.OnQueryTextListener{
 
+    //Constants
     private final String welcomeString = "WELCOME TO THE COCA COLA CLIMATE AMBASSADOR APP!";
     private final String toolDescriptionString = "This tool connects you with training materials and presentations to engage colleagues and " +
             "suppliers in reducing carbon along your value chain.";
     private final String navString = "Click below to access our Internal Training Content and Tools for " +
             "External Supplier Meetings, or use the side menu to navigate all content";
+    private final int CLIMATE_GOALS_POS = 0;
+    private final int BUSINESS_CASE_POS = 1;
+    private final int KEY_INTERVENTIONS_POS = 2;
+    private final int ENGAGING_SUPPLIERS_POS = 3;
+    private final int SUPPLIERS_OVERVIEW_POS = 4;
+    private final int SUPPLIER_GUIDE_POS = 5;
+
 
 
     public String[] mDrawerOptions = {"Add Nav Drawer Options Here"};
@@ -142,13 +149,13 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
     private void selectItem(int position) {
 
         // update the main content by replacing fragments
-        if(position == 0) {
+        if(position == CLIMATE_GOALS_POS) {
 
             mDrawerLayout.closeDrawer(mDrawerList);
             getActionBar().setDisplayShowTitleEnabled(false);
             getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
-        }  else if(position == 1) {
+        }  else if(position == BUSINESS_CASE_POS) {
 
 
             mDrawerLayout.closeDrawer(mDrawerList);
@@ -158,7 +165,31 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
             getActionBar().setTitle("Your Watchlist");
 
 
-        }else {
+        } else if (position == KEY_INTERVENTIONS_POS) {
+
+
+
+
+
+
+        } else if(position == ENGAGING_SUPPLIERS_POS) {
+
+
+
+
+
+
+         } else if(position == SUPPLIERS_OVERVIEW_POS) {
+
+
+
+
+        }  else if(position == SUPPLIER_GUIDE_POS) {
+
+
+
+
+        }  else {
             //do nothing
             mDrawerLayout.closeDrawer(mDrawerList);
         }
@@ -173,17 +204,14 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.main, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search_support);
         SearchManager searchManager = (SearchManager) this.getSystemService(Context.SEARCH_SERVICE);
-        mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        mSearchView = (SearchView) menu.findItem(R.id.action_search_support).getActionView();
         mSearchView.setSearchableInfo(searchManager.getSearchableInfo(this.getComponentName()));
         mSearchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
         mSearchView.setOnQueryTextListener(this);
         mSearchView.setQueryHint("Search");
 
         super.onCreateOptionsMenu(menu);
-
-
 
         return super.onCreateOptionsMenu(menu);
     }

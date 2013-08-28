@@ -1,4 +1,4 @@
-package com.cocacola.climateambassador.Adapters;
+package com.cocacola.climateambassador.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

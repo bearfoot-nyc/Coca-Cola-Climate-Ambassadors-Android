@@ -4,12 +4,15 @@
     <string name="app_name">Coca Cola Climate Ambassador</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-
-
     <string name="navigation_drawer_icon">Navigation Drawer Icon</string>
     <string name="drawer_open">Navigation Drawer Icon</string>
     <string name="drawer_close">Navigation Drawer Icon</string>
-
     <string name="menu_search">Search</string>
+    <string name="title_activity_business_case_module">Business Case</string>
+    <string name="title_activity_key_interventions_module">Key Interventions</string>
+    <string name="title_activity_engaging_suppliers_module">Engaging Suppliers</string>
+    <string name="title_activity_internal_training_overview">Internal Training</string>
+    <string name="title_activity_supplier_overview">Supplier Overview</string>
+    <string name="title_activity_supplier_guide">Supplier Guide</string>
 
 </resources>
