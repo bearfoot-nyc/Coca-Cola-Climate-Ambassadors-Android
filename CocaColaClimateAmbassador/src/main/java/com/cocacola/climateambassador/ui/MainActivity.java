@@ -1,15 +1,20 @@
 package com.cocacola.climateambassador.ui;
 
 import android.app.ActionBar;
+import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.cocacola.climateambassador.Adapters.MenuListAdapter;
@@ -25,7 +30,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import butterknife.Views;
 
-public class MainActivity extends CaActivity {
+public class MainActivity extends CaActivity implements SearchView.OnQueryTextListener{
 
     private final String welcomeString = "WELCOME TO THE COCA COLA CLIMATE AMBASSADOR APP!";
     private final String toolDescriptionString = "This tool connects you with training materials and presentations to engage colleagues and " +
@@ -40,6 +45,8 @@ public class MainActivity extends CaActivity {
     static MenuListAdapter mMenuAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
     int []icon;
+
+    private SearchView mSearchView;
 
     @InjectView(R.id.welcome) TextView welcomeText;
     @InjectView(R.id.tool_description) TextView toolDescriptionText;
@@ -161,6 +168,36 @@ public class MainActivity extends CaActivity {
 
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search_support);
+        SearchManager searchManager = (SearchManager) this.getSystemService(Context.SEARCH_SERVICE);
+        mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        mSearchView.setSearchableInfo(searchManager.getSearchableInfo(this.getComponentName()));
+        mSearchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+        mSearchView.setOnQueryTextListener(this);
+        mSearchView.setQueryHint("Search");
+
+        super.onCreateOptionsMenu(menu);
+
+
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        //TODO: Handle Search View TextSubmit
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

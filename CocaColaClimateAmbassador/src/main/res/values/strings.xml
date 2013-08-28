@@ -10,4 +10,6 @@
     <string name="drawer_open">Navigation Drawer Icon</string>
     <string name="drawer_close">Navigation Drawer Icon</string>
 
+    <string name="menu_search">Search</string>
+
 </resources>
