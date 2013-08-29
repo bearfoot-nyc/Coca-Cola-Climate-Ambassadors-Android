@@ -27,7 +27,7 @@ import timber.log.Timber;
         MainFragment.class,
         BusinessCaseModule.class,
         EngagingSuppliersModule.class,
-        KeyInterventionsModule.class,
+        ValueChainModule.class,
         SupplierGuideFragment.class,
         SupplierOverview.class,
         DocumentViewerDelegate.class,

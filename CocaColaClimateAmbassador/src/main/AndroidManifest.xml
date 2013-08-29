@@ -46,7 +46,7 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="com.cocacola.climateambassador.modules.KeyInterventionsModule"
+            android:name=".modules.ValueChainModule"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_key_interventions_module"
             android:screenOrientation="landscape" >

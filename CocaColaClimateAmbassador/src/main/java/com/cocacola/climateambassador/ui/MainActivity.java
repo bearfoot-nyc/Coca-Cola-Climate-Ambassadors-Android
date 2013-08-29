@@ -20,6 +20,7 @@ import com.cocacola.climateambassador.AppPackageFileWriter;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.adapters.MenuListAdapter;
+import com.cocacola.climateambassador.modules.ValueChainModule;
 
 import java.io.File;
 
@@ -38,7 +39,7 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
     private final int SUPPLIER_GUIDE_POS = 5;
 
 
-    public String[] mDrawerOptions = {"Add Nav Drawer Options Here"};
+    public String[] mDrawerOptions = {"Add Nav Drawer Options Here" , "Supply Chain Implementation"};
     public ListView mDrawerList;
     public DrawerLayout mDrawerLayout;
     static MenuListAdapter mMenuAdapter;
@@ -150,6 +151,8 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
 
         } else if (position == BUSINESS_CASE_POS) {
 
+            ValueChainModule fragment = ValueChainModule.newInstance();
+            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
 
             mDrawerLayout.closeDrawer(mDrawerList);
 
