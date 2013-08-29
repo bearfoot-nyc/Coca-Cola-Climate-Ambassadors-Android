@@ -30,6 +30,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends CaActivity implements SearchView.OnQueryTextListener {
 
+    private final String FOR_SUPPLIERS = "For Suppliers";
 
     private final int CLIMATE_GOALS_POS = 0;
     private final int BUSINESS_CASE_POS = 1;
@@ -39,7 +40,7 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
     private final int SUPPLIER_GUIDE_POS = 5;
 
 
-    public String[] mDrawerOptions = {"Add Nav Drawer Options Here" , "Supply Chain Implementation"};
+    public String[] mDrawerOptions = {"Add Nav Drawer Options Here" , "Supply Chain Implementation", FOR_SUPPLIERS};
     public ListView mDrawerList;
     public DrawerLayout mDrawerLayout;
     static MenuListAdapter mMenuAdapter;
@@ -158,10 +159,19 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
 
             getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
             getActionBar().setDisplayShowTitleEnabled(true);
-            getActionBar().setTitle("Your Watchlist");
+            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
 
 
         } else if (position == KEY_INTERVENTIONS_POS) {
+
+            SupplierOverview fragment = SupplierOverview.newInstance();
+            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+
+            mDrawerLayout.closeDrawer(mDrawerList);
+
+            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            getActionBar().setDisplayShowTitleEnabled(true);
+            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
 
 
         } else if (position == ENGAGING_SUPPLIERS_POS) {

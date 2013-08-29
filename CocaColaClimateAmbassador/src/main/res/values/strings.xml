@@ -8,6 +8,7 @@
     <string name="drawer_open">Navigation Drawer Icon</string>
     <string name="drawer_close">Navigation Drawer Icon</string>
     <string name="menu_search">Search</string>
+    <string name="for_suppliers">For Suppliers</string>
     <string name="title_activity_business_case_module">Business Case</string>
     <string name="title_activity_key_interventions_module">Key Interventions</string>
     <string name="title_activity_engaging_suppliers_module">Engaging Suppliers</string>
@@ -22,4 +23,53 @@
                                                     to the Coca-Cola business. </string>
     <string name="download_instruction">VIEW AND DOWNLOAD COURSE MATERIAL HERE</string>
     <string name="case_study_title">Explore Case Studies by Area</string>
+    <string name="supplier_title">Sustainable Quality Growth</string>
+    <string name="supplier_overview_subtitle">Partnering to Reduce Carbon along Our Value Chain</string>
+    <string name="supplier_description">The Coca-Cola Company and its bottling partners are committed to realizing a 25 percent reduction of the carbon emissions embedded
+                                        in  the “drink in your hand” by the year 2020.  As part of that goal, we are striving to find innovative ways to partner with our
+                                        suppliers and customers to reduce emissions across our value chain. Together, we can grow a more efficient and productive business
+                                        that protects our profits and the planet. </string>
+
+    <string name="goal_paragraph_one">Coca-Cola’s 2020 Climate Protection Goal expands our prior focus on manufacturing to cover our full end-to-end value chain, which includes
+                                        ingredients, packaging, manufacturing, distribution and refrigeration and integrates with other aspects of our sustainability framework for
+                                        the first time across our system.</string>
+    <string name="goal_paragraph_two">Due to its link to our entire value chain, the climate goal will have far-reaching impact and can influence and affect the carbon reduction of
+                                        our Company, our bottling partners and that of our suppliers with an estimated prevention of more than 20 million metric tons of CO2 by 2020
+                                        (the equivalent of taking 3.8 million cars off the road for a year). To achieve this 25 percent reduction goal, we will work with our partners
+                                        and suppliers throughout our value chain and continue to move forward the energy efficiency and climate protection work within our system.</string>
+    <string name="goal_note">Note, we do not intend to reduce the carbon footprint of every product in our portfolio by 25 percent, but instead the goal represents a total reduction in aggregate
+                              across our entire portfolio/business.</string>
+
+    <string name="supplier_vision">Our 2020 vision is to achieve sustainable quality growth. As we strive to increase the productivity and profitability of our business, we are equally dedicated
+                                    to protecting the environment, and one of the ways we’re working toward that commitment is by minimizing wasteful carbon emissions.</string>
+
+    <string name="supplier_quote">\"Reducing wasteful emissions is the right thing to do for people and the planet: and it\'s also a smart business decision.\"</string>
+    <string name="supplier_vision_extra">We know that meeting our carbon goal will result in a more successful and sustainable business – pushing us to operate more
+                                        efficiently and catalyze joint product and business innovations.</string>
+    <string name="how_to_meet_vision_title">How? From the Farm to the Refrigerator</string>
+    <string name="how_to_paragraph">Coca-Cola expects its partners and suppliers to work with us to do better.  We are already working with industry leaders to identify and implement more efficient
+                                    and smarter business practices across our full value chain – from ingredients, to packaging, to manufacturing, to distribution, to refrigeration.</string>
+
+    <string name="Ingredients">Ingredients</string>
+    <string name="Packaging">Packaging</string>
+    <string name="Manufacturing">Manufacturing</string>
+    <string name="Distribution">Distribution</string>
+    <string name="Refrigeration">Refrigeration</string>
+
+    <string name="ingredient_paragraph">Around the globe, Coca-Cola seeks to partner with suppliers, farmers, universities and nonprofits to find solutions for more sustainable ingredients. With our
+                                        partners we will reduce fertilizer and water use, make operations more efficient, and find better sources of energy.</string>
+    <string name="packaging_paragraph">With a leading vision in bettering its packaging, Coca-Cola has sought out suppliers to develop innovative packages that reduce material use, lower transportation
+                                        costs, and are friendly to the environment.</string>
+    <string name="manufacturing_paragraph">Coca-Cola partners with expert vendors and technology providers to deliver more efficient operations and to invest in renewable energies around the world.
+                                            From better compressors in our facilities more focus on how to integrate renewable energy sources, we seek strong partnerships that lead us to smarter
+                                                technologies.</string>
+    <string name="distribution_paragraph">Coca-Cola works with our distributors and vendors to green our distribution channels.  The Coca-Cola system teamed up with our trucking suppliers to develop
+                                            hybrid vehicles designed specifically for our needs, reducing our fuel use and our carbon.</string>
+    <string name="refrigeration_paragraph">Coca-Cola collaborates with retailers across many countries to install energy management devices (EMDs) on beverage coolers. Our devices can reduce energy use
+                                            by up to 35 percent by monitoring usage patterns and then adjusting lights and temperature to maximize efficiency.  By using EMDs, retailers save on energy
+                                             costs; and together, we improve our business and protect the environment.</string>
+    <string name="join_us">Join Us</string>
+    <string name="join_paragraph">Join us as we work to reduce carbon across our supply chain. Together, we can build stronger businesses and a better tomorrow.</string>
+    <string name="supplier_quote_two">\"Coca-Cola seeks to deepen our partnerships with suppliers and customers that demonstrate a strong commitment to innovation, social, and environmental responsibility,
+                                        and business success.\"</string>
 </resources>
