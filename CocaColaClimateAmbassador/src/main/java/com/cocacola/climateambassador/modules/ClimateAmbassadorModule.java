@@ -7,6 +7,9 @@ import com.cocacola.climateambassador.CaApplication;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.ui.InternalTrainingOverview;
 import com.cocacola.climateambassador.ui.MainActivity;
+import com.cocacola.climateambassador.ui.MainFragment;
+import com.cocacola.climateambassador.ui.SupplierGuideFragment;
+import com.cocacola.climateambassador.ui.SupplierOverview;
 
 import javax.inject.Singleton;
 
@@ -21,6 +24,12 @@ import timber.log.Timber;
 @Module(injects = {
         CaApplication.class,
         MainActivity.class,
+        MainFragment.class,
+        BusinessCaseModule.class,
+        EngagingSuppliersModule.class,
+        KeyInterventionsModule.class,
+        SupplierGuideFragment.class,
+        SupplierOverview.class,
         DocumentViewerDelegate.class,
         InternalTrainingOverview.class,
 })

@@ -70,7 +70,7 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".ui.SupplierGuideActivity"
+            android:name=".ui.SupplierGuideFragment"
             android:label="@string/title_activity_supplier_guide"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape">

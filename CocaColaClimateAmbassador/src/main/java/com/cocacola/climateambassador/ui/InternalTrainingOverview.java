@@ -10,7 +10,7 @@ public class InternalTrainingOverview extends CaFragment {
 
 
     public InternalTrainingOverview() {
-        //STUB
+        // STUB
     }
 
     public static InternalTrainingOverview newInstance() {

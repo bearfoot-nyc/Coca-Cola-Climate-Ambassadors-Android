@@ -1,25 +1,25 @@
 package com.cocacola.climateambassador.modules;
 
 import android.os.Bundle;
-import android.view.Menu;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.ui.CaActivity;
+import com.cocacola.climateambassador.ui.CaFragment;
 
-public class KeyInterventionsModule extends CaActivity {
+public class KeyInterventionsModule extends CaFragment {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.key_interventions);
     }
-
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.key_interventions_module, menu);
-        return true;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.key_interventions, container, false);
+        return view;
     }
-    
+
 }

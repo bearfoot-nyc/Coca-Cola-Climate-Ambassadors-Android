@@ -26,7 +26,6 @@ import java.io.File;
 import javax.inject.Inject;
 
 import butterknife.OnClick;
-import butterknife.Views;
 
 public class MainActivity extends CaActivity implements SearchView.OnQueryTextListener {
 
@@ -57,10 +56,6 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Views.inject(this);
-
-
-
 
         //Set up the Navigation Drawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
