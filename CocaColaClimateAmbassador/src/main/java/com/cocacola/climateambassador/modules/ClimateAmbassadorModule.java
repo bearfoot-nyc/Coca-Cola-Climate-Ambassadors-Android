@@ -5,10 +5,13 @@ import android.content.Context;
 import com.cocacola.climateambassador.BuildConfig;
 import com.cocacola.climateambassador.CaApplication;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
+import com.cocacola.climateambassador.ui.BusinessCaseModule;
+import com.cocacola.climateambassador.ui.EngagingSuppliersModule;
 import com.cocacola.climateambassador.ui.InternalTrainingOverview;
 import com.cocacola.climateambassador.ui.MainActivity;
 import com.cocacola.climateambassador.ui.MainFragment;
 import com.cocacola.climateambassador.ui.SupplierOverview;
+import com.cocacola.climateambassador.ui.ValueChainModule;
 
 import javax.inject.Singleton;
 

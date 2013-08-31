@@ -1,4 +1,4 @@
-package com.cocacola.climateambassador.modules;
+package com.cocacola.climateambassador.ui;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.ui.CaFragment;
 
 import butterknife.InjectView;
 import butterknife.Views;
