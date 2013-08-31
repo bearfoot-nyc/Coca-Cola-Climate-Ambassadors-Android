@@ -19,13 +19,14 @@ public class MenuListAdapter extends BaseAdapter {
     Context context;
     String[] mTitle;
     int[] mIcon;
-    LayoutInflater inflater;
+    LayoutInflater mInflater;
 
     public MenuListAdapter(Context context, String[] title,
                            int[] icon) {
         this.context = context;
         this.mTitle = title;
         this.mIcon = icon;
+        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -49,13 +50,10 @@ public class MenuListAdapter extends BaseAdapter {
         TextView txtSubTitle;
         ImageView imgIcon;
 
-        inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View itemView = inflater.inflate(R.layout.drawer_list_item, parent, false);
+        View itemView = mInflater.inflate(R.layout.drawer_list_item, parent, false);
 
         // Locate the TextViews in drawer_list_item.xml
         txtTitle = (TextView) itemView.findViewById(R.id.title);
-
 
         // Locate the ImageView in drawer_list_item.xml
         imgIcon = (ImageView) itemView.findViewById(R.id.icon);

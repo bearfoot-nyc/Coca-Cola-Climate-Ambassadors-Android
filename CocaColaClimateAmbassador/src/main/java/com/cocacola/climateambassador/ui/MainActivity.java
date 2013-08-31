@@ -42,7 +42,7 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
     public String[] mDrawerOptions = {"Add Nav Drawer Options Here" , "Supply Chain Implementation", FOR_SUPPLIERS};
     public ListView mDrawerList;
     public DrawerLayout mDrawerLayout;
-    static MenuListAdapter mMenuAdapter;
+    private MenuListAdapter mMenuAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
     int[] icon;
 
