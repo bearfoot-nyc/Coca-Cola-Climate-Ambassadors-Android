@@ -1,0 +1,15 @@
+{
+    "title": "Ingredients Cases",
+    "bodyText" : "For many products, the \"ingredients area\" of the supply chain represents a significant carbon opportunity.  As we’ve seen in earlier modules, the ingredient area is significant for colas, and even more significant when we look beyond colas to some of our fastest growing products: like teas, dairy products, and juices where the carbon impact \"at the farm\" is even more significant. Let’s take a look.",
+    "bulletPointFrame": {
+        "title" : "Strategic Frame",
+        "subtitle" : "The principal GHG sources at the ingredient level include:",
+        "bulletPoints" : [
+            "Fertilizer = high GHG",
+            "Soil management = high GHG",
+            "Energy use on farms",
+            "Methane emissions from animal farms = energy source",
+            "Waste = emissions or energy opportunity"
+        ]        
+    }
+}
