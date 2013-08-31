@@ -40,19 +40,19 @@
         </provider>
 
         <activity
-            android:name="com.cocacola.climateambassador.modules.BusinessCaseModule"
+            android:name=".ui.BusinessCaseModule"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_business_case_module"
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".modules.ValueChainModule"
+            android:name=".ui.ValueChainModule"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_key_interventions_module"
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="com.cocacola.climateambassador.modules.EngagingSuppliersModule"
+            android:name=".ui.EngagingSuppliersModule"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_engaging_suppliers_module"
             android:screenOrientation="landscape" >

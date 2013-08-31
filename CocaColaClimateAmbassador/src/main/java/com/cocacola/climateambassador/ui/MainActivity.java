@@ -20,7 +20,6 @@ import com.cocacola.climateambassador.AppPackageFileWriter;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.adapters.MenuListAdapter;
-import com.cocacola.climateambassador.modules.ValueChainModule;
 
 import java.io.File;
 

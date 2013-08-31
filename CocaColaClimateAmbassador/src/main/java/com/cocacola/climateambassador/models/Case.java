@@ -11,14 +11,35 @@ public class Case {
         COURSE_MATERIALS, CASE_STUDIES
     }
 
+    private String title;
     private String bodyText;
+    private BulletPointFrame bulletPointFrame;
+    private List<TextFrame> textFrames;
     private List<Document> courseMaterials;
     private List<Document> caseStudies;
 
-    public Case(String bodyText, List<Document> courseMaterials, List<Document> caseStudies) {
-        this.bodyText = bodyText;
-        this.courseMaterials = courseMaterials;
-        this.caseStudies = caseStudies;
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public BulletPointFrame getBulletPointFrame() {
+        return bulletPointFrame;
+    }
+
+    public void setBulletPointFrame(BulletPointFrame bulletPointFrame) {
+        this.bulletPointFrame = bulletPointFrame;
+    }
+
+    public List<TextFrame> getTextFrames() {
+        return textFrames;
+    }
+
+    public void setTextFrames(List<TextFrame> textFrames) {
+        this.textFrames = textFrames;
     }
 
     public String getBodyText() {
