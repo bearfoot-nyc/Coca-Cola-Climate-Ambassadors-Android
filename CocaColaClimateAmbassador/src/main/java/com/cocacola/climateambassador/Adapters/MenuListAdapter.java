@@ -24,7 +24,8 @@ public class MenuListAdapter extends BaseAdapter {
     int[] mIcon;
     LayoutInflater mInflater;
 
-    public MenuListAdapter(Context context, String[] title, int[] icon) {
+    public MenuListAdapter(Context context, String[] title,
+                           int[] icon) {
         mContext = context;
         mTitle = title;
         mIcon = icon;
@@ -57,12 +58,12 @@ public class MenuListAdapter extends BaseAdapter {
         // Locate the TextViews in drawer_list_item.xml
         txtTitle = (TextView) v.findViewById(R.id.title);
 
+
         // Locate the ImageView in drawer_list_item.xml
         imgIcon = (ImageView) v.findViewById(R.id.icon);
 
         // Set the results into TextViews
         txtTitle.setText(mTitle[position]);
-
 
         // Set the results into ImageView
         imgIcon.setImageResource(mIcon[position]);

@@ -147,8 +147,10 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
         // TODO Use switch instead of if/elses
         if (position == INGREDIENTS_CASE_POS) {
 
+            Case ingredientsCase = null;
+
             try {
-                Case ingredientsCase = mJsonAssetsHelper.parseCaseFromJsonFile("ingredients.json");
+                ingredientsCase = mJsonAssetsHelper.parseCaseFromJsonFile("ingredients.json");
             } catch (IOException e) {
                 Toast.makeText(this, "Failed to Get Ingredients Case", Toast.LENGTH_SHORT);
             }
