@@ -12,6 +12,8 @@ import com.cocacola.climateambassador.ui.MainActivity;
 import com.cocacola.climateambassador.ui.MainFragment;
 import com.cocacola.climateambassador.ui.SupplierOverview;
 import com.cocacola.climateambassador.ui.ValueChainModule;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import javax.inject.Singleton;
 
@@ -52,6 +54,11 @@ public class ClimateAmbassadorModule {
     @Provides @Singleton
     Timber provideTimber() {
         return BuildConfig.DEBUG ? Timber.DEBUG : Timber.PROD;
+    }
+
+    @Provides
+    Gson provideGson() {
+        return new GsonBuilder().create();
     }
 
 }

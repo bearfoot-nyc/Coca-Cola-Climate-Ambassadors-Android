@@ -25,6 +25,9 @@ public class JsonTextSerializerTests extends InstrumentationTestCase {
     @Inject
     Timber Log;
 
+    @Inject
+    JsonAssetsHelper mJsonAssetsHelper;
+
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -59,7 +62,7 @@ public class JsonTextSerializerTests extends InstrumentationTestCase {
 
         String fileName = "ingredients.json";
 
-        String json = JsonAssetsHelper.parseAsString(mContext.getApplicationContext(), fileName);
+        String json = mJsonAssetsHelper.parseAsString(fileName);
 
         assertNotNull(json);
         assertNotSame(json, "");
@@ -68,7 +71,7 @@ public class JsonTextSerializerTests extends InstrumentationTestCase {
 
     public void testParsesStringAsGson() throws IOException {
 
-        Case ingredientsCase = JsonAssetsHelper.parseCaseFromJsonFile(mContext.getApplicationContext(), "ingredients.json");
+        Case ingredientsCase = mJsonAssetsHelper.parseCaseFromJsonFile("ingredients.json");
 
         assertNotNull(ingredientsCase);
 

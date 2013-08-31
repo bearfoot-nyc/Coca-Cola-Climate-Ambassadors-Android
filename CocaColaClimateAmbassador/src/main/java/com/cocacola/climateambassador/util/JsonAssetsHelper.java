@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 
 import com.cocacola.climateambassador.models.Case;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,11 +17,21 @@ import javax.inject.Singleton;
  * Created by realandylawton on 8/31/13.
  */
 
+@Singleton
 public class JsonAssetsHelper {
 
-    public static String parseAsString(Context context, String filename) throws IOException {
+    private Context mContext;
+    private Gson mGson;
 
-        AssetManager assetManager = context.getAssets();
+    @Inject
+    public JsonAssetsHelper(Context context, Gson gson) {
+        mContext = context;
+        mGson = gson;
+    }
+
+    public String parseAsString(String filename) throws IOException {
+
+        AssetManager assetManager = mContext.getAssets();
 
         InputStream in = assetManager.open("json" + File.separator + filename);
 
@@ -36,11 +47,11 @@ public class JsonAssetsHelper {
 
     }
 
-    public static Case parseCaseFromJsonFile(Context context, String filename) throws IOException {
+    public Case parseCaseFromJsonFile(String filename) throws IOException {
 
-        String json = parseAsString(context, filename);
+        String json = parseAsString(filename);
 
-        Case myCase = new Case();
+        Case myCase = mGson.fromJson(json, Case.class);
 
         return myCase;
 
