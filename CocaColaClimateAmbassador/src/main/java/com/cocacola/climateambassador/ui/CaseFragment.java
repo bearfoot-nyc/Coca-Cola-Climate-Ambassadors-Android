@@ -11,6 +11,9 @@ import android.widget.TextView;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.models.BulletPointFrame;
 import com.cocacola.climateambassador.models.Case;
+import com.cocacola.climateambassador.models.Document;
+import com.cocacola.climateambassador.models.SubtitleTextPair;
+import com.cocacola.climateambassador.models.TextFrame;
 
 /**
  * Created by Vinnie Vendemia on 8/29/13.
@@ -45,12 +48,12 @@ public class CaseFragment extends CaFragment {
         LinearLayout caseFrames = (LinearLayout)view.findViewById(R.id.case_frames);
         if(mCase.getBulletPointFrame() != null) {
             BulletPointFrame caseBulletPointFrame = mCase.getBulletPointFrame();
-            LinearLayout bulletPointFrame = new LinearLayout(context , null, R.layout.case_frame);
+            View bulletPointFrame = inflater.inflate(R.layout.case_frame, null);
             ((TextView)bulletPointFrame.findViewById(R.id.case_frame_title)).setText(caseBulletPointFrame.getTitle());
             ((TextView)bulletPointFrame.findViewById(R.id.case_frame_subtitle)).setText(caseBulletPointFrame.getSubtitle());
 
             //Bullet List Base Layout
-            LinearLayout bulletList = new LinearLayout(context, null, R.id.bullet_list_content);
+            LinearLayout bulletList = (LinearLayout)(bulletPointFrame.findViewById(R.id.bullet_list_content));
 
             //Add Bullet Points to Layout
             for(String bulletPoint: caseBulletPointFrame.getBulletPoints() ) {
@@ -59,10 +62,61 @@ public class CaseFragment extends CaFragment {
                 bulletList.addView(bulletPointLayout);
             }
 
+            bulletList.setVisibility(View.VISIBLE);
+            caseFrames.addView(bulletPointFrame);
+        }
 
+        if(mCase.getTextFrames() != null) {
+
+            for( TextFrame currTextFrame : mCase.getTextFrames() ) {
+                View textFrame = inflater.inflate(R.layout.case_frame, null);
+                ((TextView)textFrame.findViewById(R.id.case_frame_title)).setText(currTextFrame.getTitle());
+
+                //TextFrame list base layout
+                LinearLayout textFrames = (LinearLayout)textFrame.findViewById(R.id.case_frame_body);
+
+                for(SubtitleTextPair subTextPair : currTextFrame.getSubtitleTextPairList()){
+                    View subtitleTextPairView = inflater.inflate(R.layout.case_text_frame, null);
+                    ((TextView)subtitleTextPairView.findViewById(R.id.title)).setText(subTextPair.getTitle());
+                    ((TextView)subtitleTextPairView.findViewById(R.id.body_text)).setText(subTextPair.getText());
+                    textFrames.addView(subtitleTextPairView);
+                }
+
+                textFrames.setVisibility(View.VISIBLE);
+                caseFrames.addView(textFrame);
+            }
         }
 
 
+        LinearLayout courseMaterialFrame = (LinearLayout)view.findViewById(R.id.course_materials);
+        if(mCase.getCourseMaterials() != null) {
+
+            for(Document courseMaterial : mCase.getCourseMaterials()){
+                View materialOption = inflater.inflate(R.layout.favorite_divider_button, null);
+                setupButtonAccordingToDocument(courseMaterial, materialOption);
+                courseMaterialFrame.addView(materialOption);
+            }
+
+            courseMaterialFrame.setVisibility(View.VISIBLE);
+        }
+
+        LinearLayout caseStudyFrame = (LinearLayout)view.findViewById(R.id.case_studies);
+        if(mCase.getCaseStudies() != null) {
+
+            for(Document caseStudy : mCase.getCaseStudies()){
+                View studyOption = inflater.inflate(R.layout.favorite_divider_button, null);
+                setupButtonAccordingToDocument(caseStudy, studyOption);
+                courseMaterialFrame.addView(studyOption);
+            }
+
+            caseStudyFrame.setVisibility(View.VISIBLE);
+        }
+
         return view;
     }
+
+    private void setupButtonAccordingToDocument(Document doc, View viewWithButton) {
+        //TODO: Set button background according to doc type and title
+    }
+
 }
