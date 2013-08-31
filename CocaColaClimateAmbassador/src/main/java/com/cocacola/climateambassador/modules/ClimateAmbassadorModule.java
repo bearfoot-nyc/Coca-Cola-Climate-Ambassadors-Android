@@ -12,6 +12,7 @@ import com.cocacola.climateambassador.ui.MainActivity;
 import com.cocacola.climateambassador.ui.MainFragment;
 import com.cocacola.climateambassador.ui.SupplierOverview;
 import com.cocacola.climateambassador.ui.ValueChainModule;
+import com.cocacola.climateambassador.util.JsonAssetsHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -35,6 +36,7 @@ import timber.log.Timber;
         SupplierOverview.class,
         DocumentViewerDelegate.class,
         InternalTrainingOverview.class,
+        JsonAssetsHelper.class
 })
 public class ClimateAmbassadorModule {
 

@@ -18,8 +18,8 @@ import butterknife.Views;
 
 public class MainFragment extends CaFragment {
 
-    //Constants
-    //Constants
+    //CaConstants
+    //CaConstants
     private final String welcomeString = "WELCOME TO THE COCA COLA CLIMATE AMBASSADOR APP!";
     private final String toolDescriptionString = "This tool connects you with training materials and presentations to engage colleagues and " +
             "suppliers in reducing carbon along your value chain.";

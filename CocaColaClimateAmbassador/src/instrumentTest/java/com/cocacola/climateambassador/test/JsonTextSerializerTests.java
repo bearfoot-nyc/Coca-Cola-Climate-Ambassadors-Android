@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.test.InstrumentationTestCase;
 
+import com.cocacola.climateambassador.CaConstants;
+import com.cocacola.climateambassador.models.BulletPointFrame;
 import com.cocacola.climateambassador.models.Case;
 import com.cocacola.climateambassador.util.JsonAssetsHelper;
 
@@ -45,10 +47,10 @@ public class JsonTextSerializerTests extends InstrumentationTestCase {
         mContext = null;
     }
 
-    public void testAssetsExist() throws IOException {
+    public void testJsonAssetsExist() throws IOException {
 
         AssetManager manager = mContext.getAssets();
-        String[] files = manager.list("json");
+        String[] files = manager.list(CaConstants.JSON_ASSETS_DIRECTORY);
 
         assertNotNull(files);
 
@@ -76,6 +78,17 @@ public class JsonTextSerializerTests extends InstrumentationTestCase {
         assertNotNull(ingredientsCase);
 
         assertEquals(ingredientsCase.getTitle(), "Ingredients Cases");
+
+        BulletPointFrame bulletPointFrame = ingredientsCase.getBulletPointFrame();
+        assertEquals(bulletPointFrame.getTitle(), "Strategic Frame");
+
+        List<String> bulletPoints = bulletPointFrame.getBulletPoints();
+
+        assertNotNull(bulletPoints);
+        assertNotSame(bulletPoints.size(), 0);
+        assertSame(bulletPoints.get(0), "Fertilizer = high GHG");
+        assertSame(bulletPoints.get(4), "Waste = emissions or energy opportunity");
+
 
     }
 
