@@ -13,7 +13,11 @@ import dagger.Provides;
 
 @Module(
         includes = ClimateAmbassadorModule.class,
-        overrides = true
+        overrides = true,
+        injects = {
+                AppPackageFileWriterTests.class,
+                JsonTextSerializerTests.class
+        }
 )
 public class ClimateAmbassadorTestModule {
 

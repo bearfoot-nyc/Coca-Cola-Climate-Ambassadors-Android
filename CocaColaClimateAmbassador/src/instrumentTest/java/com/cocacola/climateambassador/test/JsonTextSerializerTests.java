@@ -1,13 +1,19 @@
 package com.cocacola.climateambassador.test;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.test.InstrumentationTestCase;
 
+import com.cocacola.climateambassador.models.Case;
 import com.cocacola.climateambassador.util.JsonAssetsHelper;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.inject.Inject;
 
 import dagger.ObjectGraph;
+import timber.log.Timber;
 
 /**
  * Created by realandylawton on 8/31/13.
@@ -15,6 +21,9 @@ import dagger.ObjectGraph;
 public class JsonTextSerializerTests extends InstrumentationTestCase {
 
     protected Context mContext;
+
+    @Inject
+    Timber Log;
 
     @Override
     public void setUp() throws Exception {
@@ -33,14 +42,37 @@ public class JsonTextSerializerTests extends InstrumentationTestCase {
         mContext = null;
     }
 
+    public void testAssetsExist() throws IOException {
+
+        AssetManager manager = mContext.getAssets();
+        String[] files = manager.list("json");
+
+        assertNotNull(files);
+
+        for(String file : files) {
+            Log.i("fileName=%s", file);
+        }
+
+    }
+
     public void testParsesFileAsString() throws IOException {
 
-        String fileName = "case-ingredients.json";
+        String fileName = "ingredients.json";
 
-        String json = JsonAssetsHelper.parseAsString(mContext, fileName);
+        String json = JsonAssetsHelper.parseAsString(mContext.getApplicationContext(), fileName);
 
         assertNotNull(json);
         assertNotSame(json, "");
+
+    }
+
+    public void testParsesStringAsGson() throws IOException {
+
+        Case ingredientsCase = JsonAssetsHelper.parseCaseFromJsonFile(mContext.getApplicationContext(), "ingredients.json");
+
+        assertNotNull(ingredientsCase);
+
+        assertEquals(ingredientsCase.getTitle(), "Ingredients Cases");
 
     }
 

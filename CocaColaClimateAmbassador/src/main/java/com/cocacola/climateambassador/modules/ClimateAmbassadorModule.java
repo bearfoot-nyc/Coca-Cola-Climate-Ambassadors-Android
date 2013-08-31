@@ -36,7 +36,9 @@ import timber.log.Timber;
 })
 public class ClimateAmbassadorModule {
 
-    private final Context mContext;
+    private Context mContext;
+
+    public ClimateAmbassadorModule() { }
 
     public ClimateAmbassadorModule(Context context) {
         mContext = context;
@@ -52,7 +54,4 @@ public class ClimateAmbassadorModule {
         return BuildConfig.DEBUG ? Timber.DEBUG : Timber.PROD;
     }
 
-//    @Provides @Singleton
-//    ActionBar provideActionBar() {
-//    }
 }
