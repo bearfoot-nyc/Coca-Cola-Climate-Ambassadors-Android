@@ -23,8 +23,9 @@ public class CaseFragment extends CaFragment {
 
     private Case mCase;
 
-    public static CaseFragment newInstance() {
+    public static CaseFragment newInstance(Case aCase) {
         CaseFragment fragment = new CaseFragment();
+        fragment.mCase = aCase;
         return fragment;
       }
 

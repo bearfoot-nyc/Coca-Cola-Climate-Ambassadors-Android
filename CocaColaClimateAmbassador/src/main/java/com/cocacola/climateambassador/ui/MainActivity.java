@@ -15,13 +15,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.cocacola.climateambassador.AppPackageFileWriter;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.adapters.MenuListAdapter;
+import com.cocacola.climateambassador.models.Case;
+import com.cocacola.climateambassador.util.JsonAssetsHelper;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.inject.Inject;
 
@@ -29,9 +33,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends CaActivity implements SearchView.OnQueryTextListener {
 
-    private final String FOR_SUPPLIERS = "For Suppliers";
-
-    private final int CLIMATE_GOALS_POS = 0;
+    private final int INGREDIENTS_CASE_POS = 0;
     private final int BUSINESS_CASE_POS = 1;
     private final int KEY_INTERVENTIONS_POS = 2;
     private final int ENGAGING_SUPPLIERS_POS = 3;
@@ -39,7 +41,7 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
     private final int SUPPLIER_GUIDE_POS = 5;
 
 
-    public String[] mDrawerOptions = {"Add Nav Drawer Options Here" , "Supply Chain Implementation", FOR_SUPPLIERS};
+    public String[] mDrawerOptions = { "Ingredients Case" , "Supply Chain Implementation", "For Suppliers"};
     public ListView mDrawerList;
     public DrawerLayout mDrawerLayout;
     private MenuListAdapter mMenuAdapter;
@@ -52,6 +54,9 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
     DocumentViewerDelegate mDocumentManager;
     @Inject
     AppPackageFileWriter mAppPackageFileWriter;
+
+    @Inject
+    JsonAssetsHelper mJsonAssetsHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,21 +138,29 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selectItem(position);
+            onDrawerItemClick(position);
         }
     }
 
-    private void selectItem(int position) {
+    private void onDrawerItemClick(int position) {
 
-        // update the main content by replacing fragments
-        if (position == CLIMATE_GOALS_POS) {
+        // TODO Use switch instead of if/elses
+        if (position == INGREDIENTS_CASE_POS) {
 
-            InternalTrainingOverview fragment = new InternalTrainingOverview();
+            try {
+                Case ingredientsCase = mJsonAssetsHelper.parseCaseFromJsonFile("ingredients.json");
+            } catch (IOException e) {
+                Toast.makeText(this, "Failed to Get Ingredients Case", Toast.LENGTH_SHORT);
+            }
+
+            CaseFragment fragment = CaseFragment.newInstance(ingredientsCase);
+
             getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
 
-            mDrawerLayout.closeDrawer(mDrawerList);
-            getActionBar().setDisplayShowTitleEnabled(false);
-            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            getActionBar().setDisplayShowTitleEnabled(true);
+            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+
 
         } else if (position == BUSINESS_CASE_POS) {
 

@@ -1,5 +1,6 @@
 package com.cocacola.climateambassador.adapters;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,23 +10,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.ui.InternalTrainingOverview;
+import com.cocacola.climateambassador.ui.SupplierOverview;
+import com.cocacola.climateambassador.ui.ValueChainModule;
 
 /**
  * Created by Vinnie Vendemia on 8/27/13.
  */
 public class MenuListAdapter extends BaseAdapter {
 
-    // Declare Variables
-    Context context;
+    Context mContext;
     String[] mTitle;
     int[] mIcon;
     LayoutInflater mInflater;
 
-    public MenuListAdapter(Context context, String[] title,
-                           int[] icon) {
-        this.context = context;
-        this.mTitle = title;
-        this.mIcon = icon;
+    public MenuListAdapter(Context context, String[] title, int[] icon) {
+        mContext = context;
+        mTitle = title;
+        mIcon = icon;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -45,18 +47,18 @@ public class MenuListAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Declare Variables
+
         TextView txtTitle;
         TextView txtSubTitle;
         ImageView imgIcon;
 
-        View itemView = mInflater.inflate(R.layout.drawer_list_item, parent, false);
+        View v = mInflater.inflate(R.layout.drawer_list_item, parent, false);
 
         // Locate the TextViews in drawer_list_item.xml
-        txtTitle = (TextView) itemView.findViewById(R.id.title);
+        txtTitle = (TextView) v.findViewById(R.id.title);
 
         // Locate the ImageView in drawer_list_item.xml
-        imgIcon = (ImageView) itemView.findViewById(R.id.icon);
+        imgIcon = (ImageView) v.findViewById(R.id.icon);
 
         // Set the results into TextViews
         txtTitle.setText(mTitle[position]);
@@ -65,7 +67,9 @@ public class MenuListAdapter extends BaseAdapter {
         // Set the results into ImageView
         imgIcon.setImageResource(mIcon[position]);
 
-        return itemView;
+        return v;
     }
+
+
 
 }
