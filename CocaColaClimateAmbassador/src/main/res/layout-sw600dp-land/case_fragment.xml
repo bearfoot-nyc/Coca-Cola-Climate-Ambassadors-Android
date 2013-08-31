@@ -33,6 +33,15 @@
                 android:textStyle="bold"/>
         </LinearLayout>
 
+        <TextView
+                android:id="@+id/body_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingRight="45dp"
+                android:paddingTop="10dp"
+                android:visibility="gone"/>
+
         <LinearLayout
             android:id="@+id/case_frames"
             android:layout_height="wrap_content"
