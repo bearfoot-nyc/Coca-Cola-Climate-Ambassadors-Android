@@ -51,9 +51,6 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
     private SearchView mSearchView;
 
     @Inject
-    DocumentViewerDelegate mDocumentManager;
-
-    @Inject
     JsonAssetsLoader mJsonAssetsLoader;
 
     @Override
@@ -120,12 +117,8 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
 
     @OnClick(R.id.home_btn_internal)
     public void startSectionActivity() {
-        try {
-            mDocumentManager.startPdfViewerActivity("resume.pdf", this);
-        } catch (ActivityNotFoundException e) {
-            // TODO Launch an intent to download in Play Store
-            Log.e(e, "No Activity for Viewing PDFs");
-        }
+        // TODO Actually launch a section
+        Log.i("Launch a section");
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
