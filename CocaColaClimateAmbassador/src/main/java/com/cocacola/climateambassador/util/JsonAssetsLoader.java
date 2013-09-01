@@ -19,13 +19,13 @@ import javax.inject.Singleton;
  */
 
 @Singleton
-public class JsonAssetsHelper {
+public class JsonAssetsLoader {
 
     private Context mContext;
     private Gson mGson;
 
     @Inject
-    public JsonAssetsHelper(Context context, Gson gson) {
+    public JsonAssetsLoader(Context context, Gson gson) {
         mContext = context;
         mGson = gson;
     }

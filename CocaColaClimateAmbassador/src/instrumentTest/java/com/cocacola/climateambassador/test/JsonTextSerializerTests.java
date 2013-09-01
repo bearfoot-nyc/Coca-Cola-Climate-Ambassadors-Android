@@ -7,9 +7,8 @@ import android.test.InstrumentationTestCase;
 import com.cocacola.climateambassador.CaConstants;
 import com.cocacola.climateambassador.models.BulletPointFrame;
 import com.cocacola.climateambassador.models.Case;
-import com.cocacola.climateambassador.models.Document;
 import com.cocacola.climateambassador.models.TextFrame;
-import com.cocacola.climateambassador.util.JsonAssetsHelper;
+import com.cocacola.climateambassador.util.JsonAssetsLoader;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,7 +29,7 @@ public class JsonTextSerializerTests extends InstrumentationTestCase {
     Timber Log;
 
     @Inject
-    JsonAssetsHelper mJsonAssetsHelper;
+    JsonAssetsLoader mJsonAssetsLoader;
 
     @Override
     public void setUp() throws Exception {
@@ -66,7 +65,7 @@ public class JsonTextSerializerTests extends InstrumentationTestCase {
 
         String fileName = "ingredients.json";
 
-        String json = mJsonAssetsHelper.parseAsString(fileName);
+        String json = mJsonAssetsLoader.parseAsString(fileName);
 
         assertNotNull(json);
         assertNotSame(json, "");
@@ -75,7 +74,7 @@ public class JsonTextSerializerTests extends InstrumentationTestCase {
 
     public void testIngredientCasesParsesStringAsGson() throws IOException {
 
-        Case ingredientsCase = mJsonAssetsHelper.parseCaseFromJsonFile("ingredients.json");
+        Case ingredientsCase = mJsonAssetsLoader.parseCaseFromJsonFile("ingredients.json");
 
         assertNotNull(ingredientsCase);
 

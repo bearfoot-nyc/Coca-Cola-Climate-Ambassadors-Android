@@ -22,7 +22,7 @@ import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.adapters.MenuListAdapter;
 import com.cocacola.climateambassador.models.Case;
-import com.cocacola.climateambassador.util.JsonAssetsHelper;
+import com.cocacola.climateambassador.util.JsonAssetsLoader;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,23 +52,30 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
 
     @Inject
     DocumentViewerDelegate mDocumentManager;
-    @Inject
-    AppPackageFileWriter mAppPackageFileWriter;
 
     @Inject
-    JsonAssetsHelper mJsonAssetsHelper;
+    JsonAssetsLoader mJsonAssetsLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+        setupNavigationDrawer();
+        setUpHomeScreen();
+
+    }
+
+    private void setupNavigationDrawer() {
 
         //Set up the Navigation Drawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         mDrawerList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+
         // set up the drawer's list view with items and click listener
 
 
@@ -104,20 +111,6 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
         };
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-        setUpHomeScreen();
-
-        mAppPackageFileWriter.writeAssetsToPackageDir();
-
-        File filesDir = getFilesDir();
-        String[] list = filesDir.list();
-
-        Log.i("list.length=%s", list.length);
-
-        for (String filename : list) {
-            Log.i("filename=%s", filename);
-        }
-
     }
 
     private void setUpHomeScreen() {
@@ -150,7 +143,7 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
             Case ingredientsCase = null;
 
             try {
-                ingredientsCase = mJsonAssetsHelper.parseCaseFromJsonFile("ingredients.json");
+                ingredientsCase = mJsonAssetsLoader.parseCaseFromJsonFile("ingredients.json");
             } catch (IOException e) {
                 Toast.makeText(this, "Failed to Get Ingredients Case", Toast.LENGTH_SHORT);
             }
