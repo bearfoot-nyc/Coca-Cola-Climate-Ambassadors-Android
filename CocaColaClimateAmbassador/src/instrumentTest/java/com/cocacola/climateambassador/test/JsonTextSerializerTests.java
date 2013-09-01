@@ -7,6 +7,7 @@ import android.test.InstrumentationTestCase;
 import com.cocacola.climateambassador.CaConstants;
 import com.cocacola.climateambassador.models.BulletPointFrame;
 import com.cocacola.climateambassador.models.Case;
+import com.cocacola.climateambassador.models.Document;
 import com.cocacola.climateambassador.util.JsonAssetsHelper;
 
 import java.io.IOException;
@@ -71,13 +72,20 @@ public class JsonTextSerializerTests extends InstrumentationTestCase {
 
     }
 
-    public void testParsesStringAsGson() throws IOException {
+    public void testCasesParsesStringAsGson() throws IOException {
 
         Case ingredientsCase = mJsonAssetsHelper.parseCaseFromJsonFile("ingredients.json");
 
         assertNotNull(ingredientsCase);
 
         assertEquals(ingredientsCase.getTitle(), "Ingredients Cases");
+
+        List<Document> documents = ingredientsCase.getCaseStudies();
+        assertNotNull(documents);
+        assertNotSame(documents.size(), 0);
+        assertEquals("Coca-Cola Business Case for Good Fertilizer Use in Citrus", documents.get(0).getLabel());
+        assertEquals("coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf", documents.get(0).getFileName());
+
 
         BulletPointFrame bulletPointFrame = ingredientsCase.getBulletPointFrame();
         assertEquals(bulletPointFrame.getTitle(), "Strategic Frame");
@@ -86,9 +94,8 @@ public class JsonTextSerializerTests extends InstrumentationTestCase {
 
         assertNotNull(bulletPoints);
         assertNotSame(bulletPoints.size(), 0);
-        assertSame(bulletPoints.get(0), "Fertilizer = high GHG");
-        assertSame(bulletPoints.get(4), "Waste = emissions or energy opportunity");
-
+        assertEquals(bulletPoints.get(0), "Fertilizer = high GHG");
+        assertEquals(bulletPoints.get(4), "Waste = emissions or energy opportunity");
 
     }
 

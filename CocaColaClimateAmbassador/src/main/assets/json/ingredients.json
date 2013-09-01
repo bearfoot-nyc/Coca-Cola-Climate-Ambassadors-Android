@@ -11,5 +11,19 @@
             "Methane emissions from animal farms = energy source",
             "Waste = emissions or energy opportunity"
         ]        
-    }
+    },
+    "caseStudies" : [
+        {
+            "fileName" : "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf",
+            "label" : "Coca-Cola Business Case for Good Fertilizer Use in Citrus"
+        },
+        {
+            "fileName" : "Danone-Reduces-Methane-through-Better-Cow-Nutrition-France-US.pdf",
+            "label" : "Danone Reduces Methane through Better Cow Nutrition - France US"
+        },
+        {
+            "fileName" : "Drip-Irrigation-to-Reduce-Climate-Impact-US-India.pdf",
+            "label" : "Drip Irrigation to Reduce Climate Impact at PepsiCo_US_India"
+        }
+    ]
 }
