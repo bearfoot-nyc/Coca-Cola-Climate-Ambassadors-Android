@@ -2,7 +2,6 @@ package com.cocacola.climateambassador.ui;
 
 import android.app.ActionBar;
 import android.app.SearchManager;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -17,21 +16,18 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.cocacola.climateambassador.AppPackageFileWriter;
-import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.adapters.MenuListAdapter;
 import com.cocacola.climateambassador.models.Case;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.inject.Inject;
 
 import butterknife.OnClick;
 
-public class MainActivity extends CaActivity implements SearchView.OnQueryTextListener {
+public class MainActivity extends CaDrawerActivity implements SearchView.OnQueryTextListener {
 
     private final int INGREDIENTS_CASE_POS = 0;
     private final int BUSINESS_CASE_POS = 1;
@@ -39,14 +35,6 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
     private final int ENGAGING_SUPPLIERS_POS = 3;
     private final int SUPPLIERS_OVERVIEW_POS = 4;
     private final int SUPPLIER_GUIDE_POS = 5;
-
-
-    public String[] mDrawerOptions = { "Ingredients Case" , "Supply Chain Implementation", "For Suppliers"};
-    public ListView mDrawerList;
-    public DrawerLayout mDrawerLayout;
-    private MenuListAdapter mMenuAdapter;
-    private ActionBarDrawerToggle mDrawerToggle;
-    int[] icon;
 
     private SearchView mSearchView;
 
@@ -63,53 +51,6 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
 
     }
 
-    private void setupNavigationDrawer() {
-
-        //Set up the Navigation Drawer
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
-        mDrawerList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
-        // set a custom shadow that overlays the main content when the drawer opens
-        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-
-        // set up the drawer's list view with items and click listener
-
-
-        //Removed Subtitle
-        icon = new int[]{0, 0, 0, 0};
-
-        mMenuAdapter = new MenuListAdapter(this, mDrawerOptions, icon);
-
-        mDrawerList.setAdapter(mMenuAdapter);
-
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
-        getActionBar().setDisplayShowTitleEnabled(true);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
-
-        mDrawerToggle = new ActionBarDrawerToggle(
-                this,                  /* host Activity */
-                mDrawerLayout,         /* DrawerLayout object */
-                R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret */
-                R.string.drawer_open,  /* "open drawer" description for accessibility */
-                R.string.drawer_close  /* "close drawer" description for accessibility */
-        ) {
-            public void onDrawerClosed(View view) {
-                // getSupportActionBar().setTitle(mTitle);
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-            }
-
-            public void onDrawerOpened(View drawerView) {
-                // getSupportActionBar().setTitle(mDrawerTitle);
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-            }
-        };
-
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-    }
-
     private void setUpHomeScreen() {
         MainFragment fragment = new MainFragment();
         getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
@@ -121,14 +62,18 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
         Log.i("Launch a section");
     }
 
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            onDrawerItemClick(position);
-        }
+    @Override
+    int getNavigationTitleArrayId() {
+        return R.array.nav_sections_titles;
     }
 
-    private void onDrawerItemClick(int position) {
+    @Override
+    int getNavigationIconArrayId() {
+        return R.array.nav_sections_icons;
+    }
+
+    @Override
+    void onDrawerItemClick(int position) {
 
         // TODO Use switch instead of if/elses
         if (position == INGREDIENTS_CASE_POS) {

@@ -76,10 +76,15 @@
     <string name="course_material_title">VIEW AND DOWNLOAD COURSE MATERIAL HERE</string>
     <string name="case_studies">CASE STUDIES</string>
 
-    <string-array name="nav_sections">
+    <string-array name="nav_sections_titles">
         <item>Internal Training Materials</item>
         <item>For Suppliers</item>
     </string-array>
+
+    <array name="nav_sections_icons">
+        <item>@drawable/ic_drawer_wrench</item>
+        <item>@drawable/ic_drawer_folder</item>
+    </array>
 
     <string-array name="nav_internal">
         <item>Module 1:  Emissions &amp; Our Business</item>
