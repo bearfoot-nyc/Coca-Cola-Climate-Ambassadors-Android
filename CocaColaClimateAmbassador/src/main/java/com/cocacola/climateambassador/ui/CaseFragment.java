@@ -43,10 +43,11 @@ public class CaseFragment extends CaFragment {
         ((TextView)view.findViewById(R.id.case_title)).setText(mCase.getTitle());
 
         if(mCase.getBodyText() != null) {
-            ((TextView)view.findViewById(R.id.body_text)).setText(mCase.getBodyText());
+               ((TextView)view.findViewById(R.id.body_text)).setText(mCase.getBodyText());
         }
 
         LinearLayout caseFrames = (LinearLayout)view.findViewById(R.id.case_frames);
+
         if(mCase.getBulletPointFrame() != null) {
             BulletPointFrame caseBulletPointFrame = mCase.getBulletPointFrame();
             View bulletPointFrame = inflater.inflate(R.layout.case_frame, null);
@@ -118,6 +119,15 @@ public class CaseFragment extends CaFragment {
 
     private void setupButtonAccordingToDocument(Document doc, View viewWithButton) {
         //TODO: Set button background according to doc type and title
+        if(Document.FileType.PDF.equals(doc.getLabel())) {
+
+        } else if(Document.FileType.PPT.equals(doc.getLabel())) {
+
+        } else if(Document.FileType.DOC.equals(doc.getLabel())) {
+
+        } else {
+            //Do nothing
+        }
     }
 
 }

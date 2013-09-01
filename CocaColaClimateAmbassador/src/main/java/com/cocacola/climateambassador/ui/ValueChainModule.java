@@ -12,6 +12,10 @@ import com.cocacola.climateambassador.R;
 import butterknife.InjectView;
 import butterknife.Views;
 
+/**
+ * Created by Vinnie Vendemia on 8/28/13.
+ */
+
 public class ValueChainModule extends CaFragment {
 
     public static String TAG = "ValueChainModule";

@@ -6,7 +6,7 @@ package com.cocacola.climateambassador.models;
 public class Document {
 
     public static enum FileType {
-        PDF, PPT
+        PDF, PPT, DOC
     }
 
     public Document(String fileName, String label) {

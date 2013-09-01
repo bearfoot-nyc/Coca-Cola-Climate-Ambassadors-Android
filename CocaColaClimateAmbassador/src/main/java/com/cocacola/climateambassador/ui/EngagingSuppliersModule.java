@@ -6,7 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.ui.CaFragment;
+
+/**
+ * Created by Vinnie Vendemia on 8/28/13.
+ */
 
 public class EngagingSuppliersModule extends CaFragment {
 
