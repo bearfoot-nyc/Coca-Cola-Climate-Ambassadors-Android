@@ -12,6 +12,9 @@ import android.widget.ListView;
 
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.adapters.MenuListAdapter;
+import com.cocacola.climateambassador.models.NavigationDrawerItem;
+
+import java.util.List;
 
 /**
  * Created by realandylawton on 8/31/13.
@@ -22,6 +25,8 @@ abstract class CaDrawerActivity extends CaActivity {
     public ListView mDrawerList;
     public MenuListAdapter mMenuAdapter;
     public ActionBarDrawerToggle mDrawerToggle;
+
+    protected List<NavigationDrawerItem> mNavigationDrawerItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,7 @@ abstract class CaDrawerActivity extends CaActivity {
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-        mMenuAdapter = new MenuListAdapter(this, getResources().getStringArray(getNavigationTitleArrayId()), getResources().getIntArray(getNavigationIconArrayId()));
+        mMenuAdapter = getMenuListAdapter();
 
         mDrawerList.setAdapter(mMenuAdapter);
 
@@ -69,8 +74,8 @@ abstract class CaDrawerActivity extends CaActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    abstract int getNavigationTitleArrayId();
-    abstract int getNavigationIconArrayId();
+    abstract MenuListAdapter getMenuListAdapter();
+    abstract List<NavigationDrawerItem> getNavigationDrawerItems();
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override

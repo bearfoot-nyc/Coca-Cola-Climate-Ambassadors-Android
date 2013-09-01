@@ -8,6 +8,11 @@ import android.view.Menu;
 import android.widget.SearchView;
 
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.adapters.MenuListAdapter;
+import com.cocacola.climateambassador.models.NavigationDrawerItem;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import butterknife.OnClick;
 
@@ -32,33 +37,36 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
 
     @OnClick(R.id.home_btn_internal)
     public void onClickInternal() {
-        launchInternalTrainingActivity();
+        launchSectionActivity(InternalTrainingActivity.class);
     }
 
     @OnClick(R.id.home_btn_suppliers)
     public void onClickSuppliers() {
-        launchForSuppliersActivity();
+        launchSectionActivity(ForSuppliersActivity.class);
     }
 
-    private void launchInternalTrainingActivity() {
-        mDrawerLayout.closeDrawer();
-        Intent intent = new Intent(this, InternalTrainingActivity.class);
+    private void launchSectionActivity(Class<? extends SectionActivity> activityClz) {
+        Intent intent = new Intent(this, activityClz);
         startActivity(intent);
-    }
-
-    private void launchForSuppliersActivity() {
-        Intent intent = new Intent(this, ForSuppliersActivity.class);
-        startActivity(intent);
+        // TODO Close the drawer
     }
 
     @Override
-    int getNavigationTitleArrayId() {
-        return R.array.nav_sections_titles;
+    MenuListAdapter getMenuListAdapter() {
+        return new MenuListAdapter(this, getNavigationDrawerItems());
     }
 
     @Override
-    int getNavigationIconArrayId() {
-        return R.array.nav_sections_icons;
+    List<NavigationDrawerItem> getNavigationDrawerItems() {
+
+        if(mNavigationDrawerItems == null) {
+            mNavigationDrawerItems = new LinkedList<NavigationDrawerItem>();
+            mNavigationDrawerItems.add(new NavigationDrawerItem("Internal Trainings", R.drawable.ic_drawer_wrench));
+            mNavigationDrawerItems.add(new NavigationDrawerItem("For Suppliers", R.drawable.ic_drawer_folder));
+        }
+
+        return mNavigationDrawerItems;
+
     }
 
     private static final int DRAWER_POSITION_INTERNAL = 0;
@@ -69,10 +77,10 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
 
         switch (position) {
             case DRAWER_POSITION_INTERNAL: {
-                launchInternalTrainingActivity();
+                launchSectionActivity(InternalTrainingActivity.class);
             }
             case DRAWER_POSITION_SUPPLIERS: {
-                launchForSuppliersActivity();
+                launchSectionActivity(ForSuppliersActivity.class);
             }
         }
 

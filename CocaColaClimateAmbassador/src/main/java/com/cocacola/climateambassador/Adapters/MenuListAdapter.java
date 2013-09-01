@@ -9,33 +9,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.models.NavigationDrawerItem;
+
+import java.util.List;
 
 /**
  * Created by Vinnie Vendemia on 8/27/13.
  */
 public class MenuListAdapter extends BaseAdapter {
 
-    Context mContext;
-    String[] mTitle;
-    int[] mIcon;
-    LayoutInflater mInflater;
+    private List<NavigationDrawerItem> mNavigationItems;
 
-    public MenuListAdapter(Context context, String[] title,
-                           int[] icon) {
+    private Context mContext;
+    private LayoutInflater mInflater;
+
+    public MenuListAdapter(Context context, List<NavigationDrawerItem> navigationItems) {
+        mNavigationItems = navigationItems;
         mContext = context;
-        mTitle = title;
-        mIcon = icon;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return mTitle.length;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return mTitle[position];
+        return mNavigationItems.size();
     }
 
     @Override
@@ -43,30 +39,28 @@ public class MenuListAdapter extends BaseAdapter {
         return position;
     }
 
+    @Override
+    public NavigationDrawerItem getItem(int position) {
+        return mNavigationItems.get(position);
+    }
+
     public View getView(int position, View convertView, ViewGroup parent) {
 
         TextView txtTitle;
-        TextView txtSubTitle;
         ImageView imgIcon;
 
         View v = mInflater.inflate(R.layout.drawer_list_item, parent, false);
 
         // Locate the TextViews in drawer_list_item.xml
         txtTitle = (TextView) v.findViewById(R.id.title);
-
-
-        // Locate the ImageView in drawer_list_item.xml
         imgIcon = (ImageView) v.findViewById(R.id.icon);
 
-        // Set the results into TextViews
-        txtTitle.setText(mTitle[position]);
+        NavigationDrawerItem item = mNavigationItems.get(position);
 
-        // Set the results into ImageView
-        imgIcon.setImageResource(mIcon[position]);
+        txtTitle.setText(item.getTitle());
+        imgIcon.setImageResource(item.getIconId());
 
         return v;
     }
-
-
 
 }
