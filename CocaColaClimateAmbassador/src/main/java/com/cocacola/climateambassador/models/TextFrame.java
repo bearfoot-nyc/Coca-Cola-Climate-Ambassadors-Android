@@ -9,7 +9,7 @@ public class TextFrame {
 
     private String title;
     private String bodyText;
-    private List<SubtitleTextPair> subtitleTextPairList;
+    private List<SubtitleTextPair> subtitleTextPairs;
 
     public String getTitle() {
         return title;
@@ -27,11 +27,11 @@ public class TextFrame {
         this.bodyText = bodyText;
     }
 
-    public List<SubtitleTextPair> getSubtitleTextPairList() {
-        return subtitleTextPairList;
+    public List<SubtitleTextPair> getSubtitleTextPairs() {
+        return subtitleTextPairs;
     }
 
-    public void setSubtitleTextPairList(List<SubtitleTextPair> subtitleTextPairList) {
-        this.subtitleTextPairList = subtitleTextPairList;
+    public void setSubtitleTextPairs(List<SubtitleTextPair> subtitleTextPairs) {
+        this.subtitleTextPairs = subtitleTextPairs;
     }
 }

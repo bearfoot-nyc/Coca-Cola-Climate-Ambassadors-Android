@@ -76,7 +76,7 @@ public class CaseFragment extends CaFragment {
                 //TextFrame list base layout
                 LinearLayout textFrames = (LinearLayout)textFrame.findViewById(R.id.case_frame_body);
 
-                for(SubtitleTextPair subTextPair : currTextFrame.getSubtitleTextPairList()){
+                for(SubtitleTextPair subTextPair : currTextFrame.getSubtitleTextPairs()){
                     View subtitleTextPairView = inflater.inflate(R.layout.case_text_frame, null);
                     ((TextView)subtitleTextPairView.findViewById(R.id.title)).setText(subTextPair.getTitle());
                     ((TextView)subtitleTextPairView.findViewById(R.id.body_text)).setText(subTextPair.getText());
