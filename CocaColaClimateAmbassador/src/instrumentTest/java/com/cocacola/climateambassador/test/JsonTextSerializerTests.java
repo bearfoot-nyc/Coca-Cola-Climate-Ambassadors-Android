@@ -8,6 +8,7 @@ import com.cocacola.climateambassador.CaConstants;
 import com.cocacola.climateambassador.models.BulletPointFrame;
 import com.cocacola.climateambassador.models.Case;
 import com.cocacola.climateambassador.models.Document;
+import com.cocacola.climateambassador.models.TextFrame;
 import com.cocacola.climateambassador.util.JsonAssetsHelper;
 
 import java.io.IOException;
@@ -72,20 +73,13 @@ public class JsonTextSerializerTests extends InstrumentationTestCase {
 
     }
 
-    public void testCasesParsesStringAsGson() throws IOException {
+    public void testIngredientCasesParsesStringAsGson() throws IOException {
 
         Case ingredientsCase = mJsonAssetsHelper.parseCaseFromJsonFile("ingredients.json");
 
         assertNotNull(ingredientsCase);
 
         assertEquals(ingredientsCase.getTitle(), "Ingredients Cases");
-
-        List<Document> documents = ingredientsCase.getCaseStudies();
-        assertNotNull(documents);
-        assertNotSame(documents.size(), 0);
-        assertEquals("Coca-Cola Business Case for Good Fertilizer Use in Citrus", documents.get(0).getLabel());
-        assertEquals("coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf", documents.get(0).getFileName());
-
 
         BulletPointFrame bulletPointFrame = ingredientsCase.getBulletPointFrame();
         assertEquals(bulletPointFrame.getTitle(), "Strategic Frame");
@@ -96,6 +90,24 @@ public class JsonTextSerializerTests extends InstrumentationTestCase {
         assertNotSame(bulletPoints.size(), 0);
         assertEquals(bulletPoints.get(0), "Fertilizer = high GHG");
         assertEquals(bulletPoints.get(4), "Waste = emissions or energy opportunity");
+
+
+        List<TextFrame> textFrames = ingredientsCase.getTextFrames();
+
+        assertNotNull(textFrames);
+        assertNotSame(textFrames.size(), 0);
+
+        TextFrame frame1 = textFrames.get(0);
+
+        assertEquals("Financial Frame", frame1.getTitle());
+        assertEquals("", frame1.getBodyText());
+        assertEquals("Revenue", frame1.getSubtitleTextPairs().get(1).getTitle());
+
+        TextFrame frame2 = textFrames.get(1);
+
+        assertEquals("Strategic Future", frame2.getTitle());
+        assertEquals(frame2.getSubtitleTextPairs().size(), 0);
+
 
     }
 
