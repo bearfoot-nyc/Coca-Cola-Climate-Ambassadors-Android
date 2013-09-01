@@ -2,6 +2,7 @@ package com.cocacola.climateambassador.ui;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,7 @@ public class CaseFragment extends CaFragment {
             View bulletPointFrame = inflater.inflate(R.layout.case_frame, null);
             ((TextView)bulletPointFrame.findViewById(R.id.case_frame_title)).setText(caseBulletPointFrame.getTitle());
             ((TextView)bulletPointFrame.findViewById(R.id.case_frame_subtitle)).setText(caseBulletPointFrame.getSubtitle());
-
+            ((TextView)bulletPointFrame.findViewById(R.id.case_frame_subtitle)).setVisibility(View.VISIBLE);
             //Bullet List Base Layout
             LinearLayout bulletList = (LinearLayout)(bulletPointFrame.findViewById(R.id.bullet_list_content));
 
@@ -74,13 +75,18 @@ public class CaseFragment extends CaFragment {
                 View textFrame = inflater.inflate(R.layout.case_frame, null);
                 ((TextView)textFrame.findViewById(R.id.case_frame_title)).setText(currTextFrame.getTitle());
 
+                if(!TextUtils.isEmpty(currTextFrame.getBodyText())) {
+                    ((TextView)textFrame.findViewById(R.id.case_frame_body_text)).setText(currTextFrame.getBodyText());
+                    ((TextView)textFrame.findViewById(R.id.case_frame_body_text)).setVisibility(View.VISIBLE);
+                }
                 //TextFrame list base layout
                 LinearLayout textFrames = (LinearLayout)textFrame.findViewById(R.id.case_frame_body);
 
                 for(SubtitleTextPair subTextPair : currTextFrame.getSubtitleTextPairs()){
                     View subtitleTextPairView = inflater.inflate(R.layout.case_text_frame, null);
                     ((TextView)subtitleTextPairView.findViewById(R.id.title)).setText(subTextPair.getTitle());
-                    ((TextView)subtitleTextPairView.findViewById(R.id.body_text)).setText(subTextPair.getText());
+//                    addBodyText(((TextView)subtitleTextPairView.findViewById(R.id.body_text)), subTextPair.getText
+                   ((TextView)subtitleTextPairView.findViewById(R.id.body_text)).setText(subTextPair.getText());
                     textFrames.addView(subtitleTextPairView);
                 }
 
@@ -108,7 +114,7 @@ public class CaseFragment extends CaFragment {
             for(Document caseStudy : mCase.getCaseStudies()){
                 View studyOption = inflater.inflate(R.layout.favorite_divider_button, null);
                 setupButtonAccordingToDocument(caseStudy, studyOption);
-                courseMaterialFrame.addView(studyOption);
+                caseStudyFrame.addView(studyOption);
             }
 
             caseStudyFrame.setVisibility(View.VISIBLE);
@@ -117,17 +123,39 @@ public class CaseFragment extends CaFragment {
         return view;
     }
 
+//    private void addBodyText(TextView view, String text) {
+//        StringBuilder sb = new StringBuilder(text);
+//
+//        int i = 0;
+//        while ((i = sb.indexOf(" ", i + 660)) != -1) {
+//            sb.replace(i, i + 1, "\n\n");
+//        }
+//        view.setText(sb.toString());
+//    }
+
     private void setupButtonAccordingToDocument(Document doc, View viewWithButton) {
         //TODO: Set button background according to doc type and title
-        if(Document.FileType.PDF.equals(doc.getLabel())) {
-
-        } else if(Document.FileType.PPT.equals(doc.getLabel())) {
-
-        } else if(Document.FileType.DOC.equals(doc.getLabel())) {
-
-        } else {
-            //Do nothing
-        }
+//        if(Document.FileType.PDF.equals(doc.getLabel())) {
+//            LinearLayout background = new LinearLayout(getActivity(), null, R.layout.button_background);
+////            ((ImageView)background.findViewById(R.id.doc_type)).setImageResource();
+//            ((TextView)background.findViewById(R.id.doc_title)).setText(doc.getLabel());
+//            background.setDrawingCacheEnabled(true);
+//            background.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+//                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+//            background.layout(0, 0, background.getMeasuredWidth(), background.getMeasuredHeight());
+//
+//            background.buildDrawingCache(true);
+////            Bitmap b = Bitmap.createBitmap();
+//            background.setDrawingCacheEnabled(false); // clear drawing cache
+//
+////            ((ImageView)viewWithButton.findViewById(R.id.button));
+//        } else if(Document.FileType.PPT.equals(doc.getLabel())) {
+//
+//        } else if(Document.FileType.DOC.equals(doc.getLabel())) {
+//
+//        } else {
+//            //Do nothing
+//        }
     }
 
 }

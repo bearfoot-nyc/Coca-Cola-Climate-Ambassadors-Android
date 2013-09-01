@@ -11,8 +11,6 @@ public class ButtonBackgroundDrawable extends Drawable{
 
 
     public ButtonBackgroundDrawable() {
-
-
     }
 
 

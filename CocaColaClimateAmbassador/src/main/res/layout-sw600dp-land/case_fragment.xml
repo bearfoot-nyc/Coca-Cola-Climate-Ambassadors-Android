@@ -40,13 +40,14 @@
                 android:gravity="left"
                 android:paddingRight="45dp"
                 android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:maxWidth="850dp"
             />
 
         <LinearLayout
             android:id="@+id/case_frames"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:paddingTop="20dp"
             android:orientation="vertical"/>
 
         <LinearLayout
@@ -54,12 +55,14 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
+                android:textSize="10sp"
                 android:text="@string/course_material_title"/>
 
         </LinearLayout>
@@ -69,12 +72,14 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:paddingTop="10dp">
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:textSize="10sp"
                     android:text="@string/case_studies"/>
 
         </LinearLayout>
