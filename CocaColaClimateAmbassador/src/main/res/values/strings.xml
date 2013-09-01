@@ -86,11 +86,18 @@
         <item>@drawable/ic_drawer_folder</item>
     </array>
 
-    <string-array name="nav_internal">
+    <string-array name="nav_internal_titles">
         <item>Module 1:  Emissions &amp; Our Business</item>
         <item>Module 2:  Business Case</item>
         <item>Module 3:  Supply Chain Integration</item>
         <item>Module 4:  Engaging Suppliers</item>
     </string-array>
+
+    <array name="nav_internal_icons">
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </array>
 
 </resources>

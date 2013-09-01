@@ -1,6 +1,5 @@
 package com.cocacola.climateambassador.adapters;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.ui.InternalTrainingOverview;
-import com.cocacola.climateambassador.ui.SupplierOverview;
-import com.cocacola.climateambassador.ui.ValueChainModule;
 
 /**
  * Created by Vinnie Vendemia on 8/27/13.

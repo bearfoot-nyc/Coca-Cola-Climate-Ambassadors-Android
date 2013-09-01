@@ -23,6 +23,11 @@ abstract class CaDrawerActivity extends CaActivity {
     public MenuListAdapter mMenuAdapter;
     public ActionBarDrawerToggle mDrawerToggle;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
     public void setupNavigationDrawer() {
 
         //Set up the Navigation Drawer
