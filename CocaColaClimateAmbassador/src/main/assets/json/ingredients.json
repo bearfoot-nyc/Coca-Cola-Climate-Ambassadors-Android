@@ -46,5 +46,15 @@
             "fileName" : "Drip-Irrigation-to-Reduce-Climate-Impact-US-India.pdf",
             "label" : "Drip Irrigation to Reduce Climate Impact at PepsiCo_US_India"
         }
+    ],
+    "courseMaterials" : [
+        {
+            "fileName" : "unknown",
+            "label" : "PowerPoint Segment \"In Action: Ingredients\""
+        },
+        {
+            "fileName" : "unknown",
+            "label" : "PowerPoint Script and Notes"
+        }
     ]
 }
