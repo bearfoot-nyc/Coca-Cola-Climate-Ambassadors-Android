@@ -1,17 +1,16 @@
 package com.cocacola.climateambassador.ui;
 
 import android.content.Context;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.cocacola.climateambassador.CaConstants;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.models.BulletPointFrame;
 import com.cocacola.climateambassador.models.Case;
@@ -24,6 +23,9 @@ import com.cocacola.climateambassador.models.TextFrame;
  */
 
 public class CaseFragment extends CaFragment {
+
+    //Constants
+
 
     private Case mCase;
 
@@ -126,70 +128,31 @@ public class CaseFragment extends CaFragment {
         return view;
     }
 
-//    private void addBodyText(TextView view, String text) {
-//        StringBuilder sb = new StringBuilder(text);
-//
-//        int i = 0;
-//        while ((i = sb.indexOf(" ", i + 660)) != -1) {
-//            sb.replace(i, i + 1, "\n\n");
-//        }
-//        view.setText(sb.toString());
-//    }
-
-    private void setupButtonAccordingToDocument(Document doc, View viewWithButton, LayoutInflater inflater) {
-        //TODO: Set button background according to doc type and title
-        if("ppt".equals(getFileType(doc.getFileName()))) {
-            View background = inflater.inflate(R.layout.button_background, null);
-//            ((ImageView)background.findViewById(R.id.doc_type)).setImageResource();
-            ((TextView)background.findViewById(R.id.doc_title)).setText(doc.getLabel());
-            background.setDrawingCacheEnabled(true);
-            background.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-            background.layout(0, 0, background.getMeasuredWidth(), background.getMeasuredHeight());
-
-            background.buildDrawingCache(true);
-            Drawable draw = new BitmapDrawable(getActivity().getResources(), background.getDrawingCache());
-            background.setDrawingCacheEnabled(false); // clear drawing cache
-
-            ((Button)viewWithButton.findViewById(R.id.button)).setBackgroundDrawable(draw);
-
-        } else if("pdf".equals(getFileType(doc.getFileName()))) {
-
-            View background = inflater.inflate(R.layout.button_background, null);
-//            ((ImageView)background.findViewById(R.id.doc_type)).setImageResource();
-            String label = doc.getLabel();
-            TextView text = ((TextView)background.findViewById(R.id.doc_title));
-            ((TextView)background.findViewById(R.id.doc_title)).setText(doc.getLabel());
-            background.setDrawingCacheEnabled(true);
-            background.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-            background.layout(0, 0, background.getMeasuredWidth(), background.getMeasuredHeight());
-
-            background.buildDrawingCache(true);
-            Drawable draw = new BitmapDrawable(getActivity().getResources(), background.getDrawingCache());
-            background.setDrawingCacheEnabled(false); // clear drawing cache
-
-            ((Button)viewWithButton.findViewById(R.id.button)).setBackgroundDrawable(draw);
-
-        } else if("doc".equals(getFileType(doc.getFileName()))) {
-
-            View background = inflater.inflate(R.layout.button_background, null);
-//            ((ImageView)background.findViewById(R.id.doc_type)).setImageResource();
-            ((TextView)background.findViewById(R.id.doc_title)).setText(doc.getLabel());
-            background.setDrawingCacheEnabled(true);
-            background.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-            background.layout(0, 0, background.getMeasuredWidth(), background.getMeasuredHeight());
-
-            background.buildDrawingCache(true);
-            Drawable draw = new BitmapDrawable(getActivity().getResources(), background.getDrawingCache());
-            background.setDrawingCacheEnabled(false); // clear drawing cache
-
-            ((Button)viewWithButton.findViewById(R.id.button)).setBackgroundDrawable(draw);
-
+    private void setupButtonAccordingToDocument(final Document doc, View viewWithButton, LayoutInflater inflater) {
+        //TODO: Set viewWithButton background according to doc type and title
+        if(CaConstants.PDF.equals(getFileType(doc.getFileName()))) {
+                //TODO: Set image to resource once assets are added
+//            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
+        } else if(CaConstants.PPT.equals(getFileType(doc.getFileName()))) {
+            //TODO: Set image to resource once assets are added
+//            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
+        } else if(CaConstants.DOC.equals(getFileType(doc.getFileName()))) {
+            //TODO: Set image to resource once assets are added
+//            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
         } else {
             //Do nothing
         }
+
+        ((TextView)viewWithButton.findViewById(R.id.doc_title)).setText(doc.getLabel());
+        ((LinearLayout)viewWithButton.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: Open Document
+                Toast.makeText(getActivity(), "Touched " + doc.getLabel() , Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 
     private String getFileType(String fileName) {

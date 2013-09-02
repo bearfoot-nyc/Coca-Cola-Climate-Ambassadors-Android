@@ -1,24 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="5dp">
 
     <ImageView
         android:id="@+id/favorite_star"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:paddingRight="3dp"/>
+        android:paddingRight="3dp" />
 
     <ImageView
         android:id="@+id/divider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingRight="3dp"/>
+        android:paddingRight="3dp" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/document_opener_button"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:background="@color/gray_darkest">
+
+        <ImageView
+            android:id="@+id/doc_type"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:padding="3dp" />
+
+        <TextView
+            android:id="@+id/doc_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="3dp"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:textStyle="bold"
+            android:textColor="@color/coke_red" />
+
+    </LinearLayout>
 </LinearLayout>
