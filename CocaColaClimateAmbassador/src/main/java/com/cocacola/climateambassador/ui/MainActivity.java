@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.adapters.MenuListAdapter;
 import com.cocacola.climateambassador.models.Case;
+import com.cocacola.climateambassador.models.Module;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 
 import java.io.IOException;
@@ -36,9 +37,15 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
     private final int SUPPLIERS_OVERVIEW_POS = 4;
     private final int SUPPLIER_GUIDE_POS = 5;
     private final int REFRIGERATION_CASE_POS = 6;
+    private final int MODULE_ONE_POS = 7;
+    private final int MODULE_TWO_POS = 8;
+    private final int MODULE_FOUR_POS = 9;
 
 
-    public String[] mDrawerOptions = { "Ingredients Case" , "Supply Chain Implementation", "For Suppliers", "Packaging Case" , "Distribution Case" , "Manufacturing Case" , "Refrigeration Case"};
+
+    public String[] mDrawerOptions = { "Ingredients Case" , "Supply Chain Implementation", "For Suppliers", "Packaging Case"
+                                        , "Distribution Case" , "Manufacturing Case" , "Refrigeration Case", "Module One" , "Module Two"
+                                         , "Module 4"};
     public ListView mDrawerList;
     public DrawerLayout mDrawerLayout;
     private MenuListAdapter mMenuAdapter;
@@ -74,9 +81,9 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
 
 
         //Removed Subtitle
-        icon = new int[]{0, 0, 0, 0, 0, 0, 0};
+        icon = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-        mMenuAdapter = new MenuListAdapter(this, mDrawerOptions, icon);
+        mMenuAdapter = new com.cocacola.climateambassador.adapters.MenuListAdapter(this, mDrawerOptions, icon);
 
         mDrawerList.setAdapter(mMenuAdapter);
 
@@ -253,6 +260,69 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
             getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
             getActionBar().setDisplayShowTitleEnabled(true);
             getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+
+        } else if (position == MODULE_ONE_POS) {
+
+            Module moduleOne = null;
+
+            try {
+                moduleOne = mJsonAssetsLoader.parseModuleFromJsonFile("module_one.json");
+            } catch (IOException e) {
+                Toast.makeText(this, "Failed to Get Module One", Toast.LENGTH_SHORT);
+            }
+
+            ModuleFragment fragment = ModuleFragment.newInstance(moduleOne);
+
+            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+
+            mDrawerLayout.closeDrawer(mDrawerList);
+
+            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            getActionBar().setDisplayShowTitleEnabled(true);
+            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+
+
+        }  else if (position == MODULE_TWO_POS) {
+
+            Module moduleTwo = null;
+
+            try {
+                moduleTwo = mJsonAssetsLoader.parseModuleFromJsonFile("module_two.json");
+            } catch (IOException e) {
+                Toast.makeText(this, "Failed to Get Module Two", Toast.LENGTH_SHORT);
+            }
+
+            ModuleFragment fragment = ModuleFragment.newInstance(moduleTwo);
+
+            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+
+            mDrawerLayout.closeDrawer(mDrawerList);
+
+            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            getActionBar().setDisplayShowTitleEnabled(true);
+            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+
+
+        }  else if (position == MODULE_FOUR_POS) {
+
+            Module moduleFour = null;
+
+            try {
+                moduleFour = mJsonAssetsLoader.parseModuleFromJsonFile("module_four.json");
+            } catch (IOException e) {
+                Toast.makeText(this, "Failed to Get Module Four", Toast.LENGTH_SHORT);
+            }
+
+            ModuleFragment fragment = ModuleFragment.newInstance(moduleFour);
+
+            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+
+            mDrawerLayout.closeDrawer(mDrawerList);
+
+            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            getActionBar().setDisplayShowTitleEnabled(true);
+            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+
 
         } else {
             //do nothing
