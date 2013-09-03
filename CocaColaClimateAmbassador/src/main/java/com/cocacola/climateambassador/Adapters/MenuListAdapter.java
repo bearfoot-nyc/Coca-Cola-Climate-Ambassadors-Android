@@ -55,6 +55,11 @@ public class MenuListAdapter extends BaseAdapter {
         return getItem(position).isHeader() ? 0 : 1;
     }
 
+    @Override
+    public boolean isEnabled(int position) {
+        return !getItem(position).isHeader();
+    }
+
     public View getView(int position, View convertView, ViewGroup parent) {
 
         NavigationDrawerItem item = getItem(position);
@@ -101,8 +106,10 @@ public class MenuListAdapter extends BaseAdapter {
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(mContext, clazzToLaunch);
-            mContext.startActivity(intent);
+            if(clazzToLaunch != null) {
+                Intent intent = new Intent(mContext, clazzToLaunch);
+                mContext.startActivity(intent);
+            }
         }
     }
 
