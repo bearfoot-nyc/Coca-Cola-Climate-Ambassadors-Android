@@ -6,11 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cocacola.climateambassador.R;
 
 import butterknife.InjectView;
-import butterknife.OnClick;
 import butterknife.Views;
 
 /**
@@ -19,17 +22,28 @@ import butterknife.Views;
 
 public class SupplierOverview extends CaFragment {
 
-
+    //Constants
     public static final String TAG = "SupplierOverview";
+    public static final String INTRO_BUTTON_TITLE = "Listen to Short Introduction";
+    public static final String VIDEO_BUTTON_TITLE = "View The Video";
+    public static final String SUPPLIER_GUIDE_TITLE = "Flip through the Supplier Guide";
 
-    @InjectView(R.id.introduction_button) Button introductionButton;
-    @InjectView(R.id.video_button) Button videoButton;
-    @InjectView(R.id.supplier_guide_button) Button supplierGuideButton;
-    @InjectView(R.id.ingredient_button) Button ingredientButton;
-    @InjectView(R.id.packaging_button) Button packagingButton;
-    @InjectView(R.id.manufacturing_button) Button manufactureButton;
-    @InjectView(R.id.distribution_button) Button distributionButton;
-    @InjectView(R.id.refrigeration_button) Button refrigerationButton;
+    @InjectView(R.id.introduction_button)
+    FrameLayout introductionButton;
+    @InjectView(R.id.video_button)
+    FrameLayout videoButton;
+    @InjectView(R.id.supplier_guide_button)
+    FrameLayout supplierGuideButton;
+    @InjectView(R.id.ingredient_button)
+    Button ingredientButton;
+    @InjectView(R.id.packaging_button)
+    Button packagingButton;
+    @InjectView(R.id.manufacturing_button)
+    Button manufactureButton;
+    @InjectView(R.id.distribution_button)
+    Button distributionButton;
+    @InjectView(R.id.refrigeration_button)
+    Button refrigerationButton;
 
     public static SupplierOverview newInstance() {
         SupplierOverview frag = new SupplierOverview();
@@ -47,29 +61,45 @@ public class SupplierOverview extends CaFragment {
         View view = inflater.inflate(R.layout.supplier_overview, container, false);
         Views.inject(this, view);
 
-        introductionButton.setOnClickListener( new View.OnClickListener() {
+        //Set up Short Intro button
+        View introButtonLayout = inflater.inflate(R.layout.favorite_divider_button, null);
+        //            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
+        ((TextView) introButtonLayout.findViewById(R.id.doc_title)).setText(INTRO_BUTTON_TITLE);
+        ((LinearLayout) introButtonLayout.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Play short intoduction
-                Log.d(TAG, "Pressed intoduction Button");
+                //TODO: Open Document
+                Toast.makeText(getActivity(), "Touched " + INTRO_BUTTON_TITLE, Toast.LENGTH_SHORT).show();
             }
         });
+        introductionButton.addView(introButtonLayout);
 
-        videoButton.setOnClickListener( new View.OnClickListener() {
+        //Set up video button
+        View videoButtonLayout = inflater.inflate(R.layout.favorite_divider_button, null);
+        //            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
+        ((TextView) videoButtonLayout.findViewById(R.id.doc_title)).setText(VIDEO_BUTTON_TITLE);
+        ((LinearLayout) videoButtonLayout.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Play video
-                Log.d(TAG, "Pressed video Button");
+                //TODO: Open Document
+                Toast.makeText(getActivity(), "Touched " + VIDEO_BUTTON_TITLE, Toast.LENGTH_SHORT).show();
             }
         });
+        videoButton.addView(videoButtonLayout);
 
-        supplierGuideButton.setOnClickListener( new View.OnClickListener() {
+        //Set up supplier guide button
+        View supplierButtonLayout = inflater.inflate(R.layout.favorite_divider_button, null);
+        //            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
+        ((TextView) supplierButtonLayout.findViewById(R.id.doc_title)).setText(SUPPLIER_GUIDE_TITLE);
+        ((LinearLayout) supplierButtonLayout.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Flip through supplier guide
-                Log.d(TAG, "Pressed Supplier Guide Button");
+                //TODO: Open Document
+                Toast.makeText(getActivity(), "Touched " + VIDEO_BUTTON_TITLE, Toast.LENGTH_SHORT).show();
             }
         });
+        supplierGuideButton.addView(supplierButtonLayout);
+
 
         ingredientButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,11 +142,5 @@ public class SupplierOverview extends CaFragment {
         });
 
         return view;
-    }
-
-    @OnClick(R.id.introduction_button)
-    public void listenToIntoduction() {
-        //TODO: Play short intoduction
-        Log.d(TAG, "Pressed intoduction Button");
     }
 }

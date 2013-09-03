@@ -28,8 +28,6 @@ public class InternalTrainingOverview extends CaFragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.internal_training_overview, container, false);
 
-
-
         return view;
 
     }

@@ -1,0 +1,27 @@
+{
+    "title": "Manufacturing",
+    "bodyText" : "Although total emissions relating to our operations increased in 2011, we continued to make progress toward our goal of reducing emissions from manufacturing in both developing and developed countries. The goals will be met in manufacturing through:",
+    "bulletPointFrame": {
+        "title" : "",
+        "subtitle" : "",
+        "bulletPoints" : [
+            "Energy Efficiency - more efficent manufacturing",
+            "Energy Use - using less energy",
+            "Energy Source - leveraging renewable and alternative energy sources"
+        ]
+    },
+    "textFrames" : [
+        {
+            "title" :"",
+            "bodyText" : "A key part of meeting our manufacturing emissions reduction will come from all bottlers participating in the “Top 10 Energy-Saving Challenge”. The program equips bottlers and plant managers with 10 high-return, low-risk energy-saving practices to implement in their plants. Each practice delivers high financial return and, when all bottlers implement the practices, together, we expect that the Coca-Cola system will meet approximately 59% of our climate target. To date, more than 390 manufacturing facilities (of 863 total) have registered in the program and are implementing the practices.  The tool, located at www.tcccgws.com/top10, is available in 10 languages.",
+            "subtitleTextPairs" : []
+        },
+        {
+            "title" : "Log in to the Top 10 Energy Savings Challenge!",
+            "bodyText" = "If you are not yet a registered user of esKO or need further assistance of any kind, do not hesitate to contact Carlos Pacheco (Energy Efficiency Manager- TCCC), at +1 (404) 676-8010, or via email at capacheco@coca-cola.com.",
+            "subtitleTextPairs": []
+        }
+    ],
+    "caseStudies" : [],
+    "courseMaterials" : []
+}

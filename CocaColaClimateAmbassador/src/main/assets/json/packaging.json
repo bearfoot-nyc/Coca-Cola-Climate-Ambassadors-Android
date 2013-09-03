@@ -1,0 +1,48 @@
+{
+    "title": "Packaging",
+    "bodyText" : "There is indeed a story in every one of our bottles—and in our cans and other packages, too. It is the story of increasing efficiency. Innovation. A passion to promote recycling and renewable materials. And a global vision over the long-term of zero waste.\n\nOur ultimate goal is to reduce our dependency on virgin petroleum-based plastics so that we can reduce our costs and our related carbon footprint. We believe there are several ways to meet that goal, including package light-weighting and the use of both renewable and recyclable materials in our packaging.",
+    "bulletPointFrame": {
+        "title" : "Strategic Frame",
+        "subtitle" : "We are advancing this goal by:",
+        "bulletPoints" : [
+            "Designing consumer-preferred, resource-efficient packaging",
+            "Recovery and Recycling",
+            "Using recycled and/or renewable materials"
+        ]
+    },
+    "textFrames" : [
+        {
+            "title" :"Design of resource efficient packaging (including light-weighting)",
+            "bodyText" : "In the design of our packages, we strive to use the least amount of natural resources required to protect our products and ensure their safe transport to consumers. Over the past two years, our system-wide light-weighting program has resulted in an estimated cost-savings of approximately $180 million.",
+            "subtitleTextPairs" : []
+        },
+        {
+            "title" : "Recovery and recycling",
+            "bodyText" = "With our zero waste goal, we plan to engage in recovery and recycling of packaging materials. To date, we have only been able to report recovery for a limited number of markets—of those markets, about 37 percent of the equivalent bottles and cans sent to market are recovered. ",
+            "subtitleTextPairs": []
+        },
+        {
+             "title" : "Increasing use of recycled and renewable materials",
+             "bodyText" = "Of our beverage volume, 61 percent is delivered in plastic bottles made from polyethylene terephthalate, better known as PET plastic. Consumers like PET bottles because they are lightweight, re-sealable, shatter-resistant and accepted in most community recycling systems. We like PET bottles because the processes for making and transporting them are relatively energy-efficient and cost-effective, and PET protects our product quality exceptionally well.   We are aiming to source 25 percent of our PET plastic from recycled or renewable materials by 2015. ",
+             "subtitleTextPairs": []
+        },
+        {
+             "title" : "Building momentum with PlantBottle™ packaging",
+             "bodyText" = "To increase the amount of renewable material in our packaging, we created PlantBottle™ packaging, the first-ever fully recyclable PET bottle made partially from plants. PlantBottle™ packaging is an environmental breakthrough that consumers can hold in their hands, and consumer response to date has been very positive – in some cases turning around the sales of entire product lines.\n\nSince introducing PlantBottle™ packaging in 2009, we have distributed more than 10 billion PlantBottle™ packages to markets in 24 countries. With a few exceptions, we are now producing PlantBottle™ packages locally in most major markets. We intend to use PlantBottle™ packaging for all of our PET plastic bottles by 2020.  You can read more about the financial benefits of using PlantBottle in our cases.  The environmental benefit is much simpler to explain:",
+             "subtitleTextPairs": [
+                    {
+                        "title" : "Environmental Benefit",
+                        "text" : "Our use of PlantBottle™ packaging has already eliminated the need for the equivalent of more than 200,000 barrels of oil and helping to save the equivalent emissions of approximately 100,000 metric tons of carbon dioxide (CO2)—the amount of CO2 emitted from burning more than 10 million gallons of gasoline. PlantBottle™ packaging is made from sugarcane-based ethanol from Brazil—designated as an “Advanced Renewable Fuel” by the United States Environmental Protection Agency—so its manufacture has a low environmental impact and does not consume agricultural resources that could otherwise be used for food production.\n\nPlantBottle™ packaging is proving to be a business success as well as an environmental one. The package is credited with reinvigorating our Dasani bottled water brand in North America, which experienced an 11 percent increase in sales in 2011—a growth rate more than 2.4 times that of the rest of the category. And surveys show that brand loyalty among Dasani consumers has increased with the introduction of PlantBottle™ packaging."
+                     },
+                     {
+                        "title" : "We have distributed more than 10 billion PlantBottle™ packages in 24 countries for multiple brands including Coca-Cola, Diet Coke, Sprite, Dasani and more.",
+                        "text" : "In all, PlantBottle™ packaging is delivering against three key business values: It is a brand differentiator. It is a major advance in our goal to use more sustainable packaging. And by reducing our dependence on petroleum and natural gas, it enables us to control costs and keep our products affordable.\n\nAn idea like PlantBottle™ technology has too much good potential to keep to ourselves. So in February 2011, we shared our technology and entered into a partnership with H.J. Heinz Company (Heinz), enabling Heinz to put its ketchup in PlantBottle™ packaging. Moving forward, we will continue to explore the potential of such partnerships with other companies.\n\nOthers are noticing the value of PlantBottle™ packaging as well. In April 2011, PlantBottle™ packaging received an Edison Award recognizing the most innovative products from a variety of categories. Wal-Mart Stores, Inc., recognized PlantBottle™ packaging in June 2011 with their Sustainable Packaging Award. In 2012, McDonald’s Corporation selected PlantBottle™ packaging for its 2012 Global Best of Sustainable Supply Report."
+                     }
+             ]
+        }
+    ],
+    "caseStudies" : [
+    ],
+    "courseMaterials" : [
+    ]
+}

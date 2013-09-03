@@ -35,31 +35,10 @@
             android:textSize="28sp"
             android:text="@string/supplier_overview_subtitle" />
 
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/introduction_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/star_introduction"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:src="@drawable/test_star" />
-
-            <ImageView
-                android:id="@+id/divider"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:src="@drawable/test_divider"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp" />
-
-            <Button
-                android:id="@+id/introduction_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-
-        </LinearLayout>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:paddingTop="10dp"
@@ -73,45 +52,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/star_video"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:src="@drawable/test_star" />
-
-            <ImageView
-                android:id="@+id/divider"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:src="@drawable/test_divider"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp" />
-
-            <Button
-                android:id="@+id/video_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+           <FrameLayout
+               android:id="@+id/video_button"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"/>
 
 
-            <ImageView
-                android:id="@+id/star_guide"
+            <FrameLayout
+                android:id="@+id/supplier_guide_button"
                 android:paddingLeft="50dp"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:src="@drawable/test_star" />
+                android:layout_width="wrap_content" />
 
-            <ImageView
-                android:id="@+id/divider"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:src="@drawable/test_divider"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp" />
-
-            <Button
-                android:id="@+id/supplier_guide_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </LinearLayout>
@@ -220,7 +172,9 @@
                 <Button
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:id="@+id/ingredient_button" />
+                    android:id="@+id/ingredient_button"
+                    android:text="@string/Ingredients"
+                    android:textColor="@color/coke_red"/>
 
             </LinearLayout>
 
@@ -237,7 +191,9 @@
                 <Button
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:id="@+id/packaging_button" />
+                    android:id="@+id/packaging_button"
+                    android:text="@string/Packaging"
+                    android:textColor="@color/coke_red"/>
 
             </LinearLayout>
 
@@ -254,7 +210,9 @@
                 <Button
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:id="@+id/manufacturing_button" />
+                    android:id="@+id/manufacturing_button"
+                    android:text="@string/Manufacturing"
+                    android:textColor="@color/coke_red"/>
 
             </LinearLayout>
 
@@ -271,7 +229,9 @@
                 <Button
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:id="@+id/distribution_button" />
+                    android:id="@+id/distribution_button"
+                    android:text="@string/Distribution"
+                    android:textColor="@color/coke_red"/>
 
             </LinearLayout>
 
@@ -288,7 +248,9 @@
                 <Button
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:id="@+id/refrigeration_button" />
+                    android:id="@+id/refrigeration_button"
+                    android:text="@string/Refrigeration"
+                    android:textColor="@color/coke_red"/>
 
             </LinearLayout>
 
@@ -488,7 +450,8 @@
             android:textStyle="italic"
             android:textSize="16sp"
             android:textColor="@color/coke_red"
-            android:text="@string/supplier_quote_two"/>
+            android:text="@string/supplier_quote_two"
+            android:paddingBottom="20dp" />
 
     </LinearLayout>
 

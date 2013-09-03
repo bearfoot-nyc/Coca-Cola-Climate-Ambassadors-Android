@@ -2,7 +2,6 @@ package com.cocacola.climateambassador.ui;
 
 import android.app.ActionBar;
 import android.app.SearchManager;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -17,14 +16,11 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.cocacola.climateambassador.AppPackageFileWriter;
-import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.adapters.MenuListAdapter;
 import com.cocacola.climateambassador.models.Case;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.inject.Inject;
@@ -39,9 +35,10 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
     private final int ENGAGING_SUPPLIERS_POS = 3;
     private final int SUPPLIERS_OVERVIEW_POS = 4;
     private final int SUPPLIER_GUIDE_POS = 5;
+    private final int REFRIGERATION_CASE_POS = 6;
 
 
-    public String[] mDrawerOptions = { "Ingredients Case" , "Supply Chain Implementation", "For Suppliers"};
+    public String[] mDrawerOptions = { "Ingredients Case" , "Supply Chain Implementation", "For Suppliers", "Packaging Case" , "Distribution Case" , "Manufacturing Case" , "Refrigeration Case"};
     public ListView mDrawerList;
     public DrawerLayout mDrawerLayout;
     private MenuListAdapter mMenuAdapter;
@@ -77,7 +74,7 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
 
 
         //Removed Subtitle
-        icon = new int[]{0, 0, 0, 0};
+        icon = new int[]{0, 0, 0, 0, 0, 0, 0};
 
         mMenuAdapter = new MenuListAdapter(this, mDrawerOptions, icon);
 
@@ -145,6 +142,8 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
 
             getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
 
+            mDrawerLayout.closeDrawer(mDrawerList);
+
             getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
             getActionBar().setDisplayShowTitleEnabled(true);
             getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
@@ -176,12 +175,84 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
 
         } else if (position == ENGAGING_SUPPLIERS_POS) {
 
+            Case packagingCase = null;
+
+            try {
+                packagingCase = mJsonAssetsLoader.parseCaseFromJsonFile("packaging.json");
+            } catch (IOException e) {
+                Toast.makeText(this, "Failed to Get Packaging Case", Toast.LENGTH_SHORT);
+            }
+
+            CaseFragment fragment = CaseFragment.newInstance(packagingCase);
+
+            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+
+            mDrawerLayout.closeDrawer(mDrawerList);
+
+            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            getActionBar().setDisplayShowTitleEnabled(true);
+            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
 
         } else if (position == SUPPLIERS_OVERVIEW_POS) {
 
+            Case distributionCase = null;
+
+            try {
+                distributionCase = mJsonAssetsLoader.parseCaseFromJsonFile("distribution.json");
+            } catch (IOException e) {
+                Toast.makeText(this, "Failed to Get distributionCase", Toast.LENGTH_SHORT);
+            }
+
+            CaseFragment fragment = CaseFragment.newInstance(distributionCase);
+
+            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+
+            mDrawerLayout.closeDrawer(mDrawerList);
+
+            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            getActionBar().setDisplayShowTitleEnabled(true);
+            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
 
         } else if (position == SUPPLIER_GUIDE_POS) {
 
+            Case manufacturingCase = null;
+
+            try {
+                manufacturingCase = mJsonAssetsLoader.parseCaseFromJsonFile("manufacturing.json");
+            } catch (IOException e) {
+                Toast.makeText(this, "Failed to Get manufacturing Case", Toast.LENGTH_SHORT);
+            }
+
+            CaseFragment fragment = CaseFragment.newInstance(manufacturingCase);
+
+            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+
+            mDrawerLayout.closeDrawer(mDrawerList);
+
+            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            getActionBar().setDisplayShowTitleEnabled(true);
+            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+
+
+        } else if (position == REFRIGERATION_CASE_POS) {
+
+            Case refrigerationCase = null;
+
+            try {
+                refrigerationCase = mJsonAssetsLoader.parseCaseFromJsonFile("refrigeration.json");
+            } catch (IOException e) {
+                Toast.makeText(this, "Failed to Get refrigeration Case", Toast.LENGTH_SHORT);
+            }
+
+            CaseFragment fragment = CaseFragment.newInstance(refrigerationCase);
+
+            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+
+            mDrawerLayout.closeDrawer(mDrawerList);
+
+            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            getActionBar().setDisplayShowTitleEnabled(true);
+            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
 
         } else {
             //do nothing

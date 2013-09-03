@@ -1,9 +1,6 @@
 {
     "title": "Refrigeration",
-    "bodyText" : "Refrigeration contributes approximately 30% to the carbon footprint of most of our cola products;
-                   and, of course, inefficient cooling implies unnecessary costs to our customers. Finding good
-                    solutions in refrigeration is not simply a matter of lowering emissions, but also a matter of being
-                     conscientious customers.",
+    "bodyText" : "Refrigeration contributes approximately 30% to the carbon footprint of most of our cola products;and, of course, inefficient cooling implies unnecessary costs to our customers. Finding good solutions in refrigeration is not simply a matter of lowering emissions, but also a matter of being conscientious customers.",
     "bulletPointFrame": {
         "title" : "Strategic Frame",
         "subtitle" : "We seek to innovate across each of these areas:",
@@ -17,12 +14,9 @@
     },
     "textFrames" : [
         {
-            "title" :"",
+            "title" : "",
             "bodyText" : "We are currently focusing on reducing our carbon footprint through much more efficient HFC-free cooling equipment and innovative uses of energy management devices and renewable energies.",
             "subtitleTextPairs" : []
-        },
-        {
-
         }
     ],
     "caseStudies" : [],
