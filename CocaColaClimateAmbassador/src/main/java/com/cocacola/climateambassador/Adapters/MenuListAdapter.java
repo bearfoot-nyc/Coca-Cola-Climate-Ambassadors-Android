@@ -1,6 +1,7 @@
 package com.cocacola.climateambassador.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,23 +45,65 @@ public class MenuListAdapter extends BaseAdapter {
         return mNavigationItems.get(position);
     }
 
+    @Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return getItem(position).isHeader() ? 0 : 1;
+    }
+
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        TextView txtTitle;
-        ImageView imgIcon;
+        NavigationDrawerItem item = getItem(position);
 
-        View v = mInflater.inflate(R.layout.drawer_list_item, parent, false);
+        View v = (item.isHeader()) ? getHeaderView(item) : getNavigationDrawerItemView(item);
 
-        // Locate the TextViews in drawer_list_item.xml
-        txtTitle = (TextView) v.findViewById(R.id.title);
-        imgIcon = (ImageView) v.findViewById(R.id.icon);
+        return v;
+    }
 
-        NavigationDrawerItem item = mNavigationItems.get(position);
+    private View getHeaderView(NavigationDrawerItem item) {
+
+        View v = mInflater.inflate(R.layout.drawer_header, null);
+
+        TextView text = (TextView) v.findViewById(R.id.drawer_header_text);
+        text.setText(item.getTitle());
+
+        return v;
+
+    }
+
+    private View getNavigationDrawerItemView(NavigationDrawerItem item) {
+
+        View v = mInflater.inflate(R.layout.drawer_list_item, null);
+
+        TextView txtTitle = (TextView) v.findViewById(R.id.title);
+        ImageView imgIcon = (ImageView) v.findViewById(R.id.icon);
 
         txtTitle.setText(item.getTitle());
         imgIcon.setImageResource(item.getIconId());
 
+        v.setOnClickListener(new OnNavigationItemClickListener(item.getActivityClz()));
+
         return v;
+
+    }
+
+    private class OnNavigationItemClickListener implements View.OnClickListener {
+
+        private Class<?> clazzToLaunch;
+
+        private OnNavigationItemClickListener(Class<?> clazzToLaunch) {
+            this.clazzToLaunch = clazzToLaunch;
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(mContext, clazzToLaunch);
+            mContext.startActivity(intent);
+        }
     }
 
 }

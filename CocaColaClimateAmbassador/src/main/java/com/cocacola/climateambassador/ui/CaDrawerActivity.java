@@ -47,8 +47,6 @@ abstract class CaDrawerActivity extends CaActivity {
 
         mDrawerList.setAdapter(mMenuAdapter);
 
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
         getActionBar().setDisplayShowTitleEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
@@ -76,15 +74,6 @@ abstract class CaDrawerActivity extends CaActivity {
 
     abstract MenuListAdapter getMenuListAdapter();
     abstract List<NavigationDrawerItem> getNavigationDrawerItems();
-
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            onDrawerItemClick(position);
-        }
-    }
-
-    abstract void onDrawerItemClick(int position);
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
