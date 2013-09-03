@@ -7,17 +7,27 @@ import java.util.List;
  */
 public class Module {
 
+    private String title;
     private String bodyText;
-    private String videoUri;
-    private Document document;
     private List<Case> cases;
+    private List<Document> courseMaterials;
+    private BulletPointFrame bulletPointFrame;
 
-    public Module(String bodyText, String videoUri, Document document, List<Case> cases) {
+    public Module(String title, String bodyText, List<Case> cases, List<Document> courseMaterials) {
+        this.title = title;
         this.bodyText = bodyText;
-        this.videoUri = videoUri;
-        this.document = document;
         this.cases = cases;
+        this.courseMaterials = courseMaterials;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
 
     public String getBodyText() {
         return bodyText;
@@ -27,22 +37,6 @@ public class Module {
         this.bodyText = bodyText;
     }
 
-    public String getVideoUri() {
-        return videoUri;
-    }
-
-    public void setVideoUri(String videoUri) {
-        this.videoUri = videoUri;
-    }
-
-    public Document getDocument() {
-        return document;
-    }
-
-    public void setDocument(Document document) {
-        this.document = document;
-    }
-
     public List<Case> getCases() {
         return cases;
     }
@@ -50,4 +44,25 @@ public class Module {
     public void setCases(List<Case> cases) {
         this.cases = cases;
     }
+
+
+    public BulletPointFrame getBulletPointFrame() {
+        return bulletPointFrame;
+    }
+
+    public void setBulletPointFrame(BulletPointFrame bulletPointFrame) {
+        this.bulletPointFrame = bulletPointFrame;
+    }
+
+
+    public List<Document> getCourseMaterials() {
+        return courseMaterials;
+    }
+
+    public void setCourseMaterials(List<Document> courseMaterials) {
+        this.courseMaterials = courseMaterials;
+    }
+
+
+
 }

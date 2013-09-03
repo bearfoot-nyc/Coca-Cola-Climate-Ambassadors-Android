@@ -1,0 +1,42 @@
+{
+    "title": "Business Case for Reducing Carbon along the Value Chain.",
+    "bodyText" : "Climate Ambassadors should know and be able to communicate the business case for reducing carbon along the value chain. The module provides that business case – in three principal areas: Revenue, Risk, and Reputation.  The module covers:",
+    "bulletPointFrame": {
+        "title" : "",
+        "subtitle" : "",
+        "bulletPoints" : [
+            "Introduction",
+            "Seeing Business Opportunity",
+            "Scope of the Matter",
+            "The Business Drivers (Why)",
+            "Relating Business Case to Climate Goals"
+        ]
+    },
+    "textFrames" : [
+    ],
+    "caseStudies" : [
+    ],
+    "courseMaterials" : [
+        {
+            "fileName" : "unknown",
+            "label" : "\“Module 1:  2020 Climate Goals and Role of the Climate Ambassador\”"
+        },
+        {
+            "fileName" : "unknown",
+            "label" : "PowerPoint Script and Notes"
+        },
+        {
+            "fileName" : "unknown",
+            "label" : "Life of a Bottle"
+        },
+        {
+            "fileName" : "unknown",
+            "label" : "Read about the role of the Climate Ambassador"
+        },
+        {
+            "fileName" : "unknown",
+            "label" : "Get background on Climate Science"
+        }
+
+    ]
+}

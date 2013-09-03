@@ -5,9 +5,7 @@ import android.content.Context;
 import com.cocacola.climateambassador.BuildConfig;
 import com.cocacola.climateambassador.CaApplication;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
-import com.cocacola.climateambassador.ui.BusinessCaseModule;
 import com.cocacola.climateambassador.ui.CaseFragment;
-import com.cocacola.climateambassador.ui.EngagingSuppliersModule;
 import com.cocacola.climateambassador.ui.ForSuppliersActivity;
 import com.cocacola.climateambassador.ui.InternalTrainingActivity;
 import com.cocacola.climateambassador.ui.MainActivity;
@@ -35,8 +33,8 @@ import timber.log.Timber;
         CaseFragment.class,
         InternalTrainingActivity.class,
         ForSuppliersActivity.class,
-        BusinessCaseModule.class,
-        EngagingSuppliersModule.class,
+//        BusinessCaseModule.class,
+//        EngagingSuppliersModule.class,
         ValueChainModule.class,
         SupplierOverview.class,
         DocumentViewerDelegate.class,

@@ -1,6 +1,5 @@
 package com.cocacola.climateambassador.ui;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -13,25 +12,19 @@ import android.widget.Toast;
 import com.cocacola.climateambassador.CaConstants;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.models.BulletPointFrame;
-import com.cocacola.climateambassador.models.Case;
 import com.cocacola.climateambassador.models.Document;
-import com.cocacola.climateambassador.models.SubtitleTextPair;
-import com.cocacola.climateambassador.models.TextFrame;
+import com.cocacola.climateambassador.models.Module;
 
 /**
- * Created by Vinnie Vendemia on 8/29/13.
+ * Created by Vinnie Vendemia on 9/2/13.
  */
+public class ModuleFragment extends CaFragment {
 
-public class CaseFragment extends CaFragment {
+    private Module mModule;
 
-    //Constants
-
-
-    private Case mCase;
-
-    public static CaseFragment newInstance(Case aCase) {
-        CaseFragment fragment = new CaseFragment();
-        fragment.mCase = aCase;
+    public static ModuleFragment newInstance(Module aModule) {
+        ModuleFragment fragment = new ModuleFragment();
+        fragment.mModule = aModule;
         return fragment;
     }
 
@@ -44,19 +37,20 @@ public class CaseFragment extends CaFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        Context context = getActivity();
-        View view = inflater.inflate(R.layout.case_fragment, container, false);
-        ((TextView) view.findViewById(R.id.case_title)).setText(mCase.getTitle());
+        View view = inflater.inflate(R.layout.module_layout, container, false);
 
-        if (!TextUtils.isEmpty(mCase.getBodyText())) {
-            ((TextView) view.findViewById(R.id.body_text)).setText(mCase.getBodyText());
-            ((TextView) view.findViewById(R.id.body_text)).setVisibility(View.VISIBLE);
+        if(!TextUtils.isEmpty(mModule.getTitle())) {
+            ((TextView)view.findViewById(R.id.title)).setText(mModule.getTitle());
         }
 
-        LinearLayout caseFrames = (LinearLayout) view.findViewById(R.id.case_frames);
+        if(!TextUtils.isEmpty(mModule.getBodyText())) {
+            ((TextView)view.findViewById(R.id.description)).setText(mModule.getBodyText());
+        }
 
-        if (mCase.getBulletPointFrame() != null) {
-            BulletPointFrame caseBulletPointFrame = mCase.getBulletPointFrame();
+
+        LinearLayout caseFrames = (LinearLayout) view.findViewById(R.id.case_frames);
+        if (mModule.getBulletPointFrame() != null) {
+            BulletPointFrame caseBulletPointFrame = mModule.getBulletPointFrame();
             View bulletPointFrame = inflater.inflate(R.layout.case_frame, null);
 
             if (!TextUtils.isEmpty(caseBulletPointFrame.getTitle())) {
@@ -83,40 +77,11 @@ public class CaseFragment extends CaFragment {
             caseFrames.addView(bulletPointFrame);
         }
 
-        if (mCase.getTextFrames() != null) {
-
-            for (TextFrame currTextFrame : mCase.getTextFrames()) {
-                View textFrame = inflater.inflate(R.layout.case_frame, null);
-
-                if (!TextUtils.isEmpty(currTextFrame.getTitle())) {
-                    ((TextView) textFrame.findViewById(R.id.case_frame_title)).setText(currTextFrame.getTitle());
-                }
-
-                if (!TextUtils.isEmpty(currTextFrame.getBodyText())) {
-                    ((TextView) textFrame.findViewById(R.id.case_frame_body_text)).setText(currTextFrame.getBodyText());
-                    ((TextView) textFrame.findViewById(R.id.case_frame_body_text)).setVisibility(View.VISIBLE);
-                }
-                //TextFrame list base layout
-                LinearLayout textFrames = (LinearLayout) textFrame.findViewById(R.id.case_frame_body);
-
-                for (SubtitleTextPair subTextPair : currTextFrame.getSubtitleTextPairs()) {
-                    View subtitleTextPairView = inflater.inflate(R.layout.case_text_frame, null);
-                    ((TextView) subtitleTextPairView.findViewById(R.id.title)).setText(subTextPair.getTitle());
-//                    addBodyText(((TextView)subtitleTextPairView.findViewById(R.id.body_text)), subTextPair.getText
-                    ((TextView) subtitleTextPairView.findViewById(R.id.body_text)).setText(subTextPair.getText());
-                    textFrames.addView(subtitleTextPairView);
-                }
-
-                textFrames.setVisibility(View.VISIBLE);
-                caseFrames.addView(textFrame);
-            }
-        }
-
 
         LinearLayout courseMaterialFrame = (LinearLayout) view.findViewById(R.id.course_materials);
-        if (mCase.getCourseMaterials() != null) {
+        if (mModule.getCourseMaterials() != null) {
 
-            for (Document courseMaterial : mCase.getCourseMaterials()) {
+            for (Document courseMaterial : mModule.getCourseMaterials()) {
                 View materialOption = inflater.inflate(R.layout.favorite_divider_button, null);
                 setupButtonAccordingToDocument(courseMaterial, materialOption, inflater);
                 courseMaterialFrame.addView(materialOption);
@@ -125,20 +90,10 @@ public class CaseFragment extends CaFragment {
             courseMaterialFrame.setVisibility(View.VISIBLE);
         }
 
-        LinearLayout caseStudyFrame = (LinearLayout) view.findViewById(R.id.case_studies);
-        if (mCase.getCaseStudies() != null) {
-
-            for (Document caseStudy : mCase.getCaseStudies()) {
-                View studyOption = inflater.inflate(R.layout.favorite_divider_button, null);
-                setupButtonAccordingToDocument(caseStudy, studyOption, inflater);
-                caseStudyFrame.addView(studyOption);
-            }
-
-            caseStudyFrame.setVisibility(View.VISIBLE);
-        }
 
         return view;
     }
+
 
     private void setupButtonAccordingToDocument(final Document doc, View viewWithButton, LayoutInflater inflater) {
         //TODO: Set viewWithButton background according to doc type and title
@@ -177,5 +132,4 @@ public class CaseFragment extends CaFragment {
 
         return extension;
     }
-
 }
