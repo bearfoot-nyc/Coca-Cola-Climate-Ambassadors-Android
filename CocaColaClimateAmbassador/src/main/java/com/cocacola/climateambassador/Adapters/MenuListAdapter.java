@@ -1,7 +1,7 @@
 package com.cocacola.climateambassador.adapters;
 
-import android.app.ActionBar;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,36 +10,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.ui.InternalTrainingOverview;
-import com.cocacola.climateambassador.ui.SupplierOverview;
-import com.cocacola.climateambassador.ui.ValueChainModule;
+import com.cocacola.climateambassador.models.NavigationDrawerItem;
+
+import java.util.List;
 
 /**
  * Created by Vinnie Vendemia on 8/27/13.
  */
 public class MenuListAdapter extends BaseAdapter {
 
-    Context mContext;
-    String[] mTitle;
-    int[] mIcon;
-    LayoutInflater mInflater;
+    private List<NavigationDrawerItem> mNavigationItems;
 
-    public MenuListAdapter(Context context, String[] title,
-                           int[] icon) {
+    private Context mContext;
+    private LayoutInflater mInflater;
+
+    public MenuListAdapter(Context context, List<NavigationDrawerItem> navigationItems) {
+        mNavigationItems = navigationItems;
         mContext = context;
-        mTitle = title;
-        mIcon = icon;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return mTitle.length;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return mTitle[position];
+        return mNavigationItems.size();
     }
 
     @Override
@@ -47,30 +40,70 @@ public class MenuListAdapter extends BaseAdapter {
         return position;
     }
 
+    @Override
+    public NavigationDrawerItem getItem(int position) {
+        return mNavigationItems.get(position);
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return getItem(position).isHeader() ? 0 : 1;
+    }
+
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        TextView txtTitle;
-        TextView txtSubTitle;
-        ImageView imgIcon;
+        NavigationDrawerItem item = getItem(position);
 
-        View v = mInflater.inflate(R.layout.drawer_list_item, parent, false);
-
-        // Locate the TextViews in drawer_list_item.xml
-        txtTitle = (TextView) v.findViewById(R.id.title);
-
-
-        // Locate the ImageView in drawer_list_item.xml
-        imgIcon = (ImageView) v.findViewById(R.id.icon);
-
-        // Set the results into TextViews
-        txtTitle.setText(mTitle[position]);
-
-        // Set the results into ImageView
-        imgIcon.setImageResource(mIcon[position]);
+        View v = (item.isHeader()) ? getHeaderView(item) : getNavigationDrawerItemView(item);
 
         return v;
     }
 
+    private View getHeaderView(NavigationDrawerItem item) {
 
+        View v = mInflater.inflate(R.layout.drawer_header, null);
+
+        TextView text = (TextView) v.findViewById(R.id.drawer_header_text);
+        text.setText(item.getTitle());
+
+        return v;
+
+    }
+
+    private View getNavigationDrawerItemView(NavigationDrawerItem item) {
+
+        View v = mInflater.inflate(R.layout.drawer_list_item, null);
+
+        TextView txtTitle = (TextView) v.findViewById(R.id.title);
+        ImageView imgIcon = (ImageView) v.findViewById(R.id.icon);
+
+        txtTitle.setText(item.getTitle());
+        imgIcon.setImageResource(item.getIconId());
+
+        v.setOnClickListener(new OnNavigationItemClickListener(item.getActivityClz()));
+
+        return v;
+
+    }
+
+    private class OnNavigationItemClickListener implements View.OnClickListener {
+
+        private Class<?> clazzToLaunch;
+
+        private OnNavigationItemClickListener(Class<?> clazzToLaunch) {
+            this.clazzToLaunch = clazzToLaunch;
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(mContext, clazzToLaunch);
+            mContext.startActivity(intent);
+        }
+    }
 
 }

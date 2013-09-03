@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <color name="white">#FFFFFF</color>
     <color name="gray_darkest">#808080</color>
     <color name="coke_red">#B81321</color>
+
+    <color name="drawer_item_bg">#cecbce</color>
+    <color name="drawer_header_text">#31b6e7</color>
+    <color name="drawer_header_stroke">@color/drawer_header_text</color>
 </resources>
