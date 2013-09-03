@@ -40,12 +40,12 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
     private final int MODULE_ONE_POS = 7;
     private final int MODULE_TWO_POS = 8;
     private final int MODULE_FOUR_POS = 9;
-
+    private final int SUPPLIER_LAST_PAGE = 10;
 
 
     public String[] mDrawerOptions = { "Ingredients Case" , "Supply Chain Implementation", "For Suppliers", "Packaging Case"
                                         , "Distribution Case" , "Manufacturing Case" , "Refrigeration Case", "Module One" , "Module Two"
-                                         , "Module 4"};
+                                         , "Module 4", "Our 2020 Vision"};
     public ListView mDrawerList;
     public DrawerLayout mDrawerLayout;
     private MenuListAdapter mMenuAdapter;
@@ -81,7 +81,7 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
 
 
         //Removed Subtitle
-        icon = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        icon = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
         mMenuAdapter = new com.cocacola.climateambassador.adapters.MenuListAdapter(this, mDrawerOptions, icon);
 
@@ -314,6 +314,27 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
             }
 
             ModuleFragment fragment = ModuleFragment.newInstance(moduleFour);
+
+            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+
+            mDrawerLayout.closeDrawer(mDrawerList);
+
+            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            getActionBar().setDisplayShowTitleEnabled(true);
+            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+
+
+        } else if (position == SUPPLIER_LAST_PAGE) {
+
+            Module lastPage = null;
+
+            try {
+                lastPage = mJsonAssetsLoader.parseModuleFromJsonFile("supplier_last_page.json");
+            } catch (IOException e) {
+                Toast.makeText(this, "Failed to Get Supplier Last Page", Toast.LENGTH_SHORT);
+            }
+
+            ModuleFragment fragment = ModuleFragment.newInstance(lastPage);
 
             getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
 

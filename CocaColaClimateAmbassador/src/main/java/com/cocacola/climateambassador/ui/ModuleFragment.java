@@ -37,8 +37,14 @@ public class ModuleFragment extends CaFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.module_layout, container, false);
 
+        //TODO: Very sloppy way to achieve this, will change later
+        View view = null;
+        if(mModule.getTitle().equals("Our 2020 Vision")) {
+            view = inflater.inflate(R.layout.suppliers_last_page, container, false);
+        } else {
+            view = inflater.inflate(R.layout.module_layout, container, false);
+        }
         if(!TextUtils.isEmpty(mModule.getTitle())) {
             ((TextView)view.findViewById(R.id.title)).setText(mModule.getTitle());
         }
@@ -46,7 +52,6 @@ public class ModuleFragment extends CaFragment {
         if(!TextUtils.isEmpty(mModule.getBodyText())) {
             ((TextView)view.findViewById(R.id.description)).setText(mModule.getBodyText());
         }
-
 
         LinearLayout caseFrames = (LinearLayout) view.findViewById(R.id.case_frames);
         if (mModule.getBulletPointFrame() != null) {
@@ -79,7 +84,7 @@ public class ModuleFragment extends CaFragment {
 
 
         LinearLayout courseMaterialFrame = (LinearLayout) view.findViewById(R.id.course_materials);
-        if (mModule.getCourseMaterials() != null) {
+        if (mModule.getCourseMaterials() != null || courseMaterialFrame != null) {
 
             for (Document courseMaterial : mModule.getCourseMaterials()) {
                 View materialOption = inflater.inflate(R.layout.favorite_divider_button, null);
