@@ -77,20 +77,9 @@
     <string name="course_material_title">VIEW AND DOWNLOAD COURSE MATERIAL HERE</string>
     <string name="case_studies">CASE STUDIES</string>
 
-    <string-array name="nav_sections">
-        <item>Internal Training Materials</item>
-        <item>For Suppliers</item>
-    </string-array>
+    <string name="favorites">FAVORITES</string>
+    <string name="favorite_course_materials">FAVORITE COURSE MATERIALS</string>
+    <string name="favorite_case_studies">FAVORITE CASE STUDIES</string>
 
-    <string-array name="nav_internal">
-        <item>Module 1:  Emissions &amp; Our Business</item>
-        <item>Module 2:  Business Case</item>
-        <item>Module 3:  Supply Chain Integration</item>
-        <item>Module 4:  Engaging Suppliers</item>
-    </string-array>
-
-    <string name = "favorites">FAVORITES</string>
-    <string name = "favorite_course_materials">FAVORITE COURSE MATERIALS</string>
-    <string name = "favorite_case_studies">FAVORITE CASE STUDIES</string>
 
 </resources>

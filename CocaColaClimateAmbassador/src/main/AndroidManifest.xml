@@ -11,22 +11,36 @@
     <supports-screens android:requiresSmallestWidthDp="720" />
 
     <application
-        android:name="com.cocacola.climateambassador.CaApplication"
-        android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:logo="@drawable/ic_logo"
-        android:theme="@style/AppTheme" >
-        <activity
-            android:name="com.cocacola.climateambassador.ui.MainActivity"
-            android:configChanges="orientation|keyboardHidden"
+            android:name="com.cocacola.climateambassador.CaApplication"
+            android:allowBackup="true"
+            android:icon="@drawable/ic_launcher"
             android:label="@string/app_name"
-            android:screenOrientation="landscape" >
+            android:logo="@drawable/ic_logo"
+            android:theme="@style/AppTheme" >
+        <activity
+                android:name="com.cocacola.climateambassador.ui.MainActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:label="@string/app_name"
+                android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+                android:name=".ui.ForSuppliersActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:label="@string/title_activity_business_case_module"
+                android:screenOrientation="landscape" >
+        </activity>
+        <activity
+                android:name=".ui.InternalTrainingActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:label="@string/title_activity_key_interventions_module"
+                android:screenOrientation="landscape" >
+        </activity>
+
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -37,43 +51,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/paths" />
         </provider>
-
-        <activity
-            android:name=".ui.BusinessCaseModule"
-            android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_activity_business_case_module"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
-            android:name=".ui.ValueChainModule"
-            android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_activity_key_interventions_module"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
-            android:name=".ui.EngagingSuppliersModule"
-            android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_activity_engaging_suppliers_module"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
-            android:name="com.cocacola.climateambassador.ui.InternalTrainingOverview"
-            android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_activity_internal_training_overview"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
-            android:name="com.cocacola.climateambassador.ui.SupplierOverview"
-            android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_activity_supplier_overview"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
-            android:name=".ui.SupplierGuideFragment"
-            android:label="@string/title_activity_supplier_guide"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="landscape">
-        </activity>
     </application>
 
 </manifest>
