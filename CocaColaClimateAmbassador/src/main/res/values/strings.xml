@@ -89,4 +89,8 @@
         <item>Module 4:  Engaging Suppliers</item>
     </string-array>
 
+    <string name = "favorites">FAVORITES</string>
+    <string name = "favorite_course_materials">FAVORITE COURSE MATERIALS</string>
+    <string name = "favorite_case_studies">FAVORITE CASE STUDIES</string>
+
 </resources>

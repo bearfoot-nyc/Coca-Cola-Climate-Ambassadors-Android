@@ -1,7 +1,6 @@
 package com.cocacola.climateambassador.ui;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +10,20 @@ import android.widget.Toast;
 
 import com.cocacola.climateambassador.CaConstants;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.BulletPointFrame;
 import com.cocacola.climateambassador.models.Document;
-import com.cocacola.climateambassador.models.Module;
+import com.cocacola.climateambassador.models.Favorites;
 
 /**
- * Created by Vinnie Vendemia on 9/2/13.
+ * Created by Vinnie Vendemia on 9/3/13.
  */
-public class ModuleFragment extends CaFragment {
+public class FavoritesFragment extends CaFragment {
 
-    private Module mModule;
 
-    public static ModuleFragment newInstance(Module aModule) {
-        ModuleFragment fragment = new ModuleFragment();
-        fragment.mModule = aModule;
+    Favorites mFavorites;
+
+    public static FavoritesFragment newInstance(Favorites favorites) {
+        FavoritesFragment fragment = new FavoritesFragment();
+        fragment.mFavorites = favorites;
         return fragment;
     }
 
@@ -37,56 +36,12 @@ public class ModuleFragment extends CaFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-
-        //TODO: Very sloppy way to achieve this, will change later
-        View view = null;
-        if(mModule.getTitle().equals("Our 2020 Vision")) {
-            view = inflater.inflate(R.layout.suppliers_last_page, container, false);
-        } else {
-            view = inflater.inflate(R.layout.module_layout, container, false);
-        }
-        if(!TextUtils.isEmpty(mModule.getTitle())) {
-            ((TextView)view.findViewById(R.id.title)).setText(mModule.getTitle());
-        }
-
-        if(!TextUtils.isEmpty(mModule.getBodyText())) {
-            ((TextView)view.findViewById(R.id.description)).setText(mModule.getBodyText());
-        }
-
-        LinearLayout caseFrames = (LinearLayout) view.findViewById(R.id.case_frames);
-        if (mModule.getBulletPointFrame() != null) {
-            BulletPointFrame caseBulletPointFrame = mModule.getBulletPointFrame();
-            View bulletPointFrame = inflater.inflate(R.layout.case_frame, null);
-
-            if (!TextUtils.isEmpty(caseBulletPointFrame.getTitle())) {
-                ((TextView) bulletPointFrame.findViewById(R.id.case_frame_title)).setText(caseBulletPointFrame.getTitle());
-                ((TextView) bulletPointFrame.findViewById(R.id.case_frame_title)).setVisibility(View.VISIBLE);
-            }
-
-            if (!TextUtils.isEmpty(caseBulletPointFrame.getSubtitle())) {
-                ((TextView) bulletPointFrame.findViewById(R.id.case_frame_subtitle)).setText(caseBulletPointFrame.getSubtitle());
-                ((TextView) bulletPointFrame.findViewById(R.id.case_frame_subtitle)).setVisibility(View.VISIBLE);
-            }
-
-            //Bullet List Base Layout
-            LinearLayout bulletList = (LinearLayout) (bulletPointFrame.findViewById(R.id.bullet_list_content));
-
-            //Add Bullet Points to Layout
-            for (String bulletPoint : caseBulletPointFrame.getBulletPoints()) {
-                View bulletPointLayout = inflater.inflate(R.layout.case_frame_bullet_point, null);
-                ((TextView) bulletPointLayout.findViewById(R.id.bullet_text)).setText(bulletPoint);
-                bulletList.addView(bulletPointLayout);
-            }
-
-            bulletList.setVisibility(View.VISIBLE);
-            caseFrames.addView(bulletPointFrame);
-        }
-
+        View view = inflater.inflate(R.layout.favorite_layout, container, false);
 
         LinearLayout courseMaterialFrame = (LinearLayout) view.findViewById(R.id.course_materials);
-        if (mModule.getCourseMaterials() != null && courseMaterialFrame != null) {
+        if (mFavorites.getCourseMaterials() != null) {
 
-            for (Document courseMaterial : mModule.getCourseMaterials()) {
+            for (Document courseMaterial : mFavorites.getCourseMaterials()) {
                 View materialOption = inflater.inflate(R.layout.favorite_divider_button, null);
                 setupButtonAccordingToDocument(courseMaterial, materialOption, inflater);
                 courseMaterialFrame.addView(materialOption);
@@ -95,10 +50,21 @@ public class ModuleFragment extends CaFragment {
             courseMaterialFrame.setVisibility(View.VISIBLE);
         }
 
+        LinearLayout caseStudyFrame = (LinearLayout) view.findViewById(R.id.case_studies);
+        if (mFavorites.getCaseStudies() != null) {
+
+            for (Document caseStudy : mFavorites.getCaseStudies()) {
+                View studyOption = inflater.inflate(R.layout.favorite_divider_button, null);
+                setupButtonAccordingToDocument(caseStudy, studyOption, inflater);
+                caseStudyFrame.addView(studyOption);
+            }
+
+            caseStudyFrame.setVisibility(View.VISIBLE);
+        }
 
         return view;
-    }
 
+    }
 
     private void setupButtonAccordingToDocument(final Document doc, View viewWithButton, LayoutInflater inflater) {
         //TODO: Set viewWithButton background according to doc type and title
@@ -137,4 +103,5 @@ public class ModuleFragment extends CaFragment {
 
         return extension;
     }
+
 }

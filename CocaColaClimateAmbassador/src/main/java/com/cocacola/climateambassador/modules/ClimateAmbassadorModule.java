@@ -6,6 +6,7 @@ import com.cocacola.climateambassador.BuildConfig;
 import com.cocacola.climateambassador.CaApplication;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.ui.CaseFragment;
+import com.cocacola.climateambassador.ui.FavoritesFragment;
 import com.cocacola.climateambassador.ui.InternalTrainingOverview;
 import com.cocacola.climateambassador.ui.MainActivity;
 import com.cocacola.climateambassador.ui.MainFragment;
@@ -32,6 +33,7 @@ import timber.log.Timber;
         MainFragment.class,
         CaseFragment.class,
         ModuleFragment.class,
+        FavoritesFragment.class,
         ValueChainModule.class,
         SupplierOverview.class,
         DocumentViewerDelegate.class,
