@@ -1,6 +1,5 @@
 package com.cocacola.climateambassador.adapters;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.ui.InternalTrainingOverview;
-import com.cocacola.climateambassador.ui.SupplierOverview;
-import com.cocacola.climateambassador.ui.ValueChainModule;
 
 /**
  * Created by Vinnie Vendemia on 8/27/13.
@@ -55,22 +51,25 @@ public class MenuListAdapter extends BaseAdapter {
 
         View v = mInflater.inflate(R.layout.drawer_list_item, parent, false);
 
-        // Locate the TextViews in drawer_list_item.xml
-        txtTitle = (TextView) v.findViewById(R.id.title);
-
+        if (position >= 5 && position < 10) {
+            txtTitle = (TextView)v.findViewById(R.id.case_title);
+        } else {
+            // Locate the TextViews in drawer_list_item.xml
+            txtTitle = (TextView) v.findViewById(R.id.title);
+        }
 
         // Locate the ImageView in drawer_list_item.xml
         imgIcon = (ImageView) v.findViewById(R.id.icon);
 
         // Set the results into TextViews
         txtTitle.setText(mTitle[position]);
+        txtTitle.setVisibility(View.VISIBLE);
 
         // Set the results into ImageView
         imgIcon.setImageResource(mIcon[position]);
 
         return v;
     }
-
 
 
 }

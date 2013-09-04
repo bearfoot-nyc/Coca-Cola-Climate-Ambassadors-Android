@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="42dp"
+    android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <ImageView
@@ -16,7 +16,7 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical|left"
         android:orientation="vertical">
 
@@ -24,22 +24,26 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
             android:fontFamily="sans-serif-condensed"
             android:paddingTop="5dp"
-            android:singleLine="true"
+            android:maxLines="2"
             android:text="Line Item"
             android:textSize="18sp"
-            android:textColor="@color/white" />
-        <!--
-      	Subtitle removed
+            android:textColor="@color/white"
+            android:visibility="gone"/>
+
         <TextView
-            android:id="@+id/subtitle"
+            android:id="@+id/case_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:singleLine="true" />
-        -->
+            android:fontFamily="sans-serif-condensed"
+            android:paddingTop="5dp"
+            android:paddingLeft="8dp"
+            android:maxLines="2"
+            android:text="Line Item"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:visibility="gone"/>
     </LinearLayout>
 
 </LinearLayout>

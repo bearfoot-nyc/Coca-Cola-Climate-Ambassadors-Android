@@ -30,22 +30,26 @@ import butterknife.OnClick;
 
 public class MainActivity extends CaActivity implements SearchView.OnQueryTextListener {
 
-    private final int INGREDIENTS_CASE_POS = 0;
-    private final int BUSINESS_CASE_POS = 1;
-    private final int KEY_INTERVENTIONS_POS = 2;
-    private final int ENGAGING_SUPPLIERS_POS = 3;
-    private final int SUPPLIERS_OVERVIEW_POS = 4;
-    private final int SUPPLIER_GUIDE_POS = 5;
-    private final int REFRIGERATION_CASE_POS = 6;
-    private final int MODULE_ONE_POS = 7;
-    private final int MODULE_TWO_POS = 8;
-    private final int MODULE_FOUR_POS = 9;
-    private final int SUPPLIER_LAST_PAGE = 10;
 
 
-    public String[] mDrawerOptions = { "Ingredients Case" , "Supply Chain Implementation", "For Suppliers", "Packaging Case"
-                                        , "Distribution Case" , "Manufacturing Case" , "Refrigeration Case", "Module One" , "Module Two"
-                                         , "Module 4", "Our 2020 Vision"};
+
+    private final int FAVORITES_CASE_POS = 0;
+    private final int MODULE_ONE_POS = 2;
+    private final int MODULE_TWO_POS = 3;
+    private final int MODULE_THREE_POS = 4;
+    private final int INGREDIENTS_CASE_POS = 5;
+    private final int PACKAGING_CASE_POS = 6;
+    private final int MANUFACTURING_CASE_POS = 7;
+    private final int DISTRIBUTION_CASE_POS = 8;
+    private final int REFRIGERATION_CASE_POS = 9;
+    private final int MODULE_FOUR_POS = 10;
+    private final int FOR_SUPPLIERS = 11;
+    private final int SUPPLIER_LAST_PAGE = 12;
+
+
+    public String[] mDrawerOptions = { "FAVORITES" , "INTERNAL TRAINING MATERIALS", "Module 1: Emissions & Our Business", "Module 2: Business Case" , "Module 3: Supply Chain Implementation",
+                                            "Ingredient Cases", "Packaging Case" , "Manufacturing Case" , "Distribution Case" , "Refrigeration Case" , "Module 4: Engaging Suppliers" ,
+                                                    "FOR SUPPLIERS", "OUR 2020 VISION" };
     public ListView mDrawerList;
     public DrawerLayout mDrawerLayout;
     private MenuListAdapter mMenuAdapter;
@@ -81,7 +85,7 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
 
 
         //Removed Subtitle
-        icon = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        icon = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
         mMenuAdapter = new com.cocacola.climateambassador.adapters.MenuListAdapter(this, mDrawerOptions, icon);
 
@@ -134,223 +138,231 @@ public class MainActivity extends CaActivity implements SearchView.OnQueryTextLi
 
     private void onDrawerItemClick(int position) {
 
-        // TODO Use switch instead of if/elses
-        if (position == INGREDIENTS_CASE_POS) {
+        CaFragment fragment;
 
-            Case ingredientsCase = null;
+        switch(position) {
+            case FAVORITES_CASE_POS:
 
-            try {
-                ingredientsCase = mJsonAssetsLoader.parseCaseFromJsonFile("ingredients.json");
-            } catch (IOException e) {
-                Toast.makeText(this, "Failed to Get Ingredients Case", Toast.LENGTH_SHORT);
-            }
+                break;
+            case MODULE_ONE_POS:
 
-            CaseFragment fragment = CaseFragment.newInstance(ingredientsCase);
+                Module moduleOne = null;
 
-            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+                try {
+                    moduleOne = mJsonAssetsLoader.parseModuleFromJsonFile("module_one.json");
+                } catch (IOException e) {
+                    Toast.makeText(this, "Failed to Get Module One", Toast.LENGTH_SHORT);
+                }
 
-            mDrawerLayout.closeDrawer(mDrawerList);
+                fragment = ModuleFragment.newInstance(moduleOne);
 
-            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-            getActionBar().setDisplayShowTitleEnabled(true);
-            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+                getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
 
+                mDrawerLayout.closeDrawer(mDrawerList);
 
-        } else if (position == BUSINESS_CASE_POS) {
+                getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+                getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
 
-            ValueChainModule fragment = ValueChainModule.newInstance();
-            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+                break;
+            case MODULE_TWO_POS:
 
-            mDrawerLayout.closeDrawer(mDrawerList);
+                Module moduleTwo = null;
 
-            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-            getActionBar().setDisplayShowTitleEnabled(true);
-            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+                try {
+                    moduleTwo = mJsonAssetsLoader.parseModuleFromJsonFile("module_two.json");
+                } catch (IOException e) {
+                    Toast.makeText(this, "Failed to Get Module Two", Toast.LENGTH_SHORT);
+                }
 
+                fragment = ModuleFragment.newInstance(moduleTwo);
 
-        } else if (position == KEY_INTERVENTIONS_POS) {
+                getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
 
-            SupplierOverview fragment = SupplierOverview.newInstance();
-            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+                mDrawerLayout.closeDrawer(mDrawerList);
 
-            mDrawerLayout.closeDrawer(mDrawerList);
+                getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+                getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
 
-            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-            getActionBar().setDisplayShowTitleEnabled(true);
-            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+                break;
+            case MODULE_THREE_POS:
 
+                fragment = ValueChainModule.newInstance();
+                getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
 
-        } else if (position == ENGAGING_SUPPLIERS_POS) {
+                mDrawerLayout.closeDrawer(mDrawerList);
 
-            Case packagingCase = null;
+                getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+                getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
 
-            try {
-                packagingCase = mJsonAssetsLoader.parseCaseFromJsonFile("packaging.json");
-            } catch (IOException e) {
-                Toast.makeText(this, "Failed to Get Packaging Case", Toast.LENGTH_SHORT);
-            }
+                break;
+            case INGREDIENTS_CASE_POS:
 
-            CaseFragment fragment = CaseFragment.newInstance(packagingCase);
+                Case ingredientsCase = null;
 
-            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+                try {
+                    ingredientsCase = mJsonAssetsLoader.parseCaseFromJsonFile("ingredients.json");
+                } catch (IOException e) {
+                    Toast.makeText(this, "Failed to Get Ingredients Case", Toast.LENGTH_SHORT);
+                }
 
-            mDrawerLayout.closeDrawer(mDrawerList);
+                fragment = CaseFragment.newInstance(ingredientsCase);
 
-            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-            getActionBar().setDisplayShowTitleEnabled(true);
-            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+                getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
 
-        } else if (position == SUPPLIERS_OVERVIEW_POS) {
+                mDrawerLayout.closeDrawer(mDrawerList);
 
-            Case distributionCase = null;
+                getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+                getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
 
-            try {
-                distributionCase = mJsonAssetsLoader.parseCaseFromJsonFile("distribution.json");
-            } catch (IOException e) {
-                Toast.makeText(this, "Failed to Get distributionCase", Toast.LENGTH_SHORT);
-            }
 
-            CaseFragment fragment = CaseFragment.newInstance(distributionCase);
+                break;
+            case PACKAGING_CASE_POS:
 
-            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+                Case packagingCase = null;
 
-            mDrawerLayout.closeDrawer(mDrawerList);
+                try {
+                    packagingCase = mJsonAssetsLoader.parseCaseFromJsonFile("packaging.json");
+                } catch (IOException e) {
+                    Toast.makeText(this, "Failed to Get Packaging Case", Toast.LENGTH_SHORT);
+                }
 
-            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-            getActionBar().setDisplayShowTitleEnabled(true);
-            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+                fragment = CaseFragment.newInstance(packagingCase);
 
-        } else if (position == SUPPLIER_GUIDE_POS) {
+                getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
 
-            Case manufacturingCase = null;
+                mDrawerLayout.closeDrawer(mDrawerList);
 
-            try {
-                manufacturingCase = mJsonAssetsLoader.parseCaseFromJsonFile("manufacturing.json");
-            } catch (IOException e) {
-                Toast.makeText(this, "Failed to Get manufacturing Case", Toast.LENGTH_SHORT);
-            }
+                getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+                getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
 
-            CaseFragment fragment = CaseFragment.newInstance(manufacturingCase);
+                break;
+            case MANUFACTURING_CASE_POS:
 
-            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+                Case manufacturingCase = null;
 
-            mDrawerLayout.closeDrawer(mDrawerList);
+                try {
+                    manufacturingCase = mJsonAssetsLoader.parseCaseFromJsonFile("manufacturing.json");
+                } catch (IOException e) {
+                    Toast.makeText(this, "Failed to Get manufacturing Case", Toast.LENGTH_SHORT);
+                }
 
-            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-            getActionBar().setDisplayShowTitleEnabled(true);
-            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+                fragment = CaseFragment.newInstance(manufacturingCase);
 
+                getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
 
-        } else if (position == REFRIGERATION_CASE_POS) {
+                mDrawerLayout.closeDrawer(mDrawerList);
 
-            Case refrigerationCase = null;
+                getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+                getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
 
-            try {
-                refrigerationCase = mJsonAssetsLoader.parseCaseFromJsonFile("refrigeration.json");
-            } catch (IOException e) {
-                Toast.makeText(this, "Failed to Get refrigeration Case", Toast.LENGTH_SHORT);
-            }
+                break;
+            case DISTRIBUTION_CASE_POS:
 
-            CaseFragment fragment = CaseFragment.newInstance(refrigerationCase);
+                Case distributionCase = null;
 
-            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+                try {
+                    distributionCase = mJsonAssetsLoader.parseCaseFromJsonFile("distribution.json");
+                } catch (IOException e) {
+                    Toast.makeText(this, "Failed to Get distributionCase", Toast.LENGTH_SHORT);
+                }
 
-            mDrawerLayout.closeDrawer(mDrawerList);
+                fragment = CaseFragment.newInstance(distributionCase);
 
-            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-            getActionBar().setDisplayShowTitleEnabled(true);
-            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+                getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
 
-        } else if (position == MODULE_ONE_POS) {
+                mDrawerLayout.closeDrawer(mDrawerList);
 
-            Module moduleOne = null;
+                getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+                getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
 
-            try {
-                moduleOne = mJsonAssetsLoader.parseModuleFromJsonFile("module_one.json");
-            } catch (IOException e) {
-                Toast.makeText(this, "Failed to Get Module One", Toast.LENGTH_SHORT);
-            }
+                break;
+            case REFRIGERATION_CASE_POS:
 
-            ModuleFragment fragment = ModuleFragment.newInstance(moduleOne);
+                Case refrigerationCase = null;
 
-            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+                try {
+                    refrigerationCase = mJsonAssetsLoader.parseCaseFromJsonFile("refrigeration.json");
+                } catch (IOException e) {
+                    Toast.makeText(this, "Failed to Get refrigeration Case", Toast.LENGTH_SHORT);
+                }
 
-            mDrawerLayout.closeDrawer(mDrawerList);
+                fragment = CaseFragment.newInstance(refrigerationCase);
 
-            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-            getActionBar().setDisplayShowTitleEnabled(true);
-            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+                getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
 
+                mDrawerLayout.closeDrawer(mDrawerList);
 
-        }  else if (position == MODULE_TWO_POS) {
+                getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+                getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
 
-            Module moduleTwo = null;
+                break;
+            case MODULE_FOUR_POS:
 
-            try {
-                moduleTwo = mJsonAssetsLoader.parseModuleFromJsonFile("module_two.json");
-            } catch (IOException e) {
-                Toast.makeText(this, "Failed to Get Module Two", Toast.LENGTH_SHORT);
-            }
+                Module moduleFour = null;
 
-            ModuleFragment fragment = ModuleFragment.newInstance(moduleTwo);
+                try {
+                    moduleFour = mJsonAssetsLoader.parseModuleFromJsonFile("module_four.json");
+                } catch (IOException e) {
+                    Toast.makeText(this, "Failed to Get Module Four", Toast.LENGTH_SHORT);
+                }
 
-            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+                fragment = ModuleFragment.newInstance(moduleFour);
 
-            mDrawerLayout.closeDrawer(mDrawerList);
+                getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
 
-            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-            getActionBar().setDisplayShowTitleEnabled(true);
-            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+                mDrawerLayout.closeDrawer(mDrawerList);
 
+                getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+                getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
 
-        }  else if (position == MODULE_FOUR_POS) {
+                break;
+            case FOR_SUPPLIERS:
 
-            Module moduleFour = null;
+                fragment = SupplierOverview.newInstance();
+                getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
 
-            try {
-                moduleFour = mJsonAssetsLoader.parseModuleFromJsonFile("module_four.json");
-            } catch (IOException e) {
-                Toast.makeText(this, "Failed to Get Module Four", Toast.LENGTH_SHORT);
-            }
+                mDrawerLayout.closeDrawer(mDrawerList);
 
-            ModuleFragment fragment = ModuleFragment.newInstance(moduleFour);
+                getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+                getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
 
-            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
+                break;
+            case SUPPLIER_LAST_PAGE:
 
-            mDrawerLayout.closeDrawer(mDrawerList);
+                Module lastPage = null;
 
-            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-            getActionBar().setDisplayShowTitleEnabled(true);
-            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
+                try {
+                    lastPage = mJsonAssetsLoader.parseModuleFromJsonFile("supplier_last_page.json");
+                } catch (IOException e) {
+                    Toast.makeText(this, "Failed to Get Supplier Last Page", Toast.LENGTH_SHORT);
+                }
 
+                fragment = ModuleFragment.newInstance(lastPage);
 
-        } else if (position == SUPPLIER_LAST_PAGE) {
+                getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
 
-            Module lastPage = null;
+                mDrawerLayout.closeDrawer(mDrawerList);
 
-            try {
-                lastPage = mJsonAssetsLoader.parseModuleFromJsonFile("supplier_last_page.json");
-            } catch (IOException e) {
-                Toast.makeText(this, "Failed to Get Supplier Last Page", Toast.LENGTH_SHORT);
-            }
+                getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+                getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
 
-            ModuleFragment fragment = ModuleFragment.newInstance(lastPage);
-
-            getFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
-
-            mDrawerLayout.closeDrawer(mDrawerList);
-
-            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-            getActionBar().setDisplayShowTitleEnabled(true);
-            getActionBar().setTitle(getResources().getString(R.string.for_suppliers));
-
-
-        } else {
-            //do nothing
-            mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+            default:
+                //do nothing
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
         }
-
-
     }
 
 
