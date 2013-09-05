@@ -5,21 +5,20 @@ import android.content.Context;
 import com.cocacola.climateambassador.BuildConfig;
 import com.cocacola.climateambassador.CaApplication;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
-import com.cocacola.climateambassador.ui.fragments.CaseFragment;
-import com.cocacola.climateambassador.ui.fragments.CaseStudiesListFragment;
 import com.cocacola.climateambassador.ui.activities.DistributionCaseActivity;
-import com.cocacola.climateambassador.ui.fragments.FavoritesFragment;
 import com.cocacola.climateambassador.ui.activities.ForSuppliersActivity;
-import com.cocacola.climateambassador.ui.fragments.ForSuppliersBodyFragment;
 import com.cocacola.climateambassador.ui.activities.IngredientCaseActivity;
 import com.cocacola.climateambassador.ui.activities.InternalTrainingActivity;
-import com.cocacola.climateambassador.ui.fragments.InternalTrainingBodyFragment;
 import com.cocacola.climateambassador.ui.activities.MainActivity;
 import com.cocacola.climateambassador.ui.activities.ManufacturingCaseActivity;
-import com.cocacola.climateambassador.ui.fragments.ModuleFragment;
 import com.cocacola.climateambassador.ui.activities.PackagingCaseActivity;
 import com.cocacola.climateambassador.ui.activities.RefrigerationCaseActivity;
-import com.cocacola.climateambassador.ui.ValueChainModule;
+import com.cocacola.climateambassador.ui.fragments.CaseFragment;
+import com.cocacola.climateambassador.ui.fragments.CaseStudiesListFragment;
+import com.cocacola.climateambassador.ui.fragments.FavoritesFragment;
+import com.cocacola.climateambassador.ui.fragments.ForSuppliersBodyFragment;
+import com.cocacola.climateambassador.ui.fragments.InternalTrainingBodyFragment;
+import com.cocacola.climateambassador.ui.fragments.ModuleFragment;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,7 +41,6 @@ import timber.log.Timber;
         FavoritesFragment.class,
         InternalTrainingActivity.class,
         ForSuppliersActivity.class,
-        ValueChainModule.class,
         ForSuppliersBodyFragment.class,
         DocumentViewerDelegate.class,
         JsonAssetsLoader.class,

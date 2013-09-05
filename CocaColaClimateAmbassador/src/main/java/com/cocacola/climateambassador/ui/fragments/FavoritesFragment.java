@@ -36,7 +36,7 @@ public class FavoritesFragment extends CaFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.favorite_layout, container, false);
+        View view = inflater.inflate(R.layout.frag_favorites, container, false);
 
         LinearLayout courseMaterialFrame = (LinearLayout) view.findViewById(R.id.course_materials);
         if (mFavorites.getCourseMaterials() != null) {
