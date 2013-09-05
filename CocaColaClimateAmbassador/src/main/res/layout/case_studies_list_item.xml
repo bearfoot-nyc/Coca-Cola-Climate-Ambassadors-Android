@@ -6,11 +6,13 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/case_study_list_item_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/test_circle"/>
+
     <Button
-        android:id="@+id/ingredient_button"
+        android:id="@+id/case_study_list_item_button"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"/>
 
