@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +38,11 @@ public class DistributionCaseActivity extends CaCaseActivity {    Case mCase;
         getCase();
         setContentView(R.layout.case_fragment);
 
-        LayoutInflater inflater = getLayoutInflater();
+         findViewById(R.id.scroll_view).setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_case_distribution));
+         ((ImageView)findViewById(R.id.case_logo)).setImageResource(R.drawable.ic_case_detail_distribution);
+
+
+         LayoutInflater inflater = getLayoutInflater();
 
         ((TextView) findViewById(R.id.case_title)).setText(mCase.getTitle());
 
@@ -104,6 +109,30 @@ public class DistributionCaseActivity extends CaCaseActivity {    Case mCase;
                 caseFrames.addView(textFrame);
             }
         }
+
+         LinearLayout courseMaterialFrame = (LinearLayout) findViewById(R.id.course_materials);
+         if (mCase.getCourseMaterials() != null) {
+
+             for (Document courseMaterial : mCase.getCourseMaterials()) {
+                 View materialOption = inflater.inflate(R.layout.favorite_divider_button, null);
+                 setupButtonAccordingToDocument(courseMaterial, materialOption, inflater);
+                 courseMaterialFrame.addView(materialOption);
+             }
+
+             courseMaterialFrame.setVisibility(View.VISIBLE);
+         }
+
+         LinearLayout caseStudyFrame = (LinearLayout) findViewById(R.id.case_studies);
+         if (mCase.getCaseStudies() != null) {
+
+             for (Document caseStudy : mCase.getCaseStudies()) {
+                 View studyOption = inflater.inflate(R.layout.favorite_divider_button, null);
+                 setupButtonAccordingToDocument(caseStudy, studyOption, inflater);
+                 caseStudyFrame.addView(studyOption);
+             }
+
+             caseStudyFrame.setVisibility(View.VISIBLE);
+         }
     }
 
     @Override
@@ -122,16 +151,12 @@ public class DistributionCaseActivity extends CaCaseActivity {    Case mCase;
     }
 
     public void setupButtonAccordingToDocument(final Document doc, View viewWithButton, LayoutInflater inflater) {
-        //TODO: Set viewWithButton background according to doc type and title
         if (CaConstants.PDF.equals(getFileType(doc.getFileName()))) {
-            //TODO: Set image to resource once assets are added
-//            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
+            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_pdf);
         } else if (CaConstants.PPT.equals(getFileType(doc.getFileName()))) {
-            //TODO: Set image to resource once assets are added
-//            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
+            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_ppt);
         } else if (CaConstants.DOC.equals(getFileType(doc.getFileName()))) {
-            //TODO: Set image to resource once assets are added
-//            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
+            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_doc);
         } else {
             //Do nothing
         }

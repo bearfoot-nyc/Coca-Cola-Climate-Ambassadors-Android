@@ -10,7 +10,8 @@
             android:layout_width="wrap_content"
             android:textStyle="bold"
             android:textSize="16sp"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/case_frame_subtitle"
@@ -20,6 +21,7 @@
             android:paddingTop="8dp"
             android:visibility="gone"
             android:maxWidth="850dp"
+            android:textColor="@color/white"
                 />
 
         <TextView
@@ -28,13 +30,15 @@
             android:layout_width="wrap_content"
             android:paddingTop="8dp"
             android:maxWidth="850dp"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:textColor="@color/white"/>
 
         <LinearLayout
             android:id="@+id/bullet_list_content"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:orientation="vertical"
+            android:paddingTop="8dp"
             android:visibility="gone" />
 
         <LinearLayout

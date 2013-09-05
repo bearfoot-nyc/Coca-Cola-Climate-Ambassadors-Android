@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +39,9 @@ public class IngredientCaseActivity extends CaCaseActivity {
         getAssetLoader();
         getCase();
         setContentView(R.layout.case_fragment);
-        findViewById(R.id.main_content).setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_case_ingredients));
+
+        findViewById(R.id.scroll_view).setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_case_ingredients));
+        ((ImageView)findViewById(R.id.case_logo)).setImageResource(R.drawable.ic_case_detail_ingredients);
 
         LayoutInflater inflater = getLayoutInflater();
 
@@ -151,16 +154,12 @@ public class IngredientCaseActivity extends CaCaseActivity {
     }
 
     public void setupButtonAccordingToDocument(final Document doc, View viewWithButton, LayoutInflater inflater) {
-        //TODO: Set viewWithButton background according to doc type and title
         if (CaConstants.PDF.equals(getFileType(doc.getFileName()))) {
-            //TODO: Set image to resource once assets are added
-//            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
+            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_pdf);
         } else if (CaConstants.PPT.equals(getFileType(doc.getFileName()))) {
-            //TODO: Set image to resource once assets are added
-//            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
+            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_ppt);
         } else if (CaConstants.DOC.equals(getFileType(doc.getFileName()))) {
-            //TODO: Set image to resource once assets are added
-//            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
+            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_doc);
         } else {
             //Do nothing
         }
