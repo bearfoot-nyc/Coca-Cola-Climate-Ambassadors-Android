@@ -10,6 +10,7 @@ import com.cocacola.climateambassador.ui.CaseStudiesListFragment;
 import com.cocacola.climateambassador.ui.FavoritesFragment;
 import com.cocacola.climateambassador.ui.ForSuppliersActivity;
 import com.cocacola.climateambassador.ui.InternalTrainingActivity;
+import com.cocacola.climateambassador.ui.InternalTrainingBodyFragment;
 import com.cocacola.climateambassador.ui.MainActivity;
 import com.cocacola.climateambassador.ui.MainFragment;
 import com.cocacola.climateambassador.ui.ModuleFragment;
@@ -44,7 +45,8 @@ import timber.log.Timber;
         SupplierOverview.class,
         DocumentViewerDelegate.class,
         JsonAssetsLoader.class,
-        CaseStudiesListFragment.class
+        CaseStudiesListFragment.class,
+        InternalTrainingBodyFragment.class
 })
 public class ClimateAmbassadorModule {
 
