@@ -21,7 +21,7 @@
             android:paddingRight="3dp"/>
 
     <FrameLayout
-            android:layout_height="36dp"
+            android:layout_height="35dp"
             android:layout_width="wrap_content"
             android:background="@drawable/rectangle_shadow"
             android:layout_gravity="center_vertical"

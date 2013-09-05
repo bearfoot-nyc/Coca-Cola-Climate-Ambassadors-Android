@@ -51,6 +51,8 @@ public class CaseStudiesListFragment extends CaFragment {
         super.onViewCreated(view, savedInstanceState);
         mListView = (ListView) view.findViewById(R.id.case_studies_list_view);
         mListView.setAdapter(mAdapter);
+
+
     }
 
     private List<CaseStudyListItem> getCaseStudyListItems() {
