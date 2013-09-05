@@ -1,4 +1,4 @@
-package com.cocacola.climateambassador.ui;
+package com.cocacola.climateambassador.ui.activities;
 
 import android.app.Activity;
 import android.os.Bundle;

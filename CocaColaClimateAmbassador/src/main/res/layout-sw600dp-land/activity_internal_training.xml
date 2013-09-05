@@ -12,14 +12,14 @@
 
         <fragment
             android:id="@+id/frag_internal_training_body"
-            android:name="com.cocacola.climateambassador.ui.InternalTrainingBodyFragment"
+            android:name="com.cocacola.climateambassador.ui.fragments.InternalTrainingBodyFragment"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3" />
 
         <fragment
             android:id="@+id/frag_internal_training_case_studies_list"
-            android:name="com.cocacola.climateambassador.ui.CaseStudiesListFragment"
+            android:name="com.cocacola.climateambassador.ui.fragments.CaseStudiesListFragment"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>

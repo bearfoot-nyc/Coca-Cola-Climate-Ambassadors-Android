@@ -1,13 +1,8 @@
-package com.cocacola.climateambassador.ui;
+package com.cocacola.climateambassador.ui.activities;
 
 import android.os.Bundle;
 
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.adapters.MenuListAdapter;
-import com.cocacola.climateambassador.models.NavigationDrawerItem;
-
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by realandylawton on 8/31/13.

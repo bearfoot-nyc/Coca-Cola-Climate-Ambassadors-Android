@@ -11,7 +11,7 @@
 
         <fragment
             android:id="@+id/frag_for_suppliers_body"
-            android:name="com.cocacola.climateambassador.ui.ForSuppliersBodyFragment"
+            android:name="com.cocacola.climateambassador.ui.fragments.ForSuppliersBodyFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.ui.fragments.CaFragment;
 
 public class InternalTrainingOverview extends CaFragment {
 

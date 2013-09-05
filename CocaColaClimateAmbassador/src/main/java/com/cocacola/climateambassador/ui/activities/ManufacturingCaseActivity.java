@@ -1,11 +1,9 @@
-package com.cocacola.climateambassador.ui;
+package com.cocacola.climateambassador.ui.activities;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,43 +15,40 @@ import com.cocacola.climateambassador.models.Case;
 import com.cocacola.climateambassador.models.Document;
 import com.cocacola.climateambassador.models.SubtitleTextPair;
 import com.cocacola.climateambassador.models.TextFrame;
+import com.cocacola.climateambassador.util.JsonAssetsLoader;
+import com.google.gson.Gson;
+
+import java.io.IOException;
+
+import javax.inject.Inject;
 
 /**
- * Created by Vinnie Vendemia on 8/29/13.
+ * Created by Vinnie on 9/4/13.
  */
+public class ManufacturingCaseActivity extends CaCaseActivity {
 
-public class CaseFragment extends CaFragment {
-
-    //Constants
-
-
-    private Case mCase;
-
-    public static CaseFragment newInstance(Case aCase) {
-        CaseFragment fragment = new CaseFragment();
-        fragment.mCase = aCase;
-        return fragment;
-    }
-
+    Case mCase;
+    JsonAssetsLoader mJsonAssetsLoader;
+    @Inject
+    Gson gson;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+        getAssetLoader();
+        getCase();
+        setContentView(R.layout.case_fragment);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
-        Context context = getActivity();
-        View view = inflater.inflate(R.layout.case_fragment, container, false);
-        ((TextView) view.findViewById(R.id.case_title)).setText(mCase.getTitle());
+        LayoutInflater inflater = getLayoutInflater();
+
+        ((TextView) findViewById(R.id.case_title)).setText(mCase.getTitle());
 
         if (!TextUtils.isEmpty(mCase.getBodyText())) {
-            ((TextView) view.findViewById(R.id.body_text)).setText(mCase.getBodyText());
-            ((TextView) view.findViewById(R.id.body_text)).setVisibility(View.VISIBLE);
+            ((TextView) findViewById(R.id.body_text)).setText(mCase.getBodyText());
+            ((TextView) findViewById(R.id.body_text)).setVisibility(View.VISIBLE);
         }
 
-        LinearLayout caseFrames = (LinearLayout) view.findViewById(R.id.case_frames);
+        LinearLayout caseFrames = (LinearLayout) findViewById(R.id.case_frames);
 
         if (mCase.getBulletPointFrame() != null) {
             BulletPointFrame caseBulletPointFrame = mCase.getBulletPointFrame();
@@ -111,36 +106,24 @@ public class CaseFragment extends CaFragment {
                 caseFrames.addView(textFrame);
             }
         }
-
-
-        LinearLayout courseMaterialFrame = (LinearLayout) view.findViewById(R.id.course_materials);
-        if (mCase.getCourseMaterials() != null) {
-
-            for (Document courseMaterial : mCase.getCourseMaterials()) {
-                View materialOption = inflater.inflate(R.layout.favorite_divider_button, null);
-                setupButtonAccordingToDocument(courseMaterial, materialOption, inflater);
-                courseMaterialFrame.addView(materialOption);
-            }
-
-            courseMaterialFrame.setVisibility(View.VISIBLE);
-        }
-
-        LinearLayout caseStudyFrame = (LinearLayout) view.findViewById(R.id.case_studies);
-        if (mCase.getCaseStudies() != null) {
-
-            for (Document caseStudy : mCase.getCaseStudies()) {
-                View studyOption = inflater.inflate(R.layout.favorite_divider_button, null);
-                setupButtonAccordingToDocument(caseStudy, studyOption, inflater);
-                caseStudyFrame.addView(studyOption);
-            }
-
-            caseStudyFrame.setVisibility(View.VISIBLE);
-        }
-
-        return view;
     }
 
-    private void setupButtonAccordingToDocument(final Document doc, View viewWithButton, LayoutInflater inflater) {
+    @Override
+    public void getCase() {
+        try {
+            mCase = mJsonAssetsLoader.parseCaseFromJsonFile("manufacturing.json");
+        } catch (IOException e) {
+            Toast.makeText(this, "Failed to Get Packaging Case", Toast.LENGTH_SHORT);
+        }
+    }
+
+    @Override
+    public JsonAssetsLoader getAssetLoader() {
+        mJsonAssetsLoader = new JsonAssetsLoader(this, gson );
+        return mJsonAssetsLoader;
+    }
+
+    public void setupButtonAccordingToDocument(final Document doc, View viewWithButton, LayoutInflater inflater) {
         //TODO: Set viewWithButton background according to doc type and title
         if (CaConstants.PDF.equals(getFileType(doc.getFileName()))) {
             //TODO: Set image to resource once assets are added
@@ -160,14 +143,13 @@ public class CaseFragment extends CaFragment {
             @Override
             public void onClick(View v) {
                 //TODO: Open Document
-                Toast.makeText(getActivity(), "Touched " + doc.getLabel(), Toast.LENGTH_SHORT).show();
             }
         });
 
 
     }
 
-    private String getFileType(String fileName) {
+    public String getFileType(String fileName) {
         String extension = "";
 
         int i = fileName.lastIndexOf('.');
@@ -177,5 +159,4 @@ public class CaseFragment extends CaFragment {
 
         return extension;
     }
-
 }

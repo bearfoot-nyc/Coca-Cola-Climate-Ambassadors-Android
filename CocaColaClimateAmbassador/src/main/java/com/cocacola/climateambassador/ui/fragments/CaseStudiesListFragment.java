@@ -1,4 +1,4 @@
-package com.cocacola.climateambassador.ui;
+package com.cocacola.climateambassador.ui.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.ui.activities.CaActivity;
+import com.cocacola.climateambassador.ui.activities.CaCaseActivity;
+import com.cocacola.climateambassador.ui.activities.DistributionCaseActivity;
+import com.cocacola.climateambassador.ui.activities.IngredientCaseActivity;
+import com.cocacola.climateambassador.ui.activities.ManufacturingCaseActivity;
+import com.cocacola.climateambassador.ui.activities.PackagingCaseActivity;
+import com.cocacola.climateambassador.ui.activities.RefrigerationCaseActivity;
 
 import java.util.LinkedList;
 import java.util.List;

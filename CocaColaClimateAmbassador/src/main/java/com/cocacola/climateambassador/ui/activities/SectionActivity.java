@@ -1,4 +1,4 @@
-package com.cocacola.climateambassador.ui;
+package com.cocacola.climateambassador.ui.activities;
 
 import com.cocacola.climateambassador.adapters.MenuListAdapter;
 import com.cocacola.climateambassador.models.NavigationDrawerItem;

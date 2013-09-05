@@ -1,4 +1,4 @@
-package com.cocacola.climateambassador.ui;
+package com.cocacola.climateambassador.ui.activities;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -25,7 +25,7 @@ import javax.inject.Inject;
 /**
  * Created by Vinnie on 9/4/13.
  */
-public class ManufacturingCaseActivity extends CaCaseActivity {
+public class IngredientCaseActivity extends CaCaseActivity {
 
     Case mCase;
     JsonAssetsLoader mJsonAssetsLoader;
@@ -38,6 +38,7 @@ public class ManufacturingCaseActivity extends CaCaseActivity {
         getAssetLoader();
         getCase();
         setContentView(R.layout.case_fragment);
+        findViewById(R.id.main_content).setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_case_ingredients));
 
         LayoutInflater inflater = getLayoutInflater();
 
@@ -106,12 +107,38 @@ public class ManufacturingCaseActivity extends CaCaseActivity {
                 caseFrames.addView(textFrame);
             }
         }
+
+
+        LinearLayout courseMaterialFrame = (LinearLayout) findViewById(R.id.course_materials);
+        if (mCase.getCourseMaterials() != null) {
+
+            for (Document courseMaterial : mCase.getCourseMaterials()) {
+                View materialOption = inflater.inflate(R.layout.favorite_divider_button, null);
+                setupButtonAccordingToDocument(courseMaterial, materialOption, inflater);
+                courseMaterialFrame.addView(materialOption);
+            }
+
+            courseMaterialFrame.setVisibility(View.VISIBLE);
+        }
+
+        LinearLayout caseStudyFrame = (LinearLayout) findViewById(R.id.case_studies);
+        if (mCase.getCaseStudies() != null) {
+
+            for (Document caseStudy : mCase.getCaseStudies()) {
+                View studyOption = inflater.inflate(R.layout.favorite_divider_button, null);
+                setupButtonAccordingToDocument(caseStudy, studyOption, inflater);
+                caseStudyFrame.addView(studyOption);
+            }
+
+            caseStudyFrame.setVisibility(View.VISIBLE);
+        }
     }
+
 
     @Override
     public void getCase() {
         try {
-            mCase = mJsonAssetsLoader.parseCaseFromJsonFile("manufacturing.json");
+            mCase = mJsonAssetsLoader.parseCaseFromJsonFile("ingredients.json");
         } catch (IOException e) {
             Toast.makeText(this, "Failed to Get Packaging Case", Toast.LENGTH_SHORT);
         }

@@ -1,4 +1,4 @@
-package com.cocacola.climateambassador.ui;
+package com.cocacola.climateambassador.ui.activities;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -25,15 +25,13 @@ import javax.inject.Inject;
 /**
  * Created by Vinnie on 9/4/13.
  */
-public class RefrigerationCaseActivity extends CaCaseActivity {
-
-    Case mCase;
+public class DistributionCaseActivity extends CaCaseActivity {    Case mCase;
     JsonAssetsLoader mJsonAssetsLoader;
     @Inject
     Gson gson;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+     @Override
+        protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getAssetLoader();
         getCase();
@@ -108,10 +106,10 @@ public class RefrigerationCaseActivity extends CaCaseActivity {
         }
     }
 
-        @Override
+    @Override
     public void getCase() {
         try {
-            mCase = mJsonAssetsLoader.parseCaseFromJsonFile("refrigeration.json");
+            mCase = mJsonAssetsLoader.parseCaseFromJsonFile("distribution.json");
         } catch (IOException e) {
             Toast.makeText(this, "Failed to Get Packaging Case", Toast.LENGTH_SHORT);
         }

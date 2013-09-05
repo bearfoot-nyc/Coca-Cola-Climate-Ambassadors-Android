@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.ui.fragments.CaFragment;
 
 import butterknife.InjectView;
 import butterknife.Views;
