@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,7 +59,8 @@ public class ForSuppliersBodyFragment extends CaFragment {
 
         //Set up Short Intro button
         View introButtonLayout = inflater.inflate(R.layout.favorite_divider_button, null);
-        //            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
+        //TODO: change to listen Image
+        ((ImageView)introButtonLayout.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_pdf);
         ((TextView) introButtonLayout.findViewById(R.id.doc_title)).setText(INTRO_BUTTON_TITLE);
         ((LinearLayout) introButtonLayout.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,8 +73,9 @@ public class ForSuppliersBodyFragment extends CaFragment {
 
         //Set up video button
         View videoButtonLayout = inflater.inflate(R.layout.favorite_divider_button, null);
-        //            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
         ((TextView) videoButtonLayout.findViewById(R.id.doc_title)).setText(VIDEO_BUTTON_TITLE);
+        //TODO: Change to MOV Image
+        ((ImageView)introButtonLayout.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_doc);
         ((LinearLayout) videoButtonLayout.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +87,7 @@ public class ForSuppliersBodyFragment extends CaFragment {
 
         //Set up supplier guide button
         View supplierButtonLayout = inflater.inflate(R.layout.favorite_divider_button, null);
-        //            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
+        ((ImageView)introButtonLayout.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_pdf);
         ((TextView) supplierButtonLayout.findViewById(R.id.doc_title)).setText(SUPPLIER_GUIDE_TITLE);
         ((LinearLayout) supplierButtonLayout.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
             @Override

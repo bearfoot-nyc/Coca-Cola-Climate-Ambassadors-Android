@@ -91,6 +91,7 @@ public class IngredientCaseActivity extends CaCaseActivity {
 
                 if (!TextUtils.isEmpty(currTextFrame.getTitle())) {
                     ((TextView) textFrame.findViewById(R.id.case_frame_title)).setText(currTextFrame.getTitle());
+                    ((TextView) textFrame.findViewById(R.id.case_frame_title)).setVisibility(View.VISIBLE);
                 }
 
                 if (!TextUtils.isEmpty(currTextFrame.getBodyText())) {
@@ -103,7 +104,6 @@ public class IngredientCaseActivity extends CaCaseActivity {
                 for (SubtitleTextPair subTextPair : currTextFrame.getSubtitleTextPairs()) {
                     View subtitleTextPairView = inflater.inflate(R.layout.case_text_frame, null);
                     ((TextView) subtitleTextPairView.findViewById(R.id.title)).setText(subTextPair.getTitle());
-//                    addBodyText(((TextView)subtitleTextPairView.findViewById(R.id.body_text)), subTextPair.getText
                     ((TextView) subtitleTextPairView.findViewById(R.id.body_text)).setText(subTextPair.getText());
                     textFrames.addView(subtitleTextPairView);
                 }

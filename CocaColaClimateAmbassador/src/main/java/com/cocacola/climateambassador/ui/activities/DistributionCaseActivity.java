@@ -92,6 +92,7 @@ public class DistributionCaseActivity extends CaCaseActivity {    Case mCase;
 
                 if (!TextUtils.isEmpty(currTextFrame.getTitle())) {
                     ((TextView) textFrame.findViewById(R.id.case_frame_title)).setText(currTextFrame.getTitle());
+                    ((TextView) textFrame.findViewById(R.id.case_frame_title)).setVisibility(View.VISIBLE);
                 }
 
                 if (!TextUtils.isEmpty(currTextFrame.getBodyText())) {
