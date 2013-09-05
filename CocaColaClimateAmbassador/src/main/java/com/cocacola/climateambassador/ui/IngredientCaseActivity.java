@@ -38,6 +38,7 @@ public class IngredientCaseActivity extends CaCaseActivity {
         getAssetLoader();
         getCase();
         setContentView(R.layout.case_fragment);
+        findViewById(R.id.main_content).setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_case_ingredients));
 
         LayoutInflater inflater = getLayoutInflater();
 
