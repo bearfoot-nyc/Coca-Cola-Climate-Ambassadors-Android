@@ -50,11 +50,11 @@ public class CaseStudiesListFragment extends CaFragment {
 
         if(mCaseStudyListItems == null) {
             mCaseStudyListItems = new LinkedList<CaseStudyListItem>();
-            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_ingredients, "Ingredients", CaseActivity.class));
-            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_packaging, "Packaging", CaseActivity.class));
-            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_manufacturing, "Manufacturing", CaseActivity.class));
-            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_distribution, "Distribution", CaseActivity.class));
-            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_refrigeration, "Refrigeration", CaseActivity.class));
+            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_ingredients, "Ingredients", IngredientCaseActivity.class));
+            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_packaging, "Packaging", PackagingCaseActivity.class));
+            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_manufacturing, "Manufacturing", ManufacturingCaseActivity.class));
+            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_distribution, "Distribution", DistributionCaseActivity.class));
+            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_refrigeration, "Refrigeration", RefrigerationCaseActivity.class));
         }
 
         return mCaseStudyListItems;
@@ -119,7 +119,7 @@ public class CaseStudiesListFragment extends CaFragment {
         private String title;
         private Class<? extends CaActivity> clazzToLaunch;
 
-        private CaseStudyListItem(int iconResId, String title, Class<? extends CaActivity> clazzToLaunch) {
+        private CaseStudyListItem(int iconResId, String title, Class<? extends CaCaseActivity> clazzToLaunch) {
             this.iconResId = iconResId;
             this.title = title;
             this.clazzToLaunch = clazzToLaunch;

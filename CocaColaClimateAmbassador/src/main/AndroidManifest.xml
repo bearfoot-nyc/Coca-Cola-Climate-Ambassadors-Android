@@ -40,6 +40,36 @@
                 android:label="@string/title_activity_key_interventions_module"
                 android:screenOrientation="landscape" >
         </activity>
+        <activity
+                android:name=".ui.IngredientCaseActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:label="@string/Ingredients"
+                android:screenOrientation="landscape" >
+        </activity>
+        <activity
+                android:name=".ui.PackagingCaseActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:label="@string/Packaging"
+                android:screenOrientation="landscape" >
+        </activity>
+        <activity
+                android:name=".ui.ManufacturingCaseActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:label="@string/Manufacturing"
+                android:screenOrientation="landscape" >
+        </activity>
+        <activity
+                android:name=".ui.DistributionCaseActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:label="@string/Distribution"
+                android:screenOrientation="landscape" >
+        </activity>
+        <activity
+                android:name=".ui.RefrigerationCaseActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:label="@string/Refrigeration"
+                android:screenOrientation="landscape" >
+        </activity>
 
 
         <provider
