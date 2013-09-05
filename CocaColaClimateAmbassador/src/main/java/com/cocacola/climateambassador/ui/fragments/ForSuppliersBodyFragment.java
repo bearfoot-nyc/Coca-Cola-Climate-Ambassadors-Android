@@ -1,7 +1,8 @@
 package com.cocacola.climateambassador.ui.fragments;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.ui.activities.DistributionCaseActivity;
+import com.cocacola.climateambassador.ui.activities.IngredientCaseActivity;
+import com.cocacola.climateambassador.ui.activities.ManufacturingCaseActivity;
+import com.cocacola.climateambassador.ui.activities.PackagingCaseActivity;
+import com.cocacola.climateambassador.ui.activities.RefrigerationCaseActivity;
 
 import butterknife.InjectView;
 import butterknife.Views;
@@ -46,6 +52,8 @@ public class ForSuppliersBodyFragment extends CaFragment {
     @InjectView(R.id.refrigeration_button)
     Button refrigerationButton;
 
+    Context mContext;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +65,7 @@ public class ForSuppliersBodyFragment extends CaFragment {
         View view = inflater.inflate(R.layout.frag_for_suppliers, container, false);
         Views.inject(this, view);
 
+        mContext = getActivity();
         //Set up Short Intro button
         View introButtonLayout = inflater.inflate(R.layout.favorite_divider_button, null);
         //TODO: change to listen Image
@@ -102,40 +111,40 @@ public class ForSuppliersBodyFragment extends CaFragment {
         ingredientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Go to Case Study
-                Log.d(TAG, "Clicked Ingredient Button");
+                Intent intent = new Intent(mContext, IngredientCaseActivity.class);
+                mContext.startActivity(intent);
             }
         });
 
         packagingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Go to Case Study
-                Log.d(TAG, "Clicked Packaging Button");
+                Intent intent = new Intent(mContext, PackagingCaseActivity.class);
+                mContext.startActivity(intent);
             }
         });
 
         manufactureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Go to Case Study
-                Log.d(TAG, "Clicked Manufacturing Button");
+                Intent intent = new Intent(mContext, ManufacturingCaseActivity.class);
+                mContext.startActivity(intent);
             }
         });
 
         distributionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Go to Case Study
-                Log.d(TAG, "Clicked Distribution Button");
+                Intent intent = new Intent(mContext, DistributionCaseActivity.class);
+                mContext.startActivity(intent);
             }
         });
 
         refrigerationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Go to Case Study
-                Log.d(TAG, "Clicked Refrigeration Button");
+                Intent intent = new Intent(mContext, RefrigerationCaseActivity.class);
+                mContext.startActivity(intent);
             }
         });
 
