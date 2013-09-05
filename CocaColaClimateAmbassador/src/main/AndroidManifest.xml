@@ -44,31 +44,36 @@
                 android:name=".ui.activities.IngredientCaseActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/Ingredients"
-                android:screenOrientation="landscape" >
+                android:screenOrientation="landscape"
+                android:parentActivityName=".ui.activities.InternalTrainingActivity">
         </activity>
         <activity
                 android:name=".ui.activities.PackagingCaseActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/Packaging"
-                android:screenOrientation="landscape" >
+                android:screenOrientation="landscape"
+                android:parentActivityName=".ui.activities.InternalTrainingActivity">
         </activity>
         <activity
                 android:name=".ui.activities.ManufacturingCaseActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/Manufacturing"
-                android:screenOrientation="landscape" >
+                android:screenOrientation="landscape"
+                android:parentActivityName=".ui.activities.InternalTrainingActivity">
         </activity>
         <activity
                 android:name=".ui.activities.DistributionCaseActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/Distribution"
-                android:screenOrientation="landscape" >
+                android:screenOrientation="landscape"
+                android:parentActivityName=".ui.activities.InternalTrainingActivity">
         </activity>
         <activity
                 android:name=".ui.activities.RefrigerationCaseActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/Refrigeration"
-                android:screenOrientation="landscape" >
+                android:screenOrientation="landscape"
+                android:parentActivityName=".ui.activities.InternalTrainingActivity">
         </activity>
 
 

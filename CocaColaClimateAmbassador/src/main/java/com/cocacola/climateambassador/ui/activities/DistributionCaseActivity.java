@@ -1,8 +1,10 @@
 package com.cocacola.climateambassador.ui.activities;
 
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,6 +39,8 @@ public class DistributionCaseActivity extends CaCaseActivity {    Case mCase;
         getAssetLoader();
         getCase();
         setContentView(R.layout.case_fragment);
+
+         getActionBar().setDisplayHomeAsUpEnabled(true);
 
          findViewById(R.id.scroll_view).setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_case_distribution));
          ((ImageView)findViewById(R.id.case_logo)).setImageResource(R.drawable.ic_case_detail_distribution);
@@ -181,5 +185,16 @@ public class DistributionCaseActivity extends CaCaseActivity {    Case mCase;
         }
 
         return extension;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
