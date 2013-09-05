@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.cocacola.climateambassador.R;
@@ -49,11 +50,11 @@ public class CaseStudiesListFragment extends CaFragment {
 
         if(mCaseStudyListItems == null) {
             mCaseStudyListItems = new LinkedList<CaseStudyListItem>();
-            mCaseStudyListItems.add(new CaseStudyListItem(0, "Ingredients", CaseActivity.class));
-            mCaseStudyListItems.add(new CaseStudyListItem(0, "Packaging", CaseActivity.class));
-            mCaseStudyListItems.add(new CaseStudyListItem(0, "Manufacturing", CaseActivity.class));
-            mCaseStudyListItems.add(new CaseStudyListItem(0, "Distribution", CaseActivity.class));
-            mCaseStudyListItems.add(new CaseStudyListItem(0, "Refrigeration", CaseActivity.class));
+            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_ingredients, "Ingredients", CaseActivity.class));
+            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_packaging, "Packaging", CaseActivity.class));
+            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_manufacturing, "Manufacturing", CaseActivity.class));
+            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_distribution, "Distribution", CaseActivity.class));
+            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_refrigeration, "Refrigeration", CaseActivity.class));
         }
 
         return mCaseStudyListItems;
@@ -103,6 +104,9 @@ public class CaseStudiesListFragment extends CaFragment {
                     mContext.startActivity(intent);
                 }
             });
+
+            ImageView icon = (ImageView) v.findViewById(R.id.case_study_list_item_icon);
+            icon.setImageResource(item.getIconResId());
 
             return v;
 
