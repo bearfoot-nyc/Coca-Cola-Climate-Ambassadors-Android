@@ -8,19 +8,10 @@
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity" />
 
-
-    </FrameLayout>
-
-    <ListView
-        android:id="@+id/left_drawer"
-        android:layout_width="280dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:choiceMode="singleChoice"
-        android:divider="@drawable/custom_divider"
-        android:dividerHeight="0dp"
-        android:background="@color/nav_bg" />
+    <include
+        android:id="@+id/navigation_drawer_list"
+        layout="@layout/navigation_drawer_list" />
 
 </android.support.v4.widget.DrawerLayout>

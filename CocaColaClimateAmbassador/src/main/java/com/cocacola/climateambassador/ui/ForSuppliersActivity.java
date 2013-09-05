@@ -16,8 +16,13 @@ public class ForSuppliersActivity extends SectionActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_internal_training);
+        setContentView(R.layout.activity_for_suppliers);
         setupNavigationDrawer();
+        setupScreen();
+    }
+
+    private void setupScreen() {
+        setTitle("For Suppliers");
     }
 
 }

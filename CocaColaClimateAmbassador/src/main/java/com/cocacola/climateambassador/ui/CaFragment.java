@@ -13,7 +13,6 @@ import com.cocacola.climateambassador.CaApplication;
  */
 public class CaFragment extends Fragment{
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -36,7 +36,7 @@ abstract class CaDrawerActivity extends CaActivity {
 
         //Set up the Navigation Drawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        mDrawerList = (ListView) findViewById(R.id.navigation_drawer_list);
         mDrawerList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
         // set a custom shadow that overlays the main content when the drawer opens
