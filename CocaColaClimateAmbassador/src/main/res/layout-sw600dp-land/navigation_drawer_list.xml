@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ListView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/navigation_drawer_list"
-    android:layout_width="280dp"
-    android:layout_height="match_parent"
-    android:layout_gravity="start"
-    android:choiceMode="singleChoice"
-    android:divider="@drawable/custom_divider"
-    android:dividerHeight="0dp"
-    android:background="@color/nav_bg" />
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/navigation_drawer_list"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:choiceMode="singleChoice"
+        android:divider="@drawable/custom_divider"
+        android:dividerHeight="0dp"
+        android:background="@color/nav_bg" />

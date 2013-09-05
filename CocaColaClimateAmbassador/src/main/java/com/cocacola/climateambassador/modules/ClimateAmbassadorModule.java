@@ -10,16 +10,15 @@ import com.cocacola.climateambassador.ui.CaseStudiesListFragment;
 import com.cocacola.climateambassador.ui.DistributionCaseActivity;
 import com.cocacola.climateambassador.ui.FavoritesFragment;
 import com.cocacola.climateambassador.ui.ForSuppliersActivity;
+import com.cocacola.climateambassador.ui.ForSuppliersBodyFragment;
 import com.cocacola.climateambassador.ui.IngredientCaseActivity;
 import com.cocacola.climateambassador.ui.InternalTrainingActivity;
 import com.cocacola.climateambassador.ui.InternalTrainingBodyFragment;
 import com.cocacola.climateambassador.ui.MainActivity;
-import com.cocacola.climateambassador.ui.MainFragment;
 import com.cocacola.climateambassador.ui.ManufacturingCaseActivity;
 import com.cocacola.climateambassador.ui.ModuleFragment;
 import com.cocacola.climateambassador.ui.PackagingCaseActivity;
 import com.cocacola.climateambassador.ui.RefrigerationCaseActivity;
-import com.cocacola.climateambassador.ui.SupplierOverview;
 import com.cocacola.climateambassador.ui.ValueChainModule;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.google.gson.Gson;
@@ -38,16 +37,13 @@ import timber.log.Timber;
 @Module(injects = {
         CaApplication.class,
         MainActivity.class,
-        MainFragment.class,
         CaseFragment.class,
         ModuleFragment.class,
         FavoritesFragment.class,
         InternalTrainingActivity.class,
         ForSuppliersActivity.class,
-//        BusinessCaseModule.class,
-//        EngagingSuppliersModule.class,
         ValueChainModule.class,
-        SupplierOverview.class,
+        ForSuppliersBodyFragment.class,
         DocumentViewerDelegate.class,
         JsonAssetsLoader.class,
         CaseStudiesListFragment.class,

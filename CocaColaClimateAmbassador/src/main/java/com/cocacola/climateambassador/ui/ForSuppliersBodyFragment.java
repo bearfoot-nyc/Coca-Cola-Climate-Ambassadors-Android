@@ -20,10 +20,10 @@ import butterknife.Views;
  * Created by Vinnie Vendemia on 8/28/13.
  */
 
-public class SupplierOverview extends CaFragment {
+public class ForSuppliersBodyFragment extends CaFragment {
 
     //Constants
-    public static final String TAG = "SupplierOverview";
+    public static final String TAG = "ForSuppliersBodyFragment";
     public static final String INTRO_BUTTON_TITLE = "Listen to Short Introduction";
     public static final String VIDEO_BUTTON_TITLE = "View The Video";
     public static final String SUPPLIER_GUIDE_TITLE = "Flip through the Supplier Guide";
@@ -45,11 +45,6 @@ public class SupplierOverview extends CaFragment {
     @InjectView(R.id.refrigeration_button)
     Button refrigerationButton;
 
-    public static SupplierOverview newInstance() {
-        SupplierOverview frag = new SupplierOverview();
-        return frag;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +53,7 @@ public class SupplierOverview extends CaFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.supplier_overview, container, false);
+        View view = inflater.inflate(R.layout.frag_for_suppliers, container, false);
         Views.inject(this, view);
 
         //Set up Short Intro button

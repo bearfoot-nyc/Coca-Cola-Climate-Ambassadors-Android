@@ -27,7 +27,7 @@
     </LinearLayout>
 
     <include
-        android:id="@+id/navigation_drawer_list"
-        layout="@layout/navigation_drawer_list" />
+            android:id="@+id/navigation_drawer_list"
+            layout="@layout/navigation_drawer_list" />
 
  </android.support.v4.widget.DrawerLayout>
