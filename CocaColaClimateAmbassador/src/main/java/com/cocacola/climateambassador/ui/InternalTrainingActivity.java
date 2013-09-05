@@ -23,7 +23,7 @@ public class InternalTrainingActivity extends SectionActivity {
     }
 
     private void setupScreen() {
-
+        setTitle("Internal Training Materialsl");
     }
 
 }

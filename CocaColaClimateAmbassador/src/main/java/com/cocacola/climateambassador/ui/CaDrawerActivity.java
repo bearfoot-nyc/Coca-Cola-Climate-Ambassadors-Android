@@ -58,17 +58,19 @@ abstract class CaDrawerActivity extends CaActivity {
                 R.string.drawer_close  /* "close drawer" description for accessibility */
         ) {
             public void onDrawerClosed(View view) {
-                // getSupportActionBar().setTitle(mTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
             public void onDrawerOpened(View drawerView) {
-                // getSupportActionBar().setTitle(mDrawerTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+    }
+
+    protected void setTitle(String title) {
+        getActionBar().setTitle(title);
     }
 
     abstract MenuListAdapter getMenuListAdapter();
