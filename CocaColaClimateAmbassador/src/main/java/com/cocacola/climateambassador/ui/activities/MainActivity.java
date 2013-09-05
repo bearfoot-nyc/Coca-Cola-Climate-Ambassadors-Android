@@ -14,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import butterknife.OnClick;
+import butterknife.Views;
 
 public class MainActivity extends CaDrawerActivity implements SearchView.OnQueryTextListener {
 
@@ -22,8 +23,8 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+        Views.inject(this);
         setupNavigationDrawer();
 
     }

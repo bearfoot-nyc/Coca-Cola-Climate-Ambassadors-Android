@@ -23,7 +23,7 @@ import javax.inject.Inject;
 /**
  * Created by Vinnie on 9/5/13.
  */
-public class ModuleOneActivity extends CaModuleActivity {
+public class ModuleTwoActivity extends CaModuleActivity {
 
     private JsonAssetsLoader mJsonAssetsLoader;
     private Module mModule;
@@ -98,9 +98,9 @@ public class ModuleOneActivity extends CaModuleActivity {
 
     public void getModule() {
         try {
-            mModule = mJsonAssetsLoader.parseModuleFromJsonFile("module_one.json");
+            mModule = mJsonAssetsLoader.parseModuleFromJsonFile("module_two.json");
         } catch (IOException e) {
-            Toast.makeText(this, "Failed to Get Module One", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "Failed to Get Module Two", Toast.LENGTH_SHORT);
         }
     }
 

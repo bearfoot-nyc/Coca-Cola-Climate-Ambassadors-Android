@@ -64,13 +64,13 @@
             <Button
                     android:id="@+id/home_btn_internal"
                     style="@style/Ca"
-                    android:background="@drawable/btn_internal_trainings" />
+                    android:background="@drawable/btn_internal_trainings"/>
 
             <Button
                     android:id="@+id/home_btn_suppliers"
                     style="@style/Ca"
                     android:layout_marginLeft="90dp"
-                    android:background="@drawable/btn_for_suppliers" />
+                    android:background="@drawable/btn_for_suppliers"/>
 
         </LinearLayout>
 

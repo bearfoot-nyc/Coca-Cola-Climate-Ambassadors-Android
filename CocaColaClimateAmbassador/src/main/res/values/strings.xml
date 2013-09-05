@@ -81,6 +81,9 @@
     <string name="favorites">FAVORITES</string>
     <string name="favorite_course_materials">FAVORITE COURSE MATERIALS</string>
     <string name="favorite_case_studies">FAVORITE CASE STUDIES</string>
+    <string name="module_one">Module One</string>
+    <string name="module_two">Module Two</string>
+    <string name="module_four">Module Four</string>
 
 
 </resources>

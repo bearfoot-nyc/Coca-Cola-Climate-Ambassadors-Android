@@ -11,6 +11,9 @@ import com.cocacola.climateambassador.ui.activities.IngredientCaseActivity;
 import com.cocacola.climateambassador.ui.activities.InternalTrainingActivity;
 import com.cocacola.climateambassador.ui.activities.MainActivity;
 import com.cocacola.climateambassador.ui.activities.ManufacturingCaseActivity;
+import com.cocacola.climateambassador.ui.activities.ModuleFourActivity;
+import com.cocacola.climateambassador.ui.activities.ModuleOneActivity;
+import com.cocacola.climateambassador.ui.activities.ModuleTwoActivity;
 import com.cocacola.climateambassador.ui.activities.PackagingCaseActivity;
 import com.cocacola.climateambassador.ui.activities.RefrigerationCaseActivity;
 import com.cocacola.climateambassador.ui.fragments.CaseFragment;
@@ -50,7 +53,10 @@ import timber.log.Timber;
         ManufacturingCaseActivity.class,
         DistributionCaseActivity.class,
         RefrigerationCaseActivity.class,
-        IngredientCaseActivity.class
+        IngredientCaseActivity.class,
+        ModuleOneActivity.class,
+        ModuleTwoActivity.class,
+        ModuleFourActivity.class
 })
 public class ClimateAmbassadorModule {
 

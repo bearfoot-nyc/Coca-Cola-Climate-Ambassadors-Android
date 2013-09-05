@@ -22,10 +22,10 @@ public class SectionActivity extends CaDrawerActivity {
             mNavigationDrawerItems = new LinkedList<NavigationDrawerItem>();
             mNavigationDrawerItems.add(new NavigationDrawerItem("Internal Training Materials", 0, true, null));
             mNavigationDrawerItems.add(new NavigationDrawerItem("Overview", 0, false, InternalTrainingActivity.class));
-            mNavigationDrawerItems.add(new NavigationDrawerItem("Module 1", 0, false, SectionActivity.class));
-            mNavigationDrawerItems.add(new NavigationDrawerItem("Module 2", 0, false, SectionActivity.class));
-            mNavigationDrawerItems.add(new NavigationDrawerItem("Module 3", 0, false, SectionActivity.class));
-            mNavigationDrawerItems.add(new NavigationDrawerItem("Module 4", 0, false, SectionActivity.class));
+            mNavigationDrawerItems.add(new NavigationDrawerItem("Module 1", 0, false, ModuleOneActivity.class));
+            mNavigationDrawerItems.add(new NavigationDrawerItem("Module 2", 0, false, ModuleTwoActivity.class));
+            mNavigationDrawerItems.add(new NavigationDrawerItem("Module 3", 0, false, InternalTrainingActivity.class));
+            mNavigationDrawerItems.add(new NavigationDrawerItem("Module 4", 0, false, ModuleFourActivity.class));
             mNavigationDrawerItems.add(new NavigationDrawerItem("For Suppliers", 0, true, null));
             mNavigationDrawerItems.add(new NavigationDrawerItem("Overview", 0, false, ForSuppliersActivity.class));
         }

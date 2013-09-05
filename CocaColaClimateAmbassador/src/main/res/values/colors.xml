@@ -7,7 +7,7 @@
     <color name="gray">#E0E0E0</color>
     <color name="coke_red">#B81321</color>
     <color name="nav_bg">#303030</color>
-
+    <color name="black">#000000</color>
     <color name="drawer_item_bg">#cecbce</color>
     <color name="drawer_header_text">#31b6e7</color>
     <color name="drawer_header_stroke">@color/drawer_header_text</color>
