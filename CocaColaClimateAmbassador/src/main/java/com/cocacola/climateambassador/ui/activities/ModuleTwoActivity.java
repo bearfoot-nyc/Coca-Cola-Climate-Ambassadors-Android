@@ -25,34 +25,37 @@ import javax.inject.Inject;
  */
 public class ModuleTwoActivity extends CaModuleActivity {
 
-    private JsonAssetsLoader mJsonAssetsLoader;
-    private Module mModule;
-    LayoutInflater inflater;
-    @Inject
-    Gson gson;
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.frag_module);
-        getAssetLoader();
-        getModule();
-        inflater = getLayoutInflater();
+        setupScreen();
+    }
+
+    @Override
+    public String getJsonAssetFilename() {
+        return "module_two.json";
+    }
+
+    private void setupScreen() {
+
+        LayoutInflater inflater = getLayoutInflater();
+
+        Module module = getModule();
 
         //TODO: Very sloppy way to achieve this, will change later
 
-        if(!TextUtils.isEmpty(mModule.getTitle())) {
-            ((TextView)findViewById(R.id.title)).setText(mModule.getTitle());
+        if(!TextUtils.isEmpty(module.getTitle())) {
+            ((TextView)findViewById(R.id.title)).setText(module.getTitle());
         }
 
-        if(!TextUtils.isEmpty(mModule.getBodyText())) {
-            ((TextView)findViewById(R.id.description)).setText(mModule.getBodyText());
+        if(!TextUtils.isEmpty(module.getBodyText())) {
+            ((TextView)findViewById(R.id.description)).setText(module.getBodyText());
         }
 
         LinearLayout caseFrames = (LinearLayout) findViewById(R.id.case_frames);
-        if (mModule.getBulletPointFrame() != null) {
-            BulletPointFrame caseBulletPointFrame = mModule.getBulletPointFrame();
+        if (module.getBulletPointFrame() != null) {
+            BulletPointFrame caseBulletPointFrame = module.getBulletPointFrame();
             View bulletPointFrame = inflater.inflate(R.layout.case_frame, null);
 
             if (!TextUtils.isEmpty(caseBulletPointFrame.getTitle())) {
@@ -84,9 +87,9 @@ public class ModuleTwoActivity extends CaModuleActivity {
 
 
         LinearLayout courseMaterialFrame = (LinearLayout) findViewById(R.id.course_materials);
-        if (mModule.getCourseMaterials() != null && courseMaterialFrame != null) {
+        if (module.getCourseMaterials() != null && courseMaterialFrame != null) {
 
-            for (Document courseMaterial : mModule.getCourseMaterials()) {
+            for (Document courseMaterial : module.getCourseMaterials()) {
                 View materialOption = inflater.inflate(R.layout.favorite_divider_button, null);
                 setupButtonAccordingToDocument(courseMaterial, materialOption, inflater);
                 courseMaterialFrame.addView(materialOption);
@@ -94,20 +97,7 @@ public class ModuleTwoActivity extends CaModuleActivity {
 
             courseMaterialFrame.setVisibility(View.VISIBLE);
         }
-    }
 
-    public void getModule() {
-        try {
-            mModule = mJsonAssetsLoader.parseModuleFromJsonFile("module_two.json");
-        } catch (IOException e) {
-            Toast.makeText(this, "Failed to Get Module Two", Toast.LENGTH_SHORT);
-        }
-    }
-
-    @Override
-    public JsonAssetsLoader getAssetLoader() {
-        mJsonAssetsLoader = new JsonAssetsLoader(this, gson );
-        return mJsonAssetsLoader;
     }
 
     @Override

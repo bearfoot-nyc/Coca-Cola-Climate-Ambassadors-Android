@@ -20,8 +20,8 @@
 
         <LinearLayout
             android:id="@+id/textFramesLayout"
-            style="@style/Ca.TextFramesLayout"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            style="@style/Ca.TextFramesLayout" />
 
         <LinearLayout
             android:id="@+id/bulletPointFramesLayout"

@@ -24,23 +24,21 @@ public class ModuleThreeActivity extends CaModuleActivity {
         setTitle(getResources().getString(R.string.nav_item_internal_training_module_3));
     }
 
+
     @Override
-    public JsonAssetsLoader getAssetLoader() {
+    public String getJsonAssetFilename() {
+        // Relies on Fragment for parsing JSON
         return null;
-    }
-
-    @Override
-    public void getModule() {
-
     }
 
     @Override
     public void setupButtonAccordingToDocument(Document doc, View viewWithButton, LayoutInflater inflater) {
-
+        // FIXME See comments in super class
     }
 
     @Override
     public String getFileType(String fileName) {
-        return null;
+        // FIXME See comments in super class
+        return "";
     }
 }
