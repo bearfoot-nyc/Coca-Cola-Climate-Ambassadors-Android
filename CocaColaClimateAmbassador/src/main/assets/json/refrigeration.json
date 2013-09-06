@@ -19,6 +19,16 @@
             "subtitleTextPairs" : []
         }
     ],
-    "caseStudies" : [],
+    "caseStudies" : [
+
+     {
+                 "fileName" : "REFRIGERATION_Cold_Drink_Savings_Calculation-system_level.pptx",
+                 "label" : "Cold Drink Savings Calculation system level"
+         },
+         {
+                      "fileName" : "REFRIGERATION_Energy_Management_Device_Revised.pdf",
+                      "label" : "Energy Management Device Revised"
+         }
+        ],
     "courseMaterials" : []
 }

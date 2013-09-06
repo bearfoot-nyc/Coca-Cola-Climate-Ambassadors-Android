@@ -11,6 +11,27 @@
         ]
     },
     "textFrames" : [],
-    "caseStudies" : [],
+    "caseStudies" : [
+    {
+        "fileName" : "DISTRIBUTION_ABInBev_Shared_Fleet.pdf",
+        "label" : "ABInBev Shared Fleet"
+    },
+    {
+         "fileName" : "DISTRIBUTION_CC_Fleet_Running_on_CNG_in_India.pdf",
+         "label" : "Fleet Running on CNG in India"
+    },
+    {
+         "fileName" : "DISTRIBUTION_CCE_Transport_Strategy.pdf",
+         "label" : "CCE Transport Strategy"
+    },
+    {
+         "fileName" : "DISTRIBUTION_Coolant_edited.pdf",
+         "label" : "Coolant"
+    },
+    {
+         "fileName" : "DISTRIBUTION_No_Idling_Policy.pdf",
+         "label" : "No Idling Policy"
+    }
+    ],
     "courseMaterials" : []
 }

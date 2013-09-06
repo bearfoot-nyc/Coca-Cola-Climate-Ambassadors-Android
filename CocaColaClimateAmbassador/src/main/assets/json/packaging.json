@@ -42,6 +42,30 @@
         }
     ],
     "caseStudies" : [
+        {
+                "fileName" : "ILOHAS_AllTogether.pdf",
+                "label" : "All Together"
+        },
+        {
+                "fileName" : "PACKAGING_Lightweighting.pdf",
+                "label" : "Lightweighting"
+        },
+        {
+                "fileName" : "PACKAGING_Low-density_Plastic_for_Yogurt_Pots_Danone.pdf",
+                "label" : "Low-density Plastic for Yogurt Pots"
+        },
+        {
+                 "fileName" : "PACKAGING_Partnerships_in_Recycled_Materials.pdf",
+                 "label" : "Partnerships in Recycled Materials"
+        },
+        {
+                 "fileName" : "PACKAGING_PlantBottle_Water_Toolkit_v8082813.pptx",
+                 "label" : "PlantBottle Water Toolkit"
+        },
+        {
+                 "fileName" : "PACKAGING_PlantBottlePresEX.pptx",
+                  "label" : "PlantBottle Presentation"
+        }
     ],
     "courseMaterials" : [
     ]
