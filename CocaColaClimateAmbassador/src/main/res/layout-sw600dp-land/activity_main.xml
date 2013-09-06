@@ -4,62 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg_home">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom|center_horizontal"
+        android:background="@drawable/bg_home">
 
-        <LinearLayout
-                android:orientation="vertical"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                style="@style/Ca">
-
-            <TextView
-                    android:id="@+id/welcome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="24sp"
-                    android:gravity="center"
-                    android:layout_marginLeft="80dp"
-                    android:layout_marginRight="80dp"
-                    android:textColor="@color/white"></TextView>
-
-            <TextView
-                    android:id="@+id/tool_description"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:textStyle="normal"
-                    android:maxLines="2"
-                    android:paddingTop="10dp"
-                    android:textSize="16sp"
-                    android:layout_marginLeft="80dp"
-                    android:layout_marginRight="80dp"
-                    android:gravity="center"
-                    android:textColor="@color/white"></TextView>
-
-            <TextView
-                    android:id="@+id/navigation_text"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:textStyle="italic"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
-                    android:gravity="center"
-                    android:textColor="@color/white"></TextView>
-
-        </LinearLayout>
+        <ImageView
+            style="@style/Ca"
+            android:src="@drawable/home_text" />
 
         <LinearLayout
                 style="@style/Ca"
                 android:orientation="horizontal"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="65dp">
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp">
 
             <Button
                     android:id="@+id/home_btn_internal"
@@ -74,7 +34,7 @@
 
         </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <include
             android:id="@+id/navigation_drawer_list"
