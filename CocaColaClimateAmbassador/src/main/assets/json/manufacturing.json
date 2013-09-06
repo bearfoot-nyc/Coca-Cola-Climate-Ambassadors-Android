@@ -22,6 +22,18 @@
             "subtitleTextPairs": []
         }
     ],
-    "caseStudies" : [],
+    "caseStudies" : [ {
+            "fileName" : "MANUFACTURING_CC_Amatil_Blow_Fill_Technology.pdf",
+            "label" : "CC Amatil Blow Fill Technology"
+    },
+    {
+            "fileName" : "MANUFACTURING_Dr.Pepper_Snapple_Compression_Technology.pdf",
+            "label" : "Dr.Pepper Snapple Compression Technology"
+    },
+    {
+            "fileName" : "MANUFACTURING_Top10.pdf",
+            "label" : "Top10"
+    }
+    ],
     "courseMaterials" : []
 }

@@ -7,7 +7,7 @@ public class CaConstants {
 
     public static final String JSON_ASSETS_DIRECTORY = "json";
 
-    public static final String PPT = "ppt";
+    public static final String PPT = "pptx";
     public static final String PDF = "pdf";
     public static final String DOC = "doc";
     public static final String MOV = "mov";

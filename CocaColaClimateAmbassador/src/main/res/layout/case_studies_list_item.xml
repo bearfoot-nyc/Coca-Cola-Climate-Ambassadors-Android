@@ -25,6 +25,7 @@
                 android:textColor="@color/coke_red"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:clickable="true"/>
     </FrameLayout>
 </LinearLayout>
