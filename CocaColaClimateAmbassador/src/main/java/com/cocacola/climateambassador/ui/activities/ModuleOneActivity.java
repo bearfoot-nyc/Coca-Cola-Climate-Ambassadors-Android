@@ -8,15 +8,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cocacola.climateambassador.CaConstants;
+import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.models.BulletPointFrame;
 import com.cocacola.climateambassador.models.Document;
 import com.cocacola.climateambassador.models.Module;
 
+import javax.inject.Inject;
+
 /**
  * Created by Vinnie on 9/5/13.
  */
 public class ModuleOneActivity extends CaModuleActivity {
+
+    @Inject
+    DocumentViewerDelegate mDocumentViewerDelegate;
 
     @Override
     public String getJsonAssetFilename() {
@@ -26,7 +32,7 @@ public class ModuleOneActivity extends CaModuleActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.frag_module);
+        setContentView(R.layout.activity_module);
 
         Module module = getModule();
         LayoutInflater inflater = getLayoutInflater();
@@ -88,27 +94,33 @@ public class ModuleOneActivity extends CaModuleActivity {
 
     @Override
     public void setupButtonAccordingToDocument(final Document doc, View viewWithButton, LayoutInflater inflater) {
-        //TODO: Set viewWithButton background according to doc type and title
-        if (CaConstants.PDF.equals(getFileType(doc.getFileName()))) {
-            //TODO: Set image to resource once assets are added
-//            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
-        } else if (CaConstants.PPT.equals(getFileType(doc.getFileName()))) {
-            //TODO: Set image to resource once assets are added
-//            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
-        } else if (CaConstants.DOC.equals(getFileType(doc.getFileName()))) {
-            //TODO: Set image to resource once assets are added
-//            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
-        } else {
-            //Do nothing
-        }
 
-        ((TextView) viewWithButton.findViewById(R.id.doc_title)).setText(doc.getLabel());
-        ((LinearLayout) viewWithButton.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO: Open Document
+        if(doc != null) {
+            //TODO: Set viewWithButton background according to doc type and title
+            if (CaConstants.PDF.equals(getFileType(doc.getFileName()))) {
+                //TODO: Set image to resource once assets are added
+    //            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
+            } else if (CaConstants.PPT.equals(getFileType(doc.getFileName()))) {
+                //TODO: Set image to resource once assets are added
+    //            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
+            } else if (CaConstants.DOC.equals(getFileType(doc.getFileName()))) {
+                //TODO: Set image to resource once assets are added
+    //            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
+            } else {
+                //Do nothing
             }
-        });
+
+            ((TextView) viewWithButton.findViewById(R.id.doc_title)).setText(doc.getLabel());
+            ((LinearLayout) viewWithButton.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mDocumentViewerDelegate.startPdfViewerActivity(ModuleOneActivity.this, doc.getFileName());
+                }
+            });
+        }
+        else {
+            Log.w("Document shouldn't be null");
+        }
 
 
     }

@@ -18,7 +18,7 @@ public class ModuleFourActivity extends CaModuleActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.frag_module);
+        setContentView(R.layout.activity_module);
 
         Module module = getModule();
         LayoutInflater inflater = getLayoutInflater();

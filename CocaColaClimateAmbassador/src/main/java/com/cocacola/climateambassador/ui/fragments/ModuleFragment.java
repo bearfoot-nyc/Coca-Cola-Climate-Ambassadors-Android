@@ -43,7 +43,7 @@ public class ModuleFragment extends CaFragment {
         if(mModule.getTitle().equals("Our 2020 Vision")) {
             view = inflater.inflate(R.layout.suppliers_last_page, container, false);
         } else {
-            view = inflater.inflate(R.layout.frag_module, container, false);
+            view = inflater.inflate(R.layout.activity_module, container, false);
         }
         if(!TextUtils.isEmpty(mModule.getTitle())) {
             ((TextView)view.findViewById(R.id.title)).setText(mModule.getTitle());

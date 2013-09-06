@@ -32,15 +32,15 @@ public class ModuleThreeBodyFragment extends CaFragment {
             View materialOption = inflater.inflate(R.layout.favorite_divider_button, null);
             switch (i) {
                 case 0:
-                    Document ppt = new Document("unknown.ppt" , getResources().getString(R.string.value_chain_label));
+                    Document ppt = new Document("unknown.ppt" , getResources().getString(R.string.value_chain_label), "ppt");
                     setupButtonAccordingToDocument(ppt, materialOption, inflater);
                     break;
                 case 1:
-                    Document mov = new Document("unknown.mov" , "Life of a Bottle");
+                    Document mov = new Document("unknown.mov" , "Life of a Bottle", "mov");
                     setupButtonAccordingToDocument(mov, materialOption, inflater);
                     break;
                 case 2:
-                    Document doc = new Document("unknown.doc" , "PowerPoint Script and Notes");
+                    Document doc = new Document("unknown.doc" , "PowerPoint Script and Notes", "doc");
                     setupButtonAccordingToDocument(doc, materialOption, inflater);
                     break;
                 default:

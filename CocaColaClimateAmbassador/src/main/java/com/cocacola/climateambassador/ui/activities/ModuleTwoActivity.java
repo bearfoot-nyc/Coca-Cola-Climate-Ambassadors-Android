@@ -6,19 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cocacola.climateambassador.CaConstants;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.models.BulletPointFrame;
 import com.cocacola.climateambassador.models.Document;
 import com.cocacola.climateambassador.models.Module;
-import com.cocacola.climateambassador.util.JsonAssetsLoader;
-import com.google.gson.Gson;
-
-import java.io.IOException;
-
-import javax.inject.Inject;
 
 /**
  * Created by Vinnie on 9/5/13.
@@ -28,7 +21,7 @@ public class ModuleTwoActivity extends CaModuleActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.frag_module);
+        setContentView(R.layout.activity_module);
         setupScreen();
     }
 

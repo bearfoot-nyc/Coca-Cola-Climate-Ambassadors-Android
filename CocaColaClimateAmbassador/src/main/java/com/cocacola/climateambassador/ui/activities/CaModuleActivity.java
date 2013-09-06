@@ -7,6 +7,8 @@ import android.widget.Toast;
 import com.cocacola.climateambassador.models.Document;
 import com.cocacola.climateambassador.models.Module;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.stream.MalformedJsonException;
 
 import java.io.IOException;
 
@@ -36,6 +38,8 @@ public abstract class CaModuleActivity extends CaActivity {
             try {
                 mModule = mJsonAssetsLoader.parseModuleFromJsonFile(getJsonAssetFilename());
             } catch (IOException e) {
+                onAssetLoadError();
+            } catch (JsonSyntaxException e) {
                 onAssetLoadError();
             }
         }

@@ -7,6 +7,8 @@ import com.cocacola.climateambassador.CaConstants;
 import com.cocacola.climateambassador.models.Case;
 import com.cocacola.climateambassador.models.Module;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.stream.MalformedJsonException;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,7 +51,8 @@ public class JsonAssetsLoader {
 
     }
 
-    public Case parseCaseFromJsonFile(String filename) throws IOException {
+    // TODO Genercize this: T<Model> parseClassFromJsonfile
+    public Case parseCaseFromJsonFile(String filename) throws IOException, JsonSyntaxException {
 
         String json = parseAsString(filename);
 
@@ -59,7 +62,7 @@ public class JsonAssetsLoader {
 
     }
 
-    public Module parseModuleFromJsonFile(String filename) throws IOException {
+    public Module parseModuleFromJsonFile(String filename) throws IOException, JsonSyntaxException {
 
         String json = parseAsString(filename);
 

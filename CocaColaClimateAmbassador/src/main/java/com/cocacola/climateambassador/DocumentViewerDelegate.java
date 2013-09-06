@@ -31,10 +31,10 @@ public class DocumentViewerDelegate {
     }
 
     public void startPdfViewerActivity(String fileName) {
-        startPdfViewerActivity(fileName, mContext);
+        startPdfViewerActivity(mContext, fileName);
     }
 
-    public void startPdfViewerActivity(String fileName, Context context) {
+    public void startPdfViewerActivity(Context context, String fileName) {
 
         if(isActivityForIntentAvailable("application/pdf")) {
             Uri path = createUriFromFileName(fileName);
