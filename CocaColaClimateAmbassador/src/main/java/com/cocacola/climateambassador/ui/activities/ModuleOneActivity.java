@@ -31,7 +31,6 @@ public class ModuleOneActivity extends CaModuleActivity {
         Module module = getModule();
         LayoutInflater inflater = getLayoutInflater();
 
-        //TODO: Very sloppy way to achieve this, will change later
 
         if(!TextUtils.isEmpty(module.getTitle())) {
             ((TextView)findViewById(R.id.title)).setText(module.getTitle());

@@ -16,25 +16,15 @@
     ],
     "courseMaterials" : [
         {
-            "fileName" : "unknown",
+            "fileName" : "Module-1_Goals_08_14_2013.pptx",
             "label" : "\“Module 1:  2020 Climate Goals and Role of the Climate Ambassador\”"
+            "fileType" : "PPT"
         },
         {
-            "fileName" : "unknown",
-            "label" : "PowerPoint Script and Notes"
-        },
-        {
-            "fileName" : "unknown",
+            "fileName" : "Life-of-a-Bottle video.mp4",
             "label" : "Life of a Bottle"
+            "fileType" : "MP4"
         },
-        {
-            "fileName" : "unknown",
-            "label" : "Read about the role of the Climate Ambassador"
-        },
-        {
-            "fileName" : "unknown",
-            "label" : "Get background on Climate Science"
-        }
 
     ]
 }

@@ -5,17 +5,15 @@ package com.cocacola.climateambassador.models;
  */
 public class Document {
 
-    public static enum FileType {
-        PDF, PPT, DOC
-    }
-
-    public Document(String fileName, String label) {
-        this.fileName = fileName;
-        this.label = label;
-    }
-
     private String fileName;
     private String label;
+    private String fileType;
+
+    public Document(String fileName, String label, String fileType) {
+        this.fileName = fileName;
+        this.label = label;
+        this.fileType = fileType;
+    }
 
     public String getFileName() {
         return fileName;
@@ -31,5 +29,13 @@ public class Document {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
     }
 }
