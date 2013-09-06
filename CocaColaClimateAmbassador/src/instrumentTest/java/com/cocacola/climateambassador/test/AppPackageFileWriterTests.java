@@ -35,19 +35,6 @@ public class AppPackageFileWriterTests extends InstrumentationTestCase {
         mAppPackageFileWriter = null;
     }
 
-    public void testAllAssetsAreRetrieved() {
-
-        String[] expectedAssets = new String[]{"resume.pdf"};
-
-        String[] assets = mAppPackageFileWriter.getAllAssets();
-
-        assertNotNull(assets);
-
-        assertEquals(expectedAssets.length, assets.length);
-        assertEquals(expectedAssets[0], assets[0]);
-
-    }
-
     public void testDoesWriteFileToPkgDir() {
 
 

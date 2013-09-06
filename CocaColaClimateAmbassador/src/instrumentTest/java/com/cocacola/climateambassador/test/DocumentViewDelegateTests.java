@@ -40,39 +40,106 @@ public class DocumentViewDelegateTests extends InstrumentationTestCase {
         mDocumentViewerDelegate = null;
     }
 
+    public void testGetsFileTypeForExtension() {
+
+        String extension = "pdf";
+
+        FileType fileType = FileType.getTypeForExtension(extension);
+
+        assertNotNull(fileType);
+        assertEquals(extension, fileType.getExtension());
+
+    }
+
+    public void testBadExtensionHasNoFileType() {
+
+        String extension = "badFileType";
+
+        FileType fileType = FileType.getTypeForExtension(extension);
+
+        assertNull(fileType);
+
+    }
+
+    public void testThrowsNoFileExistsException() {
+
+        FileType pdfType = FileType.PDF;
+        String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
+
+        File file = null;
+        try {
+            file = mDocumentViewerDelegate.createFileForFileType(pdfType, fileName);
+            fail("Expected FileNotInAppPackageException");
+        } catch (DocumentViewerDelegate.FileNotInAppPackageException e) {
+            // Testing if exception was thrown, PASS!
+        }
+
+
+    }
+
     public void testCreatesFileForFileType() {
 
         FileType pdfType = FileType.PDF;
         String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
-        String expectedPath = "foo";
+        String expectedPath = "/data/data/com.cocacola.climateambassador/files/docs/coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
 
-        File file = mDocumentViewerDelegate.getFileForFileType(pdfType, fileName);
-
-        assertTrue(file.exists());
-        assertEquals(expectedPath, file.getAbsolutePath());
+        File file = null;
+        try {
+            file = mDocumentViewerDelegate.createFileForFileType(pdfType, fileName);
+            assertTrue(file.exists());
+            assertEquals(expectedPath, file.getAbsolutePath());
+        } catch (DocumentViewerDelegate.FileNotInAppPackageException e) {
+            failDueToFileNotInAppPackageException();
+        }
 
     }
 
-    public void testCreatesUriForFileType() {
+    private File getValidFile() {
+
+        String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
+
+        File fileTypeDir = new File(mContext.getFilesDir().getAbsolutePath() + File.separator + FileType.PDF);
+
+        File file =  new File(fileTypeDir + File.separator + fileName);
+
+        return file;
+
+    }
+
+    public void testCreatesUriForFileType() throws DocumentViewerDelegate.FileNotInAppPackageException {
 
         FileType pdfType = FileType.PDF;
         String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
 
-        Uri uri = mDocumentViewerDelegate.createUriFromFileName(pdfType, fileName);
+        File file = null;
+        Uri uri = null;
+        try {
+            file = mDocumentViewerDelegate.createFileForFileType(pdfType, fileName);
 
-        assertEquals("foo", uri.getEncodedPath());
-        assertEquals("bar", uri.getScheme());
+            uri = mDocumentViewerDelegate.createUriForFile(file);
 
+            assertEquals("foo", uri.getEncodedPath());
+            assertEquals("bar", uri.getScheme());
+
+
+        } catch (DocumentViewerDelegate.FileNotInAppPackageException e) {
+            failDueToFileNotInAppPackageException();
+        }
+
+    }
+
+    private void failDueToFileNotInAppPackageException() {
+        fail("FileNotInAppPackageException thrown");
     }
 
     public void testCreatesProperIntentForFileType() {
 
-        FileType videoType = FileType.VIDEO;
-        String fileName = "Life-of-a-Bottle video.mp4";
+        FileType fileType = FileType.PDF;
+        String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
 
-        Uri path = mDocumentViewerDelegate.createUriFromFileName(videoType, fileName);
+        Uri path = mDocumentViewerDelegate.createUriForFile(getValidFile());
 
-        Intent intent = mDocumentViewerDelegate.createViewerIntent(mContext, path, videoType);
+        Intent intent = mDocumentViewerDelegate.createViewerIntent(mContext, path, fileType);
 
         assertEquals(path, intent.getData());
 

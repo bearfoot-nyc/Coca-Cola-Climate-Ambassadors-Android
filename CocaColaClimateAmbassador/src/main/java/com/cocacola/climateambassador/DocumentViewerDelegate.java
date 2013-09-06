@@ -30,6 +30,8 @@ public class DocumentViewerDelegate {
         fileTypePathMap.put(FileType.VIDEO, "video");
     }
 
+    @Inject AppPackageFileWriter mAppPackageFileWriter;
+
     private Context mContext;
 
     @Inject
@@ -40,24 +42,42 @@ public class DocumentViewerDelegate {
     public void startActivityForFileType(Context context, FileType fileType, String fileName) {
 
         if(isActivityForIntentAvailable(fileType.getMimeType())) {
-            Uri path = createUriFromFileName(fileType, fileName);
-            Intent intent = createViewerIntent(context, path, fileType);
-            context.startActivity(intent);
+
+            File file = null;
+            Uri path = null;
+
+            try {
+                file = createFileForFileType(fileType, fileName);
+                path = createUriForFile(file);
+            } catch (FileNotInAppPackageException e) {
+                file = mAppPackageFileWriter.moveFileToPackageDir(fileType, fileName);
+                path = createUriForFile(file);
+            } finally {
+                Intent intent = createViewerIntent(context, path, fileType);
+                context.startActivity(intent);
+            }
         }
 
     }
 
-    public Uri createUriFromFileName(FileType fileType, String fileName) {
+    public Uri createUriForFile(File file) {
 
-        File file = getFileForFileType(fileType, fileName);
         Uri uri = FileProvider.getUriForFile(mContext, AUTHORITY, file);
-
         return uri;
+
     }
 
-    public File getFileForFileType(FileType fileType, String fileName) {
-        File docsDir = new File(mContext.getFilesDir().getAbsolutePath() + File.separator + fileTypePathMap.get(fileType));
-        return new File(docsDir + File.separator + fileName);
+    public File createFileForFileType(FileType fileType, String fileName) throws FileNotInAppPackageException {
+
+        File fileTypeDir = new File(mContext.getFilesDir().getAbsolutePath() + File.separator + fileTypePathMap.get(fileType));
+
+        File file =  new File(fileTypeDir + File.separator + fileName);
+
+        if(!file.exists()) {
+            throw new FileNotInAppPackageException();
+        }
+
+        return file;
     }
 
    public Intent createViewerIntent(Context context, Uri path, FileType fileType) {
@@ -74,6 +94,10 @@ public class DocumentViewerDelegate {
 
     }
 
+    public class FileNotInAppPackageException extends Exception {
+
+    }
+
     private boolean isActivityForIntentAvailable(String dataType) {
         // FIXME Implement this
         return true;
@@ -82,7 +106,7 @@ public class DocumentViewerDelegate {
     //    public void startPdfViewerActivity(Context context, String fileName) {
 //
 //        if(isActivityForIntentAvailable("application/pdf")) {
-//            Uri path = createUriFromFileName(FileType.PDF, fileName);
+//            Uri path = createUriForFile(FileType.PDF, fileName);
 //            Intent intent = createViewerIntent(context, path, FileType.PDF);
 //            context.startActivity(intent);
 //        }
@@ -92,7 +116,7 @@ public class DocumentViewerDelegate {
 //    public void startPptViewActivity(Context context, String fileName) {
 //
 //        if(isActivityForIntentAvailable(FileType.PPT.getMimeType())) {
-//            Uri path = createUriFromFileName(FileType.PPT, fileName);
+//            Uri path = createUriForFile(FileType.PPT, fileName);
 //            Intent intent = createViewerIntent(context, path, FileType.PPT);
 //            context.startActivity(intent);
 //        }

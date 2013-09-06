@@ -3,6 +3,8 @@ package com.cocacola.climateambassador;
 import android.content.Context;
 import android.content.res.AssetManager;
 
+import com.cocacola.climateambassador.models.FileType;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -54,6 +56,12 @@ public class AppPackageFileWriter {
             writeToPkgDir(createInputFromAsset(DOCS_DIR, asset), mDocsDir, asset);
 
         }
+
+    }
+
+    public File moveFileToPackageDir(FileType fileType, String fileName) {
+
+        return null;
 
     }
 
@@ -135,4 +143,5 @@ public class AppPackageFileWriter {
     public void setContext(Context context) {
         mContext = context;
     }
+
 }
