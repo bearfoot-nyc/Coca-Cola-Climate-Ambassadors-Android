@@ -55,8 +55,8 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
 
         if(mNavigationDrawerItems == null) {
             mNavigationDrawerItems = new LinkedList<NavigationDrawerItem>();
-            mNavigationDrawerItems.add(new NavigationDrawerItem("Internal Trainings", R.drawable.ic_drawer_wrench, false, InternalTrainingActivity.class));
-            mNavigationDrawerItems.add(new NavigationDrawerItem("For Suppliers", R.drawable.ic_drawer_folder, false, ForSuppliersActivity.class));
+            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training, R.drawable.ic_drawer_wrench, false, InternalTrainingActivity.class));
+            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_for_suppliers, R.drawable.ic_drawer_folder, false, ForSuppliersActivity.class));
         }
 
         return mNavigationDrawerItems;

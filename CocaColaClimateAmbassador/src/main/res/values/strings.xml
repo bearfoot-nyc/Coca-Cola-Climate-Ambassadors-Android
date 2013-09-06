@@ -85,5 +85,15 @@
     <string name="module_two">Module Two</string>
     <string name="module_four">Module Four</string>
 
+    <string name="nav_item_internal_training">Internal Training Materials</string>
+    <string name="nav_item_internal_training_overview">Overview</string>
+    <string name="nav_item_internal_training_module_1">Module 1:  Introduction to the 2020 Climate Target and the Role of Climate Ambassadors</string>
+    <string name="nav_item_internal_training_module_2">Module 2: The Business Case for Reducing Carbon along the Value Chain</string>
+    <string name="nav_item_internal_training_module_3">Module 3:  In Action: Opportunities and Key Interventions along the Value Chain</string>
+    <string name="nav_item_internal_training_module_4">Module 4: Engaging Suppliers, Partners, and Stakeholders</string>
+
+    <string name="nav_item_for_suppliers">For Suppliers</string>
+    <string name="nav_item_for_suppliers_overview">Overview</string>
+
 
 </resources>

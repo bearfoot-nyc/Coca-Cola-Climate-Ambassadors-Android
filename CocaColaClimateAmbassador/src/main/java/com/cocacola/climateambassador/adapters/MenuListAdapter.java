@@ -71,7 +71,7 @@ public class MenuListAdapter extends BaseAdapter {
         View v = mInflater.inflate(R.layout.drawer_header, null);
 
         TextView text = (TextView) v.findViewById(R.id.drawer_header_text);
-        text.setText(item.getTitle());
+        text.setText(item.getTitle(mContext));
 
         return v;
 
@@ -84,7 +84,7 @@ public class MenuListAdapter extends BaseAdapter {
         TextView txtTitle = (TextView) v.findViewById(R.id.drawer_item_title);
         ImageView imgIcon = (ImageView) v.findViewById(R.id.drawer_item_icon);
 
-        txtTitle.setText(item.getTitle());
+        txtTitle.setText(item.getTitle(mContext));
         imgIcon.setImageResource(item.getIconId());
 
         v.setOnClickListener(new OnNavigationItemClickListener(item.getActivityClz()));

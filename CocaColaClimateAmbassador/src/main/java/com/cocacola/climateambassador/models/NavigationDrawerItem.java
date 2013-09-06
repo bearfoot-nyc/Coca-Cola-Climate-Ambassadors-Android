@@ -1,32 +1,38 @@
 package com.cocacola.climateambassador.models;
 
+import android.content.Context;
+
 /**
  * Created by andrewlawton on 9/1/13.
  */
 public class NavigationDrawerItem {
 
-    private String title;
+    private int titleId;
     private int iconId;
     private boolean isHeader;
     private Class<?> activityClz;
 
-    public NavigationDrawerItem(String title, int iconId, boolean header, Class<?> activityClz) {
-        this.title = title;
+    public NavigationDrawerItem(int titleId, int iconId, boolean header, Class<?> activityClz) {
+        this.titleId = titleId;
         this.iconId = iconId;
         isHeader = header;
         this.activityClz = activityClz;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public int getIconId() {
         return iconId;
+    }
+
+    public int getTitleId() {
+        return titleId;
+    }
+
+    public String getTitle(Context context) {
+        return context.getResources().getString(titleId);
+    }
+
+    public void setTitleId(int titleId) {
+        this.titleId = titleId;
     }
 
     public void setIconId(int iconId) {
