@@ -25,7 +25,7 @@ public class SectionActivity extends CaDrawerActivity {
             mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_overview, 0, false, InternalTrainingActivity.class));
             mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_module_1, 0, false, ModuleOneActivity.class));
             mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_module_2, 0, false, ModuleTwoActivity.class));
-            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_module_3, 0, false, InternalTrainingActivity.class));
+            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_module_3, 0, false, ModuleThreeActivity.class));
             mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_module_4, 0, false, ModuleFourActivity.class));
             mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_for_suppliers, 0, true, null));
             mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_for_suppliers_overview, 0, false, ForSuppliersActivity.class));

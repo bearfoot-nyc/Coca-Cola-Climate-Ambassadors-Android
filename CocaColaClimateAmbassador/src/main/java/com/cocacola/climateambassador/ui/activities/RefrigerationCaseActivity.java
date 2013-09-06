@@ -40,7 +40,7 @@ public class RefrigerationCaseActivity extends CaCaseActivity {
         super.onCreate(savedInstanceState);
         getAssetLoader();
         getCase();
-        setContentView(R.layout.case_fragment);
+        setContentView(R.layout.frag_case);
 
         findViewById(R.id.scroll_view).setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_case_refrigeration));
         ((ImageView)findViewById(R.id.case_logo)).setImageResource(R.drawable.ic_cases_list_refrigeration);

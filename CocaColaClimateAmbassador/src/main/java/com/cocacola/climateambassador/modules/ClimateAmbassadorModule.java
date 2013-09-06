@@ -13,6 +13,7 @@ import com.cocacola.climateambassador.ui.activities.MainActivity;
 import com.cocacola.climateambassador.ui.activities.ManufacturingCaseActivity;
 import com.cocacola.climateambassador.ui.activities.ModuleFourActivity;
 import com.cocacola.climateambassador.ui.activities.ModuleOneActivity;
+import com.cocacola.climateambassador.ui.activities.ModuleThreeActivity;
 import com.cocacola.climateambassador.ui.activities.ModuleTwoActivity;
 import com.cocacola.climateambassador.ui.activities.PackagingCaseActivity;
 import com.cocacola.climateambassador.ui.activities.RefrigerationCaseActivity;
@@ -20,8 +21,9 @@ import com.cocacola.climateambassador.ui.fragments.CaseFragment;
 import com.cocacola.climateambassador.ui.fragments.CaseStudiesListFragment;
 import com.cocacola.climateambassador.ui.fragments.FavoritesFragment;
 import com.cocacola.climateambassador.ui.fragments.ForSuppliersBodyFragment;
-import com.cocacola.climateambassador.ui.fragments.InternalTrainingBodyFragment;
+import com.cocacola.climateambassador.ui.fragments.InternalTrainingOverviewFragment;
 import com.cocacola.climateambassador.ui.fragments.ModuleFragment;
+import com.cocacola.climateambassador.ui.fragments.ModuleThreeBodyFragment;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -48,7 +50,7 @@ import timber.log.Timber;
         DocumentViewerDelegate.class,
         JsonAssetsLoader.class,
         CaseStudiesListFragment.class,
-        InternalTrainingBodyFragment.class,
+        InternalTrainingOverviewFragment.class,
         PackagingCaseActivity.class,
         ManufacturingCaseActivity.class,
         DistributionCaseActivity.class,
@@ -56,7 +58,9 @@ import timber.log.Timber;
         IngredientCaseActivity.class,
         ModuleOneActivity.class,
         ModuleTwoActivity.class,
-        ModuleFourActivity.class
+        ModuleFourActivity.class,
+        ModuleThreeActivity.class,
+        ModuleThreeBodyFragment.class
 })
 public class ClimateAmbassadorModule {
 

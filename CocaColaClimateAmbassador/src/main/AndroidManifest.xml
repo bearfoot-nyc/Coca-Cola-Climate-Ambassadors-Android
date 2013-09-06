@@ -78,21 +78,28 @@
         <activity
                 android:name=".ui.activities.ModuleOneActivity"
                 android:configChanges="orientation|keyboardHidden"
-                android:label="@string/module_one"
+                android:label="@string/nav_item_internal_training_module_1"
                 android:screenOrientation="landscape"
                 android:parentActivityName=".ui.activities.InternalTrainingActivity">
         </activity>
         <activity
                 android:name=".ui.activities.ModuleTwoActivity"
                 android:configChanges="orientation|keyboardHidden"
-                android:label="@string/module_two"
+                android:label="@string/nav_item_internal_training_module_2"
+                android:screenOrientation="landscape"
+                android:parentActivityName=".ui.activities.InternalTrainingActivity">
+        </activity>
+        <activity
+                android:name=".ui.activities.ModuleThreeActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:label="@string/nav_item_internal_training_module_3"
                 android:screenOrientation="landscape"
                 android:parentActivityName=".ui.activities.InternalTrainingActivity">
         </activity>
         <activity
                 android:name=".ui.activities.ModuleFourActivity"
                 android:configChanges="orientation|keyboardHidden"
-                android:label="@string/module_four"
+                android:label="@string/nav_item_internal_training_module_4"
                 android:screenOrientation="landscape"
                 android:parentActivityName=".ui.activities.InternalTrainingActivity">
         </activity>

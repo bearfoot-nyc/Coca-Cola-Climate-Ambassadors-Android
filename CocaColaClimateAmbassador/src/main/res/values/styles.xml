@@ -32,4 +32,17 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="Ca.ModuleTitle">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Ca.ModuleBodyText">
+        <item name="android:layout_marginTop">3dp</item>
+    </style>
+
+    <style name="Ca.TextFramesLayout">
+        <item name="android:orientation">vertical</item>
+    </style>
+
 </resources>

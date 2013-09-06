@@ -38,7 +38,7 @@ public class DistributionCaseActivity extends CaCaseActivity {    Case mCase;
         super.onCreate(savedInstanceState);
         getAssetLoader();
         getCase();
-        setContentView(R.layout.case_fragment);
+        setContentView(R.layout.frag_case);
 
          getActionBar().setDisplayHomeAsUpEnabled(true);
 

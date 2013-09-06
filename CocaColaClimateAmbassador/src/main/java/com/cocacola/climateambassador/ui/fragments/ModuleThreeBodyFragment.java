@@ -15,7 +15,7 @@ import com.cocacola.climateambassador.models.Document;
 /**
  * Created by realandylawton on 9/4/13.
  */
-public class InternalTrainingBodyFragment extends CaFragment {
+public class ModuleThreeBodyFragment extends CaFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class InternalTrainingBodyFragment extends CaFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.frag_internal_training, container, true);
+        View v = inflater.inflate(R.layout.frag_module_three_body, container, true);
 
         LinearLayout courseMaterialFrame = (LinearLayout) v.findViewById(R.id.course_materials);
         for (int i = 0; i < 3; i++) {
