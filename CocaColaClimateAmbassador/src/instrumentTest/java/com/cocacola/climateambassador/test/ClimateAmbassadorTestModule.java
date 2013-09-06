@@ -16,6 +16,7 @@ import dagger.Provides;
         overrides = true,
         injects = {
                 AppPackageFileWriterTests.class,
+                DocumentViewDelegateTests.class,
                 JsonTextSerializerTests.class
         }
 )

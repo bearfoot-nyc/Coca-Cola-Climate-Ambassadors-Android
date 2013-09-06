@@ -12,6 +12,7 @@ import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.models.BulletPointFrame;
 import com.cocacola.climateambassador.models.Document;
+import com.cocacola.climateambassador.models.FileType;
 import com.cocacola.climateambassador.models.Module;
 
 import javax.inject.Inject;
@@ -114,7 +115,8 @@ public class ModuleOneActivity extends CaModuleActivity {
             ((LinearLayout) viewWithButton.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mDocumentViewerDelegate.startPdfViewerActivity(ModuleOneActivity.this, doc.getFileName());
+                    // FIXME Map file name String to a FileType enum type
+                    mDocumentViewerDelegate.startActivityForFileType(ModuleOneActivity.this, FileType.PPT, doc.getFileName());
                 }
             });
         }
