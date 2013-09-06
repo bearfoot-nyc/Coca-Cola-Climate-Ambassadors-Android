@@ -5,26 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
         <fragment
             android:id="@+id/frag_internal_training_body"
             android:name="com.cocacola.climateambassador.ui.fragments.InternalTrainingOverviewFragment"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-        <fragment
-            android:id="@+id/frag_internal_training_case_studies_list"
-            android:name="com.cocacola.climateambassador.ui.fragments.CaseStudiesListFragment"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-
-    </LinearLayout>
+    </FrameLayout>
 
     <include
             android:id="@+id/navigation_drawer_list"
