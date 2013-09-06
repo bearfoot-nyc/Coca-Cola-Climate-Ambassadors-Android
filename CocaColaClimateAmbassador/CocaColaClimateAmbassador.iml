@@ -69,13 +69,13 @@
     <orderEntry type="jdk" jdkName="Android 4.3 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="support-v4-18.0.0" level="project" />
+    <orderEntry type="library" name="gson-2.2.4" level="project" />
     <orderEntry type="library" name="javax.inject-1" level="project" />
     <orderEntry type="library" name="dagger-1.0.1" level="project" />
     <orderEntry type="library" name="javawriter-1.0.5" level="project" />
     <orderEntry type="library" name="dagger-compiler-1.0.1" level="project" />
     <orderEntry type="library" name="timber-1.1.0" level="project" />
     <orderEntry type="library" name="butterknife-2.0.1" level="project" />
-    <orderEntry type="library" name="gson-2.2.4" level="project" />
   </component>
 </module>
 

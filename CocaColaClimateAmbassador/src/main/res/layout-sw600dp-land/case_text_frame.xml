@@ -10,12 +10,15 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:textStyle="bold|italic"
-        android:paddingTop="8dp"/>
+        android:paddingTop="8dp"
+        android:textColor="@color/white"
+        android:maxWidth="850dp"/>
 
     <TextView
         android:id="@+id/body_text"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:maxWidth="850dp"
-        android:paddingTop="8dp"/>
+        android:paddingTop="8dp"
+        android:textColor="@color/white"/>
 </LinearLayout>

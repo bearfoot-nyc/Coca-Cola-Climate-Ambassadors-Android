@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+        android:id="@+id/scroll_view">
 
 
     <LinearLayout
@@ -30,7 +31,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:paddingLeft="8dp"
+                android:layout_gravity="center_vertical"/>
         </LinearLayout>
 
         <TextView
@@ -43,6 +47,7 @@
                 android:paddingBottom="10dp"
                 android:maxWidth="850dp"
                 android:visibility="gone"
+                android:textColor="@color/white"
             />
 
         <LinearLayout
@@ -64,7 +69,8 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="10sp"
-                android:text="@string/course_material_title"/>
+                android:text="@string/course_material_title"
+                android:textColor="@color/white"/>
 
         </LinearLayout>
 
@@ -82,7 +88,8 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="10sp"
-                    android:text="@string/case_studies"/>
+                    android:text="@string/case_studies"
+                    android:textColor="@color/white"/>
 
         </LinearLayout>
 

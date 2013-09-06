@@ -5,6 +5,7 @@ import java.util.List;
 /**
  * Created by andrewlawton on 8/23/13.
  */
+
 public class Case {
 
     public static enum CaseDocumentTypes {

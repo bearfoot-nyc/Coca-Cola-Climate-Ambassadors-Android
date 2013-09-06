@@ -5,6 +5,7 @@ import android.content.res.AssetManager;
 
 import com.cocacola.climateambassador.CaConstants;
 import com.cocacola.climateambassador.models.Case;
+import com.cocacola.climateambassador.models.Module;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -55,6 +56,16 @@ public class JsonAssetsLoader {
         Case myCase = mGson.fromJson(json, Case.class);
 
         return myCase;
+
+    }
+
+    public Module parseModuleFromJsonFile(String filename) throws IOException {
+
+        String json = parseAsString(filename);
+
+        Module myModule = mGson.fromJson(json, Module.class);
+
+        return myModule;
 
     }
 

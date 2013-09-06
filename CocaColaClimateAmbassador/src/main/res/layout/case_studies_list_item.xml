@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+            android:id="@+id/case_study_list_item_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:src="@drawable/test_circle"/>
+
+    <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="41dp"
+            android:background="@drawable/rectangle_shadow"
+            android:layout_gravity="center_vertical">
+        <Button
+                android:id="@+id/case_study_list_item_button"
+                android:layout_height="40dp"
+                android:layout_width="120dp"
+                android:background="@color/white"
+                android:textColor="@color/coke_red"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+    </FrameLayout>
+</LinearLayout>

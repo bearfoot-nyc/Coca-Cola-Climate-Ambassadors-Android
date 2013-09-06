@@ -16,6 +16,7 @@
     <string name="title_activity_supplier_overview">Supplier Overview</string>
     <string name="title_activity_supplier_guide">Supplier Guide</string>
     <string name="value_chain_title">IN ACTION: OPPORTUNITIES ALONG THE VALUE CHAIN</string>
+    <string name="value_chain_label">\"In Action: Opportunities Along The Value Chain\"</string>
     <string name="value_chain_description">This module reviews key strategic challenges and opportunities for carbon reduction in each of 5 areas of the value chain:
                                                     ingredients, packaging, manufacturing, distribution, and refrigeration. The materials provide a strategic framework and
                                                     then follow a case-based approach, discussing 2-3 good practices (case studies) in each area. This module demonstrates how
@@ -23,6 +24,7 @@
                                                     to the Coca-Cola business. </string>
     <string name="download_instruction">VIEW AND DOWNLOAD COURSE MATERIAL HERE</string>
     <string name="case_study_title">Explore Case Studies by Area</string>
+    <string name="supplier_last_page_quote">\"As we strive to increase the productivity and profit of our business, we are equally\n committed to protecting out planet by minimizing wasteful carbon emissions.\"</string>
     <string name="supplier_title">Sustainable Quality Growth</string>
     <string name="supplier_overview_subtitle">Partnering to Reduce Carbon along Our Value Chain</string>
     <string name="supplier_description">The Coca-Cola Company and its bottling partners are committed to realizing a 25 percent reduction of the carbon emissions embedded
@@ -43,7 +45,7 @@
     <string name="supplier_vision">Our 2020 vision is to achieve sustainable quality growth. As we strive to increase the productivity and profitability of our business, we are equally dedicated
                                     to protecting the environment, and one of the ways we’re working toward that commitment is by minimizing wasteful carbon emissions.</string>
 
-    <string name="supplier_quote">\"Reducing wasteful emissions is the right thing to do for people and the planet: and it\'s also a smart business decision.\"</string>
+    <string name="supplier_quote">\"Reducing wasteful emissions is the right thing to do for people and the planet; and it\'s also a smart business decision.\"</string>
     <string name="supplier_vision_extra">We know that meeting our carbon goal will result in a more successful and sustainable business – pushing us to operate more
                                         efficiently and catalyze joint product and business innovations.</string>
     <string name="how_to_meet_vision_title">How? From the Farm to the Refrigerator</string>
@@ -76,28 +78,12 @@
     <string name="course_material_title">VIEW AND DOWNLOAD COURSE MATERIAL HERE</string>
     <string name="case_studies">CASE STUDIES</string>
 
-    <string-array name="nav_sections_titles">
-        <item>Internal Training Materials</item>
-        <item>For Suppliers</item>
-    </string-array>
+    <string name="favorites">FAVORITES</string>
+    <string name="favorite_course_materials">FAVORITE COURSE MATERIALS</string>
+    <string name="favorite_case_studies">FAVORITE CASE STUDIES</string>
+    <string name="module_one">Module One</string>
+    <string name="module_two">Module Two</string>
+    <string name="module_four">Module Four</string>
 
-    <array name="nav_sections_icons">
-        <item>@drawable/ic_drawer_wrench</item>
-        <item>@drawable/ic_drawer_folder</item>
-    </array>
-
-    <string-array name="nav_internal_titles">
-        <item>Module 1:  Emissions &amp; Our Business</item>
-        <item>Module 2:  Business Case</item>
-        <item>Module 3:  Supply Chain Integration</item>
-        <item>Module 4:  Engaging Suppliers</item>
-    </string-array>
-
-    <array name="nav_internal_icons">
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-    </array>
 
 </resources>

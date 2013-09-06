@@ -5,13 +5,23 @@ import android.content.Context;
 import com.cocacola.climateambassador.BuildConfig;
 import com.cocacola.climateambassador.CaApplication;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
-import com.cocacola.climateambassador.ui.CaseFragment;
-import com.cocacola.climateambassador.ui.ForSuppliersActivity;
-import com.cocacola.climateambassador.ui.InternalTrainingActivity;
-import com.cocacola.climateambassador.ui.MainActivity;
-import com.cocacola.climateambassador.ui.MainFragment;
-import com.cocacola.climateambassador.ui.SupplierOverview;
-import com.cocacola.climateambassador.ui.ValueChainModule;
+import com.cocacola.climateambassador.ui.activities.DistributionCaseActivity;
+import com.cocacola.climateambassador.ui.activities.ForSuppliersActivity;
+import com.cocacola.climateambassador.ui.activities.IngredientCaseActivity;
+import com.cocacola.climateambassador.ui.activities.InternalTrainingActivity;
+import com.cocacola.climateambassador.ui.activities.MainActivity;
+import com.cocacola.climateambassador.ui.activities.ManufacturingCaseActivity;
+import com.cocacola.climateambassador.ui.activities.ModuleFourActivity;
+import com.cocacola.climateambassador.ui.activities.ModuleOneActivity;
+import com.cocacola.climateambassador.ui.activities.ModuleTwoActivity;
+import com.cocacola.climateambassador.ui.activities.PackagingCaseActivity;
+import com.cocacola.climateambassador.ui.activities.RefrigerationCaseActivity;
+import com.cocacola.climateambassador.ui.fragments.CaseFragment;
+import com.cocacola.climateambassador.ui.fragments.CaseStudiesListFragment;
+import com.cocacola.climateambassador.ui.fragments.FavoritesFragment;
+import com.cocacola.climateambassador.ui.fragments.ForSuppliersBodyFragment;
+import com.cocacola.climateambassador.ui.fragments.InternalTrainingBodyFragment;
+import com.cocacola.climateambassador.ui.fragments.ModuleFragment;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -29,16 +39,24 @@ import timber.log.Timber;
 @Module(injects = {
         CaApplication.class,
         MainActivity.class,
-        MainFragment.class,
         CaseFragment.class,
+        ModuleFragment.class,
+        FavoritesFragment.class,
         InternalTrainingActivity.class,
         ForSuppliersActivity.class,
-//        BusinessCaseModule.class,
-//        EngagingSuppliersModule.class,
-        ValueChainModule.class,
-        SupplierOverview.class,
+        ForSuppliersBodyFragment.class,
         DocumentViewerDelegate.class,
-        JsonAssetsLoader.class
+        JsonAssetsLoader.class,
+        CaseStudiesListFragment.class,
+        InternalTrainingBodyFragment.class,
+        PackagingCaseActivity.class,
+        ManufacturingCaseActivity.class,
+        DistributionCaseActivity.class,
+        RefrigerationCaseActivity.class,
+        IngredientCaseActivity.class,
+        ModuleOneActivity.class,
+        ModuleTwoActivity.class,
+        ModuleFourActivity.class
 })
 public class ClimateAmbassadorModule {
 
