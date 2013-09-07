@@ -15,6 +15,8 @@ import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.models.Document;
 import com.cocacola.climateambassador.models.FileType;
 
+import java.util.HashMap;
+
 import javax.inject.Inject;
 
 /**
@@ -24,6 +26,13 @@ public class DocumentView extends LinearLayout {
 
     private ImageView mImageView;
     private TextView mTitleView;
+
+    private static HashMap<FileType, Integer> sfileTypeResMap = new HashMap<FileType, Integer>();
+    static {
+        sfileTypeResMap.put(FileType.PDF, R.drawable.ic_doc_pdf);
+        sfileTypeResMap.put(FileType.PPT, R.drawable.ic_doc_ppt);
+        sfileTypeResMap.put(FileType.VIDEO, R.drawable.ic_doc_mov);
+    }
 
     @Inject
     DocumentViewerDelegate mDocumentViewerDelegate;
@@ -56,14 +65,31 @@ public class DocumentView extends LinearLayout {
 
     public void setDocument(Document doc) {
 
-        // TODO Choose appropriate icon resource
-        mImageView.setImageResource(R.drawable.ic_doc_pdf);
+        if(doc == null) {
+            return;
+        }
+
+        int iconResId = getResForExtension(doc);
+        mImageView.setImageResource(iconResId);
 
         if(doc.getLabel() != null) {
             mTitleView.setText(doc.getLabel());
         }
 
         setOnClickListener(new OnDocumentClickListener(doc));
+
+    }
+
+    private Integer getResForExtension(Document document) {
+
+        String extension = document.getExtension();
+        FileType type = FileType.getTypeForExtension(extension);
+
+        if(type == null) {
+            return 0;
+        }
+
+        return sfileTypeResMap.get(type);
 
     }
 
