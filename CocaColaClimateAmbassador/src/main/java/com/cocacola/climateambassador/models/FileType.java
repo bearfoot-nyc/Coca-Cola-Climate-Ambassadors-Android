@@ -5,16 +5,18 @@ package com.cocacola.climateambassador.models;
  */
 public enum FileType {
 
-    PDF("application/pdf", "pdf"),
-    PPT("application/vnd.ms-powerpoint", "pptx"),
-    VIDEO("video/*", "mp4");
+    PDF("application/pdf", "pdf", "docs"),
+    PPT("application/vnd.ms-powerpoint", "pptx", "docs"),
+    VIDEO("video/*", "mp4", "video");
 
-    public String extension;
-    public String mimeType;
+    private String extension;
+    private String mimeType;
+    private String directory;
 
-    FileType(String mimeType, String extension) {
+    FileType(String mimeType, String extension, String directory) {
         this.mimeType = mimeType;
         this.extension = extension;
+        this.directory = directory;
     }
 
     public String getMimeType() {
@@ -23,6 +25,10 @@ public enum FileType {
 
     public String getExtension() {
         return this.extension;
+    }
+
+    public String getDirectory() {
+        return directory;
     }
 
     public static FileType getTypeForExtension(String extension) {
@@ -42,5 +48,9 @@ public enum FileType {
         return fileType;
 
     }
+
+
+
+
 
 }

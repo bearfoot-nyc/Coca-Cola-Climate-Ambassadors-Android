@@ -23,13 +23,6 @@ public class DocumentViewerDelegate {
 
     private static final String AUTHORITY = "com.cocacola.climateambassador.foobar";
 
-    public static Map<FileType, String> fileTypePathMap = new HashMap<FileType, String>();
-    static {
-        fileTypePathMap.put(FileType.PDF, "docs");
-        fileTypePathMap.put(FileType.PPT, "docs");
-        fileTypePathMap.put(FileType.VIDEO, "video");
-    }
-
     @Inject AppPackageFileWriter mAppPackageFileWriter;
 
     private Context mContext;
@@ -69,7 +62,7 @@ public class DocumentViewerDelegate {
 
     public File createFileForFileType(FileType fileType, String fileName) throws FileNotInAppPackageException {
 
-        File fileTypeDir = new File(mContext.getFilesDir().getAbsolutePath() + File.separator + fileTypePathMap.get(fileType));
+        File fileTypeDir = new File(mContext.getFilesDir().getAbsolutePath() + File.separator + fileType.getDirectory());
 
         File file =  new File(fileTypeDir + File.separator + fileName);
 

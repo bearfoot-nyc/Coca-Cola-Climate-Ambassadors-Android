@@ -44,51 +44,39 @@ public class AppPackageFileWriter {
         mAssetManager = context.getAssets();
     }
 
-    public void writeAssetsToPackageDir() {
-
-        // Get path of assets
-        String[] assets = getAllAssets();
-
-        // Open each file
-        for(String asset : assets) {
-
-            // Write file to private package dir
-            writeToPkgDir(createInputFromAsset(DOCS_DIR, asset), mDocsDir, asset);
-
-        }
-
-    }
-
     public File moveFileToPackageDir(FileType fileType, String fileName) {
 
         return null;
 
     }
 
-    private InputStream createInputFromAsset(String directory, String fileName) {
+    public InputStream createInputFromAsset(String directory, String fileName) throws IOException {
 
         BufferedInputStream in = null;
-
-        try {
-            in = new BufferedInputStream(mAssetManager.open(directory + File.separator + fileName));
-        } catch (FileNotFoundException e) {
-            Log.e(e, "No file found for %s", fileName);
-        } catch (IOException e) {
-           Log.e(e, "IOException");
-        }
+        in = new BufferedInputStream(mAssetManager.open(directory + File.separator + fileName));
 
         return in;
 
     }
 
-    private void writeToPkgDir(InputStream in, File directory, String fileName) {
+    public File createDirectoryItNotExists(String directory) {
 
-        // Create the directory if it doesn't exist
-        if (!directory.exists()) {
-            directory.mkdirs();
+        File directoryFile = new File(mPkgDir.getAbsolutePath() + File.separator + directory);
+
+        if (!directoryFile.exists()) {
+            directoryFile.mkdirs();
         }
 
-        File file = new File(directory, fileName);
+        return directoryFile;
+
+    }
+
+    public void writeToPkgDir(InputStream in, String directory, String fileName) throws FailedToWriteToPackageException {
+
+        // Create the directory if it doesn't exist
+        File directoryFile = createDirectoryItNotExists(directory);
+
+        File file = new File(directoryFile, fileName);
 
         FileOutputStream out = null;
 
@@ -112,28 +100,27 @@ public class AppPackageFileWriter {
 
 
         } catch (IOException e) {
-            e.printStackTrace();
-            Log.e(e, "failed to write %s to disk", fileName);
+            throw new FailedToWriteToPackageException(fileName);
         }
 
     }
 
-    public String[] getAllAssets() {
+    public class FailedToWriteToPackageException extends Exception {
 
-        AssetManager assetManager = mContext.getAssets();
+        private String fileName;
 
-        String files[] = null;
-
-        try {
-            files = assetManager.list("docs");
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e(e, "no assets");
-            return null;
+        public FailedToWriteToPackageException(String fileName) {
+            super();
+            this.fileName = fileName;
         }
 
-        return files;
+        public String getFileName() {
+            return fileName;
+        }
 
+        public void setFileName(String fileName) {
+            this.fileName = fileName;
+        }
     }
 
     public Context getContext() {

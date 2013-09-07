@@ -90,7 +90,6 @@ public class JsonTextSerializerTests extends InstrumentationTestCase {
         assertEquals(bulletPoints.get(0), "Fertilizer = high GHG");
         assertEquals(bulletPoints.get(4), "Waste = emissions or energy opportunity");
 
-
         List<TextFrame> textFrames = ingredientsCase.getTextFrames();
 
         assertNotNull(textFrames);
