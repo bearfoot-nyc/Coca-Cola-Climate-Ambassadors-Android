@@ -1,5 +1,7 @@
 package com.cocacola.climateambassador.ui.activities;
 
+import android.support.v4.app.NavUtils;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.cocacola.climateambassador.HasModel;
@@ -46,6 +48,19 @@ public abstract class CaCaseActivity extends CaActivity implements HasModel<Case
         DocumentsLayout caseStudiesLayout = (DocumentsLayout) findViewById(R.id.case_studies);
         caseStudiesLayout.setDocuments(aCase.getCourseMaterials());
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+//                NavUtils.navigateUpFromSameTask(this);
+                // Just finish()
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void onAssetLoadError() {

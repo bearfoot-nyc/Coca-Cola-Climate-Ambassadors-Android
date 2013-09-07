@@ -1,10 +1,8 @@
 package com.cocacola.climateambassador.ui.activities;
 
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,6 +18,11 @@ import com.cocacola.climateambassador.models.TextFrame;
  * Created by Vinnie on 9/4/13.
  */
 public class DistributionCaseActivity extends CaCaseActivity {
+
+    @Override
+    public String getJsonAssetFilename() {
+        return "case_distribution.json";
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,20 +112,4 @@ public class DistributionCaseActivity extends CaCaseActivity {
 
     }
 
-    @Override
-    public String getJsonAssetFilename() {
-        return "case_distribution.json";
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

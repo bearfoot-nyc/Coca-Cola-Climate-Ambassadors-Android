@@ -45,7 +45,7 @@
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/Ingredients"
                 android:screenOrientation="landscape"
-                android:parentActivityName=".ui.activities.InternalTrainingActivity">
+                android:parentActivityName=".ui.activities.ModuleThreeActivity">
         </activity>
         <activity
                 android:name=".ui.activities.PackagingCaseActivity"
