@@ -16,7 +16,7 @@ import com.cocacola.climateambassador.models.BulletPointFrame;
 import com.cocacola.climateambassador.models.Document;
 import com.cocacola.climateambassador.models.Module;
 import com.cocacola.climateambassador.ui.fragments.CaFragment;
-import com.cocacola.climateambassador.ui.views.CourseMaterialsLayout;
+import com.cocacola.climateambassador.ui.views.DocumentsLayout;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.google.gson.JsonSyntaxException;
 
@@ -112,8 +112,8 @@ public abstract class CaModuleBodyFragment extends CaFragment implements HasMode
 
         List<Document> documentList = module.getCourseMaterials();
         if(documentList.size() > 0) {
-            CourseMaterialsLayout courseMaterialsLayout = (CourseMaterialsLayout) v.findViewById(R.id.course_materials);
-            courseMaterialsLayout.setDocuments(module.getCourseMaterials());
+            DocumentsLayout documentsLayout = (DocumentsLayout) v.findViewById(R.id.course_materials);
+            documentsLayout.setDocuments(module.getCourseMaterials());
         }
         else {
             courseMaterialsLabelView.setVisibility(View.INVISIBLE);

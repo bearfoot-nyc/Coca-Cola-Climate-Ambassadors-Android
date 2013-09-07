@@ -45,7 +45,7 @@ public class CaseFragment extends CaFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         Context context = getActivity();
-        View view = inflater.inflate(R.layout.frag_case, container, false);
+        View view = inflater.inflate(R.layout.activity_case, container, false);
         ((TextView) view.findViewById(R.id.case_title)).setText(mCase.getTitle());
 
         if (!TextUtils.isEmpty(mCase.getBodyText())) {

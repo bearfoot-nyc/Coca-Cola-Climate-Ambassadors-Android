@@ -54,7 +54,7 @@
             android:textSize="10sp"
             android:text="@string/download_instruction" />
 
-        <com.cocacola.climateambassador.ui.views.CourseMaterialsLayout
+        <com.cocacola.climateambassador.ui.views.DocumentsLayout
             android:id="@+id/course_materials"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"

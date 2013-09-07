@@ -2,8 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-        android:id="@+id/scroll_view">
-
+    android:id="@+id/scroll_view">
 
     <LinearLayout
         android:id="@+id/main_content"
@@ -54,45 +53,40 @@
             android:id="@+id/case_frames"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:orientation="vertical"/>
+            android:orientation="vertical" />
 
-        <LinearLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:text="@string/course_material_title"
+            android:textColor="@color/white"/>
+
+        <com.cocacola.climateambassador.ui.views.DocumentsLayout
             android:id="@+id/course_materials"
             android:layout_height="wrap_content"
             android:layout_width="850dp"
             android:orientation="vertical"
             android:visibility="gone"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="10sp"
-                android:text="@string/course_material_title"
-                android:textColor="@color/white"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:text="@string/case_studies"
+            android:textColor="@color/white"/>
 
-        </LinearLayout>
-
-        <LinearLayout
+        <com.cocacola.climateambassador.ui.views.DocumentsLayout
                 android:id="@+id/case_studies"
                 android:layout_height="wrap_content"
                 android:layout_width="850dp"
                 android:orientation="vertical"
                 android:visibility="gone"
                 android:paddingTop="10dp"
-                android:paddingBottom="20dp">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="10sp"
-                    android:text="@string/case_studies"
-                    android:textColor="@color/white"/>
-
-        </LinearLayout>
-
+                android:paddingBottom="20dp" />
 
     </LinearLayout>
 

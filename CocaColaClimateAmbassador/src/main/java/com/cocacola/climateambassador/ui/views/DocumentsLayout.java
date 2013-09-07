@@ -14,16 +14,16 @@ import java.util.List;
 /**
  * Created by andrewlawton on 9/7/13.
  */
-public class CourseMaterialsLayout extends LinearLayout {
-    public CourseMaterialsLayout(Context context) {
+public class DocumentsLayout extends LinearLayout {
+    public DocumentsLayout(Context context) {
         super(context);
     }
 
-    public CourseMaterialsLayout(Context context, AttributeSet attrs) {
+    public DocumentsLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CourseMaterialsLayout(Context context, AttributeSet attrs, int defStyle) {
+    public DocumentsLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

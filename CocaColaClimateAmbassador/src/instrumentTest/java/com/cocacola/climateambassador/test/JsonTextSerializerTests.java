@@ -63,7 +63,7 @@ public class JsonTextSerializerTests extends InstrumentationTestCase {
 
     public void testParsesFileAsString() throws IOException {
 
-        String fileName = "ingredients.json";
+        String fileName = "case_ingredients.json";
 
         String json = mJsonAssetsLoader.parseAsString(fileName);
 
@@ -74,7 +74,7 @@ public class JsonTextSerializerTests extends InstrumentationTestCase {
 
     public void testIngredientCasesParsesStringAsGson() throws IOException {
 
-        Case ingredientsCase = mJsonAssetsLoader.parseCaseFromJsonFile("ingredients.json");
+        Case ingredientsCase = mJsonAssetsLoader.parseCaseFromJsonFile("case_ingredients.json");
 
         assertNotNull(ingredientsCase);
 
