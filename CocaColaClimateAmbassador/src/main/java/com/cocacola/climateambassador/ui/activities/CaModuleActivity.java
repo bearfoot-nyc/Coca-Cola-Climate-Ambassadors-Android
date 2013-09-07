@@ -52,10 +52,4 @@ public abstract class CaModuleActivity extends CaActivity {
         Toast.makeText(this, "Failed To Load: " + getJsonAssetFilename(), Toast.LENGTH_SHORT);
     }
 
-    // FIXME Move to utility class or create custom view
-    public abstract void setupButtonAccordingToDocument(final Document doc, View viewWithButton, LayoutInflater inflater);
-
-    // FIXME Should be moved to a utility class--DRY up code
-    public abstract String getFileType(String fileName);
-
 }

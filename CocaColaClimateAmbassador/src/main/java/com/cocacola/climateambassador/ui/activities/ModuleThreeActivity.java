@@ -31,14 +31,4 @@ public class ModuleThreeActivity extends CaModuleActivity {
         return null;
     }
 
-    @Override
-    public void setupButtonAccordingToDocument(Document doc, View viewWithButton, LayoutInflater inflater) {
-        // FIXME See comments in super class
-    }
-
-    @Override
-    public String getFileType(String fileName) {
-        // FIXME See comments in super class
-        return "";
-    }
 }
