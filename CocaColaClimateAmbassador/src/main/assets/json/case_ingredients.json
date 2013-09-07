@@ -1,88 +1,67 @@
 {
-    "title": "Ingredients Cases",
-    "bodyText" : "For many products, the \"ingredients area\" of the supply chain represents a significant carbon opportunity.  As we’ve seen in earlier modules, the ingredient area is significant for colas, and even more significant when we look beyond colas to some of our fastest growing products: like teas, dairy products, and juices where the carbon impact \"at the farm\" is even more significant. Let’s take a look.",
-    "bulletPointFrame": {
-        "title" : "Strategic Frame",
-        "subtitle" : "The principal GHG sources at the ingredient level include:",
-        "bulletPoints" : [
-            "Fertilizer = high GHG",
-            "Soil management = high GHG",
-            "Energy use on farms",
-            "Methane emissions from animal farms = energy source",
-            "Waste = emissions or energy opportunity"
-        ]        
-    },
-    "textFrames" : [
-        {
-            "title" :"Financial Frame",
-            "bodyText" : "",
-            "subtitleTextPairs" : [
-                {
-                    "title" : "Cost Management",
-                    "text" : "Like in all areas, there are both engineering and behavioral solutions. Interestingly, many key practices in this area that have high impact are behavioral changes, including farmer training. On the engineering side, there are also very high return practices like capturing methane emissions.\n\nFinancially, most of the cost savings in this area accrue to the supplier, because the savings are realized at the level of ingredient production.  As good partners, we understand that what is good for our suppliers is good for us. As we enter a time of rising energy prices , it is also important for our suppliers to lower energy consumption, to ensure the ingredient prices are not forced up due to high energy costs."
-                },
-                {
-                    "title" : "Revenue",
-                    "text" : "As we’ve learned, sustainable and organic products are the fastest growing food segments in many countries. Remember the Green Brand study? That means there’s a revenue opportunity in working with suppliers too. This means you’ll want to involve your product development and marketing teams in discussions in this area."
-                }
-            ]
-        },
-        {
-            "title" : "Strategic Future",
-            "bodyText" = "The opportunities are clear in both cost and revenue. Strategically, we should also note that if your group is integrating vertically–by buying dairy farms or acquiring ingredient companies – acting in this area is important to us as areas of cost savings.",
-            "subtitleTextPairs": []
-        }
-    ],
-    "caseStudies" : [
-        {
-            "fileName" : "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf",
-            "label" : "Coca-Cola Business Case for Good Fertilizer Use in Citrus"
-        },
-        {
-            "fileName" : "Danone-Reduces-Methane-through-Better-Cow-Nutrition-France-US.pdf",
-            "label" : "Danone Reduces Methane through Better Cow Nutrition - France US"
-        },
-        {
-            "fileName" : "Drip-Irrigation-to-Reduce-Climate-Impact-US-India.pdf",
-            "label" : "Drip Irrigation to Reduce Climate Impact at PepsiCo_US_India"
-        },
-        {
-             "fileName" : "INGREDIENT_Good_Soil_Management.pdf",
-             "label" : "Good Soil Management"
-         },
-        {
-            "fileName" : "INGREDIENT_Nestle_HIVOS_Partnership_for_Biogas_Energy_from_Dairy_Cows_Rural_Indonesia.pdf",
-            "label" : "Nestle HIVOS Partnership for Biogas Energy from Dairy Cows_Rural Indonesia"
-        },
-        {
-             "fileName" : "WALMARTs_Fertilizer_Optimization_SUPPLIER_Toolkit_5-30-13.pdf",
-             "label" : "Finding Value in Waste"
-        },
-        {
-             "fileName" : "INGREDIENT_Reclaiming_Methane_and_Utilizing_Biogas_Animal_farming_Cargill_Global.pdf",
-             "label" : "Reclaiming Methane and Utilizing Biogas_Animal farming Cargill Global"
-        },
-        {
-             "fileName" : "INGREDIENT_Reducing_fertilizer_orange_supply_chain_at_Tropicana.pdf",
-             "label" : "Reducing Fertilizer in Orange Supply Chain at Tropicana_US"
-        },
-        {
-             "fileName" : "INGREDIENT_Sustainable_Farming_Unnati_India.pdf",
-             "label" : "The Case for Organic Sugar Farming in India"
-        },
-        {
-             "fileName" : "INGREDIENT_Unilever_and_Cargill_Partner_to_Green_Supply_Chain_Together.pdf",
-             "label" : "Unilever and Cargill Green Ingredient Supply Chain Together"
-        }
-    ],
-    "courseMaterials" : [
-        {
-            "fileName" : "unknown",
-            "label" : "PowerPoint Segment \"In Action: Ingredients\""
-        },
-        {
-            "fileName" : "unknown",
-            "label" : "PowerPoint Script and Notes"
-        }
-    ]
-}
+                                      "title": "Ingredients Cases",
+                                      "bodyText" : "A significant portion the carbon footprint of our products can be attributed to the ingredients we purchase. By working with our suppliers to identify and implement more efficient and innovative practices, we can reduce our carbon impact and contribute to our 2020 climate goal. Focus in this area will also help our system meet Coca-Cola’s “100% sustainable sourcing” commitment in the new “Me,” “We” and “the World” framework.<br /><br />This section highlights some key practices to address some of the principal challenges and opportunities at the ingredient level including:",
+                                      "bulletPointFrame": {
+                                          "title" : "",
+                                          "subtitle" : "",
+                                          "bulletPoints" : [
+                                              "Fertilizer = high GHG",
+                                              "Soil management = high GHG",
+                                              "Energy use on farms",
+                                              "Methane emissions from animal farms = high GHG (and energy source)",
+                                              "Waste = emissions or energy opportunity"
+                                          ]
+                                      },
+                                      "textFrames" : [],
+                                      "caseStudies" : [
+                                          {
+                                              "fileName" : "INGREDIENT_Coca-Cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf",
+                                              "label" : "Coca-Cola Business Case for Good Fertilizer Use in Citrus"
+                                          },
+                                          {
+                                              "fileName" : "INGREDIENT_Danone-Reduces-Methane-through-Better-Cow-Nutrition-France-US.pdf",
+                                              "label" : "Danone Reduces Methane through Better Cow Nutrition - France US"
+                                          },
+                                           {
+                                              "fileName" : "INGREDIENT_Drip-Irrigation-to-Reduce-Climate-Impact_US_India.pdf",
+                                              "label" : "Drip Irrigation to Reduce Climate Impact"
+                                          },
+                                          {
+                                               "fileName" : "INGREDIENT_EU-Juice-Fertilizer-Emissions-Analysis_Crude Numbers-20120319_.pptx",
+                                               "label" : "Juice Fertilizer Emissions Analysis"
+                                           },
+                                          {
+                                               "fileName" : "INGREDIENT_Good-Soil-Management.pdf",
+                                               "label" : "Good Soil Management"
+                                           },
+                                          {
+                                              "fileName" : "INGREDIENT_Nestle-HIVOS-Partnership-for-Biogas-Energy-from-Dairy-Cows_Rural Indonesia.pdf",
+                                              "label" : "Nestle HIVOS Partnership for Biogas Energy from Dairy Cows_Rural Indonesia"
+                                          },
+                                          {
+                                               "fileName" : "INGREDIENT_WALMARTs-Fertilizer -ptimization-SUPPLIER-Toolkit-5-30-13.pdf",
+                                               "label" : "Finding Value in Waste"
+                                          },
+                                          {
+                                               "fileName" : "INGREDIENT_Reclaiming-Methane-and-Utilizing-Biogas_Animal-farming-Cargill-Global.pdf",
+                                               "label" : "Reclaiming Methane and Utilizing Biogas_Animal farming Cargill Global"
+                                          },
+                                          {
+                                               "fileName" : "INGREDIENT_Reducing-fertilizer-orange-supply-chain-at-Tropicana.pdf",
+                                               "label" : "Reducing Fertilizer in Orange Supply Chain at Tropicana_US"
+                                          },
+                                          {
+                                               "fileName" : "INGREDIENT_Sustainable-Farming-Unnati-India.pdf",
+                                               "label" : "Sustainable Farming in Unnati India"
+                                          },
+                                          {
+                                              "fileName" : "INGREDIENT_The-Case-for-Organic-Sugar-Farming-in-India.pdf",
+                                              "label" : "The Case for Organic Sugar Farming in India"
+                                          },
+                                          {
+                                               "fileName" : "INGREDIENT_Unilever-and-Cargill-Partner-to-Green-Supply-Chain-Together.pdf",
+                                               "label" : "Unilever and Cargill Green Ingredient Supply Chain Together"
+                                         }
+                                    ]
+                                }
+

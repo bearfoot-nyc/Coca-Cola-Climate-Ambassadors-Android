@@ -2,6 +2,7 @@ package com.cocacola.climateambassador.ui.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -34,9 +35,6 @@ public abstract class CaCaseActivity extends CaActivity implements HasModel<Case
 
     @Inject JsonAssetsLoader mJsonAssetsLoader;
 
-    @InjectView(R.id.course_materials)
-    DocumentsLayout mCourseMaterialsLayout;
-
     @InjectView(R.id.case_studies)
     DocumentsLayout mCaseStudiesLayout;
 
@@ -56,7 +54,7 @@ public abstract class CaCaseActivity extends CaActivity implements HasModel<Case
         ((TextView) findViewById(R.id.case_title)).setText(aCase.getTitle());
 
         if (!TextUtils.isEmpty(aCase.getBodyText())) {
-            ((TextView) findViewById(R.id.body_text)).setText(aCase.getBodyText());
+            ((TextView) findViewById(R.id.body_text)).setText(Html.fromHtml(aCase.getBodyText()));
             ((TextView) findViewById(R.id.body_text)).setVisibility(View.VISIBLE);
         }
 
@@ -120,7 +118,6 @@ public abstract class CaCaseActivity extends CaActivity implements HasModel<Case
         }
 
         // Show documents
-        mCourseMaterialsLayout.setDocuments(aCase.getCourseMaterials());
         mCaseStudiesLayout.setDocuments(aCase.getCaseStudies());
 
 
