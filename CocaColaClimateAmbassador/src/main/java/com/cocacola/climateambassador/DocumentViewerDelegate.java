@@ -8,6 +8,7 @@ import android.support.v4.content.FileProvider;
 import com.cocacola.climateambassador.models.FileType;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ import javax.inject.Singleton;
 @Singleton
 public class DocumentViewerDelegate {
 
-    private static final String AUTHORITY = "com.cocacola.climateambassador.foobar";
+    private static final String AUTHORITY = "com.cocacola.climateambassador.files";
 
     @Inject AppPackageFileWriter mAppPackageFileWriter;
 
@@ -32,7 +33,7 @@ public class DocumentViewerDelegate {
         this.mContext = mContext;
     }
 
-    public void startActivityForFileType(Context context, FileType fileType, String fileName) {
+    public void startActivityForFileType(Context context, FileType fileType, String fileName) throws AppPackageFileWriter.FailedToWriteToPackageException {
 
         if(isActivityForIntentAvailable(fileType.getMimeType())) {
 
@@ -43,7 +44,7 @@ public class DocumentViewerDelegate {
                 file = createFileForFileType(fileType, fileName);
                 path = createUriForFile(file);
             } catch (FileNotInAppPackageException e) {
-                file = mAppPackageFileWriter.moveFileToPackageDir(fileType, fileName);
+                mAppPackageFileWriter.writeToPkgDir(fileName, fileType);
                 path = createUriForFile(file);
             } finally {
                 Intent intent = createViewerIntent(context, path, fileType);
@@ -60,11 +61,19 @@ public class DocumentViewerDelegate {
 
     }
 
+    public File getFileTypeDirectory(FileType fileType) {
+
+        // Shouldn't be responsible for creating directory, that is AppPackageFileWriter's responsibility
+        File fileTypeDir = null;
+        fileTypeDir = new File(mContext.getFilesDir().getAbsolutePath() + File.separator + fileType.getDirectory());
+
+        return fileTypeDir;
+
+    }
+
     public File createFileForFileType(FileType fileType, String fileName) throws FileNotInAppPackageException {
 
-        File fileTypeDir = new File(mContext.getFilesDir().getAbsolutePath() + File.separator + fileType.getDirectory());
-
-        File file =  new File(fileTypeDir + File.separator + fileName);
+        File file =  new File(getFileTypeDirectory(fileType), fileName);
 
         if(!file.exists()) {
             throw new FileNotInAppPackageException();

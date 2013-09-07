@@ -38,9 +38,7 @@ public class AppPackageFileWriter {
         mAssetManager = mContext.getAssets();
     }
 
-    public File moveFileToPackageDir(FileType fileType, String fileName) {
-        return null;
-    }
+
 
     public InputStream createInputFromAsset(String directory, String fileName) throws IOException {
 
@@ -69,6 +67,17 @@ public class AppPackageFileWriter {
 
         return directoryFile;
 
+    }
+
+    public void writeToPkgDir(String fileName, FileType fileType) throws FailedToWriteToPackageException {
+
+        InputStream in = null;
+        try {
+            in = createInputFromAsset(fileType.getDirectory(), fileName);
+            writeToPkgDir(in, fileType.getDirectory(), fileName);
+        } catch (IOException e) {
+            throw new FailedToWriteToPackageException(fileName);
+        }
     }
 
     public void writeToPkgDir(InputStream in, String directory, String fileName) throws FailedToWriteToPackageException {

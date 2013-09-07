@@ -64,7 +64,7 @@ public class DocumentViewDelegateTests extends InstrumentationTestCase {
     public void testThrowsNoFileExistsException() {
 
         FileType pdfType = FileType.PDF;
-        String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
+        String fileName = "someImaginaryFile";
 
         File file = null;
         try {
@@ -73,6 +73,18 @@ public class DocumentViewDelegateTests extends InstrumentationTestCase {
         } catch (DocumentViewerDelegate.FileNotInAppPackageException e) {
             // Testing if exception was thrown, PASS!
         }
+
+
+    }
+
+    public void testGetsProperFileTypeDirectory() {
+
+        FileType pdfType = FileType.PDF;
+        String expectedDir = "/data/data/com.cocacola.climateambassador/files/docs";
+
+        File fileTypeDir = mDocumentViewerDelegate.getFileTypeDirectory(pdfType);
+
+        assertEquals(expectedDir, fileTypeDir.getAbsolutePath());
 
 
     }
@@ -98,7 +110,7 @@ public class DocumentViewDelegateTests extends InstrumentationTestCase {
 
         String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
 
-        File fileTypeDir = new File(mContext.getFilesDir().getAbsolutePath() + File.separator + FileType.PDF);
+        File fileTypeDir = new File(mContext.getFilesDir().getAbsolutePath() + File.separator + FileType.PDF.getDirectory());
 
         File file =  new File(fileTypeDir + File.separator + fileName);
 
@@ -118,9 +130,7 @@ public class DocumentViewDelegateTests extends InstrumentationTestCase {
 
             uri = mDocumentViewerDelegate.createUriForFile(file);
 
-            assertEquals("foo", uri.getEncodedPath());
-            assertEquals("bar", uri.getScheme());
-
+            assertNotNull(uri);
 
         } catch (DocumentViewerDelegate.FileNotInAppPackageException e) {
             failDueToFileNotInAppPackageException();

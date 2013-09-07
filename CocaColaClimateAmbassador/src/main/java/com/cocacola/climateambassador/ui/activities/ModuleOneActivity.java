@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.cocacola.climateambassador.AppPackageFileWriter;
 import com.cocacola.climateambassador.CaConstants;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.R;
@@ -116,7 +118,11 @@ public class ModuleOneActivity extends CaModuleActivity {
                 @Override
                 public void onClick(View v) {
                     // FIXME Map file name String to a FileType enum type
-                    mDocumentViewerDelegate.startActivityForFileType(ModuleOneActivity.this, FileType.PDF, "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf");
+                    try {
+                        mDocumentViewerDelegate.startActivityForFileType(ModuleOneActivity.this, FileType.PDF, "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf");
+                    } catch (AppPackageFileWriter.FailedToWriteToPackageException e) {
+                        Toast.makeText(ModuleOneActivity.this, "Failed to write to pacakge: " + e.getFileName(), Toast.LENGTH_LONG);
+                    }
                 }
             });
         }
