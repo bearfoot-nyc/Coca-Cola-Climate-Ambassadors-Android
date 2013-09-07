@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cocacola.climateambassador.HasModel;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.models.BulletPointFrame;
 import com.cocacola.climateambassador.models.Document;
@@ -31,7 +32,7 @@ import timber.log.Timber;
 /**
  * Created by Vinnie on 9/5/13.
  */
-public abstract class CaModuleBodyFragment extends CaFragment {
+public abstract class CaModuleBodyFragment extends CaFragment implements HasModel<Module> {
 
     @Inject
     JsonAssetsLoader mJsonAssetsLoader;
@@ -42,11 +43,9 @@ public abstract class CaModuleBodyFragment extends CaFragment {
     @InjectView(R.id.course_materials_label)
     TextView courseMaterialsLabelView;
 
-    public abstract String getJsonAssetFilename();
-
     private Module mModule;
 
-    public Module getModule() {
+    public Module getModel() {
 
         // Lazily create Module object from JSON file
         if(mModule == null) {
@@ -65,7 +64,7 @@ public abstract class CaModuleBodyFragment extends CaFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        Module module = getModule();
+        Module module = getModel();
 
         View v = inflater.inflate(R.layout.frag_module, null);
         Views.inject(this, v);
