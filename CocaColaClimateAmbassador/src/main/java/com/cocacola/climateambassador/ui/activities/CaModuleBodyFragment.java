@@ -1,6 +1,7 @@
 package com.cocacola.climateambassador.ui.activities;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +67,7 @@ public abstract class CaModuleBodyFragment extends CaFragment {
         }
 
         if(!TextUtils.isEmpty(module.getBodyText())) {
-            ((TextView)v.findViewById(R.id.description)).setText(module.getBodyText());
+            ((TextView)v.findViewById(R.id.description)).setText(Html.fromHtml(module.getBodyText()));
         }
 
         LinearLayout caseFrames = (LinearLayout) v.findViewById(R.id.case_frames);
