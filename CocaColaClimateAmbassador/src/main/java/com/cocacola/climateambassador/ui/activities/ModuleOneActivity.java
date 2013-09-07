@@ -116,7 +116,7 @@ public class ModuleOneActivity extends CaModuleActivity {
                 @Override
                 public void onClick(View v) {
                     // FIXME Map file name String to a FileType enum type
-                    mDocumentViewerDelegate.startActivityForFileType(ModuleOneActivity.this, FileType.PPT, doc.getFileName());
+                    mDocumentViewerDelegate.startActivityForFileType(ModuleOneActivity.this, FileType.PDF, "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf");
                 }
             });
         }

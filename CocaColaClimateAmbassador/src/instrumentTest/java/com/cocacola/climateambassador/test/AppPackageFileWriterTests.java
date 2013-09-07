@@ -82,21 +82,6 @@ public class AppPackageFileWriterTests extends InstrumentationTestCase {
 
     }
 
-    public void testWritesPkgToDir() {
-
-        InputStream in = getValidInputStream();
-        String fileName = getValidFileName();
-        FileType fileType = getValidFileType();
-
-        try {
-            mAppPackageFileWriter.writeToPkgDir(in, fileType.getDirectory(), fileName);
-        } catch (AppPackageFileWriter.FailedToWriteToPackageException e) {
-            e.printStackTrace();
-            fail("Threw FailedToWriteToPackageException");
-        }
-
-    }
-
     private InputStream getValidInputStream() {
 
         String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
@@ -115,12 +100,53 @@ public class AppPackageFileWriterTests extends InstrumentationTestCase {
 
     }
 
+    private String[] getAllFilesInDocsDir() {
+
+        File dir = new File(mAppPackageFileWriter.getPackageDir() + File.separator + FileType.PDF.getDirectory());
+
+        String[] files = dir.list();
+
+        return files;
+
+    }
+
+    private void assertFileIsInDir(String fileName) {
+
+        boolean fileExists = false;
+
+        for(String file : getAllFilesInDocsDir()) {
+            if(file.equals(fileName)) {
+                fileExists = true;
+                break;
+            }
+        }
+
+        assertEquals(fileExists, true);
+
+    }
+
     private String getValidFileName() {
         return "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
     }
 
     private FileType getValidFileType() {
         return FileType.PDF;
+    }
+
+    public void testWritesPkgToDir() {
+
+        InputStream in = getValidInputStream();
+        String fileName = getValidFileName();
+        FileType fileType = getValidFileType();
+
+        try {
+            mAppPackageFileWriter.writeToPkgDir(in, fileType.getDirectory(), fileName);
+            assertFileIsInDir(fileName);
+        } catch (AppPackageFileWriter.FailedToWriteToPackageException e) {
+            e.printStackTrace();
+            fail("Threw FailedToWriteToPackageException");
+        }
+
     }
 
 }

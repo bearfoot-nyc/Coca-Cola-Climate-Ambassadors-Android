@@ -30,24 +30,16 @@ public class AppPackageFileWriter {
     Timber Log;
 
     private Context mContext;
-    private File mPkgDir;
-    private File mDocsDir;
     private AssetManager mAssetManager;
-
-    private static final String DOCS_DIR = "docs";
 
     @Inject
     public AppPackageFileWriter(Context context) {
         mContext = context;
-        mPkgDir = context.getFilesDir();
-        mDocsDir = new File(mPkgDir.getAbsolutePath() + File.separator + DOCS_DIR);
-        mAssetManager = context.getAssets();
+        mAssetManager = mContext.getAssets();
     }
 
     public File moveFileToPackageDir(FileType fileType, String fileName) {
-
         return null;
-
     }
 
     public InputStream createInputFromAsset(String directory, String fileName) throws IOException {
@@ -59,9 +51,17 @@ public class AppPackageFileWriter {
 
     }
 
+    public File getPackageDir() {
+        return mContext.getFilesDir();
+    }
+
+    public String createNewDirectoryString(String directory) {
+        return getPackageDir() + File.separator + directory;
+    }
+
     public File createDirectoryItNotExists(String directory) {
 
-        File directoryFile = new File(mPkgDir.getAbsolutePath() + File.separator + directory);
+        File directoryFile = new File(createNewDirectoryString(directory));
 
         if (!directoryFile.exists()) {
             directoryFile.mkdirs();
