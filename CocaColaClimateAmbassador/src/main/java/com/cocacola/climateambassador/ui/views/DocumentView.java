@@ -14,6 +14,7 @@ import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.models.Document;
 import com.cocacola.climateambassador.models.FileType;
+import com.cocacola.climateambassador.util.Toaster;
 
 import java.util.HashMap;
 
@@ -82,8 +83,7 @@ public class DocumentView extends LinearLayout {
 
     private Integer getResForExtension(Document document) {
 
-        String extension = document.getExtension();
-        FileType type = FileType.getTypeForExtension(extension);
+        FileType type = FileType.getTypeForFilename(document.getFileName());
 
         if(type == null) {
             return 0;
@@ -104,10 +104,10 @@ public class DocumentView extends LinearLayout {
         @Override
         public void onClick(View v) {
             try {
-                mDocumentViewerDelegate.startActivityForFileType(getContext(), FileType.PDF, "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf");
+                mDocumentViewerDelegate.startActivityForFile(getContext(), document.getFileName());
             } catch (AppPackageFileWriter.FailedToWriteToPackageException e) {
                 // TODO Do we really want to Toast?
-                Toast.makeText(getContext(), "Failed to write to pacakge: " + e.getFileName(), Toast.LENGTH_LONG);
+                Toaster.toast(v.getContext(), "Failed to write to pacakge: " + e.getFileName());
             }
         }
     };

@@ -51,6 +51,18 @@ public class DocumentViewDelegateTests extends InstrumentationTestCase {
 
     }
 
+    public void testGetsFileTypeForFilename() {
+
+        String fileName = "foobarbatz_1a-123a.pptx";
+        FileType expectedType = FileType.PPT;
+
+        FileType type = FileType.getTypeForFilename(fileName);
+
+        assertNotNull(type);
+        assertEquals(expectedType, type);
+
+    }
+
     public void testBadExtensionHasNoFileType() {
 
         String extension = "badFileType";

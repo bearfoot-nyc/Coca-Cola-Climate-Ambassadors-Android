@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.content.FileProvider;
+import android.widget.Toast;
 
 import com.cocacola.climateambassador.models.FileType;
+import com.cocacola.climateambassador.util.Toaster;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +16,8 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import timber.log.Timber;
 
 /**
  * Created by andrewlawton on 8/21/13.
@@ -25,6 +29,7 @@ public class DocumentViewerDelegate {
     private static final String AUTHORITY = "com.cocacola.climateambassador.files";
 
     @Inject AppPackageFileWriter mAppPackageFileWriter;
+    @Inject Timber Log;
 
     private Context mContext;
 
@@ -33,24 +38,61 @@ public class DocumentViewerDelegate {
         this.mContext = mContext;
     }
 
-    public void startActivityForFileType(Context context, FileType fileType, String fileName) throws AppPackageFileWriter.FailedToWriteToPackageException {
+    public void startActivityForFile(Context context, String fileName) throws AppPackageFileWriter.FailedToWriteToPackageException {
+        FileType type = FileType.getTypeForFilename(fileName);
+        startActivityForFile(context, type, fileName);
+    }
+
+    public void startActivityForFile(Context context, FileType fileType, String fileName) throws AppPackageFileWriter.FailedToWriteToPackageException {
 
         if(isActivityForIntentAvailable(fileType.getMimeType())) {
 
-            File file = null;
             Uri path = null;
 
             try {
-                file = createFileForFileType(fileType, fileName);
-                path = createUriForFile(file);
-            } catch (FileNotInAppPackageException e) {
-                mAppPackageFileWriter.writeToPkgDir(fileName, fileType);
-                path = createUriForFile(file);
-            } finally {
-                Intent intent = createViewerIntent(context, path, fileType);
-                context.startActivity(intent);
+
+                path = createUriForFileName(fileType, fileName);
+
             }
+            catch (FileNotInAppPackageException e) {
+
+                Toaster.toast(mContext, "FileNotInAppPackage yet: " + fileName);
+
+                // Move the file from assets to package directory
+                try {
+                    mAppPackageFileWriter.writeToPkgDir(fileName, fileType);
+                    path = createUriForFileName(fileType, fileName);
+                }
+                catch (AppPackageFileWriter.FailedToWriteToPackageException fileWriterE) {
+                    Toaster.toast(mContext, "There was an error loading the file");
+                } catch (FileNotInAppPackageException e1) {
+                    Toaster.toast(mContext, "There was an error opening the file: " + e.getMessage());
+                } finally {
+                    launchAcitivtyForValidatedPath(context, path, fileType);
+                }
+
+            }
+
+            launchAcitivtyForValidatedPath(context, path, fileType);
+
         }
+        else {
+            Toaster.toast(mContext, "No app available to show file");
+        }
+
+    }
+
+    private void launchAcitivtyForValidatedPath(Context context, Uri path, FileType fileType) {
+        Intent intent = createViewerIntent(context, path, fileType);
+        context.startActivity(intent);
+    }
+
+    public Uri createUriForFileName(FileType fileType, String fileName) throws FileNotInAppPackageException {
+
+        File file = createFileForFileType(fileType, fileName);
+        Uri path = createUriForFile(file);
+
+        return path;
 
     }
 

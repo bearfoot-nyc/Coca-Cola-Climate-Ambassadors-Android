@@ -7,7 +7,7 @@ public enum FileType {
 
     PDF("application/pdf", "pdf", "docs"),
     PPT("application/vnd.ms-powerpoint", "pptx", "docs"),
-    VIDEO("video/*", "mp4", "docs");
+    VIDEO("video/mp4", "mp4", "docs");
 
     private String extension;
     private String mimeType;
@@ -31,6 +31,15 @@ public enum FileType {
         return directory;
     }
 
+    public static FileType getTypeForFilename(String filename) {
+
+        String extension = getExtensionFromFilename(filename);
+        FileType type = getTypeForExtension(extension);
+
+        return type;
+
+    }
+
     public static FileType getTypeForExtension(String extension) {
 
         FileType fileType = null;
@@ -46,6 +55,19 @@ public enum FileType {
         }
 
         return fileType;
+
+    }
+
+    public static String getExtensionFromFilename(String fileName) {
+
+        String extension = "";
+
+        int i = fileName.lastIndexOf('.');
+        if (i > 0) {
+            extension = fileName.substring(i + 1);
+        }
+
+        return extension;
 
     }
 

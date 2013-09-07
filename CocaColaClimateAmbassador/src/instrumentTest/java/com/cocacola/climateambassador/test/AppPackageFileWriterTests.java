@@ -149,4 +149,20 @@ public class AppPackageFileWriterTests extends InstrumentationTestCase {
 
     }
 
+    public void testReturnsFileAfterWritingToPkgDir() {
+
+        InputStream in = getValidInputStream();
+        String fileName = getValidFileName();
+        FileType fileType = getValidFileType();
+
+        try {
+            mAppPackageFileWriter.writeToPkgDir(in, fileType.getDirectory(), fileName);
+            assertFileIsInDir(fileName);
+        } catch (AppPackageFileWriter.FailedToWriteToPackageException e) {
+            e.printStackTrace();
+            fail("Threw FailedToWriteToPackageException");
+        }
+
+    }
+
 }
