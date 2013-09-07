@@ -118,7 +118,7 @@ public class PackagingCaseActivity extends CaCaseActivity {
         if (mCase.getCourseMaterials() != null) {
 
             for (Document courseMaterial : mCase.getCourseMaterials()) {
-                View materialOption = inflater.inflate(R.layout.favorite_divider_button, null);
+                View materialOption = inflater.inflate(R.layout.depr_favorite_divider_button, null);
                 setupButtonAccordingToDocument(courseMaterial, materialOption, inflater);
                 courseMaterialFrame.addView(materialOption);
             }
@@ -130,7 +130,7 @@ public class PackagingCaseActivity extends CaCaseActivity {
         if (mCase.getCaseStudies() != null) {
 
             for (Document caseStudy : mCase.getCaseStudies()) {
-                View studyOption = inflater.inflate(R.layout.favorite_divider_button, null);
+                View studyOption = inflater.inflate(R.layout.depr_favorite_divider_button, null);
                 setupButtonAccordingToDocument(caseStudy, studyOption, inflater);
                 caseStudyFrame.addView(studyOption);
             }

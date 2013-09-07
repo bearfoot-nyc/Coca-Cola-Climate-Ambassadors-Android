@@ -67,7 +67,7 @@ public class ForSuppliersBodyFragment extends CaFragment {
 
         mContext = getActivity();
         //Set up Short Intro button
-        View introButtonLayout = inflater.inflate(R.layout.favorite_divider_button, null);
+        View introButtonLayout = inflater.inflate(R.layout.depr_favorite_divider_button, null);
         //TODO: change to listen Image
         ((ImageView)introButtonLayout.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_pdf);
         ((TextView) introButtonLayout.findViewById(R.id.doc_title)).setText(INTRO_BUTTON_TITLE);
@@ -81,7 +81,7 @@ public class ForSuppliersBodyFragment extends CaFragment {
         introductionButton.addView(introButtonLayout);
 
         //Set up video button
-        View videoButtonLayout = inflater.inflate(R.layout.favorite_divider_button, null);
+        View videoButtonLayout = inflater.inflate(R.layout.depr_favorite_divider_button, null);
         ((TextView) videoButtonLayout.findViewById(R.id.doc_title)).setText(VIDEO_BUTTON_TITLE);
         //TODO: Change to MOV Image
         ((ImageView)introButtonLayout.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_doc);
@@ -95,7 +95,7 @@ public class ForSuppliersBodyFragment extends CaFragment {
         videoButton.addView(videoButtonLayout);
 
         //Set up supplier guide button
-        View supplierButtonLayout = inflater.inflate(R.layout.favorite_divider_button, null);
+        View supplierButtonLayout = inflater.inflate(R.layout.depr_favorite_divider_button, null);
         ((ImageView)introButtonLayout.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_pdf);
         ((TextView) supplierButtonLayout.findViewById(R.id.doc_title)).setText(SUPPLIER_GUIDE_TITLE);
         ((LinearLayout) supplierButtonLayout.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {

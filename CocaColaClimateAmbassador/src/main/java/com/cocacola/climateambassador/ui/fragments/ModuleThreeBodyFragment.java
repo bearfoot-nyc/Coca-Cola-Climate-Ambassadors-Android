@@ -29,7 +29,7 @@ public class ModuleThreeBodyFragment extends CaFragment {
 
         LinearLayout courseMaterialFrame = (LinearLayout) v.findViewById(R.id.course_materials);
         for (int i = 0; i < 3; i++) {
-            View materialOption = inflater.inflate(R.layout.favorite_divider_button, null);
+            View materialOption = inflater.inflate(R.layout.depr_favorite_divider_button, null);
             switch (i) {
                 case 0:
                     Document ppt = new Document("unknown.ppt" , getResources().getString(R.string.value_chain_label), "ppt");

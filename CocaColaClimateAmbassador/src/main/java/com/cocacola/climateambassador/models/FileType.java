@@ -7,7 +7,7 @@ public enum FileType {
 
     PDF("application/pdf", "pdf", "docs"),
     PPT("application/vnd.ms-powerpoint", "pptx", "docs"),
-    VIDEO("video/*", "mp4", "video");
+    VIDEO("video/*", "mp4", "docs");
 
     private String extension;
     private String mimeType;
@@ -48,9 +48,5 @@ public enum FileType {
         return fileType;
 
     }
-
-
-
-
 
 }

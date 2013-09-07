@@ -16,6 +16,7 @@ import com.cocacola.climateambassador.models.BulletPointFrame;
 import com.cocacola.climateambassador.models.Document;
 import com.cocacola.climateambassador.models.FileType;
 import com.cocacola.climateambassador.models.Module;
+import com.cocacola.climateambassador.ui.views.CourseMaterialsLayout;
 
 import javax.inject.Inject;
 
@@ -81,56 +82,14 @@ public class ModuleOneActivity extends CaModuleActivity {
             caseFrames.addView(bulletPointFrame);
         }
 
+        CourseMaterialsLayout courseMaterialsLayout = (CourseMaterialsLayout) findViewById(R.id.course_materials);
+        courseMaterialsLayout.setDocuments(module.getCourseMaterials());
 
-        LinearLayout courseMaterialFrame = (LinearLayout) findViewById(R.id.course_materials);
-        if (module.getCourseMaterials() != null && courseMaterialFrame != null) {
-
-            for (Document courseMaterial : module.getCourseMaterials()) {
-                View materialOption = inflater.inflate(R.layout.favorite_divider_button, null);
-                setupButtonAccordingToDocument(courseMaterial, materialOption, inflater);
-                courseMaterialFrame.addView(materialOption);
-            }
-
-            courseMaterialFrame.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override
     public void setupButtonAccordingToDocument(final Document doc, View viewWithButton, LayoutInflater inflater) {
-
-        if(doc != null) {
-            //TODO: Set viewWithButton background according to doc type and title
-            if (CaConstants.PDF.equals(getFileType(doc.getFileName()))) {
-                //TODO: Set image to resource once assets are added
-    //            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
-            } else if (CaConstants.PPT.equals(getFileType(doc.getFileName()))) {
-                //TODO: Set image to resource once assets are added
-    //            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
-            } else if (CaConstants.DOC.equals(getFileType(doc.getFileName()))) {
-                //TODO: Set image to resource once assets are added
-    //            ((ImageView)viewWithButton.findViewById(R.id.doc_type)).setImageResource();
-            } else {
-                //Do nothing
-            }
-
-            ((TextView) viewWithButton.findViewById(R.id.doc_title)).setText(doc.getLabel());
-            ((LinearLayout) viewWithButton.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // FIXME Map file name String to a FileType enum type
-                    try {
-                        mDocumentViewerDelegate.startActivityForFileType(ModuleOneActivity.this, FileType.PDF, "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf");
-                    } catch (AppPackageFileWriter.FailedToWriteToPackageException e) {
-                        Toast.makeText(ModuleOneActivity.this, "Failed to write to pacakge: " + e.getFileName(), Toast.LENGTH_LONG);
-                    }
-                }
-            });
-        }
-        else {
-            Log.w("Document shouldn't be null");
-        }
-
-
+        // FIXME No need to implement this
     }
 
     @Override

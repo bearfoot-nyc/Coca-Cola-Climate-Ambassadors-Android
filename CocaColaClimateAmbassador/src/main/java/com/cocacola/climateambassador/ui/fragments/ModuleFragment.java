@@ -87,7 +87,7 @@ public class ModuleFragment extends CaFragment {
         if (mModule.getCourseMaterials() != null && courseMaterialFrame != null) {
 
             for (Document courseMaterial : mModule.getCourseMaterials()) {
-                View materialOption = inflater.inflate(R.layout.favorite_divider_button, null);
+                View materialOption = inflater.inflate(R.layout.depr_favorite_divider_button, null);
                 setupButtonAccordingToDocument(courseMaterial, materialOption, inflater);
                 courseMaterialFrame.addView(materialOption);
             }
