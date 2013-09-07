@@ -3,6 +3,9 @@ package com.cocacola.climateambassador.ui.activities;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.adapters.MenuListAdapter;
 import com.cocacola.climateambassador.models.NavigationDrawerItem;
+import com.cocacola.climateambassador.ui.fragments.ModuleFourBodyFragment;
+import com.cocacola.climateambassador.ui.fragments.ModuleOneBodyFragment;
+import com.cocacola.climateambassador.ui.fragments.ModuleTwoBodyFragment;
 
 import java.util.LinkedList;
 import java.util.List;

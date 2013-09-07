@@ -1,17 +1,14 @@
 package com.cocacola.climateambassador.ui.activities;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
 
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.Document;
-import com.cocacola.climateambassador.util.JsonAssetsLoader;
+import com.cocacola.climateambassador.ui.activities.CaActivity;
 
 /**
  * Created by realandylawton on 8/31/13.
  */
-public class ModuleThreeActivity extends CaModuleActivity {
+public class ModuleThreeActivity extends CaActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +19,6 @@ public class ModuleThreeActivity extends CaModuleActivity {
 
     private void setupScreen() {
         setTitle(getResources().getString(R.string.nav_item_internal_training_module_3));
-    }
-
-
-    @Override
-    public String getJsonAssetFilename() {
-        // Relies on Fragment for parsing JSON
-        return null;
     }
 
 }

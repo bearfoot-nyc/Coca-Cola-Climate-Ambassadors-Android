@@ -22,8 +22,11 @@ import com.cocacola.climateambassador.ui.fragments.CaseStudiesListFragment;
 import com.cocacola.climateambassador.ui.fragments.FavoritesFragment;
 import com.cocacola.climateambassador.ui.fragments.ForSuppliersBodyFragment;
 import com.cocacola.climateambassador.ui.fragments.InternalTrainingOverviewFragment;
+import com.cocacola.climateambassador.ui.fragments.ModuleFourBodyFragment;
 import com.cocacola.climateambassador.ui.fragments.ModuleFragment;
+import com.cocacola.climateambassador.ui.fragments.ModuleOneBodyFragment;
 import com.cocacola.climateambassador.ui.fragments.ModuleThreeBodyFragment;
+import com.cocacola.climateambassador.ui.fragments.ModuleTwoBodyFragment;
 import com.cocacola.climateambassador.ui.views.DocumentView;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.google.gson.Gson;
@@ -57,11 +60,14 @@ import timber.log.Timber;
         DistributionCaseActivity.class,
         RefrigerationCaseActivity.class,
         IngredientCaseActivity.class,
+        ModuleOneBodyFragment.class,
+        ModuleTwoBodyFragment.class,
+        ModuleThreeBodyFragment.class,
+        ModuleFourBodyFragment.class,
         ModuleOneActivity.class,
         ModuleTwoActivity.class,
-        ModuleFourActivity.class,
         ModuleThreeActivity.class,
-        ModuleThreeBodyFragment.class,
+        ModuleFourActivity.class,
         DocumentView.class
 })
 public class ClimateAmbassadorModule {
