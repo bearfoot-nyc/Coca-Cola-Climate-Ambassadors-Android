@@ -5,6 +5,7 @@ import android.content.Context;
 import com.cocacola.climateambassador.BuildConfig;
 import com.cocacola.climateambassador.CaApplication;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
+import com.cocacola.climateambassador.ui.activities.ClimateAmbassadorActivity;
 import com.cocacola.climateambassador.ui.activities.DistributionCaseActivity;
 import com.cocacola.climateambassador.ui.activities.ForSuppliersActivity;
 import com.cocacola.climateambassador.ui.activities.IngredientCaseActivity;
@@ -19,6 +20,7 @@ import com.cocacola.climateambassador.ui.activities.PackagingCaseActivity;
 import com.cocacola.climateambassador.ui.activities.RefrigerationCaseActivity;
 import com.cocacola.climateambassador.ui.fragments.CaseFragment;
 import com.cocacola.climateambassador.ui.fragments.CaseStudiesListFragment;
+import com.cocacola.climateambassador.ui.fragments.ClimateAmbassadorFragment;
 import com.cocacola.climateambassador.ui.fragments.FavoritesFragment;
 import com.cocacola.climateambassador.ui.fragments.ForSuppliersBodyFragment;
 import com.cocacola.climateambassador.ui.fragments.InternalTrainingOverviewFragment;
@@ -60,10 +62,12 @@ import timber.log.Timber;
         DistributionCaseActivity.class,
         RefrigerationCaseActivity.class,
         IngredientCaseActivity.class,
+        ClimateAmbassadorFragment.class,
         ModuleOneBodyFragment.class,
         ModuleTwoBodyFragment.class,
         ModuleThreeBodyFragment.class,
         ModuleFourBodyFragment.class,
+        ClimateAmbassadorActivity.class,
         ModuleOneActivity.class,
         ModuleTwoActivity.class,
         ModuleThreeActivity.class,

@@ -26,6 +26,7 @@ public class SectionActivity extends CaDrawerActivity {
             mNavigationDrawerItems = new LinkedList<NavigationDrawerItem>();
             mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training, 0, true, null));
             mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_overview, 0, false, InternalTrainingActivity.class));
+            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_climate_ambassador, 0, false, ClimateAmbassadorActivity.class));
             mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_module_1, 0, false, ModuleOneActivity.class));
             mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_module_2, 0, false, ModuleTwoActivity.class));
             mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_module_3, 0, false, ModuleThreeActivity.class));

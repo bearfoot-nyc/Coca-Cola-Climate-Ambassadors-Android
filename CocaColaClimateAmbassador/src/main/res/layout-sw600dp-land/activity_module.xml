@@ -42,7 +42,7 @@
             android:paddingLeft="30dp"/>
 
         <TextView
-            android:id="@+id/instruction"
+            android:id="@+id/course_materials_label"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:layout_below="@+id/case_frames"
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:orientation="vertical"
             android:layout_alignLeft="@+id/title"
-            android:layout_below="@+id/instruction"
+            android:layout_below="@+id/course_materials_label"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp" />

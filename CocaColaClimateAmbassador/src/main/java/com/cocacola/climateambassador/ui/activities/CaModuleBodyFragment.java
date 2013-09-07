@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.models.BulletPointFrame;
+import com.cocacola.climateambassador.models.Document;
 import com.cocacola.climateambassador.models.Module;
 import com.cocacola.climateambassador.ui.fragments.CaFragment;
 import com.cocacola.climateambassador.ui.views.CourseMaterialsLayout;
@@ -19,9 +20,12 @@ import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.InjectView;
+import butterknife.Views;
 import timber.log.Timber;
 
 /**
@@ -34,6 +38,9 @@ public abstract class CaModuleBodyFragment extends CaFragment {
 
     @Inject
     Timber Log;
+
+    @InjectView(R.id.course_materials_label)
+    TextView courseMaterialsLabelView;
 
     public abstract String getJsonAssetFilename();
 
@@ -61,6 +68,7 @@ public abstract class CaModuleBodyFragment extends CaFragment {
         Module module = getModule();
 
         View v = inflater.inflate(R.layout.frag_module, null);
+        Views.inject(this, v);
 
         if(!TextUtils.isEmpty(module.getTitle())) {
             ((TextView)v.findViewById(R.id.title)).setText(module.getTitle());
@@ -70,6 +78,7 @@ public abstract class CaModuleBodyFragment extends CaFragment {
             ((TextView)v.findViewById(R.id.description)).setText(Html.fromHtml(module.getBodyText()));
         }
 
+        // Bullet point frames
         LinearLayout caseFrames = (LinearLayout) v.findViewById(R.id.case_frames);
         if (module.getBulletPointFrame() != null) {
             BulletPointFrame caseBulletPointFrame = module.getBulletPointFrame();
@@ -102,8 +111,14 @@ public abstract class CaModuleBodyFragment extends CaFragment {
             caseFrames.addView(bulletPointFrame);
         }
 
-        CourseMaterialsLayout courseMaterialsLayout = (CourseMaterialsLayout) v.findViewById(R.id.course_materials);
-        courseMaterialsLayout.setDocuments(module.getCourseMaterials());
+        List<Document> documentList = module.getCourseMaterials();
+        if(documentList.size() > 0) {
+            CourseMaterialsLayout courseMaterialsLayout = (CourseMaterialsLayout) v.findViewById(R.id.course_materials);
+            courseMaterialsLayout.setDocuments(module.getCourseMaterials());
+        }
+        else {
+            courseMaterialsLabelView.setVisibility(View.INVISIBLE);
+        }
 
         return v;
 
