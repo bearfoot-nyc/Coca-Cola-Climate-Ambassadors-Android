@@ -29,9 +29,6 @@ import butterknife.Views;
 
 public class ForSuppliersBodyFragment extends CaFragment {
 
-    //Constants
-    public static final String TAG = "ForSuppliersBodyFragment";
-    public static final String INTRO_BUTTON_TITLE = "Listen to Short Introduction";
     public static final String VIDEO_BUTTON_TITLE = "View The Video";
     public static final String SUPPLIER_GUIDE_TITLE = "Flip through the Supplier Guide";
 
@@ -41,16 +38,6 @@ public class ForSuppliersBodyFragment extends CaFragment {
     FrameLayout videoButton;
     @InjectView(R.id.supplier_guide_button)
     FrameLayout supplierGuideButton;
-    @InjectView(R.id.ingredient_button)
-    Button ingredientButton;
-    @InjectView(R.id.packaging_button)
-    Button packagingButton;
-    @InjectView(R.id.manufacturing_button)
-    Button manufactureButton;
-    @InjectView(R.id.distribution_button)
-    Button distributionButton;
-    @InjectView(R.id.refrigeration_button)
-    Button refrigerationButton;
 
     Context mContext;
 
@@ -68,17 +55,6 @@ public class ForSuppliersBodyFragment extends CaFragment {
         mContext = getActivity();
         //Set up Short Intro button
         View introButtonLayout = inflater.inflate(R.layout.depr_favorite_divider_button, null);
-        //TODO: change to listen Image
-        ((ImageView)introButtonLayout.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_pdf);
-        ((TextView) introButtonLayout.findViewById(R.id.doc_title)).setText(INTRO_BUTTON_TITLE);
-        ((LinearLayout) introButtonLayout.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO: Open Document
-                Toast.makeText(getActivity(), "Touched " + INTRO_BUTTON_TITLE, Toast.LENGTH_SHORT).show();
-            }
-        });
-        introductionButton.addView(introButtonLayout);
 
         //Set up video button
         View videoButtonLayout = inflater.inflate(R.layout.depr_favorite_divider_button, null);
@@ -107,46 +83,6 @@ public class ForSuppliersBodyFragment extends CaFragment {
         });
         supplierGuideButton.addView(supplierButtonLayout);
 
-
-        ingredientButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, IngredientCaseActivity.class);
-                mContext.startActivity(intent);
-            }
-        });
-
-        packagingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, PackagingCaseActivity.class);
-                mContext.startActivity(intent);
-            }
-        });
-
-        manufactureButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, ManufacturingCaseActivity.class);
-                mContext.startActivity(intent);
-            }
-        });
-
-        distributionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, DistributionCaseActivity.class);
-                mContext.startActivity(intent);
-            }
-        });
-
-        refrigerationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, RefrigerationCaseActivity.class);
-                mContext.startActivity(intent);
-            }
-        });
 
         return view;
     }
