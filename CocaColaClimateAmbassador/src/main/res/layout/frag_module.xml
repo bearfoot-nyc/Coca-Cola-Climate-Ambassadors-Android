@@ -30,6 +30,7 @@
             android:layout_below="@+id/title"
             android:layout_alignLeft="@+id/title"
             android:paddingTop="3dp"
+            android:textIsSelectable="true"
             />
 
         <LinearLayout
