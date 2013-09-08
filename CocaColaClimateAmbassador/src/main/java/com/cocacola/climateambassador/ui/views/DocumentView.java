@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cocacola.climateambassador.AppPackageFileWriter;
 import com.cocacola.climateambassador.CaApplication;
@@ -32,7 +31,7 @@ public class DocumentView extends LinearLayout {
     static {
         sfileTypeResMap.put(FileType.PDF, R.drawable.ic_doc_pdf);
         sfileTypeResMap.put(FileType.PPT, R.drawable.ic_doc_ppt);
-        sfileTypeResMap.put(FileType.VIDEO, R.drawable.ic_doc_mov);
+        sfileTypeResMap.put(FileType.MP4, R.drawable.ic_doc_mov);
     }
 
     @Inject
