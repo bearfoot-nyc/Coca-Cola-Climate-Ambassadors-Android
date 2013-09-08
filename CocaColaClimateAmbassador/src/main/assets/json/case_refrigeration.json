@@ -8,8 +8,7 @@
             "Energy Use",
             "Insulation",
             "Coolant",
-            "Energy Source",
-            "Waste = emissions or energy opportunity"
+            "Energy Source"
         ]
     },
     "textFrames" : [
@@ -22,12 +21,12 @@
     "caseStudies" : [
 
      {
-                 "fileName" : "REFRIGERATION_Cold_Drink_Savings_Calculation-system_level.pptx",
-                 "label" : "Cold Drink Savings Calculation system level"
+                 "fileName" : "REFRIGERATION_Cold-Drink-Savings-Calculation-system level.pdf",
+                 "label" : "Cold Drink Savings Calculation"
          },
          {
-                      "fileName" : "REFRIGERATION_Energy_Management_Device_Revised.pdf",
-                      "label" : "Energy Management Device Revised"
+                      "fileName" : "REFRIGERATION_Energy-Management-Device_Revised.pdf",
+                      "label" : "Using the Energy Management Device on Coolers at Retail Outlets"
          }
         ],
     "courseMaterials" : []
