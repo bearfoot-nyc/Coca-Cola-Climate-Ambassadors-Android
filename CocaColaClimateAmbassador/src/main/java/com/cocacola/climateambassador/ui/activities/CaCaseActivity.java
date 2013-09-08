@@ -79,7 +79,7 @@ public abstract class CaCaseActivity extends CaActivity implements HasModel<Case
             //Add Bullet Points to Layout
             for (String bulletPoint : caseBulletPointFrame.getBulletPoints()) {
                 View bulletPointLayout = inflater.inflate(R.layout.depr_view_bullet_point, null);
-                ((TextView) bulletPointLayout.findViewById(R.id.bullet_text)).setText(bulletPoint);
+                ((TextView) bulletPointLayout.findViewById(R.id.bullet_text)).setText(Html.fromHtml(bulletPoint));
                 bulletList.addView(bulletPointLayout);
             }
 
