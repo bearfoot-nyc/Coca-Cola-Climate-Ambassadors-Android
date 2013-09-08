@@ -6,8 +6,10 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,12 @@ public abstract class CaCaseActivity extends CaActivity implements HasModel<Case
 
     @Inject JsonAssetsLoader mJsonAssetsLoader;
 
+    @InjectView(R.id.case_logo)
+    ImageView mLogoView;
+
+    @InjectView(R.id.scroll_view)
+    ScrollView mScrollLayout;
+
     @InjectView(R.id.case_studies)
     DocumentsLayout mCaseStudiesLayout;
 
@@ -45,8 +53,8 @@ public abstract class CaCaseActivity extends CaActivity implements HasModel<Case
 
         Case aCase = getModel();
 
-        findViewById(R.id.scroll_view).setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_case_ingredients));
-        ((ImageView)findViewById(R.id.case_logo)).setImageResource(R.drawable.ic_case_detail_ingredients);
+        mScrollLayout.setBackgroundResource(getBackgroundDrawableId());
+        mLogoView.setImageResource(getIconId());
 
         LayoutInflater inflater = getLayoutInflater();
 
@@ -120,6 +128,9 @@ public abstract class CaCaseActivity extends CaActivity implements HasModel<Case
         mCaseStudiesLayout.setDocuments(aCase.getCaseStudies());
 
     }
+
+    abstract int getBackgroundDrawableId();
+    abstract int getIconId();
 
     private Case mCase;
 

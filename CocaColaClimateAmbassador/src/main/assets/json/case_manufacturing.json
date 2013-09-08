@@ -22,18 +22,19 @@
             "subtitleTextPairs": []
         }
     ],
-    "caseStudies" : [ {
-            "fileName" : "MANUFACTURING_CC-Amatil-Blow-Fill-Technology.pdf",
-            "label" : "Coca-Cola Amatil Blow Fill Technology"
-    },
-    {
-            "fileName" : "MANUFACTURING_Dr.-Pepper-Snapple-Compression-Technology.pdf",
-            "label" : "Dr.Pepper/Snapple Group Compression Technology"
-    },
-    {
-            "fileName" : "MANUFACTURING_Top10.pdf",
-            "label" : "10 Essential Energy Efficiency Practices for Each Facility"
-    }
+    "caseStudies" : [
+        {
+                "fileName" : "MANUFACTURING_Top10.pdf",
+                "label" : "10 Essential Energy Efficiency Practices for Each Facility"
+        },
+        {
+                "fileName" : "MANUFACTURING_CC-Amatil-Blow-Fill-Technology.pdf",
+                "label" : "Coca-Cola Amatil Blow Fill Technology"
+        },
+        {
+                "fileName" : "MANUFACTURING_Dr.-Pepper-Snapple-Compression-Technology.pdf",
+                "label" : "Dr.Pepper/Snapple Group Compression Technology"
+        }
     ],
     "courseMaterials" : []
 }
