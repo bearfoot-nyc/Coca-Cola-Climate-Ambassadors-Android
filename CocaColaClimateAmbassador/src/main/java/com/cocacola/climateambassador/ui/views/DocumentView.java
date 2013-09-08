@@ -32,6 +32,7 @@ public class DocumentView extends LinearLayout {
         sfileTypeResMap.put(FileType.PDF, R.drawable.ic_doc_pdf);
         sfileTypeResMap.put(FileType.PPT, R.drawable.ic_doc_ppt);
         sfileTypeResMap.put(FileType.MP4, R.drawable.ic_doc_mov);
+        sfileTypeResMap.put(FileType.THREEGP, R.drawable.ic_doc_mov);
     }
 
     @Inject
