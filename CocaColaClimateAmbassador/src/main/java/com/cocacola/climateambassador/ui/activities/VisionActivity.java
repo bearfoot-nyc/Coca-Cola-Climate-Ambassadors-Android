@@ -51,7 +51,7 @@ public class VisionActivity extends CaActivity implements HasModel<Case> {
         setContentView(R.layout.activity_2020_vision);
 
         Case module = getModel();
-        
+
         mTitleView.setText(module.getTitle());
         mBodyTextView.setText(Html.fromHtml(module.getBodyText()));
 

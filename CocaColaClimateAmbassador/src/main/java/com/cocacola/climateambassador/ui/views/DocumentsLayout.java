@@ -38,11 +38,14 @@ public class DocumentsLayout extends LinearLayout {
 
         for(Document doc : documents) {
 
-            DocumentView docView = (DocumentView) inflater.inflate(R.layout.view_document, null);
+            DocumentView docView = (DocumentView) inflater.inflate(R.layout.view_document, this, false);
             docView.setDocument(doc);
             addView(docView);
 
         }
+
+        invalidate();
+        requestLayout();
 
     }
 
