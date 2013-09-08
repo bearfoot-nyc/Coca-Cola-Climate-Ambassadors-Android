@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.cocacola.climateambassador.ui.views.DocumentView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@color/gray"
-    android:padding="14dp"
-    android:layout_marginBottom="8dp">
+    style="@style/Ca.DocumentView">
 
     <ImageView
         android:id="@+id/doc_image"
@@ -14,11 +9,6 @@
 
     <TextView
         android:id="@+id/doc_title"
-        style="@style/Ca"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:layout_marginLeft="6dp"
-        android:textStyle="bold"
-        android:textColor="@color/coke_red" />
+        style="@style/Ca.DocumentViewTitle" />
 
 </com.cocacola.climateambassador.ui.views.DocumentView>

@@ -7,7 +7,10 @@ import android.widget.TextView;
 import com.cocacola.climateambassador.HasModel;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.models.Case;
+import com.cocacola.climateambassador.models.Document;
+import com.cocacola.climateambassador.models.FileType;
 import com.cocacola.climateambassador.ui.views.BulletPointLayout;
+import com.cocacola.climateambassador.ui.views.DocumentView;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.cocacola.climateambassador.util.Toaster;
 import com.google.gson.JsonSyntaxException;
@@ -48,7 +51,7 @@ public class VisionActivity extends CaActivity implements HasModel<Case> {
         setContentView(R.layout.activity_2020_vision);
 
         Case module = getModel();
-
+        
         mTitleView.setText(module.getTitle());
         mBodyTextView.setText(Html.fromHtml(module.getBodyText()));
 

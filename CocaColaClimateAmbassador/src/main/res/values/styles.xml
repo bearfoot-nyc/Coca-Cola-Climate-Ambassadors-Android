@@ -45,4 +45,20 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="Ca.DocumentView">
+        <item name="android:orientation">horizontal</item>s
+        <item name="android:background">@color/gray</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+    </style>
+
+    <style name="Ca.DocumentViewTitle">
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_marginLeft">6dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/coke_red</item>
+    </style>
+
 </resources>
