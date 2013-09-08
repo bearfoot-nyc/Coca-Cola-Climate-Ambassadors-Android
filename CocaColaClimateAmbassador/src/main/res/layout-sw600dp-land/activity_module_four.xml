@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/frag_internal_training_body"
-            android:name="com.cocacola.climateambassador.ui.fragments.ModuleTwoBodyFragment"
+            android:name="com.cocacola.climateambassador.ui.fragments.ModuleFourBodyFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
