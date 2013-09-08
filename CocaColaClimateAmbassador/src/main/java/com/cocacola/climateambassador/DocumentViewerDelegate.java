@@ -2,6 +2,8 @@ package com.cocacola.climateambassador;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.support.v4.content.FileProvider;
 
@@ -9,6 +11,7 @@ import com.cocacola.climateambassador.models.FileType;
 import com.cocacola.climateambassador.util.Toaster;
 
 import java.io.File;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -41,47 +44,48 @@ public class DocumentViewerDelegate {
 
     public void startActivityForFile(Context context, FileType fileType, String fileName) throws AppPackageFileWriter.FailedToWriteToPackageException {
 
-        if(isActivityForIntentAvailable(fileType.getMimeType())) {
+        Uri path = null;
 
-            Uri path = null;
+        try {
 
+            path = createUriForFileName(fileType, fileName);
+
+        }
+        catch (FileNotInAppPackageException e) {
+
+            Log.w("FileNotInAppPackage yet: %s",fileName);
+
+            // Move the file from assets to package directory
             try {
-
+                mAppPackageFileWriter.writeToPkgDir(fileName, fileType);
                 path = createUriForFileName(fileType, fileName);
-
             }
-            catch (FileNotInAppPackageException e) {
-
-                Toaster.toast(mContext, "FileNotInAppPackage yet: " + fileName);
-
-                // Move the file from assets to package directory
-                try {
-                    mAppPackageFileWriter.writeToPkgDir(fileName, fileType);
-                    path = createUriForFileName(fileType, fileName);
-                }
-                catch (AppPackageFileWriter.FailedToWriteToPackageException fileWriterE) {
-                    Toaster.toast(mContext, "There was an error loading the file");
-                } catch (FileNotInAppPackageException e1) {
-                    Toaster.toast(mContext, "There was an error opening the file: " + e.getMessage());
-                } finally {
-                    launchActivityForValidatedPath(context, path, fileType);
-                }
-
+            catch (AppPackageFileWriter.FailedToWriteToPackageException fileWriterE) {
+                Toaster.toast(mContext, "There was an error loading the file");
+            } catch (FileNotInAppPackageException e1) {
+                Toaster.toast(mContext, "There was an error opening the file: " + e.getMessage());
+            } finally {
+                launchActivityForValidatedPath(context, path, fileType);
             }
 
-            launchActivityForValidatedPath(context, path, fileType);
+        }
 
-        }
-        else {
-            Toaster.toast(mContext, "No app available to show file");
-        }
+        launchActivityForValidatedPath(context, path, fileType);
 
     }
 
     private void launchActivityForValidatedPath(Context context, Uri path, FileType fileType) {
-             Intent intent = createViewerIntent(context, path, fileType);
-             context.startActivity(intent);
-         }
+
+        Intent intent = createViewerIntent(context, path, fileType);
+
+        if(isActivityForIntentAvailable(intent)) {
+            context.startActivity(intent);
+        }
+        else {
+            Toaster.toast(context, R.string.no_activity_available);
+        }
+
+    }
 
     public Uri createUriForFileName(FileType fileType, String fileName) throws FileNotInAppPackageException {
 
@@ -138,9 +142,14 @@ public class DocumentViewerDelegate {
 
     }
 
-    private boolean isActivityForIntentAvailable(String dataType) {
-        // FIXME Implement this
-        return true;
+    private boolean isActivityForIntentAvailable(Intent intent) {
+
+        // Verify it resolves
+        PackageManager packageManager = mContext.getPackageManager();
+        List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
+
+        return activities.size() > 0;
+
     }
 
 }

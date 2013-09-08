@@ -167,4 +167,10 @@ public class DocumentViewDelegateTests extends InstrumentationTestCase {
 
     }
 
+    public void testCatchesActivityNotFoundException() {
+
+        // TODO Implement this.  Being a good TDDer
+
+    }
+
 }
