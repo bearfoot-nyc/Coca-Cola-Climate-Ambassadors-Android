@@ -1,6 +1,7 @@
 package com.cocacola.climateambassador.ui.views;
 
 import android.content.Context;
+import android.text.Html;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,7 +40,7 @@ public class BulletPointView extends LinearLayout {
     public void setBulletPoint(String point) {
 
         if(point != null) {
-            mBulletPointView.setText(point);
+            mBulletPointView.setText(Html.fromHtml(point));
         }
 
     }

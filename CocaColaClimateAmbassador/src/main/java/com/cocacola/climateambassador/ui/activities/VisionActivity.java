@@ -3,11 +3,10 @@ package com.cocacola.climateambassador.ui.activities;
 import android.os.Bundle;
 import android.text.Html;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cocacola.climateambassador.HasModel;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.Module;
+import com.cocacola.climateambassador.models.Case;
 import com.cocacola.climateambassador.ui.views.BulletPointLayout;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.cocacola.climateambassador.util.Toaster;
@@ -22,7 +21,7 @@ import butterknife.InjectView;
 /**
  * Created by realandylawton on 9/7/13.
  */
-public class VisionActivity extends CaActivity implements HasModel<Module> {
+public class VisionActivity extends CaActivity implements HasModel<Case> {
 
     @Inject
     JsonAssetsLoader mJsonAssetsLoader;
@@ -36,7 +35,10 @@ public class VisionActivity extends CaActivity implements HasModel<Module> {
     @InjectView(R.id.bullet_points)
     BulletPointLayout mBulletPointLayout;
 
-    private Module mModule;
+    @InjectView(R.id.vision_callout)
+    TextView mCalloutView;
+
+    private Case mCase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,21 +47,23 @@ public class VisionActivity extends CaActivity implements HasModel<Module> {
 
         setContentView(R.layout.activity_2020_vision);
 
-        Module module = getModel();
+        Case module = getModel();
 
         mTitleView.setText(module.getTitle());
         mBodyTextView.setText(Html.fromHtml(module.getBodyText()));
 
         mBulletPointLayout.setBulletPoints(module.getBulletPointFrame().getBulletPoints());
 
+        mCalloutView.setText(module.getTextFrames().get(0).getBodyText());
+
     }
 
     @Override
-    public Module getModel() {
+    public Case getModel() {
 
-        if(mModule == null) {
+        if(mCase == null) {
             try {
-                mModule = mJsonAssetsLoader.parseModuleFromJsonFile(getJsonAssetFilename());
+                mCase = mJsonAssetsLoader.parseCaseFromJsonFile(getJsonAssetFilename());
             }
             catch (IOException e) {
                 onAssetLoadError();
@@ -68,7 +72,7 @@ public class VisionActivity extends CaActivity implements HasModel<Module> {
             }
         }
 
-        return mModule;
+        return mCase;
     }
 
     private void onAssetLoadError() {

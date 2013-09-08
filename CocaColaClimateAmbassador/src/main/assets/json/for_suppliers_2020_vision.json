@@ -5,12 +5,12 @@
         "title" : "",
         "subtitle" : "",
         "bulletPoints" : [
-            "People: Be a great place to work where people are inspired to be the best they can be.",
-            "Portfolio: Bring to the world a portfolio of quality beverage brands that anticipate and satisfy people's desires and needs.",
-            "Partners: Nurture a winning network of customers and suppliers, together we create mutual, enduring value.",
-            "Planet: Be a responsible citizen that makes a difference by helping build and support sustainable communities.",
-            "Profit: Maximize long-term return to shareowners while being mindful of our overall responsibilities.",
-            "Productivity: Be a highly effective, lean and fast-moving organization."
+            "<strong>People</strong>: Be a great place to work where people are inspired to be the best they can be.",
+            "<strong>Portfolio</strong>: Bring to the world a portfolio of quality beverage brands that anticipate and satisfy people's desires and needs.",
+            "<strong>Partners</strong>: Nurture a winning network of customers and suppliers, together we create mutual, enduring value.",
+            "<strong>Planet</strong>: Be a responsible citizen that makes a difference by helping build and support sustainable communities.",
+            "<strong>Profit</strong>: Maximize long-term return to shareowners while being mindful of our overall responsibilities.",
+            "<strong>Productivity</strong>: Be a highly effective, lean and fast-moving organization."
         ]
     },
     "textFrames" : [
