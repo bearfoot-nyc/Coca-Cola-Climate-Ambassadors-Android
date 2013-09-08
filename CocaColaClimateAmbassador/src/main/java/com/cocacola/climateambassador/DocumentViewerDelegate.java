@@ -4,15 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.content.FileProvider;
-import android.widget.Toast;
 
 import com.cocacola.climateambassador.models.FileType;
 import com.cocacola.climateambassador.util.Toaster;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -68,12 +64,12 @@ public class DocumentViewerDelegate {
                 } catch (FileNotInAppPackageException e1) {
                     Toaster.toast(mContext, "There was an error opening the file: " + e.getMessage());
                 } finally {
-                    launchAcitivtyForValidatedPath(context, path, fileType);
+                    launchActivityForValidatedPath(context, path, fileType);
                 }
 
             }
 
-            launchAcitivtyForValidatedPath(context, path, fileType);
+            launchActivityForValidatedPath(context, path, fileType);
 
         }
         else {
@@ -82,10 +78,10 @@ public class DocumentViewerDelegate {
 
     }
 
-    private void launchAcitivtyForValidatedPath(Context context, Uri path, FileType fileType) {
-        Intent intent = createViewerIntent(context, path, fileType);
-        context.startActivity(intent);
-    }
+    private void launchActivityForValidatedPath(Context context, Uri path, FileType fileType) {
+             Intent intent = createViewerIntent(context, path, fileType);
+             context.startActivity(intent);
+         }
 
     public Uri createUriForFileName(FileType fileType, String fileName) throws FileNotInAppPackageException {
 
@@ -146,30 +142,5 @@ public class DocumentViewerDelegate {
         // FIXME Implement this
         return true;
     }
-
-    //    public void startPdfViewerActivity(Context context, String fileName) {
-//
-//        if(isActivityForIntentAvailable("application/pdf")) {
-//            Uri path = createUriForFile(FileType.PDF, fileName);
-//            Intent intent = createViewerIntent(context, path, FileType.PDF);
-//            context.startActivity(intent);
-//        }
-//
-//    }
-//
-//    public void startPptViewActivity(Context context, String fileName) {
-//
-//        if(isActivityForIntentAvailable(FileType.PPT.getMimeType())) {
-//            Uri path = createUriForFile(FileType.PPT, fileName);
-//            Intent intent = createViewerIntent(context, path, FileType.PPT);
-//            context.startActivity(intent);
-//        }
-//
-//    }
-//
-//    public void startActivityForDocType(Context context, FileType fileType, String fileName) {
-//
-//    }
-
 
 }

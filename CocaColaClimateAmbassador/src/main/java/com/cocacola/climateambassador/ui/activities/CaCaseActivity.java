@@ -27,6 +27,7 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import butterknife.InjectView;
+import butterknife.Views;
 
 /**
  * Created by Vinnie on 9/4/13.
@@ -119,7 +120,6 @@ public abstract class CaCaseActivity extends CaActivity implements HasModel<Case
 
         // Show documents
         mCaseStudiesLayout.setDocuments(aCase.getCaseStudies());
-
 
     }
 
