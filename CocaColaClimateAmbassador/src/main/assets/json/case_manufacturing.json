@@ -5,9 +5,9 @@
         "title" : "",
         "subtitle" : "",
         "bulletPoints" : [
-            "Energy Efficiency - more efficent manufacturing",
-            "Energy Use - using less energy",
-            "Energy Source - leveraging renewable and alternative energy sources"
+            "<strong>Energy Efficiency</strong> - more efficient manufacturing",
+            "<strong>Energy Use</strong> - using less energy",
+            "<strong>Energy Source</strong> - leveraging renewable and alternative energy sources"
         ]
     },
     "textFrames" : [
@@ -23,16 +23,16 @@
         }
     ],
     "caseStudies" : [ {
-            "fileName" : "MANUFACTURING_CC_Amatil_Blow_Fill_Technology.pdf",
-            "label" : "CC Amatil Blow Fill Technology"
+            "fileName" : "MANUFACTURING_CC-Amatil-Blow-Fill-Technology.pdf",
+            "label" : "Coca-Cola Amatil Blow Fill Technology"
     },
     {
-            "fileName" : "MANUFACTURING_Dr.Pepper_Snapple_Compression_Technology.pdf",
-            "label" : "Dr.Pepper Snapple Compression Technology"
+            "fileName" : "MANUFACTURING_Dr.-Pepper-Snapple-Compression-Technology.pdf",
+            "label" : "Dr.Pepper/Snapple Group Compression Technology"
     },
     {
             "fileName" : "MANUFACTURING_Top10.pdf",
-            "label" : "Top10"
+            "label" : "10 Essential Energy Efficiency Practices for Each Facility"
     }
     ],
     "courseMaterials" : []
