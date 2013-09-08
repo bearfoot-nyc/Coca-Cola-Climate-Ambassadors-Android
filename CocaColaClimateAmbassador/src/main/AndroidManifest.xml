@@ -110,6 +110,13 @@
                 android:screenOrientation="landscape"
                 android:parentActivityName=".ui.activities.InternalTrainingActivity">
         </activity>
+        <activity
+                android:name=".ui.activities.VisionActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:label="@string/nav_item_for_suppliers_2020_vision"
+                android:screenOrientation="landscape"
+                android:parentActivityName=".ui.activities.ForSuppliersActivity">
+        </activity>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

@@ -33,6 +33,7 @@ public class SectionActivity extends CaDrawerActivity {
             mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_module_4, 0, false, ModuleFourActivity.class));
             mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_for_suppliers, 0, true, null));
             mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_for_suppliers_overview, 0, false, ForSuppliersActivity.class));
+            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_for_suppliers_2020_vision, 0, false, VisionActivity.class));
         }
         return mNavigationDrawerItems;
     }

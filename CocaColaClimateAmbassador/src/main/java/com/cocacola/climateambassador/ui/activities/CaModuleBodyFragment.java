@@ -99,7 +99,7 @@ public abstract class CaModuleBodyFragment extends CaFragment implements HasMode
 
             //Add Bullet Points to Layout
             for (String bulletPoint : caseBulletPointFrame.getBulletPoints()) {
-                View bulletPointLayout = inflater.inflate(R.layout.case_frame_bullet_point, null);
+                View bulletPointLayout = inflater.inflate(R.layout.depr_view_bullet_point, null);
                 ((TextView) bulletPointLayout.findViewById(R.id.bullet_text)).setText(bulletPoint);
                 //Must set text color, base color is white (for cases)
                 ((TextView) bulletPointLayout.findViewById(R.id.bullet_text)).setTextColor(getResources().getColor(R.color.black));

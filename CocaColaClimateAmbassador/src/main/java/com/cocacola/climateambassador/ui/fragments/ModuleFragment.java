@@ -73,7 +73,7 @@ public class ModuleFragment extends CaFragment {
 
             //Add Bullet Points to Layout
             for (String bulletPoint : caseBulletPointFrame.getBulletPoints()) {
-                View bulletPointLayout = inflater.inflate(R.layout.case_frame_bullet_point, null);
+                View bulletPointLayout = inflater.inflate(R.layout.depr_view_bullet_point, null);
                 ((TextView) bulletPointLayout.findViewById(R.id.bullet_text)).setText(bulletPoint);
                 bulletList.addView(bulletPointLayout);
             }

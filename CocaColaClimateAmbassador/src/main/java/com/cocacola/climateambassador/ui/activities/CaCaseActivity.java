@@ -1,7 +1,6 @@
 package com.cocacola.climateambassador.ui.activities;
 
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -27,7 +26,6 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import butterknife.InjectView;
-import butterknife.Views;
 
 /**
  * Created by Vinnie on 9/4/13.
@@ -80,7 +78,7 @@ public abstract class CaCaseActivity extends CaActivity implements HasModel<Case
 
             //Add Bullet Points to Layout
             for (String bulletPoint : caseBulletPointFrame.getBulletPoints()) {
-                View bulletPointLayout = inflater.inflate(R.layout.case_frame_bullet_point, null);
+                View bulletPointLayout = inflater.inflate(R.layout.depr_view_bullet_point, null);
                 ((TextView) bulletPointLayout.findViewById(R.id.bullet_text)).setText(bulletPoint);
                 bulletList.addView(bulletPointLayout);
             }
