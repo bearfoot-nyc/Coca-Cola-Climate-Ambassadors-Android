@@ -29,6 +29,11 @@
             "fileName" : "Life-of-a-Bottle-video.mp4",
             "label" : "Life of a Bottle",
             "fileType" : "MP4"
-        }
+        },
+        {
+                    "fileName" : "test-movie.mp4",
+                    "label" : "Test Movie",
+                    "fileType" : "MP4"
+                }
     ]
 }

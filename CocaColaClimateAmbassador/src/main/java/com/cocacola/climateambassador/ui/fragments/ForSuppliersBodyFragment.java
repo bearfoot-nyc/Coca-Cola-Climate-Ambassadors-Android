@@ -13,21 +13,36 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cocacola.climateambassador.HasModel;
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.models.Module;
 import com.cocacola.climateambassador.ui.activities.DistributionCaseActivity;
 import com.cocacola.climateambassador.ui.activities.IngredientCaseActivity;
 import com.cocacola.climateambassador.ui.activities.ManufacturingCaseActivity;
 import com.cocacola.climateambassador.ui.activities.PackagingCaseActivity;
 import com.cocacola.climateambassador.ui.activities.RefrigerationCaseActivity;
+import com.cocacola.climateambassador.util.JsonAssetsLoader;
+import com.google.gson.JsonSyntaxException;
+
+import java.io.IOException;
+
+import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.Views;
+import timber.log.Timber;
 
 /**
  * Created by Vinnie Vendemia on 8/28/13.
  */
 
-public class ForSuppliersBodyFragment extends CaFragment {
+public class ForSuppliersBodyFragment extends CaFragment implements HasModel<Module> {
+
+    @Inject
+    JsonAssetsLoader mJsonAssetsLoader;
+
+    @Inject
+    Timber Log;
 
     public static final String VIDEO_BUTTON_TITLE = "View The Video";
     public static final String SUPPLIER_GUIDE_TITLE = "Flip through the Supplier Guide";
@@ -85,5 +100,35 @@ public class ForSuppliersBodyFragment extends CaFragment {
 
 
         return view;
+    }
+
+    private Module mModule;
+
+    @Override
+    public Module getModel() {
+
+        // Lazily create Model object from JSON file
+        if(mModule == null) {
+            try {
+                mModule = mJsonAssetsLoader.parseModuleFromJsonFile(getJsonAssetFilename());
+            } catch (IOException e) {
+                onAssetLoadError();
+            } catch (JsonSyntaxException e) {
+                onAssetLoadError();
+            }
+        }
+
+        return mModule;
+
+    }
+
+    @Override
+    public String getJsonAssetFilename() {
+        return "supplier.json";
+    }
+
+    private void onAssetLoadError() {
+        Log.e("Failed loading %s", getJsonAssetFilename());
+        Toast.makeText(getActivity(), "Failed To Load: " + getJsonAssetFilename(), Toast.LENGTH_SHORT);
     }
 }
