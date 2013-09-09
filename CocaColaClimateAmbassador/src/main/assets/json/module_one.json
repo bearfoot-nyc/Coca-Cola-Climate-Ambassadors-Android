@@ -26,14 +26,9 @@
             "fileType" : "PPT"
         },
         {
-            "fileName" : "Life-of-a-Bottle-video.mp4",
+            "fileName" : "lifeofabottle_090913.mp4",
             "label" : "Life of a Bottle",
             "fileType" : "MP4"
-        },
-        {
-                    "fileName" : "test-movie.mp4",
-                    "label" : "Test Movie",
-                    "fileType" : "MP4"
-                }
+        }
     ]
 }
