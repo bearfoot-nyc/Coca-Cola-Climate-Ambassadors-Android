@@ -76,13 +76,6 @@
                 android:parentActivityName=".ui.activities.InternalTrainingActivity">
         </activity>
         <activity
-                android:name=".ui.activities.ModuleOneActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="@string/nav_item_internal_training_module_1"
-                android:screenOrientation="landscape"
-                android:parentActivityName=".ui.activities.InternalTrainingActivity">
-        </activity>
-        <activity
                 android:name=".ui.activities.ClimateAmbassadorActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/nav_item_internal_training_climate_ambassador"
@@ -90,32 +83,34 @@
                 android:parentActivityName=".ui.activities.InternalTrainingActivity">
         </activity>
         <activity
+                android:name=".ui.activities.ModuleOneActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:label="@string/nav_item_internal_training_module_1"
+                android:screenOrientation="landscape">
+        </activity>
+        <activity
                 android:name=".ui.activities.ModuleTwoActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/nav_item_internal_training_module_2"
-                android:screenOrientation="landscape"
-                android:parentActivityName=".ui.activities.InternalTrainingActivity">
+                android:screenOrientation="landscape">
         </activity>
         <activity
                 android:name=".ui.activities.ModuleThreeActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/nav_item_internal_training_module_3"
-                android:screenOrientation="landscape"
-                android:parentActivityName=".ui.activities.InternalTrainingActivity">
+                android:screenOrientation="landscape">
         </activity>
         <activity
                 android:name=".ui.activities.ModuleFourActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/nav_item_internal_training_module_4"
-                android:screenOrientation="landscape"
-                android:parentActivityName=".ui.activities.InternalTrainingActivity">
+                android:screenOrientation="landscape">
         </activity>
         <activity
                 android:name=".ui.activities.VisionActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/nav_item_for_suppliers_2020_vision"
-                android:screenOrientation="landscape"
-                android:parentActivityName=".ui.activities.ForSuppliersActivity">
+                android:screenOrientation="landscape">
         </activity>
 
         <provider

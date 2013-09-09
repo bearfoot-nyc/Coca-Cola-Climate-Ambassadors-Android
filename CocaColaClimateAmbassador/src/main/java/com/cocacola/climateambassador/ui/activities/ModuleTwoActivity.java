@@ -7,12 +7,13 @@ import com.cocacola.climateambassador.R;
 /**
  * Created by realandylawton on 8/31/13.
  */
-public class ModuleTwoActivity extends CaActivity {
+public class ModuleTwoActivity extends SectionActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_two);
+        setupNavigationDrawer();
     }
 
 }
