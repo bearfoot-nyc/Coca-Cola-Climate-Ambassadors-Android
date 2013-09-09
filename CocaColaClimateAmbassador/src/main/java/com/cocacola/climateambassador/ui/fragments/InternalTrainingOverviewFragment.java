@@ -1,7 +1,5 @@
 package com.cocacola.climateambassador.ui.fragments;
 
-import com.cocacola.climateambassador.ui.activities.CaModuleBodyFragment;
-
 /**
  * Created by realandylawton on 9/4/13.
  */
