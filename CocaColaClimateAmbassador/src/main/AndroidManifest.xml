@@ -79,8 +79,7 @@
                 android:name=".ui.activities.ClimateAmbassadorActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/nav_item_internal_training_climate_ambassador"
-                android:screenOrientation="landscape"
-                android:parentActivityName=".ui.activities.InternalTrainingActivity">
+                android:screenOrientation="landscape">
         </activity>
         <activity
                 android:name=".ui.activities.ModuleOneActivity"
