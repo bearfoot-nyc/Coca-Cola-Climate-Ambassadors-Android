@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".SupplierOverview"
+            android:background="@color/white"
+        >
+
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+        <LinearLayout
+                android:id="@+id/page_header"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="30dp"
+                android:paddingTop="30dp">
+
+
+            <TextView
+                    android:id="@+id/title"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:text="@string/supplier_title"/>
+
+            <TextView
+                    android:id="@+id/subtitle"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="28sp"
+                    android:text="@string/supplier_overview_subtitle"/>
+
+            <FrameLayout
+                    android:id="@+id/introduction_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:paddingTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/supplier_description"
+                    android:maxWidth="750dp"/>
+
+            <LinearLayout
+                    android:paddingTop="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                <FrameLayout
+                        android:id="@+id/video_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                <FrameLayout
+                        android:id="@+id/supplier_guide_button"
+                        android:paddingLeft="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <AbsoluteLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="560dp"
+                    android:src="@drawable/suppliers_coke_bottle"
+                    android:adjustViewBounds="true"
+                    android:paddingTop="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_x="890dp"
+                    />
+        </AbsoluteLayout>
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/page_header">
+            <ImageView
+                    android:id="@+id/our_goal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/our_goal_divider"/>
+
+            <ImageView
+                    android:id="@+id/circle_callout"
+                    android:layout_height="200dp"
+                    android:layout_width="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:paddingLeft="440dp"
+                    android:src="@drawable/suppliers_circle_callout" />
+
+            <LinearLayout
+                    android:id="@+id/goal_txt"
+                    android:layout_height="wrap_content"
+                    android:layout_width="500dp"
+                    android:paddingLeft="90dp"
+                    android:paddingTop="60dp"
+                    android:orientation="vertical"
+                    >
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/goal_paragraph_one"
+                        android:paddingBottom="10dp"
+                        />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/goal_paragraph_two"
+                        android:paddingBottom="10dp"
+                        />
+            </LinearLayout>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/goal_note"
+                    android:textSize="10sp"
+                    android:textStyle="italic"
+                    android:layout_below="@+id/goal_txt"
+                    android:paddingLeft="90dp"
+                    />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingRight="30dp"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingTop="30dp">
+
+
+        <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="Why?"
+                />
+
+        <TextView
+                android:paddingTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/supplier_vision"/>
+
+        <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:maxWidth="600dp"
+                android:textStyle="italic"
+                android:textColor="@color/coke_red"
+                android:textSize="16sp"
+                android:paddingTop="15dp"
+                android:paddingLeft="30dp"
+                android:text="@string/supplier_quote"/>
+
+        <TextView
+                android:paddingTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/supplier_vision_extra"
+                android:paddingBottom="15dp"/>
+
+        <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/how_to_meet_vision_title"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+        <TextView
+                android:paddingTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/how_to_paragraph"/>
+
+        <LinearLayout
+                android:paddingTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/ic_cases_list_ingredients"/>
+
+            <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="8dp"
+                    android:layout_gravity="center_vertical">
+
+                <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingBottom="6dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:text="@string/Ingredients"/>
+
+                <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/ingredient_paragraph"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:paddingTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/ic_cases_list_packaging"/>
+
+            <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+
+                <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingBottom="6dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:text="@string/Packaging"/>
+
+                <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/packaging_paragraph"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:paddingTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/ic_cases_list_manufacturing"/>
+
+            <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+
+                <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingBottom="6dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:text="@string/Manufacturing"/>
+
+                <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/manufacturing_paragraph"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:paddingTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/ic_cases_list_distribution"/>
+
+            <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+
+                <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingBottom="6dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:text="@string/Distribution"/>
+
+                <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/distribution_paragraph"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:paddingTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/ic_cases_list_refrigeration"/>
+
+            <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+
+                <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingBottom="6dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:text="@string/Refrigeration"/>
+
+                <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/refrigeration_paragraph"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:paddingTop="20dp"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:text="@string/join_us"/>
+
+        <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:paddingTop="6dp"
+                android:text="@string/join_paragraph"/>
+
+        <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:paddingLeft="30dp"
+                android:paddingTop="6dp"
+                android:textStyle="italic"
+                android:textSize="16sp"
+                android:textColor="@color/coke_red"
+                android:text="@string/supplier_quote_two"
+                android:paddingBottom="20dp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
+</ScrollView>
+

@@ -67,36 +67,38 @@ public class ForSuppliersBodyFragment extends CaFragment implements HasModel<Mod
         View view = inflater.inflate(R.layout.frag_for_suppliers, container, false);
         Views.inject(this, view);
 
-        mContext = getActivity();
-        //Set up Short Intro button
-        View introButtonLayout = inflater.inflate(R.layout.depr_favorite_divider_button, null);
 
-        //Set up video button
-        View videoButtonLayout = inflater.inflate(R.layout.depr_favorite_divider_button, null);
-        ((TextView) videoButtonLayout.findViewById(R.id.doc_title)).setText(VIDEO_BUTTON_TITLE);
-        //TODO: Change to MOV Image
-        ((ImageView)introButtonLayout.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_doc);
-        ((LinearLayout) videoButtonLayout.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO: Open Document
-                Toast.makeText(getActivity(), "Touched " + VIDEO_BUTTON_TITLE, Toast.LENGTH_SHORT).show();
-            }
-        });
-        videoButton.addView(videoButtonLayout);
 
-        //Set up supplier guide button
-        View supplierButtonLayout = inflater.inflate(R.layout.depr_favorite_divider_button, null);
-        ((ImageView)introButtonLayout.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_pdf);
-        ((TextView) supplierButtonLayout.findViewById(R.id.doc_title)).setText(SUPPLIER_GUIDE_TITLE);
-        ((LinearLayout) supplierButtonLayout.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO: Open Document
-                Toast.makeText(getActivity(), "Touched " + VIDEO_BUTTON_TITLE, Toast.LENGTH_SHORT).show();
-            }
-        });
-        supplierGuideButton.addView(supplierButtonLayout);
+//        mContext = getActivity();
+//        //Set up Short Intro button
+//        View introButtonLayout = inflater.inflate(R.layout.depr_favorite_divider_button, null);
+//
+//        //Set up video button
+//        View videoButtonLayout = inflater.inflate(R.layout.depr_favorite_divider_button, null);
+//        ((TextView) videoButtonLayout.findViewById(R.id.doc_title)).setText(VIDEO_BUTTON_TITLE);
+//        //TODO: Change to MOV Image
+//        ((ImageView)introButtonLayout.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_doc);
+//        ((LinearLayout) videoButtonLayout.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //TODO: Open Document
+//                Toast.makeText(getActivity(), "Touched " + VIDEO_BUTTON_TITLE, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        videoButton.addView(videoButtonLayout);
+//
+//        //Set up supplier guide button
+//        View supplierButtonLayout = inflater.inflate(R.layout.depr_favorite_divider_button, null);
+//        ((ImageView)introButtonLayout.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_pdf);
+//        ((TextView) supplierButtonLayout.findViewById(R.id.doc_title)).setText(SUPPLIER_GUIDE_TITLE);
+//        ((LinearLayout) supplierButtonLayout.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //TODO: Open Document
+//                Toast.makeText(getActivity(), "Touched " + VIDEO_BUTTON_TITLE, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        supplierGuideButton.addView(supplierButtonLayout);
 
 
         return view;
