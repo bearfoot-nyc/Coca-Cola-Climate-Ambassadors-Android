@@ -13,6 +13,24 @@
     <string name="case_study_title">Explore Case Studies by Area</string>
 
 
+    <string name="value_chain_title">IN ACTION: OPPORTUNITIES ALONG THE VALUE CHAIN</string>
+<string name="value_chain_label">\"In Action: Opportunities Along The Value Chain\"</string>
+<string name="value_chain_description">This module reviews key strategic challenges and opportunities for carbon reduction in each of 5 areas of the value chain:
+ingredients, packaging, manufacturing, distribution, and refrigeration. The materials provide a strategic framework and
+then follow a case-based approach, discussing 2-3 good practices (case studies) in each area. This module demonstrates how
+to broaden your GHG action by working with suppliers, vendors, and partners. The course activities focus on showing the relevance
+to the Coca-Cola business. </string>
+<string name="download_instruction">VIEW AND DOWNLOAD COURSE MATERIAL HERE</string>
+
+
+    <string name="title_activity_business_case_module">Business Case</string>
+    <string name="title_activity_key_interventions_module">Key Interventions</string>
+    <string name="title_activity_engaging_suppliers_module">Engaging Suppliers</string>
+    <string name="title_activity_internal_training_overview">Internal Training</string>
+    <string name="title_activity_supplier_overview">Supplier Overview</string>
+    <string name="title_activity_supplier_guide">Supplier Guide</string>
+
+
     <string name="course_material_title">VIEW AND DOWNLOAD COURSE MATERIAL HERE</string>
     <string name="case_studies">CASE STUDIES</string>
 
