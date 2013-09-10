@@ -27,7 +27,17 @@
         },
         {
             "fileName" : "life_of_a_bottle.mp4",
-            "label" : "Life of a Bottle",
+            "label" : "Life of a Bottle - Old",
+            "fileType" : "MP4"
+        },
+        {
+            "fileName" : "lifeofabottle_090913.mp4",
+            "label" : "New - Life of A Bottle",
+            "fileType" : "MP4"
+        },
+        {
+            "fileName" : "spiderman-trailer.mp4",
+            "label" : "Spiderman Trailer",
             "fileType" : "MP4"
         }
     ]

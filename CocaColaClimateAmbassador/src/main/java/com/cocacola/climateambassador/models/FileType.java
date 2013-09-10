@@ -7,8 +7,8 @@ public enum FileType {
 
     PDF("application/pdf", "pdf", "docs"),
     PPT("application/vnd.ms-powerpoint", "pptx", "docs"),
-    MP4("video/*", "mp4", "docs"),
-    THREEGP("video/*", "3gp", "docs");
+    MP4("video/mp4", "mp4", "docs"),
+    THREEGP("video/mp4", "3gp", "docs");
 
     private String extension;
     private String mimeType;
