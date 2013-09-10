@@ -15,12 +15,15 @@ import android.widget.Toast;
 
 import com.cocacola.climateambassador.HasModel;
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.models.Document;
+import com.cocacola.climateambassador.models.FileType;
 import com.cocacola.climateambassador.models.Module;
 import com.cocacola.climateambassador.ui.activities.DistributionCaseActivity;
 import com.cocacola.climateambassador.ui.activities.IngredientCaseActivity;
 import com.cocacola.climateambassador.ui.activities.ManufacturingCaseActivity;
 import com.cocacola.climateambassador.ui.activities.PackagingCaseActivity;
 import com.cocacola.climateambassador.ui.activities.RefrigerationCaseActivity;
+import com.cocacola.climateambassador.ui.views.DocumentView;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.google.gson.JsonSyntaxException;
 
@@ -44,17 +47,10 @@ public class ForSuppliersBodyFragment extends CaFragment implements HasModel<Mod
     @Inject
     Timber Log;
 
-    public static final String VIDEO_BUTTON_TITLE = "View The Video";
-    public static final String SUPPLIER_GUIDE_TITLE = "Flip through the Supplier Guide";
+    private Module mModule;
 
-    @InjectView(R.id.introduction_button)
-    FrameLayout introductionButton;
-    @InjectView(R.id.video_button)
-    FrameLayout videoButton;
-    @InjectView(R.id.supplier_guide_button)
-    FrameLayout supplierGuideButton;
-
-    Context mContext;
+    @InjectView(R.id.suppliers_document)
+    DocumentView mDocumentView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,46 +61,33 @@ public class ForSuppliersBodyFragment extends CaFragment implements HasModel<Mod
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.frag_for_suppliers, container, false);
+
         Views.inject(this, view);
-
-
-
-//        mContext = getActivity();
-//        //Set up Short Intro button
-//        View introButtonLayout = inflater.inflate(R.layout.depr_favorite_divider_button, null);
-//
-//        //Set up video button
-//        View videoButtonLayout = inflater.inflate(R.layout.depr_favorite_divider_button, null);
-//        ((TextView) videoButtonLayout.findViewById(R.id.doc_title)).setText(VIDEO_BUTTON_TITLE);
-//        //TODO: Change to MOV Image
-//        ((ImageView)introButtonLayout.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_doc);
-//        ((LinearLayout) videoButtonLayout.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //TODO: Open Document
-//                Toast.makeText(getActivity(), "Touched " + VIDEO_BUTTON_TITLE, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        videoButton.addView(videoButtonLayout);
-//
-//        //Set up supplier guide button
-//        View supplierButtonLayout = inflater.inflate(R.layout.depr_favorite_divider_button, null);
-//        ((ImageView)introButtonLayout.findViewById(R.id.doc_type)).setImageResource(R.drawable.ic_doc_pdf);
-//        ((TextView) supplierButtonLayout.findViewById(R.id.doc_title)).setText(SUPPLIER_GUIDE_TITLE);
-//        ((LinearLayout) supplierButtonLayout.findViewById(R.id.document_opener_button)).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //TODO: Open Document
-//                Toast.makeText(getActivity(), "Touched " + VIDEO_BUTTON_TITLE, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        supplierGuideButton.addView(supplierButtonLayout);
-
 
         return view;
     }
 
-    private Module mModule;
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+        mDocumentView.setDocument(getSupplierDocument());
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Views.reset(this);
+    }
+
+    private Document getSupplierDocument() {
+
+        Document doc = new Document("PartneringToReduceCarboninValueChain.pdf", "Partnering to Reduce Carbon along Our Value Chain", FileType.PDF.toString());
+        return doc;
+
+    }
 
     @Override
     public Module getModel() {
