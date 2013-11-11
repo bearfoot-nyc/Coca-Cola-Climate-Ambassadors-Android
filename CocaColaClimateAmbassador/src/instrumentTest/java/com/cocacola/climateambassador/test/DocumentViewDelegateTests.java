@@ -2,6 +2,8 @@ package com.cocacola.climateambassador.test;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.test.InstrumentationTestCase;
 
@@ -9,6 +11,7 @@ import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.models.FileType;
 
 import java.io.File;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -150,10 +153,6 @@ public class DocumentViewDelegateTests extends InstrumentationTestCase {
 
     }
 
-    private void failDueToFileNotInAppPackageException() {
-        fail("FileNotInAppPackageException thrown");
-    }
-
     public void testCreatesProperIntentForFileType() {
 
         FileType fileType = FileType.PDF;
@@ -171,6 +170,31 @@ public class DocumentViewDelegateTests extends InstrumentationTestCase {
 
         // TODO Implement this.  Being a good TDDer
 
+    }
+
+    public void testDetectsQuickOfficeIsInstalled() {
+
+        boolean isQuickOfficeInstalled = mDocumentViewerDelegate.isQuickOfficeInstalled();
+
+        assertFalse("Quick office should not be installed yet", isQuickOfficeInstalled);
+
+    }
+
+    public void testLaunchesDocumentInQuickOffice() {
+
+//        FileType fileType = FileType.PDF;
+//        String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
+//
+//        Uri path = mDocumentViewerDelegate.createUriForFile(getValidFile());
+//
+//        Intent intent = mDocumentViewerDelegate.createViewerIntent(mContext, path, fileType);
+//
+//        boolean isQuickOfficeInstalled = mDocumentViewerDelegate.isQuickOfficeInstalled();
+
+    }
+
+    private void failDueToFileNotInAppPackageException() {
+        fail("FileNotInAppPackageException thrown");
     }
 
 }

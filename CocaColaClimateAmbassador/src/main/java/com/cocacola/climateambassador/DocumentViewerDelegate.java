@@ -2,6 +2,7 @@ package com.cocacola.climateambassador;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
@@ -25,10 +26,15 @@ import timber.log.Timber;
 @Singleton
 public class DocumentViewerDelegate {
 
-    private static final String AUTHORITY = "com.cocacola.climateambassador.files";
+    public class FileNotInAppPackageException extends Exception {
 
-    @Inject AppPackageFileWriter mAppPackageFileWriter;
-    @Inject Timber Log;
+    }
+
+    private static final String AUTHORITY = "com.cocacola.climateambassador.files";
+    private static final String QUICK_OFFICE_PACKAGE_NAME = "com.quickoffice.android";
+
+    @Inject protected AppPackageFileWriter mAppPackageFileWriter;
+    @Inject protected Timber Log;
 
     private Context mContext;
 
@@ -138,7 +144,30 @@ public class DocumentViewerDelegate {
 
     }
 
-    public class FileNotInAppPackageException extends Exception {
+    public boolean isQuickOfficeInstalled() {
+
+        PackageManager pm = mContext.getPackageManager();
+        List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
+
+        boolean isInstalled = false;
+        for(ApplicationInfo pkg : packages) {
+            Log.d("pkg.packageName=%s", pkg.packageName);
+            Log.d("pkg.name", pkg.name);
+            if(QUICK_OFFICE_PACKAGE_NAME.equals(pkg.packageName)) {
+                isInstalled = true;
+                break;
+            }
+        }
+
+        return isInstalled;
+
+    }
+
+    private void launchQuickOfficeInPlayStore() {
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("market://details?id=" + QUICK_OFFICE_PACKAGE_NAME));
+        mContext.startActivity(intent);
 
     }
 
