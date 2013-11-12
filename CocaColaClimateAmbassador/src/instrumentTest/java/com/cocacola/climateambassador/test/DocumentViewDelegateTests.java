@@ -1,21 +1,19 @@
 package com.cocacola.climateambassador.test;
 
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.test.InstrumentationTestCase;
-
+import com.cocacola.climateambassador.AppPackageFileWriter;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.models.FileType;
-
+import dagger.ObjectGraph;
 import java.io.File;
 import java.util.List;
-
 import javax.inject.Inject;
-
-import dagger.ObjectGraph;
+import timber.log.Timber;
 
 /**
  * Created by andrewlawton on 8/24/13.
@@ -24,6 +22,9 @@ public class DocumentViewDelegateTests extends InstrumentationTestCase {
 
     @Inject
     DocumentViewerDelegate mDocumentViewerDelegate;
+
+    @Inject
+    Timber Log;
 
     protected Context mContext;
 
@@ -180,16 +181,24 @@ public class DocumentViewDelegateTests extends InstrumentationTestCase {
 
     }
 
-    public void testLaunchesDocumentInQuickOffice() {
+    public void testLaunchesDocumentInQuickOffice()
+        throws AppPackageFileWriter.FailedToWriteToPackageException {
 
-//        FileType fileType = FileType.PDF;
-//        String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
-//
-//        Uri path = mDocumentViewerDelegate.createUriForFile(getValidFile());
-//
-//        Intent intent = mDocumentViewerDelegate.createViewerIntent(mContext, path, fileType);
-//
-//        boolean isQuickOfficeInstalled = mDocumentViewerDelegate.isQuickOfficeInstalled();
+        String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
+        String playStorePkgName = "com.android.vending";
+
+        mDocumentViewerDelegate.startActivityForFile(mContext, fileName);
+
+        // Get current running app
+        ActivityManager am = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+
+        // get the info from the currently running task
+        List< ActivityManager.RunningTaskInfo > taskInfo = am.getRunningTasks(1);
+
+        ComponentName componentInfo = taskInfo.get(0).topActivity;
+
+        assertEquals("Current package is not Play Store", playStorePkgName, componentInfo.getPackageName());
+
 
     }
 

@@ -50,6 +50,12 @@ public class DocumentViewerDelegate {
 
     public void startActivityForFile(Context context, FileType fileType, String fileName) throws AppPackageFileWriter.FailedToWriteToPackageException {
 
+        // Check if Document handling app is installed
+        if(!isQuickOfficeInstalled()) {
+            launchQuickOfficeInPlayStore();
+            return;
+        }
+
         Uri path = null;
 
         try {
@@ -151,8 +157,6 @@ public class DocumentViewerDelegate {
 
         boolean isInstalled = false;
         for(ApplicationInfo pkg : packages) {
-            Log.d("pkg.packageName=%s", pkg.packageName);
-            Log.d("pkg.name", pkg.name);
             if(QUICK_OFFICE_PACKAGE_NAME.equals(pkg.packageName)) {
                 isInstalled = true;
                 break;
@@ -166,6 +170,7 @@ public class DocumentViewerDelegate {
     private void launchQuickOfficeInPlayStore() {
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setData(Uri.parse("market://details?id=" + QUICK_OFFICE_PACKAGE_NAME));
         mContext.startActivity(intent);
 
