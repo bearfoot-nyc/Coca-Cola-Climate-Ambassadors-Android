@@ -58,10 +58,9 @@ public class DocumentViewerDelegate {
 
         Uri path = null;
 
+        // TODO Nested try blocks is a code smell
         try {
-
             path = createUriForFileName(fileType, fileName);
-
         }
         catch (FileNotInAppPackageException e) {
 
