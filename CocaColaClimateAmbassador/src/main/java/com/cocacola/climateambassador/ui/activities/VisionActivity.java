@@ -6,11 +6,8 @@ import android.widget.TextView;
 
 import com.cocacola.climateambassador.HasModel;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.Case;
-import com.cocacola.climateambassador.models.Document;
-import com.cocacola.climateambassador.models.FileType;
+import com.cocacola.climateambassador.models.CaseJson;
 import com.cocacola.climateambassador.ui.views.BulletPointLayout;
-import com.cocacola.climateambassador.ui.views.DocumentView;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.cocacola.climateambassador.util.Toaster;
 import com.google.gson.JsonSyntaxException;
@@ -24,7 +21,7 @@ import butterknife.InjectView;
 /**
  * Created by realandylawton on 9/7/13.
  */
-public class VisionActivity extends SectionActivity implements HasModel<Case> {
+public class VisionActivity extends SectionActivity implements HasModel<CaseJson> {
 
     @Inject
     JsonAssetsLoader mJsonAssetsLoader;
@@ -41,7 +38,7 @@ public class VisionActivity extends SectionActivity implements HasModel<Case> {
     @InjectView(R.id.vision_callout)
     TextView mCalloutView;
 
-    private Case mCase;
+    private CaseJson mCase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +49,7 @@ public class VisionActivity extends SectionActivity implements HasModel<Case> {
 
         setupNavigationDrawer();
 
-        Case module = getModel();
+        CaseJson module = getModel();
 
         mTitleView.setText(module.getTitle());
         mBodyTextView.setText(Html.fromHtml(module.getBodyText()));
@@ -64,7 +61,7 @@ public class VisionActivity extends SectionActivity implements HasModel<Case> {
     }
 
     @Override
-    public Case getModel() {
+    public CaseJson getModel() {
 
         if(mCase == null) {
             try {

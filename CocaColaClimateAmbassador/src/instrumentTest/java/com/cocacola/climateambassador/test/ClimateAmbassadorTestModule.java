@@ -7,7 +7,7 @@ import com.cocacola.climateambassador.modules.ClimateAmbassadorModule;
 import com.cocacola.climateambassador.test.android.AppPackageFileWriterTests;
 import com.cocacola.climateambassador.test.android.DocumentViewDelegateTests;
 import com.cocacola.climateambassador.test.android.JsonAssetsLoaderTests;
-import com.cocacola.climateambassador.test.data.DataInstallerTests;
+import com.cocacola.climateambassador.test.data.DataSeederTests;
 import dagger.Module;
 import dagger.Provides;
 
@@ -22,7 +22,7 @@ import dagger.Provides;
             AppPackageFileWriterTests.class,
             DocumentViewDelegateTests.class,
             JsonAssetsLoaderTests.class,
-            DataInstallerTests.class
+            DataSeederTests.class
         }
 )
 public class ClimateAmbassadorTestModule {

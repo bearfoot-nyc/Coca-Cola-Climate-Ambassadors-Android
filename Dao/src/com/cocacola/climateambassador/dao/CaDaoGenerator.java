@@ -22,8 +22,8 @@ public class CaDaoGenerator {
         // Module
         Entity module = schema.addEntity("Module");
         module.addIdProperty();
-        section.addStringProperty("title");
-        section.addStringProperty("bodyText");
+        module.addStringProperty("title");
+        module.addStringProperty("bodyText");
 
         // Section To Modules
         Property sectionId = module.addLongProperty("sectionId").notNull().getProperty();

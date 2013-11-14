@@ -11,6 +11,8 @@ import de.greenrobot.dao.DaoException;
 public class Module {
 
     private Long id;
+    private String title;
+    private String bodyText;
     private long sectionId;
     private long documentId;
     private Long bulletPointId;
@@ -33,8 +35,10 @@ public class Module {
         this.id = id;
     }
 
-    public Module(Long id, long sectionId, long documentId, Long bulletPointId) {
+    public Module(Long id, String title, String bodyText, long sectionId, long documentId, Long bulletPointId) {
         this.id = id;
+        this.title = title;
+        this.bodyText = bodyText;
         this.sectionId = sectionId;
         this.documentId = documentId;
         this.bulletPointId = bulletPointId;
@@ -52,6 +56,22 @@ public class Module {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getBodyText() {
+        return bodyText;
+    }
+
+    public void setBodyText(String bodyText) {
+        this.bodyText = bodyText;
     }
 
     public long getSectionId() {

@@ -4,11 +4,10 @@ import android.content.Context;
 import android.content.res.AssetManager;
 
 import com.cocacola.climateambassador.CaConstants;
-import com.cocacola.climateambassador.models.Case;
+import com.cocacola.climateambassador.models.CaseJson;
 import com.cocacola.climateambassador.models.Module;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.stream.MalformedJsonException;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,11 +51,11 @@ public class JsonAssetsLoader {
     }
 
     // TODO Genercize this: T<Model> parseClassFromJsonfile
-    public Case parseCaseFromJsonFile(String filename) throws IOException, JsonSyntaxException {
+    public CaseJson parseCaseFromJsonFile(String filename) throws IOException, JsonSyntaxException {
 
         String json = parseAsString(filename);
 
-        Case myCase = mGson.fromJson(json, Case.class);
+        CaseJson myCase = mGson.fromJson(json, CaseJson.class);
 
         return myCase;
 

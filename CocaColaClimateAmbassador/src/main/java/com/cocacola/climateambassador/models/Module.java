@@ -9,11 +9,11 @@ public class Module {
 
     private String title;
     private String bodyText;
-    private List<Case> cases;
+    private List<CaseJson> cases;
     private List<Document> courseMaterials;
     private BulletPointFrame bulletPointFrame;
 
-    public Module(String title, String bodyText, List<Case> cases, List<Document> courseMaterials) {
+    public Module(String title, String bodyText, List<CaseJson> cases, List<Document> courseMaterials) {
         this.title = title;
         this.bodyText = bodyText;
         this.cases = cases;
@@ -37,11 +37,11 @@ public class Module {
         this.bodyText = bodyText;
     }
 
-    public List<Case> getCases() {
+    public List<CaseJson> getCases() {
         return cases;
     }
 
-    public void setCases(List<Case> cases) {
+    public void setCases(List<CaseJson> cases) {
         this.cases = cases;
     }
 

@@ -6,7 +6,7 @@ import java.util.List;
  * Created by andrewlawton on 8/23/13.
  */
 
-public class Case {
+public class CaseJson {
 
     public static enum CaseDocumentTypes {
         COURSE_MATERIALS, CASE_STUDIES

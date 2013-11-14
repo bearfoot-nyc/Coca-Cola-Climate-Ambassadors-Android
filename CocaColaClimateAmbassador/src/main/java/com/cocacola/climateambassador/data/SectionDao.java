@@ -25,8 +25,6 @@ public class SectionDao extends AbstractDao<Section, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
-        public final static Property Title = new Property(2, String.class, "title", false, "TITLE");
-        public final static Property BodyText = new Property(3, String.class, "bodyText", false, "BODY_TEXT");
     };
 
     private DaoSession daoSession;
@@ -46,9 +44,7 @@ public class SectionDao extends AbstractDao<Section, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'SECTION' (" + //
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
-                "'NAME' TEXT," + // 1: name
-                "'TITLE' TEXT," + // 2: title
-                "'BODY_TEXT' TEXT);"); // 3: bodyText
+                "'NAME' TEXT);"); // 1: name
     }
 
     /** Drops the underlying database table. */
@@ -71,16 +67,6 @@ public class SectionDao extends AbstractDao<Section, Long> {
         if (name != null) {
             stmt.bindString(2, name);
         }
- 
-        String title = entity.getTitle();
-        if (title != null) {
-            stmt.bindString(3, title);
-        }
- 
-        String bodyText = entity.getBodyText();
-        if (bodyText != null) {
-            stmt.bindString(4, bodyText);
-        }
     }
 
     @Override
@@ -100,9 +86,7 @@ public class SectionDao extends AbstractDao<Section, Long> {
     public Section readEntity(Cursor cursor, int offset) {
         Section entity = new Section( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // title
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3) // bodyText
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1) // name
         );
         return entity;
     }
@@ -112,8 +96,6 @@ public class SectionDao extends AbstractDao<Section, Long> {
     public void readEntity(Cursor cursor, Section entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setTitle(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setBodyText(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
      }
     
     /** @inheritdoc */

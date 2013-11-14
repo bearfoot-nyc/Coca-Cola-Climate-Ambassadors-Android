@@ -3,7 +3,7 @@ package com.cocacola.climateambassador.test.android;
 import android.content.res.AssetManager;
 import com.cocacola.climateambassador.CaConstants;
 import com.cocacola.climateambassador.models.BulletPointFrame;
-import com.cocacola.climateambassador.models.Case;
+import com.cocacola.climateambassador.models.CaseJson;
 import com.cocacola.climateambassador.models.TextFrame;
 import com.cocacola.climateambassador.test.CaTestCase;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
@@ -52,7 +52,7 @@ public class JsonAssetsLoaderTests extends CaTestCase {
 
     public void testIngredientCasesParsesStringAsGson() throws IOException {
 
-        Case ingredientsCase = mJsonAssetsLoader.parseCaseFromJsonFile("case_ingredients.json");
+        CaseJson ingredientsCase = mJsonAssetsLoader.parseCaseFromJsonFile("case_ingredients.json");
 
         assertNotNull(ingredientsCase);
 

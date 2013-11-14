@@ -12,8 +12,6 @@ public class Section {
 
     private Long id;
     private String name;
-    private String title;
-    private String bodyText;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
@@ -30,11 +28,9 @@ public class Section {
         this.id = id;
     }
 
-    public Section(Long id, String name, String title, String bodyText) {
+    public Section(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.title = title;
-        this.bodyText = bodyText;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -57,22 +53,6 @@ public class Section {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getBodyText() {
-        return bodyText;
-    }
-
-    public void setBodyText(String bodyText) {
-        this.bodyText = bodyText;
     }
 
     /** To-many relationship, resolved on first access (and after reset). Changes to to-many relations are not persisted, make changes to the target entity. */

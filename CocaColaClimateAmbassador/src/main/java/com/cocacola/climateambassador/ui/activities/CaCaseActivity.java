@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -16,7 +15,7 @@ import android.widget.Toast;
 import com.cocacola.climateambassador.HasModel;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.models.BulletPointFrame;
-import com.cocacola.climateambassador.models.Case;
+import com.cocacola.climateambassador.models.CaseJson;
 import com.cocacola.climateambassador.models.SubtitleTextPair;
 import com.cocacola.climateambassador.models.TextFrame;
 import com.cocacola.climateambassador.ui.views.DocumentsLayout;
@@ -32,7 +31,7 @@ import butterknife.InjectView;
 /**
  * Created by Vinnie on 9/4/13.
  */
-public abstract class CaCaseActivity extends CaActivity implements HasModel<Case> {
+public abstract class CaCaseActivity extends CaActivity implements HasModel<CaseJson> {
 
     @Inject JsonAssetsLoader mJsonAssetsLoader;
 
@@ -51,7 +50,7 @@ public abstract class CaCaseActivity extends CaActivity implements HasModel<Case
 
         setContentView(R.layout.activity_case);
 
-        Case aCase = getModel();
+        CaseJson aCase = getModel();
 
         mScrollLayout.setBackgroundResource(getBackgroundDrawableId());
         mLogoView.setImageResource(getIconId());
@@ -132,9 +131,9 @@ public abstract class CaCaseActivity extends CaActivity implements HasModel<Case
     abstract int getBackgroundDrawableId();
     abstract int getIconId();
 
-    private Case mCase;
+    private CaseJson mCase;
 
-    public Case getModel() {
+    public CaseJson getModel() {
 
         // Lazily create Model object from JSON file
         if(mCase == null) {

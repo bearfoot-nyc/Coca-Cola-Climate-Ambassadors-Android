@@ -29,9 +29,11 @@ public class ModuleDao extends AbstractDao<Module, Long> {
     */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property SectionId = new Property(1, long.class, "sectionId", false, "SECTION_ID");
-        public final static Property DocumentId = new Property(2, long.class, "documentId", false, "DOCUMENT_ID");
-        public final static Property BulletPointId = new Property(3, Long.class, "bulletPointId", false, "BULLET_POINT_ID");
+        public final static Property Title = new Property(1, String.class, "title", false, "TITLE");
+        public final static Property BodyText = new Property(2, String.class, "bodyText", false, "BODY_TEXT");
+        public final static Property SectionId = new Property(3, long.class, "sectionId", false, "SECTION_ID");
+        public final static Property DocumentId = new Property(4, long.class, "documentId", false, "DOCUMENT_ID");
+        public final static Property BulletPointId = new Property(5, Long.class, "bulletPointId", false, "BULLET_POINT_ID");
     };
 
     private DaoSession daoSession;
@@ -52,9 +54,11 @@ public class ModuleDao extends AbstractDao<Module, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'MODULE' (" + //
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
-                "'SECTION_ID' INTEGER NOT NULL ," + // 1: sectionId
-                "'DOCUMENT_ID' INTEGER NOT NULL ," + // 2: documentId
-                "'BULLET_POINT_ID' INTEGER);"); // 3: bulletPointId
+                "'TITLE' TEXT," + // 1: title
+                "'BODY_TEXT' TEXT," + // 2: bodyText
+                "'SECTION_ID' INTEGER NOT NULL ," + // 3: sectionId
+                "'DOCUMENT_ID' INTEGER NOT NULL ," + // 4: documentId
+                "'BULLET_POINT_ID' INTEGER);"); // 5: bulletPointId
     }
 
     /** Drops the underlying database table. */
@@ -72,12 +76,22 @@ public class ModuleDao extends AbstractDao<Module, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getSectionId());
-        stmt.bindLong(3, entity.getDocumentId());
+ 
+        String title = entity.getTitle();
+        if (title != null) {
+            stmt.bindString(2, title);
+        }
+ 
+        String bodyText = entity.getBodyText();
+        if (bodyText != null) {
+            stmt.bindString(3, bodyText);
+        }
+        stmt.bindLong(4, entity.getSectionId());
+        stmt.bindLong(5, entity.getDocumentId());
  
         Long bulletPointId = entity.getBulletPointId();
         if (bulletPointId != null) {
-            stmt.bindLong(4, bulletPointId);
+            stmt.bindLong(6, bulletPointId);
         }
     }
 
@@ -98,9 +112,11 @@ public class ModuleDao extends AbstractDao<Module, Long> {
     public Module readEntity(Cursor cursor, int offset) {
         Module entity = new Module( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getLong(offset + 1), // sectionId
-            cursor.getLong(offset + 2), // documentId
-            cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3) // bulletPointId
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // title
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // bodyText
+            cursor.getLong(offset + 3), // sectionId
+            cursor.getLong(offset + 4), // documentId
+            cursor.isNull(offset + 5) ? null : cursor.getLong(offset + 5) // bulletPointId
         );
         return entity;
     }
@@ -109,9 +125,11 @@ public class ModuleDao extends AbstractDao<Module, Long> {
     @Override
     public void readEntity(Cursor cursor, Module entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setSectionId(cursor.getLong(offset + 1));
-        entity.setDocumentId(cursor.getLong(offset + 2));
-        entity.setBulletPointId(cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3));
+        entity.setTitle(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setBodyText(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setSectionId(cursor.getLong(offset + 3));
+        entity.setDocumentId(cursor.getLong(offset + 4));
+        entity.setBulletPointId(cursor.isNull(offset + 5) ? null : cursor.getLong(offset + 5));
      }
     
     /** @inheritdoc */
