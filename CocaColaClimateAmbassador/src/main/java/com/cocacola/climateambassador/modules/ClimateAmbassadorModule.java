@@ -2,9 +2,12 @@ package com.cocacola.climateambassador.modules;
 
 import android.content.Context;
 
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import com.cocacola.climateambassador.BuildConfig;
 import com.cocacola.climateambassador.CaApplication;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
+import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.ui.activities.ClimateAmbassadorActivity;
 import com.cocacola.climateambassador.ui.activities.DistributionCaseActivity;
 import com.cocacola.climateambassador.ui.activities.ForSuppliersActivity;
@@ -99,6 +102,16 @@ public class ClimateAmbassadorModule {
     @Provides
     Gson provideGson() {
         return new GsonBuilder().create();
+    }
+
+    @Provides @Singleton SQLiteOpenHelper provideSQLiteOpenHelper(Context context) {
+        return new DaoMaster.DevOpenHelper(context, "com.cocacola.climateambassador.data", null);
+    }
+
+    @Provides @Singleton DaoMaster provideDaoMaster(SQLiteOpenHelper openHelper) {
+        SQLiteDatabase db = openHelper.getReadableDatabase();
+        DaoMaster daoMaster = new DaoMaster(db);
+        return daoMaster;
     }
 
 }

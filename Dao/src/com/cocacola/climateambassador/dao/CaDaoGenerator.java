@@ -8,11 +8,12 @@ import de.greenrobot.daogenerator.ToMany;
 
 public class CaDaoGenerator {
 
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = DbConstants.VERSION;
 
     public static void main(String[] args) throws Exception {
 
-        Schema schema = new Schema(DB_VERSION, "com.cocacola.climateambassador.data");
+        Schema schema = new Schema(DbConstants.VERSION,
+            "com.cocacola.climateambassador.data");
 
         // Section
         Entity section = schema.addEntity("Section");
