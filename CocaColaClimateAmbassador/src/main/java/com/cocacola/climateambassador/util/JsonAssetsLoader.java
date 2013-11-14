@@ -5,7 +5,7 @@ import android.content.res.AssetManager;
 
 import com.cocacola.climateambassador.CaConstants;
 import com.cocacola.climateambassador.models.CaseJson;
-import com.cocacola.climateambassador.models.Module;
+import com.cocacola.climateambassador.models.ModuleJson;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -61,11 +61,11 @@ public class JsonAssetsLoader {
 
     }
 
-    public Module parseModuleFromJsonFile(String filename) throws IOException, JsonSyntaxException {
+    public ModuleJson parseModuleFromJsonFile(String filename) throws IOException, JsonSyntaxException {
 
         String json = parseAsString(filename);
 
-        Module myModule = mGson.fromJson(json, Module.class);
+        ModuleJson myModule = mGson.fromJson(json, ModuleJson.class);
 
         return myModule;
 

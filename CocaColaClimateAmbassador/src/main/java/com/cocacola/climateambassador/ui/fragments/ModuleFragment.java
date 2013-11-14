@@ -11,18 +11,18 @@ import android.widget.Toast;
 
 import com.cocacola.climateambassador.CaConstants;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.BulletPointFrame;
-import com.cocacola.climateambassador.models.Document;
-import com.cocacola.climateambassador.models.Module;
+import com.cocacola.climateambassador.models.BulletPointFrameJson;
+import com.cocacola.climateambassador.models.DocumentJson;
+import com.cocacola.climateambassador.models.ModuleJson;
 
 /**
  * Created by Vinnie Vendemia on 9/2/13.
  */
 public class ModuleFragment extends CaFragment {
 
-    private Module mModule;
+    private ModuleJson mModule;
 
-    public static ModuleFragment newInstance(Module aModule) {
+    public static ModuleFragment newInstance(ModuleJson aModule) {
         ModuleFragment fragment = new ModuleFragment();
         fragment.mModule = aModule;
         return fragment;
@@ -55,7 +55,7 @@ public class ModuleFragment extends CaFragment {
 
         LinearLayout caseFrames = (LinearLayout) view.findViewById(R.id.case_frames);
         if (mModule.getBulletPointFrame() != null) {
-            BulletPointFrame caseBulletPointFrame = mModule.getBulletPointFrame();
+            BulletPointFrameJson caseBulletPointFrame = mModule.getBulletPointFrame();
             View bulletPointFrame = inflater.inflate(R.layout.case_frame, null);
 
             if (!TextUtils.isEmpty(caseBulletPointFrame.getTitle())) {
@@ -86,7 +86,7 @@ public class ModuleFragment extends CaFragment {
         LinearLayout courseMaterialFrame = (LinearLayout) view.findViewById(R.id.course_materials);
         if (mModule.getCourseMaterials() != null && courseMaterialFrame != null) {
 
-            for (Document courseMaterial : mModule.getCourseMaterials()) {
+            for (DocumentJson courseMaterial : mModule.getCourseMaterials()) {
                 View materialOption = inflater.inflate(R.layout.depr_favorite_divider_button, null);
                 setupButtonAccordingToDocument(courseMaterial, materialOption, inflater);
                 courseMaterialFrame.addView(materialOption);
@@ -100,7 +100,7 @@ public class ModuleFragment extends CaFragment {
     }
 
 
-    private void setupButtonAccordingToDocument(final Document doc, View viewWithButton, LayoutInflater inflater) {
+    private void setupButtonAccordingToDocument(final DocumentJson doc, View viewWithButton, LayoutInflater inflater) {
         //TODO: Set viewWithButton background according to doc type and title
         if (CaConstants.PDF.equals(getFileType(doc.getFileName()))) {
             //TODO: Set image to resource once assets are added

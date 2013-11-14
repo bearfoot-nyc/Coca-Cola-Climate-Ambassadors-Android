@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.cocacola.climateambassador.CaConstants;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.Document;
+import com.cocacola.climateambassador.models.DocumentJson;
 import com.cocacola.climateambassador.models.Favorites;
 
 /**
@@ -41,7 +41,7 @@ public class FavoritesFragment extends CaFragment {
         LinearLayout courseMaterialFrame = (LinearLayout) view.findViewById(R.id.course_materials);
         if (mFavorites.getCourseMaterials() != null) {
 
-            for (Document courseMaterial : mFavorites.getCourseMaterials()) {
+            for (DocumentJson courseMaterial : mFavorites.getCourseMaterials()) {
                 View materialOption = inflater.inflate(R.layout.depr_favorite_divider_button, null);
                 setupButtonAccordingToDocument(courseMaterial, materialOption, inflater);
                 courseMaterialFrame.addView(materialOption);
@@ -53,7 +53,7 @@ public class FavoritesFragment extends CaFragment {
         LinearLayout caseStudyFrame = (LinearLayout) view.findViewById(R.id.case_studies);
         if (mFavorites.getCaseStudies() != null) {
 
-            for (Document caseStudy : mFavorites.getCaseStudies()) {
+            for (DocumentJson caseStudy : mFavorites.getCaseStudies()) {
                 View studyOption = inflater.inflate(R.layout.depr_favorite_divider_button, null);
                 setupButtonAccordingToDocument(caseStudy, studyOption, inflater);
                 caseStudyFrame.addView(studyOption);
@@ -66,7 +66,7 @@ public class FavoritesFragment extends CaFragment {
 
     }
 
-    private void setupButtonAccordingToDocument(final Document doc, View viewWithButton, LayoutInflater inflater) {
+    private void setupButtonAccordingToDocument(final DocumentJson doc, View viewWithButton, LayoutInflater inflater) {
         //TODO: Set viewWithButton background according to doc type and title
         if (CaConstants.PDF.equals(getFileType(doc.getFileName()))) {
             //TODO: Set image to resource once assets are added

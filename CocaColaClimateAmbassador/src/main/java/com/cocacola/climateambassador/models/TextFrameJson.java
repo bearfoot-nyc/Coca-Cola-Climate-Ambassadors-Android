@@ -5,11 +5,11 @@ import java.util.List;
 /**
  * Created by realandylawton on 8/31/13.
  */
-public class TextFrame {
+public class TextFrameJson {
 
     private String title;
     private String bodyText;
-    private List<SubtitleTextPair> subtitleTextPairs;
+    private List<SubtitleTextPairJson> subtitleTextPairs;
 
     public String getTitle() {
         return title;
@@ -27,11 +27,11 @@ public class TextFrame {
         this.bodyText = bodyText;
     }
 
-    public List<SubtitleTextPair> getSubtitleTextPairs() {
+    public List<SubtitleTextPairJson> getSubtitleTextPairs() {
         return subtitleTextPairs;
     }
 
-    public void setSubtitleTextPairs(List<SubtitleTextPair> subtitleTextPairs) {
+    public void setSubtitleTextPairs(List<SubtitleTextPairJson> subtitleTextPairs) {
         this.subtitleTextPairs = subtitleTextPairs;
     }
 }

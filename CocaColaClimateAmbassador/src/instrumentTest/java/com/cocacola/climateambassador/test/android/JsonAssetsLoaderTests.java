@@ -2,9 +2,9 @@ package com.cocacola.climateambassador.test.android;
 
 import android.content.res.AssetManager;
 import com.cocacola.climateambassador.CaConstants;
-import com.cocacola.climateambassador.models.BulletPointFrame;
+import com.cocacola.climateambassador.models.BulletPointFrameJson;
 import com.cocacola.climateambassador.models.CaseJson;
-import com.cocacola.climateambassador.models.TextFrame;
+import com.cocacola.climateambassador.models.TextFrameJson;
 import com.cocacola.climateambassador.test.CaTestCase;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import java.io.IOException;
@@ -58,7 +58,7 @@ public class JsonAssetsLoaderTests extends CaTestCase {
 
         assertEquals(ingredientsCase.getTitle(), "Ingredients Cases");
 
-        BulletPointFrame bulletPointFrame = ingredientsCase.getBulletPointFrame();
+        BulletPointFrameJson bulletPointFrame = ingredientsCase.getBulletPointFrame();
         // FIXME Was this changed or did test fail?
         //assertEquals(bulletPointFrame.getTitle(), "Strategic Frame");
 
@@ -69,19 +69,19 @@ public class JsonAssetsLoaderTests extends CaTestCase {
         assertEquals(bulletPoints.get(0), "Fertilizer = high GHG");
         assertEquals(bulletPoints.get(4), "Waste = emissions or energy opportunity");
 
-        List<TextFrame> textFrames = ingredientsCase.getTextFrames();
+        List<TextFrameJson> textFrames = ingredientsCase.getTextFrames();
 
         // FIXME This is failing too
         assertNotNull(textFrames);
         assertNotSame(textFrames.size(), 0);
 
-        TextFrame frame1 = textFrames.get(0);
+        TextFrameJson frame1 = textFrames.get(0);
 
         assertEquals("Financial Frame", frame1.getTitle());
         assertEquals("", frame1.getBodyText());
         assertEquals("Revenue", frame1.getSubtitleTextPairs().get(1).getTitle());
 
-        TextFrame frame2 = textFrames.get(1);
+        TextFrameJson frame2 = textFrames.get(1);
 
         assertEquals("Strategic Future", frame2.getTitle());
         assertEquals(frame2.getSubtitleTextPairs().size(), 0);

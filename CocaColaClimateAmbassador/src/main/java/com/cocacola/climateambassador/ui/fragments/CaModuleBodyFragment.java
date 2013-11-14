@@ -12,10 +12,9 @@ import android.widget.Toast;
 
 import com.cocacola.climateambassador.HasModel;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.BulletPointFrame;
-import com.cocacola.climateambassador.models.Document;
-import com.cocacola.climateambassador.models.Module;
-import com.cocacola.climateambassador.ui.fragments.CaFragment;
+import com.cocacola.climateambassador.models.BulletPointFrameJson;
+import com.cocacola.climateambassador.models.DocumentJson;
+import com.cocacola.climateambassador.models.ModuleJson;
 import com.cocacola.climateambassador.ui.views.DocumentsLayout;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.google.gson.JsonSyntaxException;
@@ -32,7 +31,7 @@ import timber.log.Timber;
 /**
  * Created by Vinnie on 9/5/13.
  */
-public abstract class CaModuleBodyFragment extends CaFragment implements HasModel<Module> {
+public abstract class CaModuleBodyFragment extends CaFragment implements HasModel<ModuleJson> {
 
     @Inject
     JsonAssetsLoader mJsonAssetsLoader;
@@ -43,9 +42,9 @@ public abstract class CaModuleBodyFragment extends CaFragment implements HasMode
     @InjectView(R.id.course_materials_label)
     TextView courseMaterialsLabelView;
 
-    private Module mModule;
+    private ModuleJson mModule;
 
-    public Module getModel() {
+    public ModuleJson getModel() {
 
         // Lazily create Module object from JSON file
         if(mModule == null) {
@@ -64,7 +63,7 @@ public abstract class CaModuleBodyFragment extends CaFragment implements HasMode
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        Module module = getModel();
+        ModuleJson module = getModel();
 
         View v = inflater.inflate(R.layout.frag_module, null);
         Views.inject(this, v);
@@ -80,7 +79,7 @@ public abstract class CaModuleBodyFragment extends CaFragment implements HasMode
         // Bullet point frames
         LinearLayout caseFrames = (LinearLayout) v.findViewById(R.id.case_frames);
         if (module.getBulletPointFrame() != null) {
-            BulletPointFrame caseBulletPointFrame = module.getBulletPointFrame();
+            BulletPointFrameJson caseBulletPointFrame = module.getBulletPointFrame();
             View bulletPointFrame = inflater.inflate(R.layout.case_frame, null);
 
             if (!TextUtils.isEmpty(caseBulletPointFrame.getTitle())) {
@@ -110,7 +109,7 @@ public abstract class CaModuleBodyFragment extends CaFragment implements HasMode
             caseFrames.addView(bulletPointFrame);
         }
 
-        List<Document> documentList = module.getCourseMaterials();
+        List<DocumentJson> documentList = module.getCourseMaterials();
         if(documentList.size() > 0) {
             DocumentsLayout documentsLayout = (DocumentsLayout) v.findViewById(R.id.course_materials);
             documentsLayout.setDocuments(module.getCourseMaterials());

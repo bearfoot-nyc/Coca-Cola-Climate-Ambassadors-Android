@@ -14,10 +14,10 @@ public class CaseJson {
 
     private String title;
     private String bodyText;
-    private BulletPointFrame bulletPointFrame;
-    private List<TextFrame> textFrames;
-    private List<Document> courseMaterials;
-    private List<Document> caseStudies;
+    private BulletPointFrameJson bulletPointFrame;
+    private List<TextFrameJson> textFrames;
+    private List<DocumentJson> courseMaterials;
+    private List<DocumentJson> caseStudies;
 
     public String getTitle() {
         return title;
@@ -27,19 +27,19 @@ public class CaseJson {
         this.title = title;
     }
 
-    public BulletPointFrame getBulletPointFrame() {
+    public BulletPointFrameJson getBulletPointFrame() {
         return bulletPointFrame;
     }
 
-    public void setBulletPointFrame(BulletPointFrame bulletPointFrame) {
+    public void setBulletPointFrame(BulletPointFrameJson bulletPointFrame) {
         this.bulletPointFrame = bulletPointFrame;
     }
 
-    public List<TextFrame> getTextFrames() {
+    public List<TextFrameJson> getTextFrames() {
         return textFrames;
     }
 
-    public void setTextFrames(List<TextFrame> textFrames) {
+    public void setTextFrames(List<TextFrameJson> textFrames) {
         this.textFrames = textFrames;
     }
 
@@ -51,19 +51,19 @@ public class CaseJson {
         this.bodyText = bodyText;
     }
 
-    public List<Document> getCourseMaterials() {
+    public List<DocumentJson> getCourseMaterials() {
         return courseMaterials;
     }
 
-    public void setCourseMaterials(List<Document> courseMaterials) {
+    public void setCourseMaterials(List<DocumentJson> courseMaterials) {
         this.courseMaterials = courseMaterials;
     }
 
-    public List<Document> getCaseStudies() {
+    public List<DocumentJson> getCaseStudies() {
         return caseStudies;
     }
 
-    public void setCaseStudies(List<Document> caseStudies) {
+    public void setCaseStudies(List<DocumentJson> caseStudies) {
         this.caseStudies = caseStudies;
     }
 }

@@ -5,15 +5,16 @@ import java.util.List;
 /**
  * Created by andrewlawton on 8/23/13.
  */
-public class Module {
+public class ModuleJson {
 
     private String title;
     private String bodyText;
     private List<CaseJson> cases;
-    private List<Document> courseMaterials;
-    private BulletPointFrame bulletPointFrame;
+    private List<DocumentJson> courseMaterials;
+    private BulletPointFrameJson bulletPointFrame;
 
-    public Module(String title, String bodyText, List<CaseJson> cases, List<Document> courseMaterials) {
+    public ModuleJson(String title, String bodyText, List<CaseJson> cases,
+        List<DocumentJson> courseMaterials) {
         this.title = title;
         this.bodyText = bodyText;
         this.cases = cases;
@@ -46,20 +47,20 @@ public class Module {
     }
 
 
-    public BulletPointFrame getBulletPointFrame() {
+    public BulletPointFrameJson getBulletPointFrame() {
         return bulletPointFrame;
     }
 
-    public void setBulletPointFrame(BulletPointFrame bulletPointFrame) {
+    public void setBulletPointFrame(BulletPointFrameJson bulletPointFrame) {
         this.bulletPointFrame = bulletPointFrame;
     }
 
 
-    public List<Document> getCourseMaterials() {
+    public List<DocumentJson> getCourseMaterials() {
         return courseMaterials;
     }
 
-    public void setCourseMaterials(List<Document> courseMaterials) {
+    public void setCourseMaterials(List<DocumentJson> courseMaterials) {
         this.courseMaterials = courseMaterials;
     }
 

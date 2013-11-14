@@ -3,13 +3,13 @@ package com.cocacola.climateambassador.models;
 /**
  * Created by andrewlawton on 8/23/13.
  */
-public class Document {
+public class DocumentJson {
 
     private String fileName;
     private String label;
     private String fileType;
 
-    public Document(String fileName, String label, String fileType) {
+    public DocumentJson(String fileName, String label, String fileType) {
         this.fileName = fileName;
         this.label = label;
         this.fileType = fileType;

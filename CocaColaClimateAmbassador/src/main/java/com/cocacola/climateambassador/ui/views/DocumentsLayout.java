@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.Document;
+import com.cocacola.climateambassador.models.DocumentJson;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class DocumentsLayout extends LinearLayout {
         super(context, attrs, defStyle);
     }
 
-    public void setDocuments(List<Document> documents) {
+    public void setDocuments(List<DocumentJson> documents) {
 
         if(documents == null) {
             setVisibility(View.GONE);
@@ -36,7 +36,7 @@ public class DocumentsLayout extends LinearLayout {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        for(Document doc : documents) {
+        for(DocumentJson doc : documents) {
 
             DocumentView docView = (DocumentView) inflater.inflate(R.layout.view_document, this, false);
             docView.setDocument(doc);

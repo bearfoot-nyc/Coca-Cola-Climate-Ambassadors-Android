@@ -5,12 +5,12 @@ import java.util.List;
 /**
  * Created by andrewlawton on 8/23/13.
  */
-public class Section {
+public class SectionJson {
 
     private String title;
-    private List<Module> modules;
+    private List<ModuleJson> modules;
 
-    public Section(String title, List<Module> modules) {
+    public SectionJson(String title, List<ModuleJson> modules) {
         this.title = title;
         this.modules = modules;
     }
@@ -23,11 +23,11 @@ public class Section {
         this.title = title;
     }
 
-    public List<Module> getModules() {
+    public List<ModuleJson> getModules() {
         return modules;
     }
 
-    public void setModules(List<Module> modules) {
+    public void setModules(List<ModuleJson> modules) {
         this.modules = modules;
     }
 }

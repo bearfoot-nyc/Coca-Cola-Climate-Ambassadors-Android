@@ -14,10 +14,10 @@ import android.widget.Toast;
 
 import com.cocacola.climateambassador.HasModel;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.BulletPointFrame;
+import com.cocacola.climateambassador.models.BulletPointFrameJson;
 import com.cocacola.climateambassador.models.CaseJson;
-import com.cocacola.climateambassador.models.SubtitleTextPair;
-import com.cocacola.climateambassador.models.TextFrame;
+import com.cocacola.climateambassador.models.SubtitleTextPairJson;
+import com.cocacola.climateambassador.models.TextFrameJson;
 import com.cocacola.climateambassador.ui.views.DocumentsLayout;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.google.gson.JsonSyntaxException;
@@ -67,7 +67,7 @@ public abstract class CaCaseActivity extends CaActivity implements HasModel<Case
         LinearLayout caseFrames = (LinearLayout) findViewById(R.id.case_frames);
 
         if (aCase.getBulletPointFrame() != null) {
-            BulletPointFrame caseBulletPointFrame = aCase.getBulletPointFrame();
+            BulletPointFrameJson caseBulletPointFrame = aCase.getBulletPointFrame();
             View bulletPointFrame = inflater.inflate(R.layout.case_frame, null);
 
             if (!TextUtils.isEmpty(caseBulletPointFrame.getTitle())) {
@@ -96,7 +96,7 @@ public abstract class CaCaseActivity extends CaActivity implements HasModel<Case
 
         if (aCase.getTextFrames() != null) {
 
-            for (TextFrame currTextFrame : aCase.getTextFrames()) {
+            for (TextFrameJson currTextFrame : aCase.getTextFrames()) {
                 View textFrame = inflater.inflate(R.layout.case_frame, null);
 
                 if (!TextUtils.isEmpty(currTextFrame.getTitle())) {
@@ -111,7 +111,7 @@ public abstract class CaCaseActivity extends CaActivity implements HasModel<Case
                 //TextFrame list base layout
                 LinearLayout textFrames = (LinearLayout) textFrame.findViewById(R.id.case_frame_body);
 
-                for (SubtitleTextPair subTextPair : currTextFrame.getSubtitleTextPairs()) {
+                for (SubtitleTextPairJson subTextPair : currTextFrame.getSubtitleTextPairs()) {
                     View subtitleTextPairView = inflater.inflate(R.layout.case_text_frame, null);
                     ((TextView) subtitleTextPairView.findViewById(R.id.title)).setText(subTextPair.getTitle());
                     ((TextView) subtitleTextPairView.findViewById(R.id.body_text)).setText(subTextPair.getText());

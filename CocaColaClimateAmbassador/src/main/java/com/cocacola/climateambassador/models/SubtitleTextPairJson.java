@@ -3,7 +3,7 @@ package com.cocacola.climateambassador.models;
 /**
  * Created by realandylawton on 8/31/13.
  */
-public class SubtitleTextPair {
+public class SubtitleTextPairJson {
 
     private String title;
     private String text;

@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by realandylawton on 8/31/13.
  */
-public class BulletPointFrame {
+public class BulletPointFrameJson {
 
     private String title;
     private String subtitle;

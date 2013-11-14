@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Created by realandylawton on 8/31/13.
  */
-public class CaseFrame {
+public class CaseFrameJson {
 
     private String title;
     private Map<String, List<String>> subtitleBulletPointMap;

@@ -1,28 +1,16 @@
 package com.cocacola.climateambassador.ui.fragments;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cocacola.climateambassador.HasModel;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.Document;
+import com.cocacola.climateambassador.models.DocumentJson;
 import com.cocacola.climateambassador.models.FileType;
-import com.cocacola.climateambassador.models.Module;
-import com.cocacola.climateambassador.ui.activities.DistributionCaseActivity;
-import com.cocacola.climateambassador.ui.activities.IngredientCaseActivity;
-import com.cocacola.climateambassador.ui.activities.ManufacturingCaseActivity;
-import com.cocacola.climateambassador.ui.activities.PackagingCaseActivity;
-import com.cocacola.climateambassador.ui.activities.RefrigerationCaseActivity;
+import com.cocacola.climateambassador.models.ModuleJson;
 import com.cocacola.climateambassador.ui.views.DocumentView;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.google.gson.JsonSyntaxException;
@@ -39,7 +27,7 @@ import timber.log.Timber;
  * Created by Vinnie Vendemia on 8/28/13.
  */
 
-public class ForSuppliersBodyFragment extends CaFragment implements HasModel<Module> {
+public class ForSuppliersBodyFragment extends CaFragment implements HasModel<ModuleJson> {
 
     @Inject
     JsonAssetsLoader mJsonAssetsLoader;
@@ -47,7 +35,7 @@ public class ForSuppliersBodyFragment extends CaFragment implements HasModel<Mod
     @Inject
     Timber Log;
 
-    private Module mModule;
+    private ModuleJson mModule;
 
     @InjectView(R.id.suppliers_document)
     DocumentView mDocumentView;
@@ -82,15 +70,15 @@ public class ForSuppliersBodyFragment extends CaFragment implements HasModel<Mod
         Views.reset(this);
     }
 
-    private Document getSupplierDocument() {
+    private DocumentJson getSupplierDocument() {
 
-        Document doc = new Document("PartneringToReduceCarboninValueChain.pdf", "Partnering to Reduce Carbon along Our Value Chain", FileType.PDF.toString());
+        DocumentJson doc = new DocumentJson("PartneringToReduceCarboninValueChain.pdf", "Partnering to Reduce Carbon along Our Value Chain", FileType.PDF.toString());
         return doc;
 
     }
 
     @Override
-    public Module getModel() {
+    public ModuleJson getModel() {
 
         // Lazily create Model object from JSON file
         if(mModule == null) {
