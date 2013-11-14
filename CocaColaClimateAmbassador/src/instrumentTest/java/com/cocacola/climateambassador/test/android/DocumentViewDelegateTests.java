@@ -1,15 +1,14 @@
-package com.cocacola.climateambassador.test;
+package com.cocacola.climateambassador.test.android;
 
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.test.InstrumentationTestCase;
 import com.cocacola.climateambassador.AppPackageFileWriter;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.models.FileType;
-import dagger.ObjectGraph;
+import com.cocacola.climateambassador.test.CaFileTestCase;
 import java.io.File;
 import java.util.List;
 import javax.inject.Inject;
@@ -18,25 +17,10 @@ import timber.log.Timber;
 /**
  * Created by andrewlawton on 8/24/13.
  */
-public class DocumentViewDelegateTests extends InstrumentationTestCase {
+public class DocumentViewDelegateTests extends CaFileTestCase {
 
-    @Inject
-    DocumentViewerDelegate mDocumentViewerDelegate;
-
-    @Inject
-    Timber Log;
-
-    protected Context mContext;
-
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-
-        mContext = getInstrumentation().getTargetContext();
-
-        ObjectGraph graph = ObjectGraph.create(new ClimateAmbassadorTestModule(mContext));
-        graph.inject(this);
-    }
+    @Inject protected DocumentViewerDelegate mDocumentViewerDelegate;
+    @Inject protected Timber Log;
 
     @Override
     protected void tearDown() throws Exception {
@@ -57,7 +41,7 @@ public class DocumentViewDelegateTests extends InstrumentationTestCase {
 
     public void testGetsFileTypeForFilename() {
 
-        String fileName = "foobarbatz_1a-123a.pptx";
+        String fileName = VALID_PPT_FILENAME;
         FileType expectedType = FileType.PPT;
 
         FileType type = FileType.getTypeForFilename(fileName);
@@ -108,8 +92,8 @@ public class DocumentViewDelegateTests extends InstrumentationTestCase {
     public void testCreatesFileForFileType() {
 
         FileType pdfType = FileType.PDF;
-        String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
-        String expectedPath = "/data/data/com.cocacola.climateambassador/files/docs/coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
+        String fileName = VALID_PDF_FILENAME;
+        String expectedPath = "/data/data/com.cocacola.climateambassador/files/docs/" + VALID_PDF_FILENAME;
 
         File file = null;
         try {
@@ -122,22 +106,10 @@ public class DocumentViewDelegateTests extends InstrumentationTestCase {
 
     }
 
-    private File getValidFile() {
-
-        String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
-
-        File fileTypeDir = new File(mContext.getFilesDir().getAbsolutePath() + File.separator + FileType.PDF.getDirectory());
-
-        File file =  new File(fileTypeDir + File.separator + fileName);
-
-        return file;
-
-    }
-
     public void testCreatesUriForFileType() throws DocumentViewerDelegate.FileNotInAppPackageException {
 
         FileType pdfType = FileType.PDF;
-        String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
+        String fileName = VALID_PDF_FILENAME;
 
         File file = null;
         Uri uri = null;
@@ -157,7 +129,6 @@ public class DocumentViewDelegateTests extends InstrumentationTestCase {
     public void testCreatesProperIntentForFileType() {
 
         FileType fileType = FileType.PDF;
-        String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
 
         Uri path = mDocumentViewerDelegate.createUriForFile(getValidFile());
 
@@ -184,7 +155,7 @@ public class DocumentViewDelegateTests extends InstrumentationTestCase {
     public void testLaunchesDocumentInQuickOffice()
         throws AppPackageFileWriter.FailedToWriteToPackageException {
 
-        String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
+        String fileName = VALID_PDF_FILENAME;
         String playStorePkgName = "com.android.vending";
 
         mDocumentViewerDelegate.startActivityForFile(mContext, fileName);

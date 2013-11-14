@@ -4,6 +4,10 @@ import android.content.Context;
 
 import com.cocacola.climateambassador.modules.ClimateAmbassadorModule;
 
+import com.cocacola.climateambassador.test.android.AppPackageFileWriterTests;
+import com.cocacola.climateambassador.test.android.DocumentViewDelegateTests;
+import com.cocacola.climateambassador.test.android.JsonAssetsLoaderTests;
+import com.cocacola.climateambassador.test.data.DataInstallerTests;
 import dagger.Module;
 import dagger.Provides;
 
@@ -15,9 +19,10 @@ import dagger.Provides;
         includes = ClimateAmbassadorModule.class,
         overrides = true,
         injects = {
-                AppPackageFileWriterTests.class,
-                DocumentViewDelegateTests.class,
-                JsonTextSerializerTests.class
+            AppPackageFileWriterTests.class,
+            DocumentViewDelegateTests.class,
+            JsonAssetsLoaderTests.class,
+            DataInstallerTests.class
         }
 )
 public class ClimateAmbassadorTestModule {

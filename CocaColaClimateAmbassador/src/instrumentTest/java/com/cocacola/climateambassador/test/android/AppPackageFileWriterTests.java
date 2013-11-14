@@ -1,28 +1,21 @@
-package com.cocacola.climateambassador.test;
-
-import android.content.Context;
-import android.test.InstrumentationTestCase;
+package com.cocacola.climateambassador.test.android;
 
 import com.cocacola.climateambassador.AppPackageFileWriter;
 import com.cocacola.climateambassador.models.FileType;
-
+import com.cocacola.climateambassador.test.CaFileTestCase;
+import com.cocacola.climateambassador.test.ClimateAmbassadorTestModule;
+import dagger.ObjectGraph;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-
 import javax.inject.Inject;
-
-import dagger.ObjectGraph;
 
 /**
  * Created by andrewlawton on 8/24/13.
  */
-public class AppPackageFileWriterTests extends InstrumentationTestCase {
+public class AppPackageFileWriterTests extends CaFileTestCase {
 
-    @Inject
-    AppPackageFileWriter mAppPackageFileWriter;
-
-    protected Context mContext;
+    @Inject protected AppPackageFileWriter mAppPackageFileWriter;
 
     @Override
     public void setUp() throws Exception {
@@ -42,7 +35,7 @@ public class AppPackageFileWriterTests extends InstrumentationTestCase {
 
     public void testCreatesInputFromAsset() {
 
-        String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
+        String fileName = VALID_PDF_FILENAME;
         FileType fileType = FileType.getTypeForExtension("pdf");
 
         InputStream in = null;
@@ -84,7 +77,7 @@ public class AppPackageFileWriterTests extends InstrumentationTestCase {
 
     private InputStream getValidInputStream() {
 
-        String fileName = "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
+        String fileName = VALID_PDF_FILENAME;
         FileType fileType = FileType.getTypeForExtension("pdf");
 
         InputStream in = null;
@@ -126,7 +119,7 @@ public class AppPackageFileWriterTests extends InstrumentationTestCase {
     }
 
     private String getValidFileName() {
-        return "coca-cola-Business-Case-for-Good-Fertilizer-Use-in-Citrus.pdf";
+        return VALID_PDF_FILENAME;
     }
 
     private FileType getValidFileType() {
