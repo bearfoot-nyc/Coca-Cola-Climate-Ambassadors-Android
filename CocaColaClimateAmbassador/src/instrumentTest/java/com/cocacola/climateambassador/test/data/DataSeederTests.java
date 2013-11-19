@@ -4,6 +4,7 @@ import com.cocacola.climateambassador.data.BulletPoint;
 import com.cocacola.climateambassador.data.BulletPointFrame;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.DaoSession;
+import com.cocacola.climateambassador.data.Document;
 import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.ModuleDao;
 import com.cocacola.climateambassador.data.Section;
@@ -75,7 +76,7 @@ public class DataSeederTests extends CaTestCase {
 
     }
 
-    public void testModuleIsSeeded() throws IOException {
+    public void testModuleIsSeeded() throws IOException, DataSeeder.SeedFailedException {
 
         // Get a Section
         Integer sectionRes = DataSeeder.SECTION_INTERNAL_TRAINING;
@@ -110,6 +111,19 @@ public class DataSeederTests extends CaTestCase {
         assertNotNull("Module name was null", module.getTitle());
 
         assertValidBulletPoints(module.getBulletPointFrame());
+
+        for(Document document : module.getDocuments()) {
+            assertValidDocument(document);
+        }
+
+    }
+
+    private void assertValidDocument(Document document) {
+
+        assertNotNull(document);
+        assertNotNull(document.getFileName());
+        assertNotNull(document.getLabel());
+        assertNotNull(document.getModuleId());
 
     }
 

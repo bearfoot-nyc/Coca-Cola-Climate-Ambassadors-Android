@@ -9,7 +9,6 @@ public class Document {
     private Long id;
     private String fileName;
     private String label;
-    private String fileType;
     private long moduleId;
 
     public Document() {
@@ -19,11 +18,10 @@ public class Document {
         this.id = id;
     }
 
-    public Document(Long id, String fileName, String label, String fileType, long moduleId) {
+    public Document(Long id, String fileName, String label, long moduleId) {
         this.id = id;
         this.fileName = fileName;
         this.label = label;
-        this.fileType = fileType;
         this.moduleId = moduleId;
     }
 
@@ -49,14 +47,6 @@ public class Document {
 
     public void setLabel(String label) {
         this.label = label;
-    }
-
-    public String getFileType() {
-        return fileType;
-    }
-
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
     }
 
     public long getModuleId() {

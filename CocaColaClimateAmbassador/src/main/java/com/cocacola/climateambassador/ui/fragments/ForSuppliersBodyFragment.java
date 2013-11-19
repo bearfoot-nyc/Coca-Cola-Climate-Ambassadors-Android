@@ -72,7 +72,7 @@ public class ForSuppliersBodyFragment extends CaFragment implements HasModel<Mod
 
     private DocumentJson getSupplierDocument() {
 
-        DocumentJson doc = new DocumentJson("PartneringToReduceCarboninValueChain.pdf", "Partnering to Reduce Carbon along Our Value Chain", FileType.PDF.toString());
+        DocumentJson doc = new DocumentJson("PartneringToReduceCarboninValueChain.pdf", "Partnering to Reduce Carbon along Our Value Chain");
         return doc;
 
     }

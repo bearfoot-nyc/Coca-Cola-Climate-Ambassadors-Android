@@ -60,7 +60,6 @@ public class CaDaoGenerator {
         document.addIdProperty();
         document.addStringProperty("fileName");
         document.addStringProperty("label");
-        document.addStringProperty("fileType");
 
         // Module to Documents
         Property moduleId = document.addLongProperty("moduleId").notNull().getProperty();

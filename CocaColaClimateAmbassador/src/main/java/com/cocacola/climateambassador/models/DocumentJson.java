@@ -7,12 +7,10 @@ public class DocumentJson {
 
     private String fileName;
     private String label;
-    private String fileType;
 
-    public DocumentJson(String fileName, String label, String fileType) {
+    public DocumentJson(String fileName, String label) {
         this.fileName = fileName;
         this.label = label;
-        this.fileType = fileType;
     }
 
     public String getFileName() {
@@ -29,14 +27,6 @@ public class DocumentJson {
 
     public void setLabel(String label) {
         this.label = label;
-    }
-
-    public String getFileType() {
-        return fileType;
-    }
-
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
     }
 
 }

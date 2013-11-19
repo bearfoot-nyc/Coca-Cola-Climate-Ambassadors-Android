@@ -10,15 +10,15 @@ public class ModuleJson {
     private String title;
     private String bodyText;
     private List<CaseJson> cases;
-    private List<DocumentJson> courseMaterials;
+    private List<DocumentJson> documents;
     private BulletPointFrameJson bulletPointFrame;
 
     public ModuleJson(String title, String bodyText, List<CaseJson> cases,
-        List<DocumentJson> courseMaterials) {
+        List<DocumentJson> documents) {
         this.title = title;
         this.bodyText = bodyText;
         this.cases = cases;
-        this.courseMaterials = courseMaterials;
+        this.documents = documents;
     }
 
     public String getTitle() {
@@ -56,12 +56,12 @@ public class ModuleJson {
     }
 
 
-    public List<DocumentJson> getCourseMaterials() {
-        return courseMaterials;
+    public List<DocumentJson> getDocuments() {
+        return documents;
     }
 
-    public void setCourseMaterials(List<DocumentJson> courseMaterials) {
-        this.courseMaterials = courseMaterials;
+    public void setDocuments(List<DocumentJson> documents) {
+        this.documents = documents;
     }
 
 

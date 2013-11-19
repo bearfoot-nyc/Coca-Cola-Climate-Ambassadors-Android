@@ -9,14 +9,17 @@ import com.cocacola.climateambassador.data.BulletPointFrameDao;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.DaoSession;
 import com.cocacola.climateambassador.data.Document;
+import com.cocacola.climateambassador.data.DocumentDao;
 import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.ModuleDao;
 import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.data.SectionDao;
+import com.cocacola.climateambassador.models.DocumentJson;
 import com.cocacola.climateambassador.models.ModuleJson;
 import com.cocacola.climateambassador.models.SectionJson;
 import java.io.IOException;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
 import timber.log.Timber;
@@ -88,7 +91,8 @@ public class DataSeeder {
 
     }
 
-    public Module seedModule(String fileName, Long sectionId) throws IOException {
+    public Module seedModule(String fileName, Long sectionId)
+        throws IOException, SeedFailedException {
 
         ModuleJson json = mJsonLoader.parseModuleFromJsonFile(fileName);
 
@@ -109,15 +113,36 @@ public class DataSeeder {
             return null;
         }
 
-
         seedDocuments(json, moduleId);
 
         return moduleModel;
     }
 
-    private Document seedDocuments(ModuleJson json, Long moduleId) {
+    private void seedDocuments(ModuleJson json, Long moduleId) throws SeedFailedException {
 
-        return null;
+        List<DocumentJson> documentJsonList = json.getDocuments();
+
+        if(documentJsonList == null || documentJsonList.size() < 1) {
+            return;
+        }
+
+        DocumentDao documentDao = mDaoMaster.newSession().getDocumentDao();
+
+        for(DocumentJson documentJson : documentJsonList) {
+
+            if(documentJson == null) {
+                throw new SeedFailedException("Document JSON null: " + documentJson);
+            }
+
+            Document document = new Document();
+            document.setFileName(documentJson.getFileName());
+            document.setLabel(documentJson.getLabel());
+            document.setModuleId(moduleId);
+
+            documentDao.insert(document);
+
+
+        }
 
     }
 

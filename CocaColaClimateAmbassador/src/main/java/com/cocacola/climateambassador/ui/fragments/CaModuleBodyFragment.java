@@ -109,10 +109,10 @@ public abstract class CaModuleBodyFragment extends CaFragment implements HasMode
             caseFrames.addView(bulletPointFrame);
         }
 
-        List<DocumentJson> documentList = module.getCourseMaterials();
+        List<DocumentJson> documentList = module.getDocuments();
         if(documentList.size() > 0) {
             DocumentsLayout documentsLayout = (DocumentsLayout) v.findViewById(R.id.course_materials);
-            documentsLayout.setDocuments(module.getCourseMaterials());
+            documentsLayout.setDocuments(module.getDocuments());
         }
         else {
             courseMaterialsLabelView.setVisibility(View.INVISIBLE);
