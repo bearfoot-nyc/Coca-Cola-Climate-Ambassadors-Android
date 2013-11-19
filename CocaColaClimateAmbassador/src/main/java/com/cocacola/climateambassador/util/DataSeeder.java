@@ -1,6 +1,7 @@
 package com.cocacola.climateambassador.util;
 
 import android.content.Context;
+import android.widget.Toast;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.data.BulletPoint;
 import com.cocacola.climateambassador.data.BulletPointFrame;
@@ -18,26 +19,51 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
+import timber.log.Timber;
 
 /**
  * Created by realandylawton on 11/14/13.
  */
 public class DataSeeder {
 
+    public static class SeedFailedException extends Exception {
+        public SeedFailedException(String detailMessage) {
+            super(detailMessage);
+        }
+    }
+
     public static final Integer SECTION_INTERNAL_TRAINING = R.string.nav_item_internal_training;
     public static final Integer SECTION_FOR_SUPPLIERS = R.string.nav_item_for_suppliers;
 
-    private static Map<Integer, String> sSectionJsonMap = new LinkedHashMap<Integer, String>();
-
+    public static Map<Integer, String> sSectionJsonMap = new LinkedHashMap<Integer, String>();
     static {
         sSectionJsonMap.put(SECTION_INTERNAL_TRAINING, "section_internal_training.json");
         sSectionJsonMap.put(SECTION_FOR_SUPPLIERS, "section_for_suppliers.json");
     }
+    public static String getJsonForSection(Integer sectionRes) {
+        return sSectionJsonMap.get(sectionRes);
+    }
 
     @Inject protected JsonAssetsLoader mJsonLoader;
     @Inject protected DaoMaster mDaoMaster;
+    @Inject protected Timber Log;
 
-    public long seedSection(Integer sectionNameRes) throws IOException {
+    private Context mContext;
+
+    @Inject
+    public DataSeeder(Context context) {
+        mContext = context;
+    }
+
+    public void seed() throws IOException, SeedFailedException {
+
+        for(Integer sectionRes : sSectionJsonMap.keySet()) {
+            seedSection(sectionRes);
+        }
+
+    }
+
+    public Long seedSection(Integer sectionNameRes) throws IOException, SeedFailedException {
 
         String sectionJsonFile = sSectionJsonMap.get(sectionNameRes);
 
@@ -49,23 +75,20 @@ public class DataSeeder {
         SectionDao sectionDao = mDaoMaster.newSession().getSectionDao();
         long sectionId = sectionDao.insert(section);
 
+        for(String moduleJson : sectionJson.getModules()) {
+
+            Module module = seedModule(moduleJson, section.getId());
+            if(module == null) {
+                throw new SeedFailedException("Failed to load module: " + moduleJson);
+            }
+
+        }
+
         return sectionId;
 
-
     }
 
-    public enum SectionType {
-        INTERNAL_TRAINING, FOR_SUPPLIERS;
-    }
-
-    private Context mContext;
-
-    @Inject
-    public DataSeeder(Context context) {
-        mContext = context;
-    }
-
-    public Long seedModule(String fileName) throws IOException {
+    public Module seedModule(String fileName, Long sectionId) throws IOException {
 
         ModuleJson json = mJsonLoader.parseModuleFromJsonFile(fileName);
 
@@ -75,20 +98,26 @@ public class DataSeeder {
         Module moduleModel = new Module();
         moduleModel.setTitle(json.getTitle());
         moduleModel.setBodyText(json.getBodyText());
+        moduleModel.setSectionId(sectionId);
 
+        //BulletPointFrame frame = new BulletPointFrame();
+        //frame.setTitle(json.getBulletPointFrame().getTitle());
+        //frame.setSubtitle(json.getBulletPointFrame().getSubtitle());
+        //
+        //for(String point : json.getBulletPointFrame().getBulletPoints()) {
+        //    BulletPoint bulletPoint = new BulletPoint();
+        //    bulletPoint.setText(point);
+        //}
 
-        BulletPointFrame frame = new BulletPointFrame();
-        frame.setTitle(json.getBulletPointFrame().getTitle());
-        frame.setSubtitle(json.getBulletPointFrame().getSubtitle());
+        Long id = dao.insert(moduleModel);
 
-        for(String point : json.getBulletPointFrame().getBulletPoints()) {
-            BulletPoint bulletPoint = new BulletPoint();
-            bulletPoint.setText(point);
+        if (id == null) {
+            return null;
         }
 
-        long id = dao.insert(moduleModel);
-
-        return id;
+        return moduleModel;
     }
+
+
 
 }

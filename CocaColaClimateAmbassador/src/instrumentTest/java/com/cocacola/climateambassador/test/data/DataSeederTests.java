@@ -6,6 +6,7 @@ import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.ModuleDao;
 import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.data.SectionDao;
+import com.cocacola.climateambassador.models.SectionJson;
 import com.cocacola.climateambassador.test.CaTestCase;
 import com.cocacola.climateambassador.util.DataSeeder;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
@@ -37,38 +38,73 @@ public class DataSeederTests extends CaTestCase {
         mDaoSession = null;
     }
 
-    public void testSeedsSections() throws IOException {
+    public void testSeedsSections() throws IOException, DataSeeder.SeedFailedException {
 
-        Integer setctionRes = DataSeeder.SECTION_INTERNAL_TRAINING;
+        // Seed Sections
+        mSeeder.seed();
 
-        long sectionId = mSeeder.seedSection(setctionRes);
+        // Assert Internal Training Section is valid
+        Section internalSection = getSection(DataSeeder.SECTION_INTERNAL_TRAINING);
+        assertValidSection(internalSection, DataSeeder.SECTION_INTERNAL_TRAINING);
 
-        SectionDao dao = mDaoSession.getSectionDao();
-
-        List<Section> sectionList = dao.queryBuilder().where(SectionDao.Properties.Id.eq(sectionId)).limit(1).list();
-
-        assertNotNull("Sections query was null", sectionList);
-        assertEquals("Section size was not one", 1, sectionList.size());
-
-        Section section = sectionList.get(0);
-
-        assertNotNull(section);
-        assertEquals("Section titles not the same", mContext.getString(setctionRes), section.getName());
-
+        // Assert For Suppliers is valid
+        Section suppliersSection = getSection(DataSeeder.SECTION_FOR_SUPPLIERS);
+        assertValidSection(suppliersSection, DataSeeder.SECTION_FOR_SUPPLIERS);
 
     }
 
-    public void testModuleOneIsSeeded() throws IOException {
+    public void testSeedsSection() throws IOException, DataSeeder.SeedFailedException {
 
-        String jsonFileName = JsonFilenameDictionary.MODULE_ONE;
+        // Pick a Section
+        Integer sectionRes = DataSeeder.SECTION_INTERNAL_TRAINING;
 
-        Long id = mSeeder.seedModule(jsonFileName);
-        assertNotNull("Module ID was null", id);
-        assertTrue("Module ID was zero", id != 0);
+        // Seed the section
+        long sectionId = mSeeder.seedSection(sectionRes);
 
-        Module module = getModule(id);
+        // Query for that section
+        SectionDao dao = mDaoSession.getSectionDao();
+        List<Section> sectionList = dao.queryBuilder().where(SectionDao.Properties.Id.eq(sectionId)).limit(1).list();
+        assertNotNull("Sections query was null", sectionList);
+        assertEquals("Section size was not one", 1, sectionList.size());
+
+        // Assert Section is valid
+        Section section = sectionList.get(0);
+        assertValidSection(section, sectionRes);
+
+    }
+
+    public void testModuleIsSeeded() throws IOException {
+
+        // Get a Section
+        Integer sectionRes = DataSeeder.SECTION_INTERNAL_TRAINING;
+        SectionJson sectionJson = getJsonSection(sectionRes);
+        Section section = getSection(sectionRes);
+
+        // Get a module
+        Module module = mSeeder.seedModule(sectionJson.getModules().get(2), section.getId());
+
+        assertValidModule(module);
+
+    }
+
+    private void assertValidSection(Section section, Integer sectionTitleRes) {
+
+        // Assert Section is valid
+        assertNotNull(section);
+        assertEquals("Section titles not the same", mContext.getString(sectionTitleRes), section.getName());
+
+        // Inspect modules
+        List<Module> moduleList = section.getModules();
+        for(Module module : moduleList) {
+            assertValidModule(module);
+        }
+
+    }
+
+    private void assertValidModule(Module module) {
 
         assertNotNull("Module was null", module);
+        assertNotNull("Module ID was null", module.getId());
         assertNotNull("Module name was null", module.getTitle());
 
     }
@@ -85,6 +121,24 @@ public class DataSeederTests extends CaTestCase {
 
         return modules.get(0);
 
+    }
+
+    private Section getSection(Integer stringRes) {
+
+        SectionDao sectionDao = mDaoSession.getSectionDao();
+
+        Section section = sectionDao.queryBuilder().
+            where(SectionDao.Properties.Name.eq(mContext.getString(stringRes)))
+            .limit(1).list().get(0);
+
+        return section;
+
+
+    }
+
+    private SectionJson getJsonSection(Integer sectionRes) throws IOException {
+        String fileName = DataSeeder.getJsonForSection(sectionRes);
+        return mJsonLoader.parseFromJsonFile(fileName, SectionJson.class);
     }
 
 }

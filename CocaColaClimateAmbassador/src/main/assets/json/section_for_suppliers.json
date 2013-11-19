@@ -1,0 +1,7 @@
+{
+    "title": "For Suppliers",
+    "modules" : [
+         "for_suppliers_overview.json",
+         "for_suppliers_2020_vision.json"
+     ]
+}
