@@ -1,0 +1,11 @@
+{
+    "title": "Internal Training Materials",
+    "modules" : [
+         "internal_training_overview.json",
+         "role_of_climate_ambassador.json",
+         "module_one.json",
+         "module_two.json",
+         "module_three.json",
+         "module_four.json",
+     ]
+}

@@ -4,6 +4,8 @@ import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.DaoSession;
 import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.ModuleDao;
+import com.cocacola.climateambassador.data.Section;
+import com.cocacola.climateambassador.data.SectionDao;
 import com.cocacola.climateambassador.test.CaTestCase;
 import com.cocacola.climateambassador.util.DataSeeder;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
@@ -17,14 +19,43 @@ import javax.inject.Inject;
  */
 public class DataSeederTests extends CaTestCase {
 
-    @Inject JsonAssetsLoader mJsonLoader;
-    @Inject DataSeeder mSeeder;
-    @Inject DaoMaster mDaoMaster;
+    @Inject protected JsonAssetsLoader mJsonLoader;
+    @Inject protected DataSeeder mSeeder;
+    @Inject protected DaoMaster mDaoMaster;
+
+    private DaoSession mDaoSession;
+
+    @Override public void setUp() throws Exception {
+        super.setUp();
+        mDaoSession = mDaoMaster.newSession();
+    }
 
     @Override protected void tearDown() throws Exception {
         super.tearDown();
         mJsonLoader = null;
         mSeeder = null;
+        mDaoSession = null;
+    }
+
+    public void testSeedsSections() throws IOException {
+
+        Integer setctionRes = DataSeeder.SECTION_INTERNAL_TRAINING;
+
+        long sectionId = mSeeder.seedSection(setctionRes);
+
+        SectionDao dao = mDaoSession.getSectionDao();
+
+        List<Section> sectionList = dao.queryBuilder().where(SectionDao.Properties.Id.eq(sectionId)).limit(1).list();
+
+        assertNotNull("Sections query was null", sectionList);
+        assertEquals("Section size was not one", 1, sectionList.size());
+
+        Section section = sectionList.get(0);
+
+        assertNotNull(section);
+        assertEquals("Section titles not the same", mContext.getString(setctionRes), section.getName());
+
+
     }
 
     public void testModuleOneIsSeeded() throws IOException {
@@ -44,8 +75,7 @@ public class DataSeederTests extends CaTestCase {
 
     private Module getModule(long id) {
 
-        DaoSession session = mDaoMaster.newSession();
-        ModuleDao dao = session.getModuleDao();
+        ModuleDao dao = mDaoSession.getModuleDao();
 
         List<Module> modules = dao.queryBuilder().where(ModuleDao.Properties.Id.eq(id))
             .list();

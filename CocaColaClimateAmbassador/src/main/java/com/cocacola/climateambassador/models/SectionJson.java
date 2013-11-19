@@ -8,9 +8,9 @@ import java.util.List;
 public class SectionJson {
 
     private String title;
-    private List<ModuleJson> modules;
+    private List<String> modules;
 
-    public SectionJson(String title, List<ModuleJson> modules) {
+    public SectionJson(String title, List<String> modules) {
         this.title = title;
         this.modules = modules;
     }
@@ -23,11 +23,11 @@ public class SectionJson {
         this.title = title;
     }
 
-    public List<ModuleJson> getModules() {
+    public List<String> getModules() {
         return modules;
     }
 
-    public void setModules(List<ModuleJson> modules) {
+    public void setModules(List<String> modules) {
         this.modules = modules;
     }
 }

@@ -32,7 +32,17 @@ public class JsonAssetsLoader {
         mGson = gson;
     }
 
-    public String parseAsString(String filename) throws IOException {
+    public <T> T parseFromJsonFile(String fileName, Class<T> type) throws IOException {
+
+        String json = parseAsString(fileName);
+
+        T t = mGson.fromJson(json, type);
+
+        return t;
+
+    }
+
+    private String parseAsString(String filename) throws IOException {
 
         AssetManager assetManager = mContext.getAssets();
 
