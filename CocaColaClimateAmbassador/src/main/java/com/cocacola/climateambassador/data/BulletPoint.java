@@ -8,6 +8,7 @@ public class BulletPoint {
 
     private Long id;
     private String text;
+    private long bulletPointFrameId;
 
     public BulletPoint() {
     }
@@ -16,9 +17,10 @@ public class BulletPoint {
         this.id = id;
     }
 
-    public BulletPoint(Long id, String text) {
+    public BulletPoint(Long id, String text, long bulletPointFrameId) {
         this.id = id;
         this.text = text;
+        this.bulletPointFrameId = bulletPointFrameId;
     }
 
     public Long getId() {
@@ -35,6 +37,14 @@ public class BulletPoint {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public long getBulletPointFrameId() {
+        return bulletPointFrameId;
+    }
+
+    public void setBulletPointFrameId(long bulletPointFrameId) {
+        this.bulletPointFrameId = bulletPointFrameId;
     }
 
 }

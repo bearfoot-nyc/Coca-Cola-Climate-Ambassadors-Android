@@ -30,7 +30,7 @@ public class DocumentDao extends AbstractDao<Document, Long> {
         public final static Property FileName = new Property(1, String.class, "fileName", false, "FILE_NAME");
         public final static Property Label = new Property(2, String.class, "label", false, "LABEL");
         public final static Property FileType = new Property(3, String.class, "fileType", false, "FILE_TYPE");
-        public final static Property DocumentId = new Property(4, long.class, "documentId", false, "DOCUMENT_ID");
+        public final static Property ModuleId = new Property(4, long.class, "moduleId", false, "MODULE_ID");
     };
 
     private Query<Document> module_DocumentsQuery;
@@ -51,7 +51,7 @@ public class DocumentDao extends AbstractDao<Document, Long> {
                 "'FILE_NAME' TEXT," + // 1: fileName
                 "'LABEL' TEXT," + // 2: label
                 "'FILE_TYPE' TEXT," + // 3: fileType
-                "'DOCUMENT_ID' INTEGER NOT NULL );"); // 4: documentId
+                "'MODULE_ID' INTEGER NOT NULL );"); // 4: moduleId
     }
 
     /** Drops the underlying database table. */
@@ -84,6 +84,7 @@ public class DocumentDao extends AbstractDao<Document, Long> {
         if (fileType != null) {
             stmt.bindString(4, fileType);
         }
+        stmt.bindLong(5, entity.getModuleId());
     }
 
     /** @inheritdoc */
@@ -99,7 +100,8 @@ public class DocumentDao extends AbstractDao<Document, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // fileName
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // label
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3) // fileType
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // fileType
+            cursor.getLong(offset + 4) // moduleId
         );
         return entity;
     }
@@ -111,6 +113,7 @@ public class DocumentDao extends AbstractDao<Document, Long> {
         entity.setFileName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setLabel(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setFileType(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setModuleId(cursor.getLong(offset + 4));
      }
     
     /** @inheritdoc */
@@ -137,16 +140,16 @@ public class DocumentDao extends AbstractDao<Document, Long> {
     }
     
     /** Internal query to resolve the "documents" to-many relationship of Module. */
-    public List<Document> _queryModule_Documents(long documentId) {
+    public List<Document> _queryModule_Documents(long moduleId) {
         synchronized (this) {
             if (module_DocumentsQuery == null) {
                 QueryBuilder<Document> queryBuilder = queryBuilder();
-                queryBuilder.where(Properties.DocumentId.eq(null));
+                queryBuilder.where(Properties.ModuleId.eq(null));
                 module_DocumentsQuery = queryBuilder.build();
             }
         }
         Query<Document> query = module_DocumentsQuery.forCurrentThread();
-        query.setParameter(0, documentId);
+        query.setParameter(0, moduleId);
         return query.list();
     }
 

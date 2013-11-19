@@ -13,7 +13,6 @@ public class BulletPointFrame {
     private Long id;
     private String title;
     private String subtitle;
-    private long bulletPointId;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
@@ -30,11 +29,10 @@ public class BulletPointFrame {
         this.id = id;
     }
 
-    public BulletPointFrame(Long id, String title, String subtitle, long bulletPointId) {
+    public BulletPointFrame(Long id, String title, String subtitle) {
         this.id = id;
         this.title = title;
         this.subtitle = subtitle;
-        this.bulletPointId = bulletPointId;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -65,14 +63,6 @@ public class BulletPointFrame {
 
     public void setSubtitle(String subtitle) {
         this.subtitle = subtitle;
-    }
-
-    public long getBulletPointId() {
-        return bulletPointId;
-    }
-
-    public void setBulletPointId(long bulletPointId) {
-        this.bulletPointId = bulletPointId;
     }
 
     /** To-many relationship, resolved on first access (and after reset). Changes to to-many relations are not persisted, make changes to the target entity. */

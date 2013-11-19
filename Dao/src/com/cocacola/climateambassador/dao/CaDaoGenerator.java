@@ -5,6 +5,7 @@ import de.greenrobot.daogenerator.Entity;
 import de.greenrobot.daogenerator.Property;
 import de.greenrobot.daogenerator.Schema;
 import de.greenrobot.daogenerator.ToMany;
+import de.greenrobot.daogenerator.ToOne;
 
 public class CaDaoGenerator {
 
@@ -21,6 +22,24 @@ public class CaDaoGenerator {
         section.addStringProperty("name");
 
         // Module
+        Entity module = generateModules(schema, section);
+
+        // Bullet Point Frame
+        generateBulletPointFrame(schema, module);
+
+        // Document
+        generateDocuments(schema, module);
+
+
+        // Generate the Dao
+        DaoGenerator gen = new DaoGenerator();
+        gen.generateAll(schema, DaoGenHelper.SRC_PATH);
+
+    }
+
+    private static Entity generateModules(Schema schema, Entity section) {
+
+        // Module
         Entity module = schema.addEntity("Module");
         module.addIdProperty();
         module.addStringProperty("title");
@@ -31,19 +50,11 @@ public class CaDaoGenerator {
         ToMany sectionToModules = section.addToMany(module, sectionId);
         sectionToModules.setName("modules");
 
-        // Document
-        generateDocument(schema, module);
-
-        // Bullet Point Frame
-        generateBulletPointFrame(schema, module);
-
-        // Generate the Dao
-        DaoGenerator gen = new DaoGenerator();
-        gen.generateAll(schema, DaoGenHelper.SRC_PATH);
+        return module;
 
     }
 
-    private static void generateDocument(Schema schema, Entity module) {
+    private static void generateDocuments(Schema schema, Entity module) {
         // Document
         Entity document = schema.addEntity("Document");
         document.addIdProperty();
@@ -52,30 +63,33 @@ public class CaDaoGenerator {
         document.addStringProperty("fileType");
 
         // Module to Documents
-        Property documentId = module.addLongProperty("documentId").notNull().getProperty();
-        ToMany moduleToDocuments = module.addToMany(document, documentId);
+        Property moduleId = document.addLongProperty("moduleId").notNull().getProperty();
+        ToMany moduleToDocuments = module.addToMany(document, moduleId);
         moduleToDocuments.setName("documents");
     }
 
     private static void generateBulletPointFrame(Schema schema, Entity module) {
+
         // Bullet Point Frame
         Entity bulletPointFrame = schema.addEntity("BulletPointFrame");
         bulletPointFrame.addIdProperty();
         bulletPointFrame.addStringProperty("title");
         bulletPointFrame.addStringProperty("subtitle");
 
+        // Module To Bullet Point Frame
+        Property bulletPointFrameId = module.addLongProperty("bulletPointFrameId").getProperty();
+        ToOne moduleToBulletPointFrame = module.addToOne(bulletPointFrame, bulletPointFrameId);
+        moduleToBulletPointFrame.setName("bulletPointFrame");
+
         // Bullet Point
         Entity bulletPoint = schema.addEntity("BulletPoint");
         bulletPoint.addIdProperty();
         bulletPoint.addStringProperty("text");
 
-        // Module To Bullet Point Frame
-        Property bulletPointIdProperty = module.addLongProperty("bulletPointId").getProperty();
-        module.addToOne(bulletPointFrame, bulletPointIdProperty);
-
         // Bullet Point Frame to Bullet Points
-        Property bulletPointId = bulletPointFrame.addLongProperty("bulletPointId").notNull().getProperty();
-        ToMany frameToBulletPoints = bulletPointFrame.addToMany(bulletPoint, bulletPointId);
+        Property frameId = bulletPoint.addLongProperty("bulletPointFrameId").notNull().getProperty();
+        ToMany frameToBulletPoints = bulletPointFrame.addToMany(bulletPoint, frameId);
         frameToBulletPoints.setName("bulletPoints");
+
     }
 }

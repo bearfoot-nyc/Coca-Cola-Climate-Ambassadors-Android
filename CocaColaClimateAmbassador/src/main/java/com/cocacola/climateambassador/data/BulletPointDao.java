@@ -28,7 +28,7 @@ public class BulletPointDao extends AbstractDao<BulletPoint, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Text = new Property(1, String.class, "text", false, "TEXT");
-        public final static Property BulletPointId = new Property(2, long.class, "bulletPointId", false, "BULLET_POINT_ID");
+        public final static Property BulletPointFrameId = new Property(2, long.class, "bulletPointFrameId", false, "BULLET_POINT_FRAME_ID");
     };
 
     private Query<BulletPoint> bulletPointFrame_BulletPointsQuery;
@@ -47,7 +47,7 @@ public class BulletPointDao extends AbstractDao<BulletPoint, Long> {
         db.execSQL("CREATE TABLE " + constraint + "'BULLET_POINT' (" + //
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
                 "'TEXT' TEXT," + // 1: text
-                "'BULLET_POINT_ID' INTEGER NOT NULL );"); // 2: bulletPointId
+                "'BULLET_POINT_FRAME_ID' INTEGER NOT NULL );"); // 2: bulletPointFrameId
     }
 
     /** Drops the underlying database table. */
@@ -70,6 +70,7 @@ public class BulletPointDao extends AbstractDao<BulletPoint, Long> {
         if (text != null) {
             stmt.bindString(2, text);
         }
+        stmt.bindLong(3, entity.getBulletPointFrameId());
     }
 
     /** @inheritdoc */
@@ -83,7 +84,8 @@ public class BulletPointDao extends AbstractDao<BulletPoint, Long> {
     public BulletPoint readEntity(Cursor cursor, int offset) {
         BulletPoint entity = new BulletPoint( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1) // text
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // text
+            cursor.getLong(offset + 2) // bulletPointFrameId
         );
         return entity;
     }
@@ -93,6 +95,7 @@ public class BulletPointDao extends AbstractDao<BulletPoint, Long> {
     public void readEntity(Cursor cursor, BulletPoint entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setText(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setBulletPointFrameId(cursor.getLong(offset + 2));
      }
     
     /** @inheritdoc */
@@ -119,16 +122,16 @@ public class BulletPointDao extends AbstractDao<BulletPoint, Long> {
     }
     
     /** Internal query to resolve the "bulletPoints" to-many relationship of BulletPointFrame. */
-    public List<BulletPoint> _queryBulletPointFrame_BulletPoints(long bulletPointId) {
+    public List<BulletPoint> _queryBulletPointFrame_BulletPoints(long bulletPointFrameId) {
         synchronized (this) {
             if (bulletPointFrame_BulletPointsQuery == null) {
                 QueryBuilder<BulletPoint> queryBuilder = queryBuilder();
-                queryBuilder.where(Properties.BulletPointId.eq(null));
+                queryBuilder.where(Properties.BulletPointFrameId.eq(null));
                 bulletPointFrame_BulletPointsQuery = queryBuilder.build();
             }
         }
         Query<BulletPoint> query = bulletPointFrame_BulletPointsQuery.forCurrentThread();
-        query.setParameter(0, bulletPointId);
+        query.setParameter(0, bulletPointFrameId);
         return query.list();
     }
 

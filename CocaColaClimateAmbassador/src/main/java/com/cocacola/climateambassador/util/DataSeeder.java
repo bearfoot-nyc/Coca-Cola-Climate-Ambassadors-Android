@@ -1,12 +1,14 @@
 package com.cocacola.climateambassador.util;
 
 import android.content.Context;
-import android.widget.Toast;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.data.BulletPoint;
+import com.cocacola.climateambassador.data.BulletPointDao;
 import com.cocacola.climateambassador.data.BulletPointFrame;
+import com.cocacola.climateambassador.data.BulletPointFrameDao;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.DaoSession;
+import com.cocacola.climateambassador.data.Document;
 import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.ModuleDao;
 import com.cocacola.climateambassador.data.Section;
@@ -15,8 +17,6 @@ import com.cocacola.climateambassador.models.ModuleJson;
 import com.cocacola.climateambassador.models.SectionJson;
 import java.io.IOException;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
 import timber.log.Timber;
@@ -100,24 +100,48 @@ public class DataSeeder {
         moduleModel.setBodyText(json.getBodyText());
         moduleModel.setSectionId(sectionId);
 
-        //BulletPointFrame frame = new BulletPointFrame();
-        //frame.setTitle(json.getBulletPointFrame().getTitle());
-        //frame.setSubtitle(json.getBulletPointFrame().getSubtitle());
-        //
-        //for(String point : json.getBulletPointFrame().getBulletPoints()) {
-        //    BulletPoint bulletPoint = new BulletPoint();
-        //    bulletPoint.setText(point);
-        //}
+        long bulletPointFrameId = seedBulletPointFrame(json);
+        moduleModel.setBulletPointFrameId(bulletPointFrameId);
 
-        Long id = dao.insert(moduleModel);
+        Long moduleId = dao.insert(moduleModel);
 
-        if (id == null) {
+        if (moduleId == null) {
             return null;
         }
+
+
+        seedDocuments(json, moduleId);
 
         return moduleModel;
     }
 
+    private Document seedDocuments(ModuleJson json, Long moduleId) {
 
+        return null;
+
+    }
+
+    public long seedBulletPointFrame(ModuleJson json) {
+
+        BulletPointFrame frame = new BulletPointFrame();
+        frame.setTitle(json.getBulletPointFrame().getTitle());
+        frame.setSubtitle(json.getBulletPointFrame().getSubtitle());
+
+        DaoSession daoSession = mDaoMaster.newSession();
+
+        BulletPointFrameDao frameDao = daoSession.getBulletPointFrameDao();
+        Long frameId = frameDao.insert(frame);
+
+        BulletPointDao pointDao = daoSession.getBulletPointDao();
+        for(String point : json.getBulletPointFrame().getBulletPoints()) {
+            BulletPoint bulletPoint = new BulletPoint();
+            bulletPoint.setText(point);
+            bulletPoint.setBulletPointFrameId(frameId);
+            pointDao.insert(bulletPoint);
+        }
+
+        return frameId;
+
+    }
 
 }

@@ -26,7 +26,6 @@ public class BulletPointFrameDao extends AbstractDao<BulletPointFrame, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Title = new Property(1, String.class, "title", false, "TITLE");
         public final static Property Subtitle = new Property(2, String.class, "subtitle", false, "SUBTITLE");
-        public final static Property BulletPointId = new Property(3, long.class, "bulletPointId", false, "BULLET_POINT_ID");
     };
 
     private DaoSession daoSession;
@@ -47,8 +46,7 @@ public class BulletPointFrameDao extends AbstractDao<BulletPointFrame, Long> {
         db.execSQL("CREATE TABLE " + constraint + "'BULLET_POINT_FRAME' (" + //
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
                 "'TITLE' TEXT," + // 1: title
-                "'SUBTITLE' TEXT," + // 2: subtitle
-                "'BULLET_POINT_ID' INTEGER NOT NULL );"); // 3: bulletPointId
+                "'SUBTITLE' TEXT);"); // 2: subtitle
     }
 
     /** Drops the underlying database table. */
@@ -76,7 +74,6 @@ public class BulletPointFrameDao extends AbstractDao<BulletPointFrame, Long> {
         if (subtitle != null) {
             stmt.bindString(3, subtitle);
         }
-        stmt.bindLong(4, entity.getBulletPointId());
     }
 
     @Override
@@ -97,8 +94,7 @@ public class BulletPointFrameDao extends AbstractDao<BulletPointFrame, Long> {
         BulletPointFrame entity = new BulletPointFrame( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // title
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // subtitle
-            cursor.getLong(offset + 3) // bulletPointId
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // subtitle
         );
         return entity;
     }
@@ -109,7 +105,6 @@ public class BulletPointFrameDao extends AbstractDao<BulletPointFrame, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setTitle(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setSubtitle(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setBulletPointId(cursor.getLong(offset + 3));
      }
     
     /** @inheritdoc */

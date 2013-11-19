@@ -1,16 +1,18 @@
 package com.cocacola.climateambassador.test.data;
 
+import com.cocacola.climateambassador.data.BulletPoint;
+import com.cocacola.climateambassador.data.BulletPointFrame;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.DaoSession;
 import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.ModuleDao;
 import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.data.SectionDao;
+import com.cocacola.climateambassador.models.ModuleJson;
 import com.cocacola.climateambassador.models.SectionJson;
 import com.cocacola.climateambassador.test.CaTestCase;
 import com.cocacola.climateambassador.util.DataSeeder;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
-import com.cocacola.climateambassador.util.JsonFilenameDictionary;
 import java.io.IOException;
 import java.util.List;
 import javax.inject.Inject;
@@ -107,6 +109,19 @@ public class DataSeederTests extends CaTestCase {
         assertNotNull("Module ID was null", module.getId());
         assertNotNull("Module name was null", module.getTitle());
 
+        assertValidBulletPoints(module.getBulletPointFrame());
+
+    }
+
+    private void assertValidBulletPoints(BulletPointFrame bulletPointFrame) {
+
+        assertNotNull(bulletPointFrame);
+        assertNotNull(bulletPointFrame.getTitle());
+        assertNotNull(bulletPointFrame.getBulletPoints());
+        for(BulletPoint bp : bulletPointFrame.getBulletPoints()) {
+            assertNotNull(bp.getText());
+        }
+
     }
 
     private Module getModule(long id) {
@@ -139,6 +154,15 @@ public class DataSeederTests extends CaTestCase {
     private SectionJson getJsonSection(Integer sectionRes) throws IOException {
         String fileName = DataSeeder.getJsonForSection(sectionRes);
         return mJsonLoader.parseFromJsonFile(fileName, SectionJson.class);
+    }
+
+    private ModuleJson getRandomJsonModule(Integer sectionRes) throws IOException {
+
+        SectionJson sectionJson = getJsonSection(sectionRes);
+        String moduleFilename = sectionJson.getModules().get(1);
+
+        return mJsonLoader.parseFromJsonFile(moduleFilename, ModuleJson.class);
+
     }
 
 }
