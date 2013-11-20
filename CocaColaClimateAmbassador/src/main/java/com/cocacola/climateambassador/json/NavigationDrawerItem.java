@@ -1,4 +1,4 @@
-package com.cocacola.climateambassador.models;
+package com.cocacola.climateambassador.json;
 
 import android.content.Context;
 
@@ -7,13 +7,13 @@ import android.content.Context;
  */
 public class NavigationDrawerItem {
 
-    private int titleId;
+    private String title;
     private int iconId;
     private boolean isHeader;
     private Class<?> activityClz;
 
-    public NavigationDrawerItem(int titleId, int iconId, boolean header, Class<?> activityClz) {
-        this.titleId = titleId;
+    public NavigationDrawerItem(String titleId, int iconId, boolean header, Class<?> activityClz) {
+        this.title = titleId;
         this.iconId = iconId;
         isHeader = header;
         this.activityClz = activityClz;
@@ -23,16 +23,16 @@ public class NavigationDrawerItem {
         return iconId;
     }
 
-    public int getTitleId() {
-        return titleId;
+    public String getTitle() {
+        return title;
     }
 
     public String getTitle(Context context) {
-        return context.getResources().getString(titleId);
+        return title;
     }
 
-    public void setTitleId(int titleId) {
-        this.titleId = titleId;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setIconId(int iconId) {

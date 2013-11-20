@@ -11,8 +11,8 @@ import com.cocacola.climateambassador.AppPackageFileWriter;
 import com.cocacola.climateambassador.CaApplication;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.DocumentJson;
-import com.cocacola.climateambassador.models.FileType;
+import com.cocacola.climateambassador.json.DocumentJson;
+import com.cocacola.climateambassador.json.FileType;
 import com.cocacola.climateambassador.util.Toaster;
 
 import java.util.HashMap;

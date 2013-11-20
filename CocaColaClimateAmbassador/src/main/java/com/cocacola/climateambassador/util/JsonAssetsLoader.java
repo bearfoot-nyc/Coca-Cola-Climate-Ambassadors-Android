@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.res.AssetManager;
 
 import com.cocacola.climateambassador.CaConstants;
-import com.cocacola.climateambassador.models.CaseJson;
-import com.cocacola.climateambassador.models.ModuleJson;
+import com.cocacola.climateambassador.json.CaseJson;
+import com.cocacola.climateambassador.json.ModuleJson;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 

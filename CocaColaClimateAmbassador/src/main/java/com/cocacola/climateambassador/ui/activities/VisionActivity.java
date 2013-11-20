@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.cocacola.climateambassador.HasModel;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.CaseJson;
+import com.cocacola.climateambassador.json.CaseJson;
 import com.cocacola.climateambassador.ui.views.BulletPointLayout;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.cocacola.climateambassador.util.Toaster;

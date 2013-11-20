@@ -9,8 +9,8 @@ import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.ModuleDao;
 import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.data.SectionDao;
-import com.cocacola.climateambassador.models.ModuleJson;
-import com.cocacola.climateambassador.models.SectionJson;
+import com.cocacola.climateambassador.json.ModuleJson;
+import com.cocacola.climateambassador.json.SectionJson;
 import com.cocacola.climateambassador.test.CaTestCase;
 import com.cocacola.climateambassador.util.DataSeeder;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
@@ -59,7 +59,7 @@ public class DataSeederTests extends CaTestCase {
     public void testSeedsSection() throws IOException, DataSeeder.SeedFailedException {
 
         // Pick a Section
-        Integer sectionRes = DataSeeder.SECTION_INTERNAL_TRAINING;
+        String sectionRes = DataSeeder.SECTION_INTERNAL_TRAINING;
 
         // Seed the section
         long sectionId = mSeeder.seedSection(sectionRes);
@@ -79,7 +79,7 @@ public class DataSeederTests extends CaTestCase {
     public void testModuleIsSeeded() throws IOException, DataSeeder.SeedFailedException {
 
         // Get a Section
-        Integer sectionRes = DataSeeder.SECTION_INTERNAL_TRAINING;
+        String sectionRes = DataSeeder.SECTION_INTERNAL_TRAINING;
         SectionJson sectionJson = getJsonSection(sectionRes);
         Section section = getSection(sectionRes);
 
@@ -90,7 +90,7 @@ public class DataSeederTests extends CaTestCase {
 
     }
 
-    private void assertValidSection(Section section, Integer sectionTitleRes) {
+    private void assertValidSection(Section section, String sectionTitleRes) {
 
         // Assert Section is valid
         assertNotNull(section);
@@ -152,7 +152,7 @@ public class DataSeederTests extends CaTestCase {
 
     }
 
-    private Section getSection(Integer stringRes) {
+    private Section getSection(String stringRes) {
 
         SectionDao sectionDao = mDaoSession.getSectionDao();
 
@@ -165,12 +165,12 @@ public class DataSeederTests extends CaTestCase {
 
     }
 
-    private SectionJson getJsonSection(Integer sectionRes) throws IOException {
+    private SectionJson getJsonSection(String sectionRes) throws IOException {
         String fileName = DataSeeder.getJsonForSection(sectionRes);
         return mJsonLoader.parseFromJsonFile(fileName, SectionJson.class);
     }
 
-    private ModuleJson getRandomJsonModule(Integer sectionRes) throws IOException {
+    private ModuleJson getRandomJsonModule(String sectionRes) throws IOException {
 
         SectionJson sectionJson = getJsonSection(sectionRes);
         String moduleFilename = sectionJson.getModules().get(1);

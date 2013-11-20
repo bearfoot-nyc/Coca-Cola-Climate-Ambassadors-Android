@@ -10,8 +10,8 @@ import android.widget.Toast;
 
 import com.cocacola.climateambassador.CaConstants;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.DocumentJson;
-import com.cocacola.climateambassador.models.Favorites;
+import com.cocacola.climateambassador.json.DocumentJson;
+import com.cocacola.climateambassador.json.Favorites;
 
 /**
  * Created by Vinnie Vendemia on 9/3/13.

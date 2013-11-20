@@ -1,4 +1,4 @@
-package com.cocacola.climateambassador.models;
+package com.cocacola.climateambassador.json;
 
 /**
  * Created by andrewlawton on 9/6/13.

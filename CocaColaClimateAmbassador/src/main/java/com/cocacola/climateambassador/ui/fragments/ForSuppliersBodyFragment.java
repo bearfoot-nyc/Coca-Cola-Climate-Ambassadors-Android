@@ -8,9 +8,8 @@ import android.widget.Toast;
 
 import com.cocacola.climateambassador.HasModel;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.DocumentJson;
-import com.cocacola.climateambassador.models.FileType;
-import com.cocacola.climateambassador.models.ModuleJson;
+import com.cocacola.climateambassador.json.DocumentJson;
+import com.cocacola.climateambassador.json.ModuleJson;
 import com.cocacola.climateambassador.ui.views.DocumentView;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.google.gson.JsonSyntaxException;

@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.adapters.MenuListAdapter;
-import com.cocacola.climateambassador.models.NavigationDrawerItem;
+import com.cocacola.climateambassador.json.NavigationDrawerItem;
 
 import java.util.List;
 

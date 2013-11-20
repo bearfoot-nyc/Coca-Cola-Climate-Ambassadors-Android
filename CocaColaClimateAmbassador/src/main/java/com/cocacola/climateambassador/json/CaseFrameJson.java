@@ -1,4 +1,4 @@
-package com.cocacola.climateambassador.models;
+package com.cocacola.climateambassador.json;
 
 import java.util.List;
 import java.util.Map;

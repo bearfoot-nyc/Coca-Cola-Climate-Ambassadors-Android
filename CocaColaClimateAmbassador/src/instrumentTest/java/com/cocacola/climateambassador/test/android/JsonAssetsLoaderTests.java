@@ -2,13 +2,11 @@ package com.cocacola.climateambassador.test.android;
 
 import android.content.res.AssetManager;
 import com.cocacola.climateambassador.CaConstants;
-import com.cocacola.climateambassador.models.BulletPointFrameJson;
-import com.cocacola.climateambassador.models.CaseJson;
-import com.cocacola.climateambassador.models.TextFrameJson;
+import com.cocacola.climateambassador.json.BulletPointFrameJson;
+import com.cocacola.climateambassador.json.CaseJson;
 import com.cocacola.climateambassador.test.CaTestCase;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import java.io.IOException;
-import java.util.List;
 import javax.inject.Inject;
 import timber.log.Timber;
 

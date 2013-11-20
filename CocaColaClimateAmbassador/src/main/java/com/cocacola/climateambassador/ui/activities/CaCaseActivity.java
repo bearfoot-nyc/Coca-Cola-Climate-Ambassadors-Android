@@ -14,10 +14,10 @@ import android.widget.Toast;
 
 import com.cocacola.climateambassador.HasModel;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.BulletPointFrameJson;
-import com.cocacola.climateambassador.models.CaseJson;
-import com.cocacola.climateambassador.models.SubtitleTextPairJson;
-import com.cocacola.climateambassador.models.TextFrameJson;
+import com.cocacola.climateambassador.json.BulletPointFrameJson;
+import com.cocacola.climateambassador.json.CaseJson;
+import com.cocacola.climateambassador.json.SubtitleTextPairJson;
+import com.cocacola.climateambassador.json.TextFrameJson;
 import com.cocacola.climateambassador.ui.views.DocumentsLayout;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.google.gson.JsonSyntaxException;

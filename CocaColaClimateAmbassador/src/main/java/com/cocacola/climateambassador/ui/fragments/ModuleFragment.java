@@ -11,9 +11,9 @@ import android.widget.Toast;
 
 import com.cocacola.climateambassador.CaConstants;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.BulletPointFrameJson;
-import com.cocacola.climateambassador.models.DocumentJson;
-import com.cocacola.climateambassador.models.ModuleJson;
+import com.cocacola.climateambassador.json.BulletPointFrameJson;
+import com.cocacola.climateambassador.json.DocumentJson;
+import com.cocacola.climateambassador.json.ModuleJson;
 
 /**
  * Created by Vinnie Vendemia on 9/2/13.

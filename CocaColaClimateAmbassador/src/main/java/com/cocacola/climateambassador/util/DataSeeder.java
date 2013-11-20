@@ -14,9 +14,9 @@ import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.ModuleDao;
 import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.data.SectionDao;
-import com.cocacola.climateambassador.models.DocumentJson;
-import com.cocacola.climateambassador.models.ModuleJson;
-import com.cocacola.climateambassador.models.SectionJson;
+import com.cocacola.climateambassador.json.DocumentJson;
+import com.cocacola.climateambassador.json.ModuleJson;
+import com.cocacola.climateambassador.json.SectionJson;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -43,7 +43,7 @@ public class DataSeeder {
         sSectionJsonMap.put(SECTION_INTERNAL_TRAINING, "section_internal_training.json");
         sSectionJsonMap.put(SECTION_FOR_SUPPLIERS, "section_for_suppliers.json");
     }
-    public static String getJsonForSection(Integer sectionRes) {
+    public static String getJsonForSection(String sectionRes) {
         return sSectionJsonMap.get(sectionRes);
     }
 

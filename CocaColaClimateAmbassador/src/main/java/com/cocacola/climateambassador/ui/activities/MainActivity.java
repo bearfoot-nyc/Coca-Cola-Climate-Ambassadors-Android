@@ -7,17 +7,21 @@ import android.widget.SearchView;
 
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.adapters.MenuListAdapter;
-import com.cocacola.climateambassador.models.NavigationDrawerItem;
+import com.cocacola.climateambassador.data.DaoMaster;
+import com.cocacola.climateambassador.data.Section;
+import com.cocacola.climateambassador.json.NavigationDrawerItem;
 
+import com.cocacola.climateambassador.models.SectionModel;
 import java.util.LinkedList;
 import java.util.List;
 
 import butterknife.OnClick;
 import butterknife.Views;
+import javax.inject.Inject;
 
 public class MainActivity extends CaDrawerActivity implements SearchView.OnQueryTextListener {
 
-    private SearchView mSearchView;
+    @Inject protected DaoMaster mDaoMaster;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +58,17 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
 
         if(mNavigationDrawerItems == null) {
             mNavigationDrawerItems = new LinkedList<NavigationDrawerItem>();
-            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training, R.drawable.ic_drawer_wrench, false, InternalTrainingActivity.class));
-            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_for_suppliers, R.drawable.ic_drawer_folder, false, ForSuppliersActivity.class));
+
+            try {
+                List<Section> sectionList = SectionModel.getAllSections(mDaoMaster);
+                for(Section section : sectionList) {
+                    mNavigationDrawerItems.add(new NavigationDrawerItem(section.getName(), R.drawable.ic_drawer_wrench, false, InternalTrainingActivity.class));
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
 
         return mNavigationDrawerItems;

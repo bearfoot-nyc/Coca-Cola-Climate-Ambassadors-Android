@@ -8,7 +8,7 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.support.v4.content.FileProvider;
 
-import com.cocacola.climateambassador.models.FileType;
+import com.cocacola.climateambassador.json.FileType;
 import com.cocacola.climateambassador.util.Toaster;
 
 import java.io.File;

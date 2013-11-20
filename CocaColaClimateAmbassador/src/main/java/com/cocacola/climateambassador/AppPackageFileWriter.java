@@ -3,16 +3,13 @@ package com.cocacola.climateambassador;
 import android.content.Context;
 import android.content.res.AssetManager;
 
-import com.cocacola.climateambassador.models.FileType;
+import com.cocacola.climateambassador.json.FileType;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

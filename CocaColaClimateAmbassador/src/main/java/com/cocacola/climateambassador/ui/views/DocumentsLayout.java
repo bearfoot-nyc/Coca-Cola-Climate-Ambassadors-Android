@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.DocumentJson;
+import com.cocacola.climateambassador.json.DocumentJson;
 
 import java.util.List;
 

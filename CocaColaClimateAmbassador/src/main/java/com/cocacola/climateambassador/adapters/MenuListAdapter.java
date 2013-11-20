@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.models.NavigationDrawerItem;
+import com.cocacola.climateambassador.json.NavigationDrawerItem;
 
 import java.util.List;
 

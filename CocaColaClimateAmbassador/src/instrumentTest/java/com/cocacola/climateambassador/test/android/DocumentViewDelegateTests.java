@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import com.cocacola.climateambassador.AppPackageFileWriter;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
-import com.cocacola.climateambassador.models.FileType;
+import com.cocacola.climateambassador.json.FileType;
 import com.cocacola.climateambassador.test.CaFileTestCase;
 import java.io.File;
 import java.util.List;

@@ -1,19 +1,25 @@
 package com.cocacola.climateambassador.ui.activities;
 
+import android.widget.Toast;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.adapters.MenuListAdapter;
-import com.cocacola.climateambassador.models.NavigationDrawerItem;
-import com.cocacola.climateambassador.ui.fragments.ModuleFourBodyFragment;
-import com.cocacola.climateambassador.ui.fragments.ModuleOneBodyFragment;
-import com.cocacola.climateambassador.ui.fragments.ModuleTwoBodyFragment;
+import com.cocacola.climateambassador.data.DaoMaster;
+import com.cocacola.climateambassador.data.Module;
+import com.cocacola.climateambassador.data.Section;
+import com.cocacola.climateambassador.data.SectionDao;
+import com.cocacola.climateambassador.json.NavigationDrawerItem;
 
+import com.cocacola.climateambassador.models.SectionModel;
 import java.util.LinkedList;
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  * Created by andrewlawton on 9/1/13.
  */
 public class SectionActivity extends CaDrawerActivity {
+
+    @Inject DaoMaster mDaoMaster;
 
     @Override
     MenuListAdapter getMenuListAdapter() {
@@ -21,19 +27,26 @@ public class SectionActivity extends CaDrawerActivity {
     }
 
     @Override
-    List<NavigationDrawerItem> getNavigationDrawerItems() {
+    List<NavigationDrawerItem> getNavigationDrawerItems(){
+
         if(mNavigationDrawerItems == null) {
-            mNavigationDrawerItems = new LinkedList<NavigationDrawerItem>();
-            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training, 0, true, null));
-            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_overview, 0, false, InternalTrainingActivity.class));
-            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_climate_ambassador, 0, false, ClimateAmbassadorActivity.class));
-            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_module_1, 0, false, ModuleOneActivity.class));
-            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_module_2, 0, false, ModuleTwoActivity.class));
-            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_module_3, 0, false, ModuleThreeActivity.class));
-            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_internal_training_module_4, 0, false, ModuleFourActivity.class));
-            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_for_suppliers, 0, true, null));
-            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_for_suppliers_overview, 0, false, ForSuppliersActivity.class));
-            mNavigationDrawerItems.add(new NavigationDrawerItem(R.string.nav_item_for_suppliers_2020_vision, 0, false, VisionActivity.class));
+
+            try {
+                List<Section> sectionList = SectionModel.getAllSections(mDaoMaster);
+                mNavigationDrawerItems = new LinkedList<NavigationDrawerItem>();
+
+                for(Section section : sectionList) {
+                    mNavigationDrawerItems.add(new NavigationDrawerItem(section.getName(), 0, true, InternalTrainingActivity.class));
+                    for(Module module : section.getModules()) {
+                        mNavigationDrawerItems.add(new NavigationDrawerItem(module.getTitle(), 0, false, InternalTrainingActivity.class));
+                    }
+                }
+
+            }
+            catch (Exception e) {
+                Toast.makeText(this, "There was an error fetching sections", Toast.LENGTH_SHORT).show();;
+            }
+
         }
         return mNavigationDrawerItems;
     }

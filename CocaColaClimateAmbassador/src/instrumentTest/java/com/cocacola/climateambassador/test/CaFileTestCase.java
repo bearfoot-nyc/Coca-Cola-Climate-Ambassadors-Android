@@ -1,6 +1,6 @@
 package com.cocacola.climateambassador.test;
 
-import com.cocacola.climateambassador.models.FileType;
+import com.cocacola.climateambassador.json.FileType;
 import java.io.File;
 
 /**
