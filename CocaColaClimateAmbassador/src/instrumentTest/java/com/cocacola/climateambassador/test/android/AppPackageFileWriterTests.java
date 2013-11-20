@@ -3,7 +3,7 @@ package com.cocacola.climateambassador.test.android;
 import com.cocacola.climateambassador.AppPackageFileWriter;
 import com.cocacola.climateambassador.json.FileType;
 import com.cocacola.climateambassador.test.CaFileTestCase;
-import com.cocacola.climateambassador.test.ClimateAmbassadorTestModule;
+import com.cocacola.climateambassador.test.CaTestModule;
 import dagger.ObjectGraph;
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +23,7 @@ public class AppPackageFileWriterTests extends CaFileTestCase {
 
         mContext = getInstrumentation().getTargetContext();
 
-        ObjectGraph graph = ObjectGraph.create(new ClimateAmbassadorTestModule(mContext));
+        ObjectGraph graph = ObjectGraph.create(new CaTestModule(mContext));
         graph.inject(this);
     }
 

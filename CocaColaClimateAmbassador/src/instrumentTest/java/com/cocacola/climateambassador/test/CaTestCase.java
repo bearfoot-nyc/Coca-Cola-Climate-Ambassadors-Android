@@ -17,7 +17,7 @@ public class CaTestCase extends InstrumentationTestCase {
 
         mContext = getInstrumentation().getTargetContext();
 
-        ObjectGraph graph = ObjectGraph.create(new ClimateAmbassadorTestModule(mContext));
+        ObjectGraph graph = ObjectGraph.create(new CaTestModule(mContext));
         graph.inject(this);
     }
 

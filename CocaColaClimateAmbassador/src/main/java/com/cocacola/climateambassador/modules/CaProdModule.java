@@ -33,6 +33,7 @@ import com.cocacola.climateambassador.ui.fragments.ModuleOneBodyFragment;
 import com.cocacola.climateambassador.ui.fragments.ModuleThreeBodyFragment;
 import com.cocacola.climateambassador.ui.fragments.ModuleTwoBodyFragment;
 import com.cocacola.climateambassador.ui.views.DocumentView;
+import com.cocacola.climateambassador.util.DataChecker;
 import com.cocacola.climateambassador.util.DataSeeder;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.google.gson.Gson;
@@ -77,15 +78,15 @@ import timber.log.Timber;
         ModuleFourActivity.class,
         VisionActivity.class,
         DocumentView.class,
-        DataSeeder.class
+        DataSeeder.class, DataChecker.class
 })
-public class ClimateAmbassadorModule {
+public class CaProdModule {
 
     private Context mContext;
 
-    public ClimateAmbassadorModule() { }
+    public CaProdModule() { }
 
-    public ClimateAmbassadorModule(Context context) {
+    public CaProdModule(Context context) {
         mContext = context;
     }
 

@@ -3,7 +3,7 @@ package com.cocacola.climateambassador;
 import android.app.Application;
 import android.content.Context;
 
-import com.cocacola.climateambassador.modules.ClimateAmbassadorModule;
+import com.cocacola.climateambassador.modules.CaProdModule;
 
 import dagger.ObjectGraph;
 
@@ -18,7 +18,7 @@ public class CaApplication extends Application {
     public static ObjectGraph getObjectGraph(Context context) {
         if (sObjectGraph == null){
             sAppContext = context;
-            sObjectGraph = ObjectGraph.create(new ClimateAmbassadorModule(context));
+            sObjectGraph = ObjectGraph.create(new CaProdModule(context));
         }
         return sObjectGraph;
     }
