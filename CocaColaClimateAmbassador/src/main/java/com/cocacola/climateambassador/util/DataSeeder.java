@@ -43,7 +43,7 @@ public class DataSeeder {
         sSectionJsonMap.put(SECTION_INTERNAL_TRAINING, "section_internal_training.json");
         sSectionJsonMap.put(SECTION_FOR_SUPPLIERS, "section_for_suppliers.json");
     }
-    public static String getJsonForSection(String sectionRes) {
+    public static String getJsonForSection(Integer sectionRes) {
         return sSectionJsonMap.get(sectionRes);
     }
 

@@ -21,25 +21,7 @@ import javax.inject.Inject;
 /**
  * Created by realandylawton on 11/13/13.
  */
-public class DataSeederTests extends CaTestCase {
-
-    @Inject protected JsonAssetsLoader mJsonLoader;
-    @Inject protected DataSeeder mSeeder;
-    @Inject protected DaoMaster mDaoMaster;
-
-    private DaoSession mDaoSession;
-
-    @Override public void setUp() throws Exception {
-        super.setUp();
-        mDaoSession = mDaoMaster.newSession();
-    }
-
-    @Override protected void tearDown() throws Exception {
-        super.tearDown();
-        mJsonLoader = null;
-        mSeeder = null;
-        mDaoSession = null;
-    }
+public class DataSeederTests extends AbsDataTests {
 
     public void testSeedsSections() throws IOException, DataSeeder.SeedFailedException {
 
@@ -59,7 +41,7 @@ public class DataSeederTests extends CaTestCase {
     public void testSeedsSection() throws IOException, DataSeeder.SeedFailedException {
 
         // Pick a Section
-        String sectionRes = DataSeeder.SECTION_INTERNAL_TRAINING;
+        Integer sectionRes = DataSeeder.SECTION_INTERNAL_TRAINING;
 
         // Seed the section
         long sectionId = mSeeder.seedSection(sectionRes);
@@ -76,21 +58,7 @@ public class DataSeederTests extends CaTestCase {
 
     }
 
-    public void testModuleIsSeeded() throws IOException, DataSeeder.SeedFailedException {
-
-        // Get a Section
-        String sectionRes = DataSeeder.SECTION_INTERNAL_TRAINING;
-        SectionJson sectionJson = getJsonSection(sectionRes);
-        Section section = getSection(sectionRes);
-
-        // Get a module
-        Module module = mSeeder.seedModule(sectionJson.getModules().get(2), section.getId());
-
-        assertValidModule(module);
-
-    }
-
-    private void assertValidSection(Section section, String sectionTitleRes) {
+    private void assertValidSection(Section section, Integer sectionTitleRes) {
 
         // Assert Section is valid
         assertNotNull(section);
@@ -152,7 +120,7 @@ public class DataSeederTests extends CaTestCase {
 
     }
 
-    private Section getSection(String stringRes) {
+    private Section getSection(Integer stringRes) {
 
         SectionDao sectionDao = mDaoSession.getSectionDao();
 
@@ -165,12 +133,12 @@ public class DataSeederTests extends CaTestCase {
 
     }
 
-    private SectionJson getJsonSection(String sectionRes) throws IOException {
+    private SectionJson getJsonSection(Integer sectionRes) throws IOException {
         String fileName = DataSeeder.getJsonForSection(sectionRes);
         return mJsonLoader.parseFromJsonFile(fileName, SectionJson.class);
     }
 
-    private ModuleJson getRandomJsonModule(String sectionRes) throws IOException {
+    private ModuleJson getRandomJsonModule(Integer sectionRes) throws IOException {
 
         SectionJson sectionJson = getJsonSection(sectionRes);
         String moduleFilename = sectionJson.getModules().get(1);
