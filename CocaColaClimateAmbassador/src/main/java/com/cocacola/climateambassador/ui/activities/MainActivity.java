@@ -1,10 +1,14 @@
 package com.cocacola.climateambassador.ui.activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.HandlerThread;
 import android.view.Menu;
+import android.view.Window;
 import android.widget.SearchView;
 
+import android.widget.Toast;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.adapters.MenuListAdapter;
 import com.cocacola.climateambassador.data.DaoMaster;
@@ -12,6 +16,9 @@ import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.json.NavigationDrawerItem;
 
 import com.cocacola.climateambassador.models.SectionModel;
+import com.cocacola.climateambassador.util.DataChecker;
+import com.cocacola.climateambassador.util.DataSeeder;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,14 +28,24 @@ import javax.inject.Inject;
 
 public class MainActivity extends CaDrawerActivity implements SearchView.OnQueryTextListener {
 
+    @Inject protected DataChecker mDataChecker;
+    @Inject protected DataSeeder mDataSeeder;
     @Inject protected DaoMaster mDaoMaster;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+
         setContentView(R.layout.activity_main);
         Views.inject(this);
+
         setupNavigationDrawer();
+
+        if(!mDataChecker.isDataSeeded()) {
+            seedDataIfNotAvailable();
+        }
 
     }
 
@@ -75,29 +92,39 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
 
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        SearchManager searchManager = (SearchManager) this.getSystemService(SEARCH_SERVICE);
-//        mSearchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-//        mSearchView.setSearchableInfo(searchManager.getSearchableInfo(this.getComponentName()));
-//        mSearchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
-//        mSearchView.setOnQueryTextListener(this);
-//        mSearchView.setQueryHint("Search");
-
-        return super.onCreateOptionsMenu(menu);
+    public void seedDataIfNotAvailable() {
+        new ShitAsyncTask().execute();
     }
 
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        //TODO: Handle Search View TextSubmit
+    private class ShitAsyncTask extends AsyncTask<Void, Void, Void> {
+        @Override protected void onPreExecute() {
+            super.onPreExecute();
+            // Show loading
+            setProgressBarIndeterminateVisibility(true);
+        }
+
+        @Override protected Void doInBackground(Void... params) {
+            try {
+                mDataSeeder.seed();
+            } catch (Exception e) {
+                return null;
+            }
+
+            return null;
+        }
+
+        @Override protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            setProgressBarIndeterminateVisibility(false);
+        }
+    }
+
+    @Override public boolean onQueryTextSubmit(String query) {
         return false;
     }
 
-    @Override
-    public boolean onQueryTextChange(String newText) {
+    @Override public boolean onQueryTextChange(String newText) {
         return false;
     }
-
 }

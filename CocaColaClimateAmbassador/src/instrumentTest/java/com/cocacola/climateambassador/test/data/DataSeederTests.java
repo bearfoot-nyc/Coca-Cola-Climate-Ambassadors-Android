@@ -11,6 +11,7 @@ import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.data.SectionDao;
 import com.cocacola.climateambassador.json.ModuleJson;
 import com.cocacola.climateambassador.json.SectionJson;
+import com.cocacola.climateambassador.models.SectionModel;
 import com.cocacola.climateambassador.test.CaTestCase;
 import com.cocacola.climateambassador.util.DataSeeder;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
@@ -23,7 +24,7 @@ import javax.inject.Inject;
  */
 public class DataSeederTests extends AbsDataTests {
 
-    public void testSeedsSections() throws IOException, DataSeeder.SeedFailedException {
+    public void testSeedsSections() throws Exception {
 
         // Seed Sections
         mSeeder.seed();
@@ -120,16 +121,11 @@ public class DataSeederTests extends AbsDataTests {
 
     }
 
-    private Section getSection(Integer stringRes) {
+    private Section getSection(Integer stringRes) throws Exception {
 
-        SectionDao sectionDao = mDaoSession.getSectionDao();
+        String title = mContext.getString(stringRes);
 
-        Section section = sectionDao.queryBuilder().
-            where(SectionDao.Properties.Name.eq(mContext.getString(stringRes)))
-            .limit(1).list().get(0);
-
-        return section;
-
+        return SectionModel.getSection(mDaoMaster, title);
 
     }
 

@@ -1,4 +1,4 @@
-package com.cocacola.climateambassador.test.android;
+package com.cocacola.climateambassador.test.android.util;
 
 import android.app.ActivityManager;
 import android.content.ComponentName;
@@ -8,7 +8,6 @@ import android.net.Uri;
 import com.cocacola.climateambassador.AppPackageFileWriter;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.json.FileType;
-import com.cocacola.climateambassador.test.CaFileTestCase;
 import java.io.File;
 import java.util.List;
 import javax.inject.Inject;

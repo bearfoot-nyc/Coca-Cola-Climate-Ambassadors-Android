@@ -1,6 +1,5 @@
 package com.cocacola.climateambassador.util;
 
-import android.content.Context;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.models.SectionModel;
@@ -16,12 +15,8 @@ public class DataChecker {
 
     @Inject protected DaoMaster mDaoMaster;
 
-    private Context mContext;
-
     @Inject
-    public DataChecker(Context context) {
-        mContext = context;
-    }
+    public DataChecker() { }
 
     public boolean isDataSeeded() {
 

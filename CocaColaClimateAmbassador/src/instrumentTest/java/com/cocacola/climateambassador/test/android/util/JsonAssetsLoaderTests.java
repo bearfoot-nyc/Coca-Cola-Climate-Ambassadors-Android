@@ -1,4 +1,4 @@
-package com.cocacola.climateambassador.test.android;
+package com.cocacola.climateambassador.test.android.util;
 
 import android.content.res.AssetManager;
 import com.cocacola.climateambassador.CaConstants;

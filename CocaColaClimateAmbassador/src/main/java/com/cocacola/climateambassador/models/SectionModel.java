@@ -12,14 +12,27 @@ public class SectionModel extends Section {
 
     public static List<Section> getAllSections(DaoMaster daoMaster) throws Exception {
 
-        SectionDao dao = daoMaster.newSession().getSectionDao();
+        SectionDao sectionDao = daoMaster.newSession().getSectionDao();
 
-        List<Section> sectionList = dao.queryBuilder().list();
-        if(sectionList == null) {
-            throw new Exception("No sections available");
-        }
+        List<Section> sectionList = sectionDao.queryBuilder().list();
 
         return sectionList;
+
+    }
+
+    public static Section getSection(DaoMaster daoMaster, String title) throws Exception {
+
+        List<Section> sectionList = getAllSections(daoMaster);
+
+        Section section = null;
+        for(Section s : sectionList) {
+            if(s.getName().equals(title)) {
+                section = s;
+            }
+        }
+
+        return section;
+
 
     }
 
