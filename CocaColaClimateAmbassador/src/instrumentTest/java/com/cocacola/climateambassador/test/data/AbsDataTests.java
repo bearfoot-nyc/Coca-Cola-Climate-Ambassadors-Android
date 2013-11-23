@@ -33,13 +33,13 @@ public abstract class AbsDataTests extends CaTestCase {
 
     protected void createDatabase() {
 
-        DaoMaster.createAllTables(mDaoMaster.getDatabase(), true);
+       mSeeder.createDatabase();
 
     }
 
     protected void clearDatabase() {
 
-        DaoMaster.dropAllTables(mDaoMaster.getDatabase(), true);
+        mSeeder.createDatabase();
 
     }
 }

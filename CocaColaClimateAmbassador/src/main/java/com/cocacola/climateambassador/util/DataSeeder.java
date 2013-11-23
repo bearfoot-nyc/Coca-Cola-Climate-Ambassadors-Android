@@ -169,4 +169,16 @@ public class DataSeeder {
 
     }
 
+    public final void createDatabase() {
+
+        DaoMaster.createAllTables(mDaoMaster.getDatabase(), true);
+
+    }
+
+    public final void clearDatabase() {
+
+        DaoMaster.dropAllTables(mDaoMaster.getDatabase(), true);
+
+    }
+
 }

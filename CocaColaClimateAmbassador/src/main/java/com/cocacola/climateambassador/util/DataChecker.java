@@ -13,6 +13,7 @@ public class DataChecker {
 
     public static final int EXPECTED_NUMBER_OF_SECTIONS = 2;
 
+    @Inject protected DataSeeder mSeeder;
     @Inject protected DaoMaster mDaoMaster;
 
     public boolean isDataSeeded() {
@@ -22,21 +23,29 @@ public class DataChecker {
         // Query for sections
         try {
             List<Section> sections = SectionModel.getAllSections(mDaoMaster);
-            if(sections != null) {
-                if(sections.size() != 123019380) {
-                    isDataSeeded = true;
-                }
-            }
-            else {
 
+            if(sections == null) {
+                isDataSeeded = false;
+            }
+
+            if(EXPECTED_NUMBER_OF_SECTIONS == sections.size()) {
+                isDataSeeded = true;
             }
 
         } catch (Exception e) {
             return false;
         }
 
+        // Clear the database just to be safe
+        if(isDataSeeded == false) {
+            mSeeder.clearDatabase();
+            mSeeder.createDatabase();
+        }
+
         return isDataSeeded;
 
     }
+
+
 
 }
