@@ -12,9 +12,13 @@ import android.widget.Toast;
 
 import com.cocacola.climateambassador.HasModel;
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.data.DaoMaster;
+import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.json.BulletPointFrameJson;
 import com.cocacola.climateambassador.json.DocumentJson;
 import com.cocacola.climateambassador.json.ModuleJson;
+import com.cocacola.climateambassador.models.ModuleModel;
+import com.cocacola.climateambassador.ui.activities.ModuleActivity;
 import com.cocacola.climateambassador.ui.views.DocumentsLayout;
 import com.cocacola.climateambassador.util.JsonAssetsLoader;
 import com.google.gson.JsonSyntaxException;
@@ -31,16 +35,32 @@ import timber.log.Timber;
 /**
  * Created by Vinnie on 9/5/13.
  */
-public abstract class CaModuleBodyFragment extends CaFragment implements HasModel<ModuleJson> {
+public abstract class SimpleModuleFragment extends CaFragment implements HasModel<ModuleJson> {
 
-    @Inject
-    JsonAssetsLoader mJsonAssetsLoader;
+    public static SimpleModuleOneFragment newInstance(Long moduleId) {
 
-    @Inject
-    Timber Log;
+        SimpleModuleOneFragment fragment = new SimpleModuleOneFragment();
 
-    @InjectView(R.id.course_materials_label)
-    TextView courseMaterialsLabelView;
+        Bundle bundle = new Bundle();
+        bundle.putLong(ModuleActivity.MODULE_ID_BUNDLE_KEY, moduleId);
+        fragment.setArguments(bundle);
+
+        return fragment;
+
+    }
+
+    @Inject protected DaoMaster mDaoMaster;
+    @Inject protected JsonAssetsLoader mJsonAssetsLoader;
+    @Inject protected Timber Log;
+    @InjectView(R.id.course_materials_label) protected TextView courseMaterialsLabelView;
+
+    protected Module getModule() {
+        return ModuleModel.getModule(mDaoMaster, getModuleId());
+    }
+
+    protected Long getModuleId() {
+        return getArguments().getLong(ModuleActivity.MODULE_ID_BUNDLE_KEY);
+    }
 
     private ModuleJson mModule;
 
@@ -60,13 +80,27 @@ public abstract class CaModuleBodyFragment extends CaFragment implements HasMode
         return mModule;
     }
 
+    @Override public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getModule();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        ModuleJson module = getModel();
-
         View v = inflater.inflate(R.layout.frag_module, null);
         Views.inject(this, v);
+
+        return v;
+
+    }
+
+    @Override public void onViewCreated(View v, Bundle savedInstanceState) {
+        super.onViewCreated(v, savedInstanceState);
+
+        ModuleJson module = getModel();
+
+        LayoutInflater inflater = LayoutInflater.from(v.getContext());
 
         if(!TextUtils.isEmpty(module.getTitle())) {
             ((TextView)v.findViewById(R.id.title)).setText(module.getTitle());
@@ -80,7 +114,7 @@ public abstract class CaModuleBodyFragment extends CaFragment implements HasMode
         LinearLayout caseFrames = (LinearLayout) v.findViewById(R.id.case_frames);
         if (module.getBulletPointFrame() != null) {
             BulletPointFrameJson caseBulletPointFrame = module.getBulletPointFrame();
-            View bulletPointFrame = inflater.inflate(R.layout.case_frame, null);
+            View bulletPointFrame = LayoutInflater.from(v.getContext()).inflate(R.layout.case_frame, null);
 
             if (!TextUtils.isEmpty(caseBulletPointFrame.getTitle())) {
                 ((TextView) bulletPointFrame.findViewById(R.id.case_frame_title)).setText(caseBulletPointFrame.getTitle());
@@ -117,8 +151,6 @@ public abstract class CaModuleBodyFragment extends CaFragment implements HasMode
         else {
             courseMaterialsLabelView.setVisibility(View.INVISIBLE);
         }
-
-        return v;
 
     }
 

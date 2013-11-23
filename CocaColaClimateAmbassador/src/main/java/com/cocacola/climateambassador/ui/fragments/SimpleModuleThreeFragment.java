@@ -3,7 +3,7 @@ package com.cocacola.climateambassador.ui.fragments;
 /**
  * Created by realandylawton on 9/4/13.
  */
-public class ModuleThreeBodyFragment extends CaModuleBodyFragment {
+public class SimpleModuleThreeFragment extends SimpleModuleFragment {
 
     @Override
     public String getJsonAssetFilename() {

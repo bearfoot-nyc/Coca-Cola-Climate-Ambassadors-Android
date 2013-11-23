@@ -6,11 +6,11 @@ import com.cocacola.climateambassador.ui.activities.ModuleActivity;
 /**
  * Created by Vinnie on 9/5/13.
  */
-public class ModuleOneBodyFragment extends CaModuleBodyFragment {
+public class SimpleModuleOneFragment extends SimpleModuleFragment {
 
-    public static ModuleOneBodyFragment newInstance(Long moduleId) {
+    public static SimpleModuleOneFragment newInstance(Long moduleId) {
 
-        ModuleOneBodyFragment fragment = new ModuleOneBodyFragment();
+        SimpleModuleOneFragment fragment = new SimpleModuleOneFragment();
 
         Bundle bundle = new Bundle();
         bundle.putLong(ModuleActivity.MODULE_ID_BUNDLE_KEY, moduleId);

@@ -1,6 +1,6 @@
 package com.cocacola.climateambassador.ui.fragments;
 
-public class ClimateAmbassadorFragment extends CaModuleBodyFragment {
+public class ClimateAmbassadorFragmentSimple extends SimpleModuleFragment {
 
     @Override
     public String getJsonAssetFilename() {

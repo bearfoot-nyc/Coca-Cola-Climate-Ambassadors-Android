@@ -25,15 +25,16 @@ import com.cocacola.climateambassador.ui.activities.PackagingCaseActivity;
 import com.cocacola.climateambassador.ui.activities.RefrigerationCaseActivity;
 import com.cocacola.climateambassador.ui.activities.VisionActivity;
 import com.cocacola.climateambassador.ui.fragments.CaseStudiesListFragment;
-import com.cocacola.climateambassador.ui.fragments.ClimateAmbassadorFragment;
+import com.cocacola.climateambassador.ui.fragments.ClimateAmbassadorFragmentSimple;
 import com.cocacola.climateambassador.ui.fragments.FavoritesFragment;
 import com.cocacola.climateambassador.ui.fragments.ForSuppliersBodyFragment;
-import com.cocacola.climateambassador.ui.fragments.InternalTrainingOverviewFragment;
-import com.cocacola.climateambassador.ui.fragments.ModuleFourBodyFragment;
+import com.cocacola.climateambassador.ui.fragments.InternalTrainingOverviewFragmentSimple;
+import com.cocacola.climateambassador.ui.fragments.SimpleModuleFourFragment;
+import com.cocacola.climateambassador.ui.fragments.SimpleModuleFragment;
 import com.cocacola.climateambassador.ui.fragments.ModuleFragment;
-import com.cocacola.climateambassador.ui.fragments.ModuleOneBodyFragment;
-import com.cocacola.climateambassador.ui.fragments.ModuleThreeBodyFragment;
-import com.cocacola.climateambassador.ui.fragments.ModuleTwoBodyFragment;
+import com.cocacola.climateambassador.ui.fragments.SimpleModuleOneFragment;
+import com.cocacola.climateambassador.ui.fragments.SimpleModuleThreeFragment;
+import com.cocacola.climateambassador.ui.fragments.SimpleModuleTwoFragment;
 import com.cocacola.climateambassador.ui.views.DocumentView;
 import com.cocacola.climateambassador.util.DataChecker;
 import com.cocacola.climateambassador.util.DataSeeder;
@@ -62,17 +63,17 @@ import timber.log.Timber;
         DocumentViewerDelegate.class,
         JsonAssetsLoader.class,
         CaseStudiesListFragment.class,
-        InternalTrainingOverviewFragment.class,
+        InternalTrainingOverviewFragmentSimple.class,
         PackagingCaseActivity.class,
         ManufacturingCaseActivity.class,
         DistributionCaseActivity.class,
         RefrigerationCaseActivity.class,
         IngredientCaseActivity.class,
-        ClimateAmbassadorFragment.class,
-        ModuleOneBodyFragment.class,
-        ModuleTwoBodyFragment.class,
-        ModuleThreeBodyFragment.class,
-        ModuleFourBodyFragment.class,
+        ClimateAmbassadorFragmentSimple.class,
+        SimpleModuleOneFragment.class,
+        SimpleModuleTwoFragment.class,
+        SimpleModuleThreeFragment.class,
+        SimpleModuleFourFragment.class,
         ClimateAmbassadorActivity.class,
         ModuleOneActivity.class,
         ModuleTwoActivity.class,
@@ -80,7 +81,8 @@ import timber.log.Timber;
         ModuleFourActivity.class,
         VisionActivity.class,
         DocumentView.class,
-        DataSeeder.class, DataChecker.class, SectionModel.class, ModuleActivity.class
+        DataSeeder.class, DataChecker.class, SectionModel.class, ModuleActivity.class,
+        SimpleModuleFragment.class
 })
 public class CaProdModule {
 

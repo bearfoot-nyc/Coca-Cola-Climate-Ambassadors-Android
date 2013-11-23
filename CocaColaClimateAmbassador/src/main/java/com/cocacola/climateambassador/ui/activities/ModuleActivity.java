@@ -1,6 +1,5 @@
 package com.cocacola.climateambassador.ui.activities;
 
-import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +9,9 @@ import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.drawer.adapters.ModuleDrawerListAdapter;
-
 import com.cocacola.climateambassador.drawer.model.ModuleDrawerItem;
 import com.cocacola.climateambassador.models.SectionModel;
-import com.cocacola.climateambassador.ui.fragments.ModuleOneBodyFragment;
+import com.cocacola.climateambassador.ui.fragments.SimpleModuleFragment;
 import java.util.LinkedList;
 import java.util.List;
 import javax.inject.Inject;
@@ -40,7 +38,7 @@ public class ModuleActivity extends CaDrawerActivity {
 
         // Show the proper fragment
         Long moduleId = getModuleIdFromIntent(getIntent());
-        ModuleOneBodyFragment fragment = ModuleOneBodyFragment.newInstance(moduleId);
+        SimpleModuleFragment fragment = SimpleModuleFragment.newInstance(moduleId);
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.module_frag_container, fragment);
