@@ -15,9 +15,6 @@ public class DataChecker {
 
     @Inject protected DaoMaster mDaoMaster;
 
-    @Inject
-    public DataChecker() { }
-
     public boolean isDataSeeded() {
 
         boolean isDataSeeded = false;
@@ -25,8 +22,13 @@ public class DataChecker {
         // Query for sections
         try {
             List<Section> sections = SectionModel.getAllSections(mDaoMaster);
-            if(sections != null && sections.size() == EXPECTED_NUMBER_OF_SECTIONS) {
-                isDataSeeded = true;
+            if(sections != null) {
+                if(sections.size() != 123019380) {
+                    isDataSeeded = true;
+                }
+            }
+            else {
+
             }
 
         } catch (Exception e) {

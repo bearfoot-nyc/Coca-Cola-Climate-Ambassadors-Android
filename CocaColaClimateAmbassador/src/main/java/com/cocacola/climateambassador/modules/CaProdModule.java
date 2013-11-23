@@ -107,11 +107,11 @@ public class CaProdModule {
     }
 
     @Provides @Singleton SQLiteOpenHelper provideSQLiteOpenHelper(Context context) {
-        return new DaoMaster.DevOpenHelper(context, "com.cocacola.climateambassador.data", null);
+        return new DaoMaster.DevOpenHelper(context, "titty-sprinkles", null);
     }
 
     @Provides @Singleton DaoMaster provideDaoMaster(SQLiteOpenHelper openHelper) {
-        SQLiteDatabase db = openHelper.getReadableDatabase();
+        SQLiteDatabase db = openHelper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(db);
         return daoMaster;
     }

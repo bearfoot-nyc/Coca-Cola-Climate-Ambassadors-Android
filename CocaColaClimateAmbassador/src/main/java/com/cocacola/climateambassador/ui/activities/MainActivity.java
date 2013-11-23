@@ -1,6 +1,8 @@
 package com.cocacola.climateambassador.ui.activities;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.HandlerThread;
@@ -12,7 +14,9 @@ import android.widget.Toast;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.adapters.MenuListAdapter;
 import com.cocacola.climateambassador.data.DaoMaster;
+import com.cocacola.climateambassador.data.DaoSession;
 import com.cocacola.climateambassador.data.Section;
+import com.cocacola.climateambassador.data.SectionDao;
 import com.cocacola.climateambassador.json.NavigationDrawerItem;
 
 import com.cocacola.climateambassador.models.SectionModel;
@@ -36,17 +40,19 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-
         setContentView(R.layout.activity_main);
-        Views.inject(this);
-
-        setupNavigationDrawer();
 
         if(!mDataChecker.isDataSeeded()) {
-            seedDataIfNotAvailable();
+
+            try {
+                mDataSeeder.seed();
+            } catch (Exception e) {
+                Toast.makeText(this, "Failed to load data", Toast.LENGTH_SHORT).show();
+            }
+
         }
 
+        setupNavigationDrawer();
     }
 
     @OnClick(R.id.home_btn_internal)
@@ -73,19 +79,19 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
     @Override
     List<NavigationDrawerItem> getNavigationDrawerItems() {
 
-        if(mNavigationDrawerItems == null) {
-            mNavigationDrawerItems = new LinkedList<NavigationDrawerItem>();
+        mNavigationDrawerItems = new LinkedList<NavigationDrawerItem>();
+        List<Section> sectionList = null;
 
-            try {
-                List<Section> sectionList = SectionModel.getAllSections(mDaoMaster);
-                for(Section section : sectionList) {
-                    mNavigationDrawerItems.add(new NavigationDrawerItem(section.getName(), R.drawable.ic_drawer_wrench, false, InternalTrainingActivity.class));
-                }
+        try {
+            sectionList = SectionModel.getAllSections(mDaoMaster);
+        } catch (Exception e) {
+            Toast.makeText(this, "Failed to load Sections", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+        for(Section section : sectionList) {
+            NavigationDrawerItem item = new NavigationDrawerItem(section.getName(), R.drawable.ic_drawer_wrench, false, InternalTrainingActivity.class);
+            mNavigationDrawerItems.add(item);
         }
 
         return mNavigationDrawerItems;
