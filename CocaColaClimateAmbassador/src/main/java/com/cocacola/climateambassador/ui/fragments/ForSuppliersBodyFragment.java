@@ -58,8 +58,8 @@ public class ForSuppliersBodyFragment extends CaFragment implements HasModel<Mod
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-        mDocumentView.setDocument(getSupplierDocument());
+        // FIXME Add back Documents
+        //mDocumentView.setDocument(getSupplierDocument());
 
     }
 

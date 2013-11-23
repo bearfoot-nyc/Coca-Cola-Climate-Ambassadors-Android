@@ -124,7 +124,8 @@ public abstract class CaCaseActivity extends CaActivity implements HasModel<Case
         }
 
         // Show documents
-        mCaseStudiesLayout.setDocuments(aCase.getCaseStudies());
+        // FIXME Add back Documents
+        //mCaseStudiesLayout.setDocuments(aCase.getCaseStudies());
 
     }
 

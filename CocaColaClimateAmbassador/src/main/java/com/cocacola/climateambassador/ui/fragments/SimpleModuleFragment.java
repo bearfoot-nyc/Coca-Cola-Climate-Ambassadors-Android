@@ -12,7 +12,10 @@ import android.widget.Toast;
 
 import com.cocacola.climateambassador.HasModel;
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.data.BulletPoint;
+import com.cocacola.climateambassador.data.BulletPointFrame;
 import com.cocacola.climateambassador.data.DaoMaster;
+import com.cocacola.climateambassador.data.Document;
 import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.json.BulletPointFrameJson;
 import com.cocacola.climateambassador.json.DocumentJson;
@@ -98,7 +101,7 @@ public abstract class SimpleModuleFragment extends CaFragment implements HasMode
     @Override public void onViewCreated(View v, Bundle savedInstanceState) {
         super.onViewCreated(v, savedInstanceState);
 
-        ModuleJson module = getModel();
+        Module module = getModule();
 
         LayoutInflater inflater = LayoutInflater.from(v.getContext());
 
@@ -110,10 +113,12 @@ public abstract class SimpleModuleFragment extends CaFragment implements HasMode
             ((TextView)v.findViewById(R.id.description)).setText(Html.fromHtml(module.getBodyText()));
         }
 
+        // FIXME Create BulletPointFrame to encapsulate all this garbage
+
         // Bullet point frames
         LinearLayout caseFrames = (LinearLayout) v.findViewById(R.id.case_frames);
         if (module.getBulletPointFrame() != null) {
-            BulletPointFrameJson caseBulletPointFrame = module.getBulletPointFrame();
+            BulletPointFrame caseBulletPointFrame = module.getBulletPointFrame();
             View bulletPointFrame = LayoutInflater.from(v.getContext()).inflate(R.layout.case_frame, null);
 
             if (!TextUtils.isEmpty(caseBulletPointFrame.getTitle())) {
@@ -131,9 +136,9 @@ public abstract class SimpleModuleFragment extends CaFragment implements HasMode
             LinearLayout bulletList = (LinearLayout) (bulletPointFrame.findViewById(R.id.bullet_list_content));
 
             //Add Bullet Points to Layout
-            for (String bulletPoint : caseBulletPointFrame.getBulletPoints()) {
+            for (BulletPoint bulletPoint : caseBulletPointFrame.getBulletPoints()) {
                 View bulletPointLayout = inflater.inflate(R.layout.depr_view_bullet_point, null);
-                ((TextView) bulletPointLayout.findViewById(R.id.bullet_text)).setText(bulletPoint);
+                ((TextView) bulletPointLayout.findViewById(R.id.bullet_text)).setText(bulletPoint.getText());
                 //Must set text color, base color is white (for cases)
                 ((TextView) bulletPointLayout.findViewById(R.id.bullet_text)).setTextColor(getResources().getColor(R.color.black));
                 bulletList.addView(bulletPointLayout);
@@ -143,10 +148,10 @@ public abstract class SimpleModuleFragment extends CaFragment implements HasMode
             caseFrames.addView(bulletPointFrame);
         }
 
-        List<DocumentJson> documentList = module.getDocuments();
+        List<Document> documentList = module.getDocuments();
         if(documentList.size() > 0) {
             DocumentsLayout documentsLayout = (DocumentsLayout) v.findViewById(R.id.course_materials);
-            documentsLayout.setDocuments(module.getDocuments());
+            documentsLayout.setDocuments(documentList);
         }
         else {
             courseMaterialsLabelView.setVisibility(View.INVISIBLE);

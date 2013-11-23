@@ -11,6 +11,7 @@ import com.cocacola.climateambassador.AppPackageFileWriter;
 import com.cocacola.climateambassador.CaApplication;
 import com.cocacola.climateambassador.DocumentViewerDelegate;
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.data.Document;
 import com.cocacola.climateambassador.json.DocumentJson;
 import com.cocacola.climateambassador.json.FileType;
 import com.cocacola.climateambassador.util.Toaster;
@@ -64,13 +65,13 @@ public class DocumentView extends LinearLayout {
         mTitleView = (TextView) findViewById(R.id.doc_title);
     }
 
-    public void setDocument(DocumentJson doc) {
+    public void setDocument(Document doc) {
 
         if(doc == null) {
             return;
         }
 
-        int iconResId = getResForExtension(doc);
+        int iconResId = getResForExtension(doc.getFileName());
         mImageView.setImageResource(iconResId);
 
         if(doc.getLabel() != null) {
@@ -81,9 +82,9 @@ public class DocumentView extends LinearLayout {
 
     }
 
-    private Integer getResForExtension(DocumentJson document) {
+    private Integer getResForExtension(String fileName) {
 
-        FileType type = FileType.getTypeForFilename(document.getFileName());
+        FileType type = FileType.getTypeForFilename(fileName);
 
         if(type == null) {
             return 0;
@@ -95,9 +96,9 @@ public class DocumentView extends LinearLayout {
 
     private class OnDocumentClickListener implements OnClickListener {
 
-        private DocumentJson document;
+        private Document document;
 
-        public OnDocumentClickListener(DocumentJson document) {
+        public OnDocumentClickListener(Document document) {
             this.document = document;
         }
 
