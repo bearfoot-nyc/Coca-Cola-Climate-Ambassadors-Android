@@ -1,47 +1,44 @@
 package com.cocacola.climateambassador.ui.activities;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.HandlerThread;
-import android.view.Menu;
-import android.view.Window;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.SearchView;
 
 import android.widget.Toast;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.adapters.MenuListAdapter;
+import com.cocacola.climateambassador.drawer.adapters.MainDrawerListAdapter;
 import com.cocacola.climateambassador.data.DaoMaster;
-import com.cocacola.climateambassador.data.DaoSession;
 import com.cocacola.climateambassador.data.Section;
-import com.cocacola.climateambassador.data.SectionDao;
-import com.cocacola.climateambassador.json.NavigationDrawerItem;
 
+import com.cocacola.climateambassador.drawer.model.MainDrawerItem;
 import com.cocacola.climateambassador.models.SectionModel;
 import com.cocacola.climateambassador.util.DataChecker;
 import com.cocacola.climateambassador.util.DataSeeder;
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
 import butterknife.OnClick;
-import butterknife.Views;
 import javax.inject.Inject;
 
-public class MainActivity extends CaDrawerActivity implements SearchView.OnQueryTextListener {
+public class MainActivity extends CaDrawerActivity implements SearchView.OnQueryTextListener,
+    AdapterView.OnItemClickListener {
 
     @Inject protected DataChecker mDataChecker;
     @Inject protected DataSeeder mDataSeeder;
     @Inject protected DaoMaster mDaoMaster;
 
+    private List<MainDrawerItem> mDrawerItems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
 
+        super.onCreate(savedInstanceState);
+
+        // TODO Move this to a landing Activity
         if(!mDataChecker.isDataSeeded()) {
 
             try {
@@ -52,7 +49,11 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
 
         }
 
-        setupNavigationDrawer();
+        mMenuAdapter = new MainDrawerListAdapter(this, getNavigationDrawerItems());
+        mDrawerList.setAdapter(mMenuAdapter);
+        mDrawerList.setOnItemClickListener(this);
+
+
     }
 
     @OnClick(R.id.home_btn_internal)
@@ -65,21 +66,20 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
         launchSectionActivity(ForSuppliersActivity.class);
     }
 
-    private void launchSectionActivity(Class<? extends SectionActivity> activityClz) {
-        Intent intent = new Intent(this, activityClz);
+    @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        MainDrawerItem item = (MainDrawerItem) parent.getItemAtPosition(position);
+
+        Intent intent = new Intent(this, ModuleActivity.class);
+        intent.putExtra(ModuleActivity.MODULE_ID_BUNDLE_KEY, item.getSection().getModules().get(0).getId());
+
         startActivity(intent);
-        // TODO Close the drawer
+
     }
 
-    @Override
-    MenuListAdapter getMenuListAdapter() {
-        return new MenuListAdapter(this, getNavigationDrawerItems());
-    }
+    public List<MainDrawerItem> getNavigationDrawerItems() {
 
-    @Override
-    List<NavigationDrawerItem> getNavigationDrawerItems() {
-
-        mNavigationDrawerItems = new LinkedList<NavigationDrawerItem>();
+        mDrawerItems = new LinkedList<MainDrawerItem>();
         List<Section> sectionList = null;
 
         try {
@@ -90,40 +90,18 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
         }
 
         for(Section section : sectionList) {
-            NavigationDrawerItem item = new NavigationDrawerItem(section.getName(), R.drawable.ic_drawer_wrench, false, InternalTrainingActivity.class);
-            mNavigationDrawerItems.add(item);
+            MainDrawerItem item = new MainDrawerItem(section);
+            mDrawerItems.add(item);
         }
 
-        return mNavigationDrawerItems;
+        return mDrawerItems;
 
     }
 
-
-    public void seedDataIfNotAvailable() {
-        new ShitAsyncTask().execute();
-    }
-
-    private class ShitAsyncTask extends AsyncTask<Void, Void, Void> {
-        @Override protected void onPreExecute() {
-            super.onPreExecute();
-            // Show loading
-            setProgressBarIndeterminateVisibility(true);
-        }
-
-        @Override protected Void doInBackground(Void... params) {
-            try {
-                mDataSeeder.seed();
-            } catch (Exception e) {
-                return null;
-            }
-
-            return null;
-        }
-
-        @Override protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            setProgressBarIndeterminateVisibility(false);
-        }
+    private void launchSectionActivity(Class<? extends ModuleActivity> activityClz) {
+        Intent intent = new Intent(this, activityClz);
+        startActivity(intent);
+        // TODO Close the drawer
     }
 
     @Override public boolean onQueryTextSubmit(String query) {

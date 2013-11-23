@@ -21,7 +21,7 @@ import butterknife.InjectView;
 /**
  * Created by realandylawton on 9/7/13.
  */
-public class VisionActivity extends SectionActivity implements HasModel<CaseJson> {
+public class VisionActivity extends ModuleActivity implements HasModel<CaseJson> {
 
     @Inject
     JsonAssetsLoader mJsonAssetsLoader;
@@ -46,8 +46,6 @@ public class VisionActivity extends SectionActivity implements HasModel<CaseJson
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_2020_vision);
-
-        setupNavigationDrawer();
 
         CaseJson module = getModel();
 

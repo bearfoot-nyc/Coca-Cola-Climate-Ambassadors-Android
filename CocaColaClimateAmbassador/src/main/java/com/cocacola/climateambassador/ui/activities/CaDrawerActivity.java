@@ -10,10 +10,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.adapters.MenuListAdapter;
-import com.cocacola.climateambassador.json.NavigationDrawerItem;
-
-import java.util.List;
+import com.cocacola.climateambassador.drawer.adapters.DrawerListAdapter;
 
 /**
  * Created by realandylawton on 8/31/13.
@@ -22,17 +19,11 @@ abstract class CaDrawerActivity extends CaActivity {
 
     public DrawerLayout mDrawerLayout;
     public ListView mDrawerList;
-    public MenuListAdapter mMenuAdapter;
+    public DrawerListAdapter mMenuAdapter;
     public ActionBarDrawerToggle mDrawerToggle;
 
-    protected List<NavigationDrawerItem> mNavigationDrawerItems;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    public void setupNavigationDrawer() {
 
         //Set up the Navigation Drawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -42,20 +33,16 @@ abstract class CaDrawerActivity extends CaActivity {
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-        mMenuAdapter = getMenuListAdapter();
-
-        mDrawerList.setAdapter(mMenuAdapter);
-
         getActionBar().setDisplayShowTitleEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(
-                this,                  /* host Activity */
-                mDrawerLayout,         /* DrawerLayout object */
-                R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret */
-                R.string.drawer_open,  /* "open drawer" description for accessibility */
-                R.string.drawer_close  /* "close drawer" description for accessibility */
+            this,                  /* host Activity */
+            mDrawerLayout,         /* DrawerLayout object */
+            R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret */
+            R.string.drawer_open,  /* "open drawer" description for accessibility */
+            R.string.drawer_close  /* "close drawer" description for accessibility */
         ) {
             public void onDrawerClosed(View view) {
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
@@ -67,14 +54,23 @@ abstract class CaDrawerActivity extends CaActivity {
         };
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+
     }
 
-    protected void setTitle(String title) {
-        getActionBar().setTitle(title);
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
     }
 
-    abstract MenuListAdapter getMenuListAdapter();
-    abstract List<NavigationDrawerItem> getNavigationDrawerItems();
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Pass any configuration change to the drawer toggles
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -93,18 +89,8 @@ abstract class CaDrawerActivity extends CaActivity {
     }
 
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        // Pass any configuration change to the drawer toggles
-        mDrawerToggle.onConfigurationChanged(newConfig);
+    protected void setTitle(String title) {
+        getActionBar().setTitle(title);
     }
 
 }
