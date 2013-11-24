@@ -9,10 +9,24 @@ public class ModuleDrawerItem extends DrawerItem {
 
     private Module mModule;
     private boolean mIsHeader;
+    private String mHeaderTitle;
 
     public ModuleDrawerItem(Module module, boolean isHeader) {
         mModule = module;
         mIsHeader = isHeader;
+    }
+
+    public ModuleDrawerItem(boolean isHeader, String headerTitle) {
+        mIsHeader = isHeader;
+        mHeaderTitle = headerTitle;
+    }
+
+    public String getHeaderTitle() {
+        return mHeaderTitle;
+    }
+
+    public void setHeaderTitle(String headerTitle) {
+        mHeaderTitle = headerTitle;
     }
 
     public Module getModule() {

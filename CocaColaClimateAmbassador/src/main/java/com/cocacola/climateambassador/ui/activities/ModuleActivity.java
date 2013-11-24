@@ -3,6 +3,8 @@ package com.cocacola.climateambassador.ui.activities;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.data.DaoMaster;
@@ -19,7 +21,7 @@ import javax.inject.Inject;
 /**
  * Created by andrewlawton on 9/1/13.
  */
-public class ModuleActivity extends CaDrawerActivity {
+public class ModuleActivity extends CaDrawerActivity implements AdapterView.OnItemClickListener {
 
     public static final String MODULE_ID_BUNDLE_KEY = "moduleId";
 
@@ -35,6 +37,8 @@ public class ModuleActivity extends CaDrawerActivity {
 
         // Set up Menu List
         mMenuAdapter = new ModuleDrawerListAdapter(this, getDrawerItems());
+        mDrawerList.setAdapter(mMenuAdapter);
+        mDrawerList.setOnItemClickListener(this);
 
         // Show the proper fragment
         Long moduleId = getModuleIdFromIntent(getIntent());
@@ -69,7 +73,7 @@ public class ModuleActivity extends CaDrawerActivity {
 
                 for(Section section : sectionList) {
                     mDrawerItems.add(
-                        new ModuleDrawerItem(null, true));
+                        new ModuleDrawerItem(true, section.getName()));
                     for(Module module : section.getModules()) {
                         mDrawerItems.add(new ModuleDrawerItem(module, false));
                     }
@@ -84,4 +88,18 @@ public class ModuleActivity extends CaDrawerActivity {
         return mDrawerItems;
     }
 
+    @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        ModuleDrawerItem item = (ModuleDrawerItem) parent.getItemAtPosition(position);
+        if(item.getModule() == null) {
+            return;
+        }
+
+        Intent intent = new Intent(this, ModuleActivity.class);
+        intent.putExtra(ModuleActivity.MODULE_ID_BUNDLE_KEY, item.getModule().getId());
+
+        startActivity(intent);
+
+
+    }
 }

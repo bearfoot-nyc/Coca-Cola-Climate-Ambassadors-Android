@@ -58,15 +58,12 @@ public class ModuleDrawerListAdapter extends DrawerListAdapter {
         return v;
     }
 
-    private View getHeaderView(DrawerItem item) {
+    private View getHeaderView(ModuleDrawerItem item) {
 
         View v = mInflater.inflate(R.layout.drawer_header, null);
 
         TextView text = (TextView) v.findViewById(R.id.drawer_header_text);
-        //text.setText(item.getTitle());
-
-        // FIXME Actually add a header
-        text.setText("TITLE");
+        text.setText(item.getHeaderTitle());
 
         return v;
 
