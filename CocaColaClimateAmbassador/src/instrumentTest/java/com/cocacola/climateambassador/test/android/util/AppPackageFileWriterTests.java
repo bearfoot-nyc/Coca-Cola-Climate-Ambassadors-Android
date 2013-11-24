@@ -1,7 +1,7 @@
 package com.cocacola.climateambassador.test.android.util;
 
-import com.cocacola.climateambassador.AppPackageFileWriter;
-import com.cocacola.climateambassador.json.FileType;
+import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
+import com.cocacola.climateambassador.data.json.FileType;
 import com.cocacola.climateambassador.test.CaTestModule;
 import dagger.ObjectGraph;
 import java.io.File;

@@ -2,7 +2,7 @@ package com.cocacola.climateambassador.test;
 
 import android.content.Context;
 
-import com.cocacola.climateambassador.modules.CaProdModule;
+import com.cocacola.climateambassador.core.CaProdModule;
 
 import com.cocacola.climateambassador.test.android.ui.MainActivityTest;
 import com.cocacola.climateambassador.test.android.util.AppPackageFileWriterTests;

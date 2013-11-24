@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.cocacola.climateambassador.ui.views.BulletPointView
+<com.cocacola.climateambassador.core.views.BulletPointView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:paddingLeft="10dp"
     android:orientation="horizontal"
@@ -18,4 +18,4 @@
         android:textColor="@color/white"
         android:layout_gravity="center_vertical"/>
 
- </com.cocacola.climateambassador.ui.views.BulletPointView>
+ </com.cocacola.climateambassador.core.views.BulletPointView>

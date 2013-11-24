@@ -2,22 +2,17 @@ package com.cocacola.climateambassador.test.data;
 
 import com.cocacola.climateambassador.data.BulletPoint;
 import com.cocacola.climateambassador.data.BulletPointFrame;
-import com.cocacola.climateambassador.data.DaoMaster;
-import com.cocacola.climateambassador.data.DaoSession;
 import com.cocacola.climateambassador.data.Document;
 import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.ModuleDao;
 import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.data.SectionDao;
-import com.cocacola.climateambassador.json.ModuleJson;
-import com.cocacola.climateambassador.json.SectionJson;
-import com.cocacola.climateambassador.models.SectionModel;
-import com.cocacola.climateambassador.test.CaTestCase;
-import com.cocacola.climateambassador.util.DataSeeder;
-import com.cocacola.climateambassador.util.JsonAssetsLoader;
+import com.cocacola.climateambassador.data.json.ModuleJson;
+import com.cocacola.climateambassador.data.json.SectionJson;
+import com.cocacola.climateambassador.core.model.SectionModel;
+import com.cocacola.climateambassador.core.util.DataSeeder;
 import java.io.IOException;
 import java.util.List;
-import javax.inject.Inject;
 
 /**
  * Created by realandylawton on 11/13/13.

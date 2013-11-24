@@ -27,7 +27,7 @@
             android:paddingTop="3dp"
             android:text="@string/value_chain_description" />
 
-    <com.cocacola.climateambassador.ui.views.DocumentsLayout
+    <com.cocacola.climateambassador.core.views.DocumentsLayout
             android:id="@+id/course_materials"
             android:layout_height="wrap_content"
             android:layout_width="850dp"
@@ -44,6 +44,6 @@
                 android:textSize="10sp"
                 android:text="@string/course_material_title"/>
 
-    </com.cocacola.climateambassador.ui.views.DocumentsLayout>
+    </com.cocacola.climateambassador.core.views.DocumentsLayout>
 
 </RelativeLayout>

@@ -3,8 +3,8 @@ package com.cocacola.climateambassador.test.android.ui;
 import android.test.ActivityInstrumentationTestCase2;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.test.CaTestModule;
-import com.cocacola.climateambassador.ui.activities.MainActivity;
-import com.cocacola.climateambassador.util.DataChecker;
+import com.cocacola.climateambassador.core.activity.MainActivity;
+import com.cocacola.climateambassador.core.util.DataChecker;
 import dagger.ObjectGraph;
 import javax.inject.Inject;
 

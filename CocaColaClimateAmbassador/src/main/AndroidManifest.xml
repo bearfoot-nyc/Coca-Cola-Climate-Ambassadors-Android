@@ -13,14 +13,14 @@
     <uses-permission android:name="android.permission.GET_TASKS"/>
 
     <application
-            android:name="com.cocacola.climateambassador.CaApplication"
+            android:name=".core.CaApplication"
             android:allowBackup="true"
             android:icon="@drawable/ic_launcher"
             android:label="@string/app_name"
             android:logo="@drawable/ic_logo"
             android:theme="@style/AppTheme" >
         <activity
-                android:name=".ui.activities.MainActivity"
+                android:name=".core.activity.MainActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/app_name"
                 android:screenOrientation="landscape" >
@@ -31,91 +31,91 @@
         </activity>
 
         <activity
-            android:name=".ui.activities.ModuleActivity"
+            android:name=".module.activity.ModuleActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_business_case_module"
             android:screenOrientation="landscape" >
         </activity>
 
         <activity
-                android:name=".ui.activities.ForSuppliersActivity"
+                android:name=".section.activity.ForSuppliersActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/title_activity_business_case_module"
                 android:screenOrientation="landscape" >
         </activity>
         <activity
-                android:name=".ui.activities.InternalTrainingActivity"
+                android:name=".section.activity.InternalTrainingActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/title_activity_key_interventions_module"
                 android:screenOrientation="landscape" >
         </activity>
         <activity
-                android:name=".ui.activities.IngredientCaseActivity"
+                android:name=".cases.activity.IngredientCaseActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/Ingredients"
                 android:screenOrientation="landscape"
                 android:parentActivityName=".ui.activities.ModuleThreeActivity">
         </activity>
         <activity
-                android:name=".ui.activities.PackagingCaseActivity"
+                android:name=".cases.activity.PackagingCaseActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/Packaging"
                 android:screenOrientation="landscape"
                 android:parentActivityName=".ui.activities.InternalTrainingActivity">
         </activity>
         <activity
-                android:name=".ui.activities.ManufacturingCaseActivity"
+                android:name=".cases.activity.ManufacturingCaseActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/Manufacturing"
                 android:screenOrientation="landscape"
                 android:parentActivityName=".ui.activities.InternalTrainingActivity">
         </activity>
         <activity
-                android:name=".ui.activities.DistributionCaseActivity"
+                android:name=".cases.activity.DistributionCaseActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/Distribution"
                 android:screenOrientation="landscape"
                 android:parentActivityName=".ui.activities.InternalTrainingActivity">
         </activity>
         <activity
-                android:name=".ui.activities.RefrigerationCaseActivity"
+                android:name=".cases.activity.RefrigerationCaseActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/Refrigeration"
                 android:screenOrientation="landscape"
                 android:parentActivityName=".ui.activities.InternalTrainingActivity">
         </activity>
         <activity
-                android:name=".ui.activities.ClimateAmbassadorActivity"
+                android:name=".module.internal.activity.RoleOfClimateAmbassadorActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/nav_item_internal_training_climate_ambassador"
                 android:screenOrientation="landscape">
         </activity>
         <activity
-                android:name=".ui.activities.ModuleOneActivity"
+                android:name=".module.internal.InternalModuleOneActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/nav_item_internal_training_module_1"
                 android:screenOrientation="landscape">
         </activity>
         <activity
-                android:name=".ui.activities.ModuleTwoActivity"
+                android:name=".module.internal.InternalModuleTwoActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/nav_item_internal_training_module_2"
                 android:screenOrientation="landscape">
         </activity>
         <activity
-                android:name=".ui.activities.ModuleThreeActivity"
+                android:name=".module.internal.InternalModuleThreeActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/nav_item_internal_training_module_3"
                 android:screenOrientation="landscape">
         </activity>
         <activity
-                android:name=".ui.activities.ModuleFourActivity"
+                android:name=".module.internal.InternalModuleFourActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/nav_item_internal_training_module_4"
                 android:screenOrientation="landscape">
         </activity>
         <activity
-                android:name=".ui.activities.VisionActivity"
+                android:name=".module.suppliers.activity.VisionActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/nav_item_for_suppliers_2020_vision"
                 android:screenOrientation="landscape">

@@ -3,8 +3,8 @@ package com.cocacola.climateambassador.test.data;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.DaoSession;
 import com.cocacola.climateambassador.test.CaTestCase;
-import com.cocacola.climateambassador.util.DataSeeder;
-import com.cocacola.climateambassador.util.JsonAssetsLoader;
+import com.cocacola.climateambassador.core.util.DataSeeder;
+import com.cocacola.climateambassador.core.util.JsonAssetsLoader;
 import javax.inject.Inject;
 
 /**

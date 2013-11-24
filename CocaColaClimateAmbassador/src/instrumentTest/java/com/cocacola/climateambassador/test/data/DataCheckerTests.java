@@ -1,7 +1,7 @@
 package com.cocacola.climateambassador.test.data;
 
-import com.cocacola.climateambassador.util.DataChecker;
-import com.cocacola.climateambassador.util.DataSeeder;
+import com.cocacola.climateambassador.core.util.DataChecker;
+import com.cocacola.climateambassador.core.util.DataSeeder;
 import java.io.IOException;
 import javax.inject.Inject;
 
