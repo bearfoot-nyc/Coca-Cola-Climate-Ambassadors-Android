@@ -1,5 +1,6 @@
 package com.cocacola.climateambassador.data.json;
 
+import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
@@ -9,18 +10,9 @@ public class ModuleJson {
 
     private String title;
     private String bodyText;
-    private List<CaseJson> cases;
+    @SerializedName("caseStudies") private List<String> cases;
     private List<DocumentJson> documents;
     private BulletPointFrameJson bulletPointFrame;
-
-    public ModuleJson(String title, String bodyText, List<CaseJson> cases,
-        List<DocumentJson> documents) {
-        this.title = title;
-        this.bodyText = bodyText;
-        this.cases = cases;
-        this.documents = documents;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -29,23 +21,14 @@ public class ModuleJson {
         this.title = title;
     }
 
-
     public String getBodyText() {
         return bodyText;
     }
 
+
     public void setBodyText(String bodyText) {
         this.bodyText = bodyText;
     }
-
-    public List<CaseJson> getCases() {
-        return cases;
-    }
-
-    public void setCases(List<CaseJson> cases) {
-        this.cases = cases;
-    }
-
 
     public BulletPointFrameJson getBulletPointFrame() {
         return bulletPointFrame;
@@ -55,13 +38,20 @@ public class ModuleJson {
         this.bulletPointFrame = bulletPointFrame;
     }
 
-
     public List<DocumentJson> getDocuments() {
         return documents;
     }
 
     public void setDocuments(List<DocumentJson> documents) {
         this.documents = documents;
+    }
+
+    public List<String> getCases() {
+        return cases;
+    }
+
+    public void setCases(List<String> cases) {
+        this.cases = cases;
     }
 
 

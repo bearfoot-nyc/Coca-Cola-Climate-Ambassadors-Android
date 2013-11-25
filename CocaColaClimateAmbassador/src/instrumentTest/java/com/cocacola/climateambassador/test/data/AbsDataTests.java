@@ -25,10 +25,10 @@ public abstract class AbsDataTests extends CaTestCase {
 
     @Override protected void tearDown() throws Exception {
         super.tearDown();
+        clearDatabase();
         mJsonLoader = null;
         mSeeder = null;
         mDaoSession = null;
-        clearDatabase();
     }
 
     protected void createDatabase() {
@@ -39,7 +39,7 @@ public abstract class AbsDataTests extends CaTestCase {
 
     protected void clearDatabase() {
 
-        mSeeder.createDatabase();
+        mSeeder.clearDatabase();
 
     }
 }

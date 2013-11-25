@@ -8,15 +8,10 @@ import java.util.List;
 
 public class CaseJson {
 
-    public static enum CaseDocumentTypes {
-        COURSE_MATERIALS, CASE_STUDIES
-    }
-
     private String title;
     private String bodyText;
     private BulletPointFrameJson bulletPointFrame;
     private List<TextFrameJson> textFrames;
-    private List<DocumentJson> courseMaterials;
     private List<DocumentJson> caseStudies;
 
     public String getTitle() {
@@ -49,14 +44,6 @@ public class CaseJson {
 
     public void setBodyText(String bodyText) {
         this.bodyText = bodyText;
-    }
-
-    public List<DocumentJson> getCourseMaterials() {
-        return courseMaterials;
-    }
-
-    public void setCourseMaterials(List<DocumentJson> courseMaterials) {
-        this.courseMaterials = courseMaterials;
     }
 
     public List<DocumentJson> getCaseStudies() {

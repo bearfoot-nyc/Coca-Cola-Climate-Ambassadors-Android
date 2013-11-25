@@ -22,7 +22,7 @@ public class InternalModuleOneFragment extends SimpleModuleFragment {
     }
 
     public String getJsonAssetFilename() {
-        return "module_one.json";
+        return "internal_module_one.json";
     }
 
 }

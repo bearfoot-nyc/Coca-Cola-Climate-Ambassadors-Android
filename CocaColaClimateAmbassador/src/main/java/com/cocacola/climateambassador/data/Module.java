@@ -25,6 +25,7 @@ public class Module {
     private BulletPointFrame bulletPointFrame;
     private Long bulletPointFrame__resolvedKey;
 
+    private List<CaCase> cases;
     private List<Document> documents;
 
     public Module() {
@@ -111,6 +112,28 @@ public class Module {
             bulletPointFrameId = bulletPointFrame == null ? null : bulletPointFrame.getId();
             bulletPointFrame__resolvedKey = bulletPointFrameId;
         }
+    }
+
+    /** To-many relationship, resolved on first access (and after reset). Changes to to-many relations are not persisted, make changes to the target entity. */
+    public List<CaCase> getCases() {
+        if (cases == null) {
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            CaCaseDao targetDao = daoSession.getCaCaseDao();
+            List<CaCase> casesNew = targetDao._queryModule_Cases(id);
+            synchronized (this) {
+                if(cases == null) {
+                    cases = casesNew;
+                }
+            }
+        }
+        return cases;
+    }
+
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    public synchronized void resetCases() {
+        cases = null;
     }
 
     /** To-many relationship, resolved on first access (and after reset). Changes to to-many relations are not persisted, make changes to the target entity. */

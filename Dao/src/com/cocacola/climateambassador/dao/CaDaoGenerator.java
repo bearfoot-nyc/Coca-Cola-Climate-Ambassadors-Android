@@ -24,16 +24,58 @@ public class CaDaoGenerator {
         // Module
         Entity module = generateModules(schema, section);
 
-        // Bullet Point Frame
-        generateBulletPointFrame(schema, module);
+        // Case
+        Entity caseEntity = generateCases(schema, module);
 
         // Document
-        generateDocuments(schema, module);
+        // TODO Handle Case to Document relation
+        generateDocuments(schema, module, caseEntity);
 
+        // Bullet Point Frame
+        // TODO Handle Case to Bullet Point relation
+        generateBulletPointFrame(schema, module, caseEntity);
 
         // Generate the Dao
         DaoGenerator gen = new DaoGenerator();
         gen.generateAll(schema, DaoGenHelper.SRC_PATH);
+
+    }
+
+    private static Entity generateCases(Schema schema, Entity module) {
+
+        // Module
+        Entity caseEntity = schema.addEntity("CaCase");
+        caseEntity.addIdProperty();
+        caseEntity.addStringProperty("title");
+        caseEntity.addStringProperty("bodyText");
+
+        // Module to Cases
+        Property moduleId = caseEntity.addLongProperty("moduleId").notNull().getProperty();
+        ToMany moduleToCases = module.addToMany(caseEntity, moduleId);
+        moduleToCases.setName("cases");
+
+        // Text Frame
+        Entity textFrame = schema.addEntity("TextFrame");
+        textFrame.addIdProperty();
+        textFrame.addStringProperty("title");
+        textFrame.addStringProperty("bodyText");
+
+        // Case to Text Frames
+        Property caseId = textFrame.addLongProperty("caseId").getProperty();
+        ToMany caseToTextFrames = caseEntity.addToMany(textFrame, caseId);
+        caseToTextFrames.setName("textFrames");
+
+        // Subtitle Text Pair
+        Entity textPair = schema.addEntity("SubtitleTextPair");
+        textPair.addStringProperty("title");
+        textPair.addStringProperty("text");
+
+        // Text Frame to Text Pairs
+        Property textFrameId = textPair.addLongProperty("textFrameId").notNull().getProperty();
+        ToMany textFrameToPairs = textFrame.addToMany(textPair, textFrameId);
+        textFrameToPairs.setName("subtitleTextPairs");
+
+        return caseEntity;
 
     }
 
@@ -54,7 +96,7 @@ public class CaDaoGenerator {
 
     }
 
-    private static void generateDocuments(Schema schema, Entity module) {
+    private static void generateDocuments(Schema schema, Entity module, Entity caseEntity) {
         // Document
         Entity document = schema.addEntity("Document");
         document.addIdProperty();
@@ -62,12 +104,18 @@ public class CaDaoGenerator {
         document.addStringProperty("label");
 
         // Module to Documents
-        Property moduleId = document.addLongProperty("moduleId").notNull().getProperty();
+        Property moduleId = document.addLongProperty("moduleId").getProperty();
         ToMany moduleToDocuments = module.addToMany(document, moduleId);
         moduleToDocuments.setName("documents");
+
+        // Case to Documents (Case Studies)
+        Property caseId = document.addLongProperty("caseId").getProperty();
+        ToMany caseToDocuments = caseEntity.addToMany(document, caseId);
+        caseToDocuments.setName("caseStudies");
+
     }
 
-    private static void generateBulletPointFrame(Schema schema, Entity module) {
+    private static void generateBulletPointFrame(Schema schema, Entity module, Entity caseEntity) {
 
         // Bullet Point Frame
         Entity bulletPointFrame = schema.addEntity("BulletPointFrame");
@@ -79,6 +127,11 @@ public class CaDaoGenerator {
         Property bulletPointFrameId = module.addLongProperty("bulletPointFrameId").getProperty();
         ToOne moduleToBulletPointFrame = module.addToOne(bulletPointFrame, bulletPointFrameId);
         moduleToBulletPointFrame.setName("bulletPointFrame");
+
+        // Case to Bullet Point Frame
+        Property caseBulletPointFrameId = caseEntity.addLongProperty("bulletPointFrameId").getProperty();
+        ToOne caseToBulletPointFrame = caseEntity.addToOne(bulletPointFrame, caseBulletPointFrameId);
+        caseToBulletPointFrame.setName("bulletPointFrame");
 
         // Bullet Point
         Entity bulletPoint = schema.addEntity("BulletPoint");

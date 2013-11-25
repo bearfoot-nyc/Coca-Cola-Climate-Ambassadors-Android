@@ -82,7 +82,7 @@ public class VisionActivity extends ModuleActivity implements HasModel<CaseJson>
 
     @Override
     public String getJsonAssetFilename() {
-        return "for_suppliers_2020_vision.json";
+        return "suppliers_2020_vision.json";
     }
 
 

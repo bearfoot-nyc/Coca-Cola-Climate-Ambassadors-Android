@@ -6,6 +6,8 @@ import com.cocacola.climateambassador.data.BulletPoint;
 import com.cocacola.climateambassador.data.BulletPointDao;
 import com.cocacola.climateambassador.data.BulletPointFrame;
 import com.cocacola.climateambassador.data.BulletPointFrameDao;
+import com.cocacola.climateambassador.data.CaCase;
+import com.cocacola.climateambassador.data.CaCaseDao;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.DaoSession;
 import com.cocacola.climateambassador.data.Document;
@@ -14,6 +16,7 @@ import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.ModuleDao;
 import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.data.SectionDao;
+import com.cocacola.climateambassador.data.json.CaseJson;
 import com.cocacola.climateambassador.data.json.DocumentJson;
 import com.cocacola.climateambassador.data.json.ModuleJson;
 import com.cocacola.climateambassador.data.json.SectionJson;
@@ -94,17 +97,17 @@ public class DataSeeder {
     public Module seedModule(String fileName, Long sectionId)
         throws IOException, SeedFailedException {
 
-        ModuleJson json = mJsonLoader.parseModuleFromJsonFile(fileName);
+        ModuleJson moduleJson = mJsonLoader.parseModuleFromJsonFile(fileName);
 
         DaoSession session = mDaoMaster.newSession();
         ModuleDao dao = session.getModuleDao();
 
         Module moduleModel = new Module();
-        moduleModel.setTitle(json.getTitle());
-        moduleModel.setBodyText(json.getBodyText());
+        moduleModel.setTitle(moduleJson.getTitle());
+        moduleModel.setBodyText(moduleJson.getBodyText());
         moduleModel.setSectionId(sectionId);
 
-        long bulletPointFrameId = seedBulletPointFrame(json);
+        long bulletPointFrameId = seedBulletPointFrame(moduleJson);
         moduleModel.setBulletPointFrameId(bulletPointFrameId);
 
         Long moduleId = dao.insert(moduleModel);
@@ -113,9 +116,72 @@ public class DataSeeder {
             return null;
         }
 
-        seedDocuments(json, moduleId);
+        seedDocuments(moduleJson, moduleId);
+
+        // Seed Cases
+        for(String filename : moduleJson.getCases()) {
+
+            CaCase c = seedCase(filename, moduleId);
+            if(c == null) {
+                throw new SeedFailedException("Failed to load Case " + filename);
+            }
+
+        }
 
         return moduleModel;
+    }
+
+    private CaCase seedCase(String filename, Long moduleId) throws IOException, SeedFailedException {
+
+        CaseJson caseJson = mJsonLoader.parseFromJsonFile(filename, CaseJson.class);
+
+        CaCase c = new CaCase();
+        c.setTitle(caseJson.getTitle());
+        c.setBodyText(caseJson.getBodyText());
+
+        long bulletPointFrameId = seedBulletPointFrame(caseJson);
+        c.setBulletPointFrameId(bulletPointFrameId);
+
+        CaCaseDao caseDao = mDaoMaster.newSession().getCaCaseDao();
+
+        Long caseId = caseDao.insert(c);
+
+        if(caseId == null) {
+            return null;
+        }
+
+        seedCaseStudies(caseJson, caseId);
+
+        return c;
+
+    }
+
+    private void seedCaseStudies(CaseJson json, Long caseId) throws SeedFailedException {
+
+        List<DocumentJson> documentJsonList = json.getCaseStudies();
+
+        if(documentJsonList == null || documentJsonList.size() < 1) {
+            return;
+        }
+
+        DocumentDao documentDao = mDaoMaster.newSession().getDocumentDao();
+
+        for(DocumentJson documentJson : documentJsonList) {
+
+            if(documentJson == null) {
+                throw new SeedFailedException("Document JSON null: " + documentJson);
+            }
+
+            Document document = new Document();
+            document.setFileName(documentJson.getFileName());
+            document.setLabel(documentJson.getLabel());
+            document.setCaseId(caseId);
+
+            documentDao.insert(document);
+
+
+        }
+
     }
 
     private void seedDocuments(ModuleJson json, Long moduleId) throws SeedFailedException {
@@ -143,6 +209,29 @@ public class DataSeeder {
 
 
         }
+
+    }
+
+    public long seedBulletPointFrame(CaseJson json) {
+
+        BulletPointFrame frame = new BulletPointFrame();
+        frame.setTitle(json.getBulletPointFrame().getTitle());
+        frame.setSubtitle(json.getBulletPointFrame().getSubtitle());
+
+        DaoSession daoSession = mDaoMaster.newSession();
+
+        BulletPointFrameDao frameDao = daoSession.getBulletPointFrameDao();
+        Long frameId = frameDao.insert(frame);
+
+        BulletPointDao pointDao = daoSession.getBulletPointDao();
+        for(String point : json.getBulletPointFrame().getBulletPoints()) {
+            BulletPoint bulletPoint = new BulletPoint();
+            bulletPoint.setText(point);
+            bulletPoint.setBulletPointFrameId(frameId);
+            pointDao.insert(bulletPoint);
+        }
+
+        return frameId;
 
     }
 

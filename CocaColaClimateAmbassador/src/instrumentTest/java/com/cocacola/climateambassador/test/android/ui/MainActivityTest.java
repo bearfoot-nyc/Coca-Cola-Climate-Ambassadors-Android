@@ -45,21 +45,21 @@ public abstract class MainActivityTest extends ActivityInstrumentationTestCase2<
         DaoMaster.dropAllTables(mDaoMaster.getDatabase(), true);
         DaoMaster.createAllTables(mDaoMaster.getDatabase(), true);
 
-        mMainActivity.seedDataIfNotAvailable();
-
-
-        mMainActivity.runOnUiThread(new Runnable() {
-            @Override public void run() {
-                try {
-                    Thread.sleep(3000);
-
-                    assertTrue("Data was not seeded", mDataChecker.isDataSeeded());
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        //mMainActivity.seedDataIfNotAvailable();
+        //
+        //
+        //mMainActivity.runOnUiThread(new Runnable() {
+        //    @Override public void run() {
+        //        try {
+        //            Thread.sleep(3000);
+        //
+        //            assertTrue("Data was not seeded", mDataChecker.isDataSeeded());
+        //
+        //        } catch (InterruptedException e) {
+        //            e.printStackTrace();
+        //        }
+        //    }
+        //});
 
 
 

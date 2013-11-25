@@ -5,7 +5,7 @@ import com.cocacola.climateambassador.module.fragment.SimpleModuleFragment;
 public class InternalModuleFourFragment extends SimpleModuleFragment {
 
     public String getJsonAssetFilename() {
-        return "module_four.json";
+        return "internal_module_four.json";
     }
 
 }

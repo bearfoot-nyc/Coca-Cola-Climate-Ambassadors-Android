@@ -2,12 +2,13 @@ package com.cocacola.climateambassador.test.data;
 
 import com.cocacola.climateambassador.data.BulletPoint;
 import com.cocacola.climateambassador.data.BulletPointFrame;
+import com.cocacola.climateambassador.data.CaCase;
 import com.cocacola.climateambassador.data.Document;
 import com.cocacola.climateambassador.data.Module;
-import com.cocacola.climateambassador.data.ModuleDao;
 import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.data.SectionDao;
-import com.cocacola.climateambassador.data.json.ModuleJson;
+import com.cocacola.climateambassador.data.SubtitleTextPair;
+import com.cocacola.climateambassador.data.TextFrame;
 import com.cocacola.climateambassador.data.json.SectionJson;
 import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.core.util.DataSeeder;
@@ -80,6 +81,36 @@ public class DataSeederTests extends AbsDataTests {
             assertValidDocument(document);
         }
 
+        for(CaCase c : module.getCases()) {
+            assertValidCase(c);
+        }
+
+    }
+
+    private void assertValidCase(CaCase c) {
+
+        assertNotNull(c);
+        assertNotNull(c.getTitle());
+        assertNotNull(c.getBodyText());
+
+        assertValidBulletPoints(c.getBulletPointFrame());
+
+        for(Document document : c.getCaseStudies()) {
+            assertValidDocument(document);
+        }
+
+        for(TextFrame frame : c.getTextFrames()) {
+            assertNotNull(frame);
+            assertNotNull(frame.getTitle());
+            assertNotNull(frame.getBodyText());
+            assertNotNull(frame.getSubtitleTextPairs());
+            for(SubtitleTextPair pair : frame.getSubtitleTextPairs()) {
+                assertNotNull(pair);
+                assertNotNull(pair.getTitle());
+                assertNotNull(pair.getText());
+            }
+        }
+
     }
 
     private void assertValidDocument(Document document) {
@@ -102,20 +133,6 @@ public class DataSeederTests extends AbsDataTests {
 
     }
 
-    private Module getModule(long id) {
-
-        ModuleDao dao = mDaoSession.getModuleDao();
-
-        List<Module> modules = dao.queryBuilder().where(ModuleDao.Properties.Id.eq(id))
-            .list();
-
-        assertNotNull("Module List was null", modules);
-        assertNotNull("No Modules in List", modules.get(0));
-
-        return modules.get(0);
-
-    }
-
     private Section getSection(Integer stringRes) throws Exception {
 
         String title = mContext.getString(stringRes);
@@ -127,15 +144,6 @@ public class DataSeederTests extends AbsDataTests {
     private SectionJson getJsonSection(Integer sectionRes) throws IOException {
         String fileName = DataSeeder.getJsonForSection(sectionRes);
         return mJsonLoader.parseFromJsonFile(fileName, SectionJson.class);
-    }
-
-    private ModuleJson getRandomJsonModule(Integer sectionRes) throws IOException {
-
-        SectionJson sectionJson = getJsonSection(sectionRes);
-        String moduleFilename = sectionJson.getModules().get(1);
-
-        return mJsonLoader.parseFromJsonFile(moduleFilename, ModuleJson.class);
-
     }
 
 }

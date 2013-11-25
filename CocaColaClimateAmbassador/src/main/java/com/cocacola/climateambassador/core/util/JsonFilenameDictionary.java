@@ -5,5 +5,5 @@ package com.cocacola.climateambassador.core.util;
  */
 public class JsonFilenameDictionary {
 
-    public static final String MODULE_ONE = "module_one.json";
+    public static final String MODULE_ONE = "internal_module_one.json";
 }

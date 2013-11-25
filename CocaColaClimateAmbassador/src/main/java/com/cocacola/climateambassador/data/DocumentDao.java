@@ -29,10 +29,12 @@ public class DocumentDao extends AbstractDao<Document, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property FileName = new Property(1, String.class, "fileName", false, "FILE_NAME");
         public final static Property Label = new Property(2, String.class, "label", false, "LABEL");
-        public final static Property ModuleId = new Property(3, long.class, "moduleId", false, "MODULE_ID");
+        public final static Property ModuleId = new Property(3, Long.class, "moduleId", false, "MODULE_ID");
+        public final static Property CaseId = new Property(4, Long.class, "caseId", false, "CASE_ID");
     };
 
     private Query<Document> module_DocumentsQuery;
+    private Query<Document> caCase_CaseStudiesQuery;
 
     public DocumentDao(DaoConfig config) {
         super(config);
@@ -49,7 +51,8 @@ public class DocumentDao extends AbstractDao<Document, Long> {
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
                 "'FILE_NAME' TEXT," + // 1: fileName
                 "'LABEL' TEXT," + // 2: label
-                "'MODULE_ID' INTEGER NOT NULL );"); // 3: moduleId
+                "'MODULE_ID' INTEGER," + // 3: moduleId
+                "'CASE_ID' INTEGER);"); // 4: caseId
     }
 
     /** Drops the underlying database table. */
@@ -77,7 +80,16 @@ public class DocumentDao extends AbstractDao<Document, Long> {
         if (label != null) {
             stmt.bindString(3, label);
         }
-        stmt.bindLong(4, entity.getModuleId());
+ 
+        Long moduleId = entity.getModuleId();
+        if (moduleId != null) {
+            stmt.bindLong(4, moduleId);
+        }
+ 
+        Long caseId = entity.getCaseId();
+        if (caseId != null) {
+            stmt.bindLong(5, caseId);
+        }
     }
 
     /** @inheritdoc */
@@ -93,7 +105,8 @@ public class DocumentDao extends AbstractDao<Document, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // fileName
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // label
-            cursor.getLong(offset + 3) // moduleId
+            cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3), // moduleId
+            cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4) // caseId
         );
         return entity;
     }
@@ -104,7 +117,8 @@ public class DocumentDao extends AbstractDao<Document, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setFileName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setLabel(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setModuleId(cursor.getLong(offset + 3));
+        entity.setModuleId(cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3));
+        entity.setCaseId(cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4));
      }
     
     /** @inheritdoc */
@@ -131,7 +145,7 @@ public class DocumentDao extends AbstractDao<Document, Long> {
     }
     
     /** Internal query to resolve the "documents" to-many relationship of Module. */
-    public List<Document> _queryModule_Documents(long moduleId) {
+    public List<Document> _queryModule_Documents(Long moduleId) {
         synchronized (this) {
             if (module_DocumentsQuery == null) {
                 QueryBuilder<Document> queryBuilder = queryBuilder();
@@ -141,6 +155,20 @@ public class DocumentDao extends AbstractDao<Document, Long> {
         }
         Query<Document> query = module_DocumentsQuery.forCurrentThread();
         query.setParameter(0, moduleId);
+        return query.list();
+    }
+
+    /** Internal query to resolve the "caseStudies" to-many relationship of CaCase. */
+    public List<Document> _queryCaCase_CaseStudies(Long caseId) {
+        synchronized (this) {
+            if (caCase_CaseStudiesQuery == null) {
+                QueryBuilder<Document> queryBuilder = queryBuilder();
+                queryBuilder.where(Properties.CaseId.eq(null));
+                caCase_CaseStudiesQuery = queryBuilder.build();
+            }
+        }
+        Query<Document> query = caCase_CaseStudiesQuery.forCurrentThread();
+        query.setParameter(0, caseId);
         return query.list();
     }
 

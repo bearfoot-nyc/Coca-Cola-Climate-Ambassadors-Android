@@ -12,6 +12,11 @@
     "textFrames" : [
     ],
     "caseStudies" : [
+        "case_ingredients.json",
+        "case_packaging.json",
+        "case_manufacturing.json",
+        "case_distribution.json",
+        "case_refrigeration.json"
     ],
     "documents" : [
         {

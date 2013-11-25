@@ -9,7 +9,8 @@ public class Document {
     private Long id;
     private String fileName;
     private String label;
-    private long moduleId;
+    private Long moduleId;
+    private Long caseId;
 
     public Document() {
     }
@@ -18,11 +19,12 @@ public class Document {
         this.id = id;
     }
 
-    public Document(Long id, String fileName, String label, long moduleId) {
+    public Document(Long id, String fileName, String label, Long moduleId, Long caseId) {
         this.id = id;
         this.fileName = fileName;
         this.label = label;
         this.moduleId = moduleId;
+        this.caseId = caseId;
     }
 
     public Long getId() {
@@ -49,12 +51,20 @@ public class Document {
         this.label = label;
     }
 
-    public long getModuleId() {
+    public Long getModuleId() {
         return moduleId;
     }
 
-    public void setModuleId(long moduleId) {
+    public void setModuleId(Long moduleId) {
         this.moduleId = moduleId;
+    }
+
+    public Long getCaseId() {
+        return caseId;
+    }
+
+    public void setCaseId(Long caseId) {
+        this.caseId = caseId;
     }
 
 }

@@ -97,7 +97,7 @@ public class ForSuppliersBodyFragment extends CaFragment implements HasModel<Mod
 
     @Override
     public String getJsonAssetFilename() {
-        return "for_suppliers_overview.json";
+        return "suppliers_overview.json";
     }
 
     private void onAssetLoadError() {
