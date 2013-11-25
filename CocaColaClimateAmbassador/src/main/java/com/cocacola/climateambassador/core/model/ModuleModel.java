@@ -13,9 +13,7 @@ public class ModuleModel extends Module {
 
         ModuleDao dao = daoMaster.newSession().getModuleDao();
 
-        Module module = dao.queryBuilder().where(ModuleDao.Properties.Id.eq(moduleId)).limit(1).unique();
-
-        return module;
+        return dao.load(moduleId);
 
     }
 

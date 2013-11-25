@@ -12,7 +12,7 @@ public class CaseModel {
 
         CaCaseDao caseDao = daoMaser.newSession().getCaCaseDao();
 
-        return caseDao.queryBuilder().where(CaCaseDao.Properties.Id.eq(caseId)).limit(1).unique();
+        return caseDao.load(caseId);
 
     }
 }
