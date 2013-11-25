@@ -2,7 +2,6 @@ package com.cocacola.climateambassador.core;
 
 import android.app.Application;
 import android.content.Context;
-
 import dagger.ObjectGraph;
 
 /**

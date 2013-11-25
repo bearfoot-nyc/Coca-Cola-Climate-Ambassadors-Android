@@ -50,41 +50,6 @@
                 android:screenOrientation="landscape" >
         </activity>
         <activity
-                android:name=".cases.activity.IngredientCaseActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="@string/Ingredients"
-                android:screenOrientation="landscape"
-                android:parentActivityName=".module.internal.activity.InternalModuleThreeActivity">
-        </activity>
-        <activity
-                android:name=".cases.activity.PackagingCaseActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="@string/Packaging"
-                android:screenOrientation="landscape"
-                android:parentActivityName=".module.internal.activity.InternalModuleThreeActivity">
-        </activity>
-        <activity
-                android:name=".cases.activity.ManufacturingCaseActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="@string/Manufacturing"
-                android:screenOrientation="landscape"
-                android:parentActivityName=".module.internal.activity.InternalModuleThreeActivity">
-        </activity>
-        <activity
-                android:name=".cases.activity.DistributionCaseActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="@string/Distribution"
-                android:screenOrientation="landscape"
-                android:parentActivityName=".module.internal.activity.InternalModuleThreeActivity">
-        </activity>
-        <activity
-                android:name=".cases.activity.RefrigerationCaseActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="@string/Refrigeration"
-                android:screenOrientation="landscape"
-                android:parentActivityName=".module.internal.activity.InternalModuleThreeActivity">
-        </activity>
-        <activity
                 android:name=".module.internal.activity.RoleOfClimateAmbassadorActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/nav_item_internal_training_climate_ambassador"
@@ -101,6 +66,11 @@
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/nav_item_for_suppliers_2020_vision"
                 android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".cases.activity.CaseActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape">
         </activity>
 
         <provider

@@ -10,16 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.core.activity.CaActivity;
-import com.cocacola.climateambassador.cases.activity.CaCaseActivity;
-import com.cocacola.climateambassador.cases.activity.DistributionCaseActivity;
-import com.cocacola.climateambassador.cases.activity.IngredientCaseActivity;
-import com.cocacola.climateambassador.cases.activity.ManufacturingCaseActivity;
-import com.cocacola.climateambassador.cases.activity.PackagingCaseActivity;
-import com.cocacola.climateambassador.cases.activity.RefrigerationCaseActivity;
-
+import com.cocacola.climateambassador.cases.activity.CaseActivity;
 import com.cocacola.climateambassador.core.fragment.CaFragment;
 import java.util.LinkedList;
 import java.util.List;
@@ -60,11 +52,11 @@ public class CaseStudiesListFragment extends CaFragment {
 
         if(mCaseStudyListItems == null) {
             mCaseStudyListItems = new LinkedList<CaseStudyListItem>();
-            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_ingredients, "Ingredients", IngredientCaseActivity.class));
-            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_packaging, "Packaging", PackagingCaseActivity.class));
-            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_manufacturing, "Manufacturing", ManufacturingCaseActivity.class));
-            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_distribution, "Distribution", DistributionCaseActivity.class));
-            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_refrigeration, "Refrigeration", RefrigerationCaseActivity.class));
+            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_ingredients, "Ingredients"));
+            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_packaging, "Packaging"));
+            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_manufacturing, "Manufacturing"));
+            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_distribution, "Distribution"));
+            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_refrigeration, "Refrigeration"));
         }
 
         return mCaseStudyListItems;
@@ -110,7 +102,8 @@ public class CaseStudiesListFragment extends CaFragment {
             title.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, item.getClazzToLaunch());
+                    Intent intent = new Intent(mContext, CaseActivity.class);
+                    intent.putExtra(CaseActivity.BUNDLE_KEY_CASE_ID, 1l);
                     mContext.startActivity(intent);
                 }
             });
@@ -127,12 +120,10 @@ public class CaseStudiesListFragment extends CaFragment {
 
         private int iconResId;
         private String title;
-        private Class<? extends CaActivity> clazzToLaunch;
 
-        private CaseStudyListItem(int iconResId, String title, Class<? extends CaCaseActivity> clazzToLaunch) {
+        private CaseStudyListItem(int iconResId, String title) {
             this.iconResId = iconResId;
             this.title = title;
-            this.clazzToLaunch = clazzToLaunch;
         }
 
         public int getIconResId() {
@@ -151,12 +142,5 @@ public class CaseStudiesListFragment extends CaFragment {
             this.title = title;
         }
 
-        public Class<? extends CaActivity> getClazzToLaunch() {
-            return clazzToLaunch;
-        }
-
-        public void setClazzToLaunch(Class<? extends CaActivity> clazzToLaunch) {
-            this.clazzToLaunch = clazzToLaunch;
-        }
     }
 }
