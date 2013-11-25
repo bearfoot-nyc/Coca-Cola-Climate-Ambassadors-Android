@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,23 +14,29 @@ import android.widget.ListView;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.cases.activity.CaseActivity;
 import com.cocacola.climateambassador.core.fragment.CaFragment;
-import java.util.LinkedList;
+import com.cocacola.climateambassador.data.CaCase;
+import com.cocacola.climateambassador.data.CaCaseDao;
+import com.cocacola.climateambassador.data.DaoMaster;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import javax.inject.Inject;
 
 /**
  * Created by realandylawton on 9/4/13.
  */
 public class CaseStudiesListFragment extends CaFragment {
 
-    private CaseStudiesAdapter mAdapter;
+    @Inject DaoMaster mDaoMaster;
 
+    private CaseStudyListAdapter mAdapter;
     private ListView mListView;
-    private List<CaseStudyListItem> mCaseStudyListItems;
+    private List<CaCase> mCaseStudyList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapter = new CaseStudiesAdapter(getActivity(), getCaseStudyListItems());
+        mAdapter = new CaseStudyListAdapter(getActivity(), getCaseStudyList());
     }
 
     @Override
@@ -44,32 +51,34 @@ public class CaseStudiesListFragment extends CaFragment {
         super.onViewCreated(view, savedInstanceState);
         mListView = (ListView) view.findViewById(R.id.case_studies_list_view);
         mListView.setAdapter(mAdapter);
-
-
     }
 
-    private List<CaseStudyListItem> getCaseStudyListItems() {
+    private List<CaCase> getCaseStudyList() {
 
-        if(mCaseStudyListItems == null) {
-            mCaseStudyListItems = new LinkedList<CaseStudyListItem>();
-            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_ingredients, "Ingredients"));
-            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_packaging, "Packaging"));
-            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_manufacturing, "Manufacturing"));
-            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_distribution, "Distribution"));
-            mCaseStudyListItems.add(new CaseStudyListItem(R.drawable.ic_cases_list_refrigeration, "Refrigeration"));
+        if(mCaseStudyList == null) {
+            CaCaseDao dao = mDaoMaster.newSession().getCaCaseDao();
+            mCaseStudyList = dao.loadAll();
         }
 
-        return mCaseStudyListItems;
+        return mCaseStudyList;
     }
 
-    private class CaseStudiesAdapter extends BaseAdapter {
+    private static class CaseStudyListAdapter extends BaseAdapter {
 
-        private List<CaseStudyListItem> mItems;
+        private static final Map<String, Integer> sCaseIconMap = new HashMap<String, Integer>();
+        static {
+            sCaseIconMap.put("Ingredients", R.drawable.ic_cases_list_ingredients);
+            sCaseIconMap.put("Packaging", R.drawable.ic_cases_list_packaging);
+            sCaseIconMap.put("Manufacturing", R.drawable.ic_cases_list_manufacturing);
+            sCaseIconMap.put("Distribution", R.drawable.ic_cases_list_distribution);
+            sCaseIconMap.put("Refrigeration", R.drawable.ic_cases_list_refrigeration);
+        }
 
+        private List<CaCase> mItems;
         private Context mContext;
         private LayoutInflater mInflater;
 
-        private CaseStudiesAdapter(Context context, List<CaseStudyListItem> items) {
+        private CaseStudyListAdapter(Context context, List<CaCase> items) {
             mItems = items;
             mContext = context;
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -81,7 +90,7 @@ public class CaseStudiesListFragment extends CaFragment {
         }
 
         @Override
-        public CaseStudyListItem getItem(int position) {
+        public CaCase getItem(int position) {
             return mItems.get(position);
         }
 
@@ -95,7 +104,7 @@ public class CaseStudiesListFragment extends CaFragment {
 
             View v = mInflater.inflate(R.layout.case_studies_list_item, null);
 
-            final CaseStudyListItem item = getItem(position);
+            final CaCase item = getItem(position);
 
             Button title = (Button) v.findViewById(R.id.case_study_list_item_button);
             title.setText(item.getTitle());
@@ -103,44 +112,21 @@ public class CaseStudiesListFragment extends CaFragment {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, CaseActivity.class);
-                    intent.putExtra(CaseActivity.BUNDLE_KEY_CASE_ID, 1l);
+                    intent.putExtra(CaseActivity.BUNDLE_KEY_CASE_ID, item.getId());
                     mContext.startActivity(intent);
                 }
             });
 
             ImageView icon = (ImageView) v.findViewById(R.id.case_study_list_item_icon);
-            icon.setImageResource(item.getIconResId());
+            Integer iconResId = sCaseIconMap.get(item.getTitle());
+
+            if(iconResId != null) {
+                icon.setImageResource(iconResId);
+            }
 
             return v;
 
         }
     }
 
-    private class CaseStudyListItem {
-
-        private int iconResId;
-        private String title;
-
-        private CaseStudyListItem(int iconResId, String title) {
-            this.iconResId = iconResId;
-            this.title = title;
-        }
-
-        public int getIconResId() {
-            return iconResId;
-        }
-
-        public void setIconResId(int iconResId) {
-            this.iconResId = iconResId;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-    }
 }

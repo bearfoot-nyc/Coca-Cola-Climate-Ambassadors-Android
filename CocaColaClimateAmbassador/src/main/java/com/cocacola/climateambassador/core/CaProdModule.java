@@ -69,7 +69,7 @@ import timber.log.Timber;
         VisionActivity.class,
         DocumentView.class,
         DataSeeder.class, DataChecker.class, SectionModel.class, ModuleActivity.class,
-        ModuleFragment.class, CaseActivity.class
+        ModuleFragment.class, CaseActivity.class, CaseStudiesListFragment.class
 })
 public class CaProdModule {
 

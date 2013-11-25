@@ -63,11 +63,11 @@ public class CaseActivity extends CaActivity {
 
     private static Map<String, CaseResourceType> sCaseResourceMap = new LinkedHashMap<String, CaseResourceType>();
     static {
-        sCaseResourceMap.put("Ingredients Cases", CaseResourceType.INGREDIENTS);
-        sCaseResourceMap.put("Packaging Cases", CaseResourceType.PACKAGING);
-        sCaseResourceMap.put("Manufacturing Cases", CaseResourceType.MANUFACTURING);
-        sCaseResourceMap.put("Distribution Cases", CaseResourceType.DISTRIBUTION);
-        sCaseResourceMap.put("Refrigeration Cases", CaseResourceType.REFRIGERATION);
+        sCaseResourceMap.put("Ingredients", CaseResourceType.INGREDIENTS);
+        sCaseResourceMap.put("Packaging", CaseResourceType.PACKAGING);
+        sCaseResourceMap.put("Manufacturing", CaseResourceType.MANUFACTURING);
+        sCaseResourceMap.put("Distribution", CaseResourceType.DISTRIBUTION);
+        sCaseResourceMap.put("Refrigeration", CaseResourceType.REFRIGERATION);
     }
 
     @Inject protected Timber Log;
