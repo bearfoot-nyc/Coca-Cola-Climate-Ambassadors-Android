@@ -22,8 +22,9 @@ public abstract class CaDrawerActivity extends CaActivity {
     public DrawerListAdapter mMenuAdapter;
     public ActionBarDrawerToggle mDrawerToggle;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
 
         //Set up the Navigation Drawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -55,11 +56,7 @@ public abstract class CaDrawerActivity extends CaActivity {
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-    }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
     }

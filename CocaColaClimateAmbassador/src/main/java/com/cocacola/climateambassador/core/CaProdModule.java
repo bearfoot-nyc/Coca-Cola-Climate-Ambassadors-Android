@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.cocacola.climateambassador.BuildConfig;
 import com.cocacola.climateambassador.module.fragment.DeprModuleFragment;
-import com.cocacola.climateambassador.module.fragment.SimpleModuleFragment;
+import com.cocacola.climateambassador.module.fragment.ModuleFragment;
 import com.cocacola.climateambassador.module.internal.activity.RoleOfClimateAmbassadorActivity;
 import com.cocacola.climateambassador.module.internal.activity.InternalModuleOneActivity;
 import com.cocacola.climateambassador.module.internal.activity.InternalModuleThreeActivity;
@@ -19,6 +19,7 @@ import com.cocacola.climateambassador.module.internal.fragment.InternalModuleFou
 import com.cocacola.climateambassador.module.internal.fragment.InternalModuleOneFragment;
 import com.cocacola.climateambassador.module.internal.fragment.InternalModuleThreeFragment;
 import com.cocacola.climateambassador.module.internal.fragment.InternalModuleTwoFragment;
+import com.cocacola.climateambassador.module.internal.fragment.InternalTrainingOverviewFragment;
 import com.cocacola.climateambassador.module.internal.fragment.RoleOfClimateAmbassadorFragment;
 import com.cocacola.climateambassador.section.activity.ForSuppliersActivity;
 import com.cocacola.climateambassador.cases.activity.IngredientCaseActivity;
@@ -32,7 +33,6 @@ import com.cocacola.climateambassador.module.suppliers.activity.VisionActivity;
 import com.cocacola.climateambassador.module.internal.fragment.CaseStudiesListFragment;
 import com.cocacola.climateambassador.favorites.fragment.FavoritesFragment;
 import com.cocacola.climateambassador.module.suppliers.fragment.ForSuppliersBodyFragment;
-import com.cocacola.climateambassador.module.internal.fragment.InternalTrainingOverviewFragmentSimple;
 import com.cocacola.climateambassador.core.views.DocumentView;
 import com.cocacola.climateambassador.core.util.DataChecker;
 import com.cocacola.climateambassador.core.util.DataSeeder;
@@ -62,7 +62,7 @@ import timber.log.Timber;
         DocumentViewerDelegate.class,
         JsonAssetsLoader.class,
         CaseStudiesListFragment.class,
-        InternalTrainingOverviewFragmentSimple.class,
+        InternalTrainingOverviewFragment.class,
         PackagingCaseActivity.class,
         ManufacturingCaseActivity.class,
         DistributionCaseActivity.class,
@@ -81,7 +81,7 @@ import timber.log.Timber;
         VisionActivity.class,
         DocumentView.class,
         DataSeeder.class, DataChecker.class, SectionModel.class, ModuleActivity.class,
-        SimpleModuleFragment.class
+        ModuleFragment.class
 })
 public class CaProdModule {
 

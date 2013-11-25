@@ -28,7 +28,7 @@
             android:text="@string/value_chain_description" />
 
     <com.cocacola.climateambassador.core.views.DocumentsLayout
-            android:id="@+id/course_materials"
+            android:id="@+id/module_documents"
             android:layout_height="wrap_content"
             android:layout_width="850dp"
             android:orientation="vertical"

@@ -39,7 +39,7 @@ public class FavoritesFragment extends CaFragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.favorites_frag, container, false);
 
-        LinearLayout courseMaterialFrame = (LinearLayout) view.findViewById(R.id.course_materials);
+        LinearLayout courseMaterialFrame = (LinearLayout) view.findViewById(R.id.module_documents);
         if (mFavorites.getCourseMaterials() != null) {
 
             for (DocumentJson courseMaterial : mFavorites.getCourseMaterials()) {

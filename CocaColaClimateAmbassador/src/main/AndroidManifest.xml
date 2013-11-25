@@ -54,35 +54,35 @@
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/Ingredients"
                 android:screenOrientation="landscape"
-                android:parentActivityName=".ui.activities.ModuleThreeActivity">
+                android:parentActivityName=".module.internal.activity.InternalModuleThreeActivity">
         </activity>
         <activity
                 android:name=".cases.activity.PackagingCaseActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/Packaging"
                 android:screenOrientation="landscape"
-                android:parentActivityName=".ui.activities.InternalTrainingActivity">
+                android:parentActivityName=".module.internal.activity.InternalModuleThreeActivity">
         </activity>
         <activity
                 android:name=".cases.activity.ManufacturingCaseActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/Manufacturing"
                 android:screenOrientation="landscape"
-                android:parentActivityName=".ui.activities.InternalTrainingActivity">
+                android:parentActivityName=".module.internal.activity.InternalModuleThreeActivity">
         </activity>
         <activity
                 android:name=".cases.activity.DistributionCaseActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/Distribution"
                 android:screenOrientation="landscape"
-                android:parentActivityName=".ui.activities.InternalTrainingActivity">
+                android:parentActivityName=".module.internal.activity.InternalModuleThreeActivity">
         </activity>
         <activity
                 android:name=".cases.activity.RefrigerationCaseActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/Refrigeration"
                 android:screenOrientation="landscape"
-                android:parentActivityName=".ui.activities.InternalTrainingActivity">
+                android:parentActivityName=".module.internal.activity.InternalModuleThreeActivity">
         </activity>
         <activity
                 android:name=".module.internal.activity.RoleOfClimateAmbassadorActivity"
@@ -91,27 +91,9 @@
                 android:screenOrientation="landscape">
         </activity>
         <activity
-                android:name=".module.internal.InternalModuleOneActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="@string/nav_item_internal_training_module_1"
-                android:screenOrientation="landscape">
-        </activity>
-        <activity
-                android:name=".module.internal.InternalModuleTwoActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="@string/nav_item_internal_training_module_2"
-                android:screenOrientation="landscape">
-        </activity>
-        <activity
-                android:name=".module.internal.InternalModuleThreeActivity"
+                android:name=".module.internal.activity.InternalModuleThreeActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/nav_item_internal_training_module_3"
-                android:screenOrientation="landscape">
-        </activity>
-        <activity
-                android:name=".module.internal.InternalModuleFourActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="@string/nav_item_internal_training_module_4"
                 android:screenOrientation="landscape">
         </activity>
         <activity

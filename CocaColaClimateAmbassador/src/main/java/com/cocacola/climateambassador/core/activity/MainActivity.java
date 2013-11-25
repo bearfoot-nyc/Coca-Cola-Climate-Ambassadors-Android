@@ -16,6 +16,7 @@ import com.cocacola.climateambassador.drawer.model.MainDrawerItem;
 import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.core.util.DataChecker;
 import com.cocacola.climateambassador.core.util.DataSeeder;
+import com.cocacola.climateambassador.module.activity.AbsModuleActivity;
 import com.cocacola.climateambassador.module.activity.ModuleActivity;
 import com.cocacola.climateambassador.section.activity.ForSuppliersActivity;
 import com.cocacola.climateambassador.section.activity.InternalTrainingActivity;
@@ -37,9 +38,9 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        setContentView(R.layout.main_activity);
-
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.main_activity);
 
         // TODO Move this to a landing Activity
         if(!mDataChecker.isDataSeeded()) {
@@ -52,10 +53,14 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
 
         }
 
+    }
+
+    @Override protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
         mMenuAdapter = new MainDrawerListAdapter(this, getNavigationDrawerItems());
         mDrawerList.setAdapter(mMenuAdapter);
         mDrawerList.setOnItemClickListener(this);
-
 
     }
 
@@ -74,7 +79,7 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
         MainDrawerItem item = (MainDrawerItem) parent.getItemAtPosition(position);
 
         Intent intent = new Intent(this, ModuleActivity.class);
-        intent.putExtra(ModuleActivity.MODULE_ID_BUNDLE_KEY, item.getSection().getModules().get(0).getId());
+        intent.putExtra(AbsModuleActivity.MODULE_ID_BUNDLE_KEY, item.getSection().getModules().get(0).getId());
 
         startActivity(intent);
 

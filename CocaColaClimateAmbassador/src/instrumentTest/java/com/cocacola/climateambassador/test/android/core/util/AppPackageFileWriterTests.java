@@ -1,4 +1,4 @@
-package com.cocacola.climateambassador.test.android.util;
+package com.cocacola.climateambassador.test.android.core.util;
 
 import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
 import com.cocacola.climateambassador.data.json.FileType;

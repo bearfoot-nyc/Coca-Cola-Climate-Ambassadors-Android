@@ -84,7 +84,7 @@ public class DeprModuleFragment extends CaFragment {
         }
 
 
-        LinearLayout courseMaterialFrame = (LinearLayout) view.findViewById(R.id.course_materials);
+        LinearLayout courseMaterialFrame = (LinearLayout) view.findViewById(R.id.module_documents);
         if (mModule.getDocuments() != null && courseMaterialFrame != null) {
 
             for (DocumentJson courseMaterial : mModule.getDocuments()) {

@@ -9,9 +9,8 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <fragment
-            android:id="@+id/frag_internal_training_body"
-            android:name="com.cocacola.climateambassador.module.internal.fragment.InternalModuleThreeFragment"
+        <FrameLayout
+            android:id="@+id/module_frag_container"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3" />

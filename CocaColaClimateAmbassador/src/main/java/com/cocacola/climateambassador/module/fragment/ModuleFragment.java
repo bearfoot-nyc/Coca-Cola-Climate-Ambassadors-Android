@@ -8,24 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cocacola.climateambassador.core.fragment.CaFragment;
-import com.cocacola.climateambassador.core.util.HasModel;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.data.BulletPoint;
 import com.cocacola.climateambassador.data.BulletPointFrame;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.Document;
 import com.cocacola.climateambassador.data.Module;
-import com.cocacola.climateambassador.data.json.ModuleJson;
 import com.cocacola.climateambassador.core.model.ModuleModel;
-import com.cocacola.climateambassador.module.activity.ModuleActivity;
+import com.cocacola.climateambassador.module.activity.AbsModuleActivity;
 import com.cocacola.climateambassador.core.views.DocumentsLayout;
-import com.cocacola.climateambassador.core.util.JsonAssetsLoader;
-import com.google.gson.JsonSyntaxException;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -37,14 +31,14 @@ import timber.log.Timber;
 /**
  * Created by Vinnie on 9/5/13.
  */
-public class SimpleModuleFragment extends CaFragment{
+public class ModuleFragment extends CaFragment{
 
-    public static SimpleModuleFragment newInstance(Long moduleId) {
+    public static ModuleFragment newInstance(Long moduleId) {
 
-        SimpleModuleFragment fragment = new SimpleModuleFragment();
+        ModuleFragment fragment = new ModuleFragment();
 
         Bundle bundle = new Bundle();
-        bundle.putLong(ModuleActivity.MODULE_ID_BUNDLE_KEY, moduleId);
+        bundle.putLong(AbsModuleActivity.MODULE_ID_BUNDLE_KEY, moduleId);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -63,7 +57,7 @@ public class SimpleModuleFragment extends CaFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.frag_module, null);
+        View v = inflater.inflate(R.layout.module_frag, null);
         Views.inject(this, v);
 
         return v;
@@ -122,7 +116,7 @@ public class SimpleModuleFragment extends CaFragment{
 
         List<Document> documentList = module.getDocuments();
         if(documentList.size() > 0) {
-            DocumentsLayout documentsLayout = (DocumentsLayout) v.findViewById(R.id.course_materials);
+            DocumentsLayout documentsLayout = (DocumentsLayout) v.findViewById(R.id.module_documents);
             documentsLayout.setDocuments(documentList);
         }
         else {
@@ -136,7 +130,7 @@ public class SimpleModuleFragment extends CaFragment{
     }
 
     protected Long getModuleId() {
-        return getArguments().getLong(ModuleActivity.MODULE_ID_BUNDLE_KEY);
+        return getArguments().getLong(AbsModuleActivity.MODULE_ID_BUNDLE_KEY);
     }
 
 }

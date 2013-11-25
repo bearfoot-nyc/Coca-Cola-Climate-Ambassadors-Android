@@ -4,10 +4,10 @@ import android.content.Context;
 
 import com.cocacola.climateambassador.core.CaProdModule;
 
-import com.cocacola.climateambassador.test.android.ui.MainActivityTest;
-import com.cocacola.climateambassador.test.android.util.AppPackageFileWriterTests;
-import com.cocacola.climateambassador.test.android.util.DocumentViewDelegateTests;
-import com.cocacola.climateambassador.test.android.util.JsonAssetsLoaderTests;
+import com.cocacola.climateambassador.test.android.ui.ModuleActivityTest;
+import com.cocacola.climateambassador.test.android.core.util.AppPackageFileWriterTests;
+import com.cocacola.climateambassador.test.android.core.util.DocumentViewDelegateTests;
+import com.cocacola.climateambassador.test.android.core.util.JsonAssetsLoaderTests;
 import com.cocacola.climateambassador.test.data.DataCheckerTests;
 import com.cocacola.climateambassador.test.data.DataSeederTests;
 import dagger.Module;
@@ -25,7 +25,7 @@ import dagger.Provides;
             DocumentViewDelegateTests.class,
             JsonAssetsLoaderTests.class,
             DataSeederTests.class,
-            DataCheckerTests.class, MainActivityTest.class
+            DataCheckerTests.class, ModuleActivityTest.class
         }
 )
 public class CaTestModule {
