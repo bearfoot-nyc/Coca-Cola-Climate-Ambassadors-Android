@@ -5,7 +5,7 @@ package com.cocacola.climateambassador.dao;
  */
 public class DbConstants {
 
-    public static final int VERSION = 4;
+    public static final int VERSION = 5;
     public static final String DB_NAME = "com.cocacola.climateambassador.data";
 
 }

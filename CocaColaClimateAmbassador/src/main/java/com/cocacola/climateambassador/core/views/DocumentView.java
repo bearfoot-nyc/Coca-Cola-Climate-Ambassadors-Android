@@ -3,29 +3,27 @@ package com.cocacola.climateambassador.core.views;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
-import com.cocacola.climateambassador.core.CaApplication;
-import com.cocacola.climateambassador.core.util.DocumentViewerDelegate;
+import android.widget.Toast;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.data.Document;
-import com.cocacola.climateambassador.data.json.FileType;
+import com.cocacola.climateambassador.core.CaApplication;
+import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
+import com.cocacola.climateambassador.core.util.DocumentViewerDelegate;
 import com.cocacola.climateambassador.core.util.Toaster;
-
+import com.cocacola.climateambassador.data.DaoMaster;
+import com.cocacola.climateambassador.data.Document;
+import com.cocacola.climateambassador.data.DocumentDao;
+import com.cocacola.climateambassador.data.json.FileType;
 import java.util.HashMap;
-
 import javax.inject.Inject;
 
 /**
  * Created by andrewlawton on 9/7/13.
  */
 public class DocumentView extends LinearLayout {
-
-    private ImageView mImageView;
-    private TextView mTitleView;
 
     private static HashMap<FileType, Integer> sfileTypeResMap = new HashMap<FileType, Integer>();
     static {
@@ -35,8 +33,11 @@ public class DocumentView extends LinearLayout {
         sfileTypeResMap.put(FileType.THREEGP, R.drawable.ic_doc_mov);
     }
 
-    @Inject
-    DocumentViewerDelegate mDocumentViewerDelegate;
+    @Inject protected DaoMaster mDaoMaster;
+    @Inject protected DocumentViewerDelegate mDocumentViewerDelegate;
+
+    private TextView mTitleView;
+    private ImageView mFavoriteBtn;
 
     public DocumentView(Context context) {
         super(context);
@@ -60,18 +61,28 @@ public class DocumentView extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mImageView = (ImageView) findViewById(R.id.doc_image);
         mTitleView = (TextView) findViewById(R.id.doc_title);
+        mFavoriteBtn = (ImageView) findViewById(R.id.doc_favorite_btn);
     }
 
-    public void setDocument(Document doc) {
+    public void setDocument(final Document doc) {
 
         if(doc == null) {
             return;
         }
 
+        boolean isFavorite = (doc.getIsFavorite() != null) ? doc.getIsFavorite() : false;
+        Integer iconRes = isFavorite ? R.drawable.favorite_selected : R.drawable.favorite_unselected;
+
+        mFavoriteBtn.setImageResource(iconRes);
+        mFavoriteBtn.setOnClickListener(new OnClickListener() {
+            @Override public void onClick(View v) {
+                onFavoriteClick(doc);
+            }
+        });
+
         int iconResId = getResForExtension(doc.getFileName());
-        mImageView.setImageResource(iconResId);
+        mTitleView.setCompoundDrawables(getResources().getDrawable(iconResId), null, null, null);
 
         if(doc.getLabel() != null) {
             mTitleView.setText(doc.getLabel());
@@ -90,6 +101,18 @@ public class DocumentView extends LinearLayout {
         }
 
         return sfileTypeResMap.get(type);
+
+    }
+
+    private void onFavoriteClick(Document document) {
+
+        boolean isFavorite = (document.getIsFavorite() != null) ? document.getIsFavorite() : false;
+
+        document.setIsFavorite(!isFavorite);
+        DocumentDao dao = mDaoMaster.newSession().getDocumentDao();
+        dao.update(document);
+
+        setDocument(document);
 
     }
 

@@ -9,6 +9,7 @@ public class Document {
     private Long id;
     private String fileName;
     private String label;
+    private Boolean isFavorite;
     private Long moduleId;
     private Long caseId;
 
@@ -19,10 +20,11 @@ public class Document {
         this.id = id;
     }
 
-    public Document(Long id, String fileName, String label, Long moduleId, Long caseId) {
+    public Document(Long id, String fileName, String label, Boolean isFavorite, Long moduleId, Long caseId) {
         this.id = id;
         this.fileName = fileName;
         this.label = label;
+        this.isFavorite = isFavorite;
         this.moduleId = moduleId;
         this.caseId = caseId;
     }
@@ -49,6 +51,14 @@ public class Document {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public Boolean getIsFavorite() {
+        return isFavorite;
+    }
+
+    public void setIsFavorite(Boolean isFavorite) {
+        this.isFavorite = isFavorite;
     }
 
     public Long getModuleId() {

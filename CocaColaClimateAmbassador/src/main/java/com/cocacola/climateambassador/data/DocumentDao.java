@@ -29,8 +29,9 @@ public class DocumentDao extends AbstractDao<Document, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property FileName = new Property(1, String.class, "fileName", false, "FILE_NAME");
         public final static Property Label = new Property(2, String.class, "label", false, "LABEL");
-        public final static Property ModuleId = new Property(3, Long.class, "moduleId", false, "MODULE_ID");
-        public final static Property CaseId = new Property(4, Long.class, "caseId", false, "CASE_ID");
+        public final static Property IsFavorite = new Property(3, Boolean.class, "isFavorite", false, "IS_FAVORITE");
+        public final static Property ModuleId = new Property(4, Long.class, "moduleId", false, "MODULE_ID");
+        public final static Property CaseId = new Property(5, Long.class, "caseId", false, "CASE_ID");
     };
 
     private Query<Document> module_DocumentsQuery;
@@ -51,8 +52,9 @@ public class DocumentDao extends AbstractDao<Document, Long> {
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
                 "'FILE_NAME' TEXT," + // 1: fileName
                 "'LABEL' TEXT," + // 2: label
-                "'MODULE_ID' INTEGER," + // 3: moduleId
-                "'CASE_ID' INTEGER);"); // 4: caseId
+                "'IS_FAVORITE' INTEGER," + // 3: isFavorite
+                "'MODULE_ID' INTEGER," + // 4: moduleId
+                "'CASE_ID' INTEGER);"); // 5: caseId
     }
 
     /** Drops the underlying database table. */
@@ -81,14 +83,19 @@ public class DocumentDao extends AbstractDao<Document, Long> {
             stmt.bindString(3, label);
         }
  
+        Boolean isFavorite = entity.getIsFavorite();
+        if (isFavorite != null) {
+            stmt.bindLong(4, isFavorite ? 1l: 0l);
+        }
+ 
         Long moduleId = entity.getModuleId();
         if (moduleId != null) {
-            stmt.bindLong(4, moduleId);
+            stmt.bindLong(5, moduleId);
         }
  
         Long caseId = entity.getCaseId();
         if (caseId != null) {
-            stmt.bindLong(5, caseId);
+            stmt.bindLong(6, caseId);
         }
     }
 
@@ -105,8 +112,9 @@ public class DocumentDao extends AbstractDao<Document, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // fileName
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // label
-            cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3), // moduleId
-            cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4) // caseId
+            cursor.isNull(offset + 3) ? null : cursor.getShort(offset + 3) != 0, // isFavorite
+            cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4), // moduleId
+            cursor.isNull(offset + 5) ? null : cursor.getLong(offset + 5) // caseId
         );
         return entity;
     }
@@ -117,8 +125,9 @@ public class DocumentDao extends AbstractDao<Document, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setFileName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setLabel(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setModuleId(cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3));
-        entity.setCaseId(cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4));
+        entity.setIsFavorite(cursor.isNull(offset + 3) ? null : cursor.getShort(offset + 3) != 0);
+        entity.setModuleId(cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4));
+        entity.setCaseId(cursor.isNull(offset + 5) ? null : cursor.getLong(offset + 5));
      }
     
     /** @inheritdoc */

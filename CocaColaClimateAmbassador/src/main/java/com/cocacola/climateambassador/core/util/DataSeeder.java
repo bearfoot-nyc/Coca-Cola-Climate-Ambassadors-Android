@@ -176,6 +176,7 @@ public class DataSeeder {
             document.setFileName(documentJson.getFileName());
             document.setLabel(documentJson.getLabel());
             document.setCaseId(caseId);
+            document.setIsFavorite(Boolean.FALSE);
 
             documentDao.insert(document);
 
@@ -203,6 +204,7 @@ public class DataSeeder {
             Document document = new Document();
             document.setFileName(documentJson.getFileName());
             document.setLabel(documentJson.getLabel());
+            document.setIsFavorite(Boolean.FALSE);
             document.setModuleId(moduleId);
 
             documentDao.insert(document);
