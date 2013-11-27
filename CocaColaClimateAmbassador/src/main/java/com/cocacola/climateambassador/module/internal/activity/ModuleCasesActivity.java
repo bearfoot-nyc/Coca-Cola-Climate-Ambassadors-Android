@@ -9,14 +9,14 @@ import com.cocacola.climateambassador.module.fragment.ModuleFragment;
 /**
  * Created by realandylawton on 8/31/13.
  */
-public class InternalModuleThreeActivity extends AbsModuleActivity {
+public class ModuleCasesActivity extends AbsModuleActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.module_internal_act_3);
+        setContentView(R.layout.module_internal_act_cases);
 
         // Show correct fragment
         Long moduleId = getModuleIdFromIntent(getIntent());

@@ -17,16 +17,9 @@ import com.cocacola.climateambassador.favorites.fragment.FavoritesFragment;
 import com.cocacola.climateambassador.module.activity.ModuleActivity;
 import com.cocacola.climateambassador.module.fragment.DeprModuleFragment;
 import com.cocacola.climateambassador.module.fragment.ModuleFragment;
-import com.cocacola.climateambassador.module.internal.activity.InternalModuleFourActivity;
-import com.cocacola.climateambassador.module.internal.activity.InternalModuleOneActivity;
-import com.cocacola.climateambassador.module.internal.activity.InternalModuleThreeActivity;
-import com.cocacola.climateambassador.module.internal.activity.InternalModuleTwoActivity;
+import com.cocacola.climateambassador.module.internal.activity.ModuleCasesActivity;
 import com.cocacola.climateambassador.module.internal.activity.RoleOfClimateAmbassadorActivity;
 import com.cocacola.climateambassador.module.internal.fragment.CaseStudiesListFragment;
-import com.cocacola.climateambassador.module.internal.fragment.InternalModuleFourFragment;
-import com.cocacola.climateambassador.module.internal.fragment.InternalModuleOneFragment;
-import com.cocacola.climateambassador.module.internal.fragment.InternalModuleThreeFragment;
-import com.cocacola.climateambassador.module.internal.fragment.InternalModuleTwoFragment;
 import com.cocacola.climateambassador.module.internal.fragment.InternalTrainingOverviewFragment;
 import com.cocacola.climateambassador.module.internal.fragment.RoleOfClimateAmbassadorFragment;
 import com.cocacola.climateambassador.module.suppliers.activity.ForSuppliersOverviewActivity;
@@ -58,20 +51,12 @@ import timber.log.Timber;
         CaseStudiesListFragment.class,
         InternalTrainingOverviewFragment.class,
         RoleOfClimateAmbassadorFragment.class,
-        InternalModuleOneFragment.class,
-        InternalModuleTwoFragment.class,
-        InternalModuleThreeFragment.class,
-        InternalModuleFourFragment.class,
         RoleOfClimateAmbassadorActivity.class,
-        InternalModuleOneActivity.class,
-        InternalModuleTwoActivity.class,
-        InternalModuleThreeActivity.class,
-        InternalModuleFourActivity.class,
         VisionActivity.class,
         DocumentView.class,
         DataSeeder.class, DataChecker.class, SectionModel.class, ModuleActivity.class,
         ModuleFragment.class, CaseActivity.class, CaseStudiesListFragment.class, ForSupplierOverviewFragment.class,
-    ForSuppliersOverviewActivity.class
+        ForSuppliersOverviewActivity.class, ModuleCasesActivity.class
 })
 public class CaProdModule {
 

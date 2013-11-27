@@ -16,7 +16,7 @@ import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.drawer.adapters.ModuleDrawerListAdapter;
 import com.cocacola.climateambassador.drawer.model.ModuleDrawerItem;
 import com.cocacola.climateambassador.module.fragment.ModuleFragment;
-import com.cocacola.climateambassador.module.internal.activity.InternalModuleThreeActivity;
+import com.cocacola.climateambassador.module.internal.activity.ModuleCasesActivity;
 import com.cocacola.climateambassador.module.suppliers.fragment.ForSupplierOverviewFragment;
 import java.util.LinkedList;
 import java.util.List;
@@ -98,7 +98,7 @@ public class AbsModuleActivity extends CaDrawerActivity implements AdapterView.O
 
         if(item.getModule().getTitle().contains("Key Interventions")) {
 
-            Intent intent = new Intent(this, InternalModuleThreeActivity.class);
+            Intent intent = new Intent(this, ModuleCasesActivity.class);
             intent.putExtra(MODULE_ID_BUNDLE_KEY, item.getModule().getId());
 
             startActivity(intent);
