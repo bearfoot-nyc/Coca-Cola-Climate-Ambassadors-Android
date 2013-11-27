@@ -8,6 +8,7 @@ import android.widget.SearchView;
 
 import android.widget.Toast;
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.drawer.adapters.MainDrawerListAdapter;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.Section;
@@ -18,6 +19,7 @@ import com.cocacola.climateambassador.core.util.DataChecker;
 import com.cocacola.climateambassador.core.util.DataSeeder;
 import com.cocacola.climateambassador.module.activity.AbsModuleActivity;
 import com.cocacola.climateambassador.module.activity.ModuleActivity;
+import com.cocacola.climateambassador.module.suppliers.activity.ForSuppliersOverviewActivity;
 import com.cocacola.climateambassador.section.activity.ForSuppliersActivity;
 import com.cocacola.climateambassador.section.activity.InternalTrainingActivity;
 import java.util.LinkedList;
@@ -64,24 +66,68 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
 
     }
 
-    @OnClick(R.id.home_btn_internal)
-    public void onClickInternal() {
-        launchSectionActivity(InternalTrainingActivity.class);
-    }
+    @OnClick({ R.id.home_btn_internal, R.id.home_btn_suppliers })
+    public void onClickInternal(View view) {
 
-    @OnClick(R.id.home_btn_suppliers)
-    public void onClickSuppliers() {
-        launchSectionActivity(ForSuppliersActivity.class);
+        Intent intent = null;
+
+        switch (view.getId()) {
+            case R.id.home_btn_internal:
+                intent = createIntentForSection("Internal Training");
+                break;
+            case R.id.home_btn_suppliers:
+                intent = createIntentForSection("For Suppliers");
+                break;
+        }
+
+       startActivity(intent);
+
     }
 
     @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         MainDrawerItem item = (MainDrawerItem) parent.getItemAtPosition(position);
 
-        Intent intent = new Intent(this, ModuleActivity.class);
-        intent.putExtra(AbsModuleActivity.MODULE_ID_BUNDLE_KEY, item.getSection().getModules().get(0).getId());
-
+        Intent intent = createIntentForSection(item.getSection());
         startActivity(intent);
+
+    }
+
+    private Intent createIntentForSection(String sectionName) {
+
+        Long sectionId = sectionName.contains("Internal") ?  1l : 2l;
+
+        Section section = mDaoMaster.newSession().getSectionDao().load(sectionId);
+
+        if(section == null) {
+            return null;
+        }
+
+        return createIntentForSection(section);
+
+    }
+
+    private Intent createIntentForSection(Section section) {
+
+        Module module = section.getModules().get(0);
+        if(module == null) {
+            Log.w("Null module");
+            return null;
+        }
+
+        Class<?> fragmentClazz = null;
+
+        if(section.getName().contains("Internal")) {
+            fragmentClazz = ModuleActivity.class;
+        }
+        else {
+            fragmentClazz = ForSuppliersOverviewActivity.class;
+        }
+
+        Intent intent = new Intent(this, fragmentClazz);
+        intent.putExtra(AbsModuleActivity.MODULE_ID_BUNDLE_KEY, module.getId());
+
+        return intent;
 
     }
 
@@ -104,12 +150,6 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
 
         return mDrawerItems;
 
-    }
-
-    private void launchSectionActivity(Class<? extends ModuleActivity> activityClz) {
-        Intent intent = new Intent(this, activityClz);
-        startActivity(intent);
-        // TODO Close the drawer
     }
 
     @Override public boolean onQueryTextSubmit(String query) {

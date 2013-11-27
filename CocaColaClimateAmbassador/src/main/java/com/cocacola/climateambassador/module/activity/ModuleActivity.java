@@ -11,9 +11,9 @@ public class ModuleActivity extends AbsModuleActivity {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
 
-        setContentView(R.layout.module_act);
-
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.module_act);
 
         // Show correct fragment
         Long moduleId = getModuleIdFromIntent(getIntent());

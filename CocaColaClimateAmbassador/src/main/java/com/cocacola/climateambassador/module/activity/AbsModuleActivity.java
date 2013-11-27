@@ -17,6 +17,7 @@ import com.cocacola.climateambassador.drawer.adapters.ModuleDrawerListAdapter;
 import com.cocacola.climateambassador.drawer.model.ModuleDrawerItem;
 import com.cocacola.climateambassador.module.fragment.ModuleFragment;
 import com.cocacola.climateambassador.module.internal.activity.InternalModuleThreeActivity;
+import com.cocacola.climateambassador.module.suppliers.fragment.ForSupplierOverviewFragment;
 import java.util.LinkedList;
 import java.util.List;
 import javax.inject.Inject;
@@ -101,6 +102,12 @@ public class AbsModuleActivity extends CaDrawerActivity implements AdapterView.O
             intent.putExtra(MODULE_ID_BUNDLE_KEY, item.getModule().getId());
 
             startActivity(intent);
+
+        }
+        else if(item.getModule().getTitle().contains("Sustainable")) {
+
+            ForSupplierOverviewFragment fragment = new ForSupplierOverviewFragment();
+            setContentFragment(fragment);
 
         }
         else  {

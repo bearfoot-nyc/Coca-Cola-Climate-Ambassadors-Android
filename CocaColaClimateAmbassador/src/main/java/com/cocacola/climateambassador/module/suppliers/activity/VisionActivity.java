@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.text.Html;
 import android.widget.TextView;
 
+import com.cocacola.climateambassador.core.util.HasJsonModel;
 import com.cocacola.climateambassador.module.activity.ModuleActivity;
-import com.cocacola.climateambassador.core.util.HasModel;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.data.json.CaseJson;
 import com.cocacola.climateambassador.core.views.BulletPointLayout;
@@ -22,7 +22,7 @@ import butterknife.InjectView;
 /**
  * Created by realandylawton on 9/7/13.
  */
-public class VisionActivity extends ModuleActivity implements HasModel<CaseJson> {
+public class VisionActivity extends ModuleActivity implements HasJsonModel<CaseJson> {
 
     @Inject
     JsonAssetsLoader mJsonAssetsLoader;

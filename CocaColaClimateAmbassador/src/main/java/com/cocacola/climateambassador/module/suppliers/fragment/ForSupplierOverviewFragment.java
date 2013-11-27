@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.cocacola.climateambassador.core.fragment.CaFragment;
-import com.cocacola.climateambassador.core.util.HasModel;
+import com.cocacola.climateambassador.core.model.DocumentModel;
+import com.cocacola.climateambassador.core.util.HasJsonModel;
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.data.Document;
 import com.cocacola.climateambassador.data.json.DocumentJson;
 import com.cocacola.climateambassador.data.json.ModuleJson;
 import com.cocacola.climateambassador.core.views.DocumentView;
@@ -23,22 +25,17 @@ import butterknife.InjectView;
 import butterknife.Views;
 import timber.log.Timber;
 
-/**
- * Created by Vinnie Vendemia on 8/28/13.
- */
+public class ForSupplierOverviewFragment extends CaFragment implements HasJsonModel<ModuleJson> {
 
-public class ForSuppliersBodyFragment extends CaFragment implements HasModel<ModuleJson> {
+    public static ForSupplierOverviewFragment newInstance() {
+        return new ForSupplierOverviewFragment();
+    }
 
-    @Inject
-    JsonAssetsLoader mJsonAssetsLoader;
-
-    @Inject
-    Timber Log;
+    @Inject protected JsonAssetsLoader mJsonAssetsLoader;
+    @Inject protected Timber Log;
+    @InjectView(R.id.suppliers_document) protected DocumentView mDocumentView;
 
     private ModuleJson mModule;
-
-    @InjectView(R.id.suppliers_document)
-    DocumentView mDocumentView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,7 +45,7 @@ public class ForSuppliersBodyFragment extends CaFragment implements HasModel<Mod
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.frag_for_suppliers, container, false);
+        View view = inflater.inflate(R.layout.suppliers_frag_overview, container, false);
 
         Views.inject(this, view);
 
@@ -59,8 +56,7 @@ public class ForSuppliersBodyFragment extends CaFragment implements HasModel<Mod
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // FIXME Add back Documents
-        //mDocumentView.setDocument(getSupplierDocument());
+        mDocumentView.setDocument(getSupplierDocument());
 
     }
 
@@ -70,10 +66,16 @@ public class ForSuppliersBodyFragment extends CaFragment implements HasModel<Mod
         Views.reset(this);
     }
 
-    private DocumentJson getSupplierDocument() {
+    private Document getSupplierDocument() {
 
-        DocumentJson doc = new DocumentJson("PartneringToReduceCarboninValueChain.pdf", "Partnering to Reduce Carbon along Our Value Chain");
-        return doc;
+        DocumentJson documentJson = new DocumentJson(
+            "PartneringToReduceCarboninValueChain.pdf",
+            "Partnering to Reduce Carbon along Our Value Chain"
+        );
+
+        Document document = DocumentModel.fromJson(documentJson);
+
+        return document;
 
     }
 

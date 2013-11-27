@@ -33,7 +33,12 @@
         <activity
             android:name=".module.activity.ModuleActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_activity_business_case_module"
+            android:screenOrientation="landscape" >
+        </activity>
+
+        <activity
+            android:name=".module.suppliers.activity.ForSuppliersOverviewActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape" >
         </activity>
 

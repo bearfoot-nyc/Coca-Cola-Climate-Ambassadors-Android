@@ -29,8 +29,9 @@ import com.cocacola.climateambassador.module.internal.fragment.InternalModuleThr
 import com.cocacola.climateambassador.module.internal.fragment.InternalModuleTwoFragment;
 import com.cocacola.climateambassador.module.internal.fragment.InternalTrainingOverviewFragment;
 import com.cocacola.climateambassador.module.internal.fragment.RoleOfClimateAmbassadorFragment;
+import com.cocacola.climateambassador.module.suppliers.activity.ForSuppliersOverviewActivity;
 import com.cocacola.climateambassador.module.suppliers.activity.VisionActivity;
-import com.cocacola.climateambassador.module.suppliers.fragment.ForSuppliersBodyFragment;
+import com.cocacola.climateambassador.module.suppliers.fragment.ForSupplierOverviewFragment;
 import com.cocacola.climateambassador.section.activity.ForSuppliersActivity;
 import com.cocacola.climateambassador.section.activity.InternalTrainingActivity;
 import com.google.gson.Gson;
@@ -51,7 +52,7 @@ import timber.log.Timber;
         FavoritesFragment.class,
         InternalTrainingActivity.class,
         ForSuppliersActivity.class,
-        ForSuppliersBodyFragment.class,
+        ForSupplierOverviewFragment.class,
         DocumentViewerDelegate.class,
         JsonAssetsLoader.class,
         CaseStudiesListFragment.class,
@@ -69,7 +70,8 @@ import timber.log.Timber;
         VisionActivity.class,
         DocumentView.class,
         DataSeeder.class, DataChecker.class, SectionModel.class, ModuleActivity.class,
-        ModuleFragment.class, CaseActivity.class, CaseStudiesListFragment.class
+        ModuleFragment.class, CaseActivity.class, CaseStudiesListFragment.class, ForSupplierOverviewFragment.class,
+    ForSuppliersOverviewActivity.class
 })
 public class CaProdModule {
 
