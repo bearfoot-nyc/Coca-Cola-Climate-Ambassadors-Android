@@ -3,11 +3,9 @@ package com.cocacola.climateambassador.core.views;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.CaApplication;
 import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
@@ -128,7 +126,7 @@ public class DocumentView extends LinearLayout {
         public void onClick(View v) {
             try {
                 mDocumentViewerDelegate.startActivityForFile(getContext(), document.getFileName());
-            } catch (AppPackageFileWriter.FailedToWriteToPackageException e) {
+            } catch (AppPackageFileWriter.PackageWriteException e) {
                 // TODO Do we really want to Toast?
                 Toaster.toast(v.getContext(), "Failed to write to pacakge: " + e.getFileName());
             }

@@ -15,6 +15,8 @@ import timber.log.Timber;
  */
 public class JsonAssetsLoaderTests extends CaTestCase {
 
+    private static final String CASE_FILENAME = "case_ingredients.json";
+
     @Inject protected Timber Log;
     @Inject protected JsonAssetsLoader mJsonAssetsLoader;
 
@@ -32,47 +34,19 @@ public class JsonAssetsLoaderTests extends CaTestCase {
         assertNotNull(files);
 
         for(String file : files) {
-            Log.i("fileName=%s", file);
+            assertNotNull(file);
         }
 
     }
 
-    public void testIngredientCasesParsesStringAsGson() throws IOException {
+    public void testParsesCase() throws IOException {
 
-        CaseJson ingredientsCase = mJsonAssetsLoader.parseFromJsonFile("case_ingredients.json", CaseJson.class);
+        CaseJson c = mJsonAssetsLoader.parseFromJsonFile(CASE_FILENAME, CaseJson.class);
 
-        assertNotNull(ingredientsCase);
-
-        assertEquals(ingredientsCase.getTitle(), "Ingredients Cases");
-
-        BulletPointFrameJson bulletPointFrame = ingredientsCase.getBulletPointFrame();
-        // FIXME Was this changed or did test fail?
-        ////assertEquals(bulletPointFrame.getTitle(), "Strategic Frame");
-        //
-        //List<String> bulletPoints = bulletPointFrame.getBulletPoints();
-        //
-        //assertNotNull(bulletPoints);
-        //assertNotSame(bulletPoints.size(), 0);
-        //assertEquals(bulletPoints.get(0), "Fertilizer = high GHG");
-        //assertEquals(bulletPoints.get(4), "Waste = emissions or energy opportunity");
-        //
-        //List<TextFrameJson> textFrames = ingredientsCase.getTextFrames();
-        //
-        //// FIXME This is failing too
-        //assertNotNull(textFrames);
-        ////assertNotSame(textFrames.size(), 0);
-        //
-        //TextFrameJson frame1 = textFrames.get(0);
-        //
-        //assertEquals("Financial Frame", frame1.getTitle());
-        //assertEquals("", frame1.getBodyText());
-        //assertEquals("Revenue", frame1.getSubtitleTextPairs().get(1).getTitle());
-        //
-        //TextFrameJson frame2 = textFrames.get(1);
-        //
-        //assertEquals("Strategic Future", frame2.getTitle());
-        //assertEquals(frame2.getSubtitleTextPairs().size(), 0);
-
+        assertNotNull(c);
+        assertNotNull(c.getTitle());
+        assertNotNull(c.getBodyText());
+        assertNotNull(c.getCaseStudies());
 
     }
 

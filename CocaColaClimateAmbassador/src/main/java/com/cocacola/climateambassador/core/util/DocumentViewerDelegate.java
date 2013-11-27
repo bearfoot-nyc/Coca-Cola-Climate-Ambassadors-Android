@@ -44,12 +44,14 @@ public class DocumentViewerDelegate {
         this.mContext = mContext;
     }
 
-    public void startActivityForFile(Context context, String fileName) throws AppPackageFileWriter.FailedToWriteToPackageException {
+    public void startActivityForFile(Context context, String fileName) throws
+        AppPackageFileWriter.PackageWriteException {
         FileType type = FileType.getTypeForFilename(fileName);
         startActivityForFile(context, type, fileName);
     }
 
-    public void startActivityForFile(Context context, FileType fileType, String fileName) throws AppPackageFileWriter.FailedToWriteToPackageException {
+    public void startActivityForFile(Context context, FileType fileType, String fileName) throws
+        AppPackageFileWriter.PackageWriteException {
 
         // Check if Document handling app is installed
         if(!isQuickOfficeInstalled()) {
@@ -69,10 +71,10 @@ public class DocumentViewerDelegate {
 
             // Move the file from assets to package directory
             try {
-                mAppPackageFileWriter.writeToPkgDir(fileName, fileType);
+                mAppPackageFileWriter.writeToPkgDir(fileName);
                 path = createUriForFileName(fileType, fileName);
             }
-            catch (AppPackageFileWriter.FailedToWriteToPackageException fileWriterE) {
+            catch (AppPackageFileWriter.PackageWriteException fileWriterE) {
                 Toaster.toast(mContext, "There was an error loading the file");
             } catch (FileNotInAppPackageException e1) {
                 Toaster.toast(mContext, "There was an error opening the file: " + e.getMessage());

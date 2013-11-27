@@ -1,5 +1,7 @@
 package com.cocacola.climateambassador.test.data;
 
+import android.net.Uri;
+import com.cocacola.climateambassador.core.util.DocumentViewerDelegate;
 import com.cocacola.climateambassador.data.BulletPoint;
 import com.cocacola.climateambassador.data.BulletPointFrame;
 import com.cocacola.climateambassador.data.CaCase;
@@ -14,11 +16,14 @@ import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.core.util.DataSeeder;
 import java.io.IOException;
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  * Created by realandylawton on 11/13/13.
  */
 public class DataSeederTests extends AbsDataTests {
+
+    @Inject DocumentViewerDelegate mViewerDelegate;
 
     public void testSeedsSections() throws Exception {
 
@@ -118,7 +123,6 @@ public class DataSeederTests extends AbsDataTests {
         assertNotNull(document);
         assertNotNull(document.getFileName());
         assertNotNull(document.getLabel());
-        assertNotNull(document.getModuleId());
 
     }
 

@@ -134,7 +134,7 @@ public class AppPackageFileWriterTests extends CaFileTestCase {
         try {
             mAppPackageFileWriter.writeToPkgDir(in, fileType.getDirectory(), fileName);
             assertFileIsInDir(fileName);
-        } catch (AppPackageFileWriter.FailedToWriteToPackageException e) {
+        } catch (AppPackageFileWriter.PackageWriteException e) {
             e.printStackTrace();
             fail("Threw FailedToWriteToPackageException");
         }
@@ -150,7 +150,7 @@ public class AppPackageFileWriterTests extends CaFileTestCase {
         try {
             mAppPackageFileWriter.writeToPkgDir(in, fileType.getDirectory(), fileName);
             assertFileIsInDir(fileName);
-        } catch (AppPackageFileWriter.FailedToWriteToPackageException e) {
+        } catch (AppPackageFileWriter.PackageWriteException e) {
             e.printStackTrace();
             fail("Threw FailedToWriteToPackageException");
         }

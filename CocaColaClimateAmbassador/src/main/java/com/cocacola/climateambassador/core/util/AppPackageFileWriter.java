@@ -23,19 +23,33 @@ import timber.log.Timber;
 @Singleton
 public class AppPackageFileWriter {
 
-    @Inject
-    Timber Log;
+    public class PackageWriteException extends Exception {
 
+        private String fileName;
+
+        public PackageWriteException(String fileName) {
+            super();
+            this.fileName = fileName;
+        }
+
+        public String getFileName() {
+            return fileName;
+        }
+
+        public void setFileName(String fileName) {
+            this.fileName = fileName;
+        }
+    }
+
+    @Inject protected Timber Log;
     private Context mContext;
+
     private AssetManager mAssetManager;
 
-    @Inject
-    public AppPackageFileWriter(Context context) {
+    @Inject public AppPackageFileWriter(Context context) {
         mContext = context;
         mAssetManager = mContext.getAssets();
     }
-
-
 
     public InputStream createInputFromAsset(String directory, String fileName) throws IOException {
 
@@ -66,18 +80,22 @@ public class AppPackageFileWriter {
 
     }
 
-    public void writeToPkgDir(String fileName, FileType fileType) throws FailedToWriteToPackageException {
+
+    public void writeToPkgDir(String fileName) throws PackageWriteException {
+
+        FileType fileType = FileType.getTypeForFilename(fileName);
 
         InputStream in = null;
         try {
             in = createInputFromAsset(fileType.getDirectory(), fileName);
             writeToPkgDir(in, fileType.getDirectory(), fileName);
         } catch (IOException e) {
-            throw new FailedToWriteToPackageException(fileName);
+            throw new PackageWriteException(fileName);
         }
     }
 
-    public void writeToPkgDir(InputStream in, String directory, String fileName) throws FailedToWriteToPackageException {
+    public void writeToPkgDir(InputStream in, String directory, String fileName) throws
+        PackageWriteException {
 
         // Create the directory if it doesn't exist
         File directoryFile = createDirectoryItNotExists(directory);
@@ -106,35 +124,9 @@ public class AppPackageFileWriter {
 
 
         } catch (IOException e) {
-            throw new FailedToWriteToPackageException(fileName);
+            throw new PackageWriteException(fileName);
         }
 
-    }
-
-    public class FailedToWriteToPackageException extends Exception {
-
-        private String fileName;
-
-        public FailedToWriteToPackageException(String fileName) {
-            super();
-            this.fileName = fileName;
-        }
-
-        public String getFileName() {
-            return fileName;
-        }
-
-        public void setFileName(String fileName) {
-            this.fileName = fileName;
-        }
-    }
-
-    public Context getContext() {
-        return mContext;
-    }
-
-    public void setContext(Context context) {
-        mContext = context;
     }
 
 }
