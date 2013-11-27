@@ -67,7 +67,7 @@
                 android:screenOrientation="landscape">
         </activity>
         <activity
-                android:name=".module.suppliers.activity.VisionActivity"
+                android:name=".module.suppliers.fragment.ForSuppliersVisionFragment"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/nav_item_for_suppliers_2020_vision"
                 android:screenOrientation="landscape">

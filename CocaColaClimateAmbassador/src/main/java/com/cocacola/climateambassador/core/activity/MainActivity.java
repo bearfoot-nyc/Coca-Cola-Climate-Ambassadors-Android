@@ -20,8 +20,6 @@ import com.cocacola.climateambassador.core.util.DataSeeder;
 import com.cocacola.climateambassador.module.activity.AbsModuleActivity;
 import com.cocacola.climateambassador.module.activity.ModuleActivity;
 import com.cocacola.climateambassador.module.suppliers.activity.ForSuppliersOverviewActivity;
-import com.cocacola.climateambassador.section.activity.ForSuppliersActivity;
-import com.cocacola.climateambassador.section.activity.InternalTrainingActivity;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -125,7 +123,7 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
         }
 
         Intent intent = new Intent(this, fragmentClazz);
-        intent.putExtra(AbsModuleActivity.MODULE_ID_BUNDLE_KEY, module.getId());
+        intent.putExtra(AbsModuleActivity.EXTRA_MODULE_ID, module.getId());
 
         return intent;
 

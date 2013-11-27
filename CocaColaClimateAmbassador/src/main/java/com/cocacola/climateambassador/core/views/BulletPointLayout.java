@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 
 import com.cocacola.climateambassador.R;
 
+import com.cocacola.climateambassador.data.BulletPoint;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public class BulletPointLayout extends LinearLayout {
         super(context, attrs, defStyle);
     }
 
-    public void setBulletPoints(List<String> bulletPoints) {
+    public void setBulletPoints(List<BulletPoint> bulletPoints) {
 
         if(bulletPoints == null) {
             return;
@@ -34,7 +35,7 @@ public class BulletPointLayout extends LinearLayout {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        for(String point : bulletPoints) {
+        for(BulletPoint point : bulletPoints) {
 
             BulletPointView bulletPointView = (BulletPointView) inflater.inflate(R.layout.view_bullet_point, null);
             bulletPointView.setBulletPoint(point);

@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.data.BulletPoint;
 
 import static butterknife.Views.*;
 
@@ -35,10 +36,10 @@ public class BulletPointView extends LinearLayout {
         mBulletPointView = findById(this, R.id.bullet_text);
     }
 
-    public void setBulletPoint(String point) {
+    public void setBulletPoint(BulletPoint point) {
 
         if(point != null) {
-            mBulletPointView.setText(Html.fromHtml(point));
+            mBulletPointView.setText(Html.fromHtml(point.getText()));
         }
 
     }

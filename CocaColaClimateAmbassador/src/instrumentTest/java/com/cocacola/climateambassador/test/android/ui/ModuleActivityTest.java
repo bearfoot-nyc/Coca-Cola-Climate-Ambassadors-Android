@@ -46,7 +46,7 @@ public class ModuleActivityTest extends ActivityInstrumentationTestCase2<ModuleA
         Module module = ModuleModel.getModule(mDaoMaster, 4l);
 
         Intent intent = new Intent(getInstrumentation().getContext(), ModuleActivity.class);
-        intent.putExtra(AbsModuleActivity.MODULE_ID_BUNDLE_KEY, module.getId());
+        intent.putExtra(AbsModuleActivity.EXTRA_MODULE_ID, module.getId());
 
         setActivityIntent(intent);
 

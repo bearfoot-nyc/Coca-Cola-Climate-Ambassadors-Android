@@ -36,13 +36,18 @@ public class ModuleFragment extends CaFragment{
     public static ModuleFragment newInstance(Long moduleId) {
 
         ModuleFragment fragment = new ModuleFragment();
-
-        Bundle bundle = new Bundle();
-        bundle.putLong(AbsModuleActivity.MODULE_ID_BUNDLE_KEY, moduleId);
-        fragment.setArguments(bundle);
+        fragment.setArguments(createBundleWithModuleId(moduleId));
 
         return fragment;
 
+    }
+
+    public static Bundle createBundleWithModuleId(Long moduleId) {
+
+        Bundle bundle = new Bundle();
+        bundle.putLong(AbsModuleActivity.EXTRA_MODULE_ID, moduleId);
+
+        return bundle;
     }
 
     @Inject protected DaoMaster mDaoMaster;
@@ -130,7 +135,7 @@ public class ModuleFragment extends CaFragment{
     }
 
     protected Long getModuleId() {
-        return getArguments().getLong(AbsModuleActivity.MODULE_ID_BUNDLE_KEY);
+        return getArguments().getLong(AbsModuleActivity.EXTRA_MODULE_ID);
     }
 
 }

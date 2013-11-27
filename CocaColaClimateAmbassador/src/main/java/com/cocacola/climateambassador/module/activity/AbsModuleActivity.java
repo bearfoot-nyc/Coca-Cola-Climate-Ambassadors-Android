@@ -18,6 +18,7 @@ import com.cocacola.climateambassador.drawer.model.ModuleDrawerItem;
 import com.cocacola.climateambassador.module.fragment.ModuleFragment;
 import com.cocacola.climateambassador.module.internal.activity.ModuleCasesActivity;
 import com.cocacola.climateambassador.module.suppliers.fragment.ForSupplierOverviewFragment;
+import com.cocacola.climateambassador.module.suppliers.fragment.ForSuppliersVisionFragment;
 import java.util.LinkedList;
 import java.util.List;
 import javax.inject.Inject;
@@ -27,7 +28,7 @@ import javax.inject.Inject;
  */
 public class AbsModuleActivity extends CaDrawerActivity implements AdapterView.OnItemClickListener {
 
-    public static final String MODULE_ID_BUNDLE_KEY = "moduleId";
+    public static final String EXTRA_MODULE_ID = "moduleId";
     @Inject protected DaoMaster mDaoMaster;
 
     private List<ModuleDrawerItem> mDrawerItems;
@@ -52,11 +53,11 @@ public class AbsModuleActivity extends CaDrawerActivity implements AdapterView.O
 
     protected Long getModuleIdFromIntent(Intent intent) {
 
-        if(!intent.hasExtra(MODULE_ID_BUNDLE_KEY)) {
+        if(!intent.hasExtra(EXTRA_MODULE_ID)) {
             return null;
         }
 
-        Long id = intent.getLongExtra(MODULE_ID_BUNDLE_KEY, 0);
+        Long id = intent.getLongExtra(EXTRA_MODULE_ID, 0);
 
         return id;
 
@@ -96,10 +97,11 @@ public class AbsModuleActivity extends CaDrawerActivity implements AdapterView.O
 
         mDrawerLayout.closeDrawer(mDrawerList);
 
+        // FIXME Use a Fragment with 2 child fragments instead of Activity
         if(item.getModule().getTitle().contains("Key Interventions")) {
 
             Intent intent = new Intent(this, ModuleCasesActivity.class);
-            intent.putExtra(MODULE_ID_BUNDLE_KEY, item.getModule().getId());
+            intent.putExtra(EXTRA_MODULE_ID, item.getModule().getId());
 
             startActivity(intent);
 
@@ -109,6 +111,10 @@ public class AbsModuleActivity extends CaDrawerActivity implements AdapterView.O
             ForSupplierOverviewFragment fragment = new ForSupplierOverviewFragment();
             setContentFragment(fragment);
 
+        }
+        else if(item.getModule().getTitle().contains("2020 Vision")) {
+            ForSuppliersVisionFragment fragment = ForSuppliersVisionFragment.newInstance(item.getModule().getId());
+            setContentFragment(fragment);
         }
         else  {
             ModuleFragment fragment = ModuleFragment.newInstance(item.getModule().getId());

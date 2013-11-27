@@ -23,7 +23,7 @@ import com.cocacola.climateambassador.module.internal.fragment.CaseStudiesListFr
 import com.cocacola.climateambassador.module.internal.fragment.InternalTrainingOverviewFragment;
 import com.cocacola.climateambassador.module.internal.fragment.RoleOfClimateAmbassadorFragment;
 import com.cocacola.climateambassador.module.suppliers.activity.ForSuppliersOverviewActivity;
-import com.cocacola.climateambassador.module.suppliers.activity.VisionActivity;
+import com.cocacola.climateambassador.module.suppliers.fragment.ForSuppliersVisionFragment;
 import com.cocacola.climateambassador.module.suppliers.fragment.ForSupplierOverviewFragment;
 import com.cocacola.climateambassador.section.activity.ForSuppliersActivity;
 import com.cocacola.climateambassador.section.activity.InternalTrainingActivity;
@@ -52,11 +52,11 @@ import timber.log.Timber;
         InternalTrainingOverviewFragment.class,
         RoleOfClimateAmbassadorFragment.class,
         RoleOfClimateAmbassadorActivity.class,
-        VisionActivity.class,
+        ForSuppliersVisionFragment.class,
         DocumentView.class,
         DataSeeder.class, DataChecker.class, SectionModel.class, ModuleActivity.class,
         ModuleFragment.class, CaseActivity.class, CaseStudiesListFragment.class, ForSupplierOverviewFragment.class,
-        ForSuppliersOverviewActivity.class, ModuleCasesActivity.class
+        ForSuppliersOverviewActivity.class, ModuleCasesActivity.class, ForSuppliersVisionFragment.class
 })
 public class CaProdModule {
 
