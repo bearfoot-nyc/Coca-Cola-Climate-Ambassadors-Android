@@ -81,20 +81,24 @@ public class AppPackageFileWriter {
     }
 
 
-    public void writeToPkgDir(String fileName) throws PackageWriteException {
+    public File writeToPkgDir(String fileName) throws PackageWriteException {
 
         FileType fileType = FileType.getTypeForFilename(fileName);
+        File file = null;
 
         InputStream in = null;
         try {
             in = createInputFromAsset(fileType.getDirectory(), fileName);
-            writeToPkgDir(in, fileType.getDirectory(), fileName);
+            file = writeToPkgDir(in, fileType.getDirectory(), fileName);
         } catch (IOException e) {
             throw new PackageWriteException(fileName);
         }
+
+        return file;
+
     }
 
-    public void writeToPkgDir(InputStream in, String directory, String fileName) throws
+    public File writeToPkgDir(InputStream in, String directory, String fileName) throws
         PackageWriteException {
 
         // Create the directory if it doesn't exist
@@ -126,6 +130,41 @@ public class AppPackageFileWriter {
         } catch (IOException e) {
             throw new PackageWriteException(fileName);
         }
+
+        return file;
+
+    }
+
+    public File getFileTypeDirectory(String fileName) {
+
+        FileType fileType = FileType.getTypeForFilename(fileName);
+
+        return getFileTypeDirectory(fileType);
+
+    }
+
+    public File getFileTypeDirectory(FileType fileType) {
+
+        File fileTypeDir = null;
+        fileTypeDir = new File(mContext.getFilesDir().getAbsolutePath() + File.separator + fileType.getDirectory());
+
+        return fileTypeDir;
+
+    }
+
+   public File createFile(String fileName) {
+
+       File file =  new File(getFileTypeDirectory(fileName), fileName);
+
+       return file;
+
+   }
+
+    public boolean fileExists(String fileName) {
+
+        File file =  createFile(fileName);
+
+        return file != null;
 
     }
 

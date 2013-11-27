@@ -1,15 +1,11 @@
 package com.cocacola.climateambassador.test.android.core.util;
 
-import android.app.ActivityManager;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
+import com.cocacola.climateambassador.core.util.DocumentUriBuilder;
 import com.cocacola.climateambassador.core.util.DocumentViewerDelegate;
 import com.cocacola.climateambassador.data.json.FileType;
-import java.io.File;
-import java.util.List;
 import javax.inject.Inject;
 import timber.log.Timber;
 
@@ -18,6 +14,7 @@ import timber.log.Timber;
  */
 public class DocumentViewDelegateTests extends CaFileTestCase {
 
+    @Inject protected DocumentUriBuilder mDocumentUriBuilder;
     @Inject protected DocumentViewerDelegate mDocumentViewerDelegate;
     @Inject protected Timber Log;
 
@@ -29,74 +26,27 @@ public class DocumentViewDelegateTests extends CaFileTestCase {
 
     public void testThrowsNoFileExistsException() {
 
-        FileType pdfType = FileType.PDF;
-        String fileName = "someImaginaryFile";
-
-        File file = null;
-        try {
-            file = mDocumentViewerDelegate.createFileForFileType(pdfType, fileName);
-            fail("Expected FileNotInAppPackageException");
-        } catch (DocumentViewerDelegate.FileNotInAppPackageException e) {
-            // Testing if exception was thrown, PASS!
-        }
-
-
-    }
-
-    public void testGetsProperFileTypeDirectory() {
-
-        FileType pdfType = FileType.PDF;
-        String expectedDir = "/data/data/com.cocacola.climateambassador/files/docs";
-
-        File fileTypeDir = mDocumentViewerDelegate.getFileTypeDirectory(pdfType);
-
-        assertEquals(expectedDir, fileTypeDir.getAbsolutePath());
+        //FileType pdfType = FileType.PDF;
+        //String fileName = "someImaginaryFile";
+        //
+        //File file = null;
+        //try {
+        //    file = mDocumentViewerDelegate.createFileForFileType(pdfType, fileName);
+        //    fail("Expected FileNotInAppPackageException");
+        //} catch (DocumentViewerDelegate.FileNotInAppPackageException e) {
+        //    // Testing if exception was thrown, PASS!
+        //}
 
 
     }
 
-    public void testCreatesFileForFileType() {
+    public void testCreatesProperIntentForFileType()
+        throws AppPackageFileWriter.PackageWriteException {
 
-        FileType pdfType = FileType.PDF;
         String fileName = VALID_PDF_FILENAME;
-        String expectedPath = "/data/data/com.cocacola.climateambassador/files/docs/" + VALID_PDF_FILENAME;
+        FileType fileType = FileType.getTypeForFilename(fileName);
 
-        File file = null;
-        try {
-            file = mDocumentViewerDelegate.createFileForFileType(pdfType, fileName);
-            assertTrue(file.exists());
-            assertEquals(expectedPath, file.getAbsolutePath());
-        } catch (DocumentViewerDelegate.FileNotInAppPackageException e) {
-            failDueToFileNotInAppPackageException();
-        }
-
-    }
-
-    public void testCreatesUriForFileType() throws DocumentViewerDelegate.FileNotInAppPackageException {
-
-        FileType pdfType = FileType.PDF;
-        String fileName = VALID_PDF_FILENAME;
-
-        File file = null;
-        Uri uri = null;
-        try {
-            file = mDocumentViewerDelegate.createFileForFileType(pdfType, fileName);
-
-            uri = mDocumentViewerDelegate.createUriForFile(file);
-
-            assertNotNull(uri);
-
-        } catch (DocumentViewerDelegate.FileNotInAppPackageException e) {
-            failDueToFileNotInAppPackageException();
-        }
-
-    }
-
-    public void testCreatesProperIntentForFileType() {
-
-        FileType fileType = FileType.PDF;
-
-        Uri path = mDocumentViewerDelegate.createUriForFile(getValidFile());
+        Uri path = mDocumentUriBuilder.createUriForFilename(fileName);
 
         Intent intent = mDocumentViewerDelegate.createViewerIntent(mContext, path, fileType);
 

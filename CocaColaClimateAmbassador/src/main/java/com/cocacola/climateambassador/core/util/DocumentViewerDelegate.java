@@ -27,11 +27,6 @@ import timber.log.Timber;
 @Singleton
 public class DocumentViewerDelegate {
 
-    public class FileNotInAppPackageException extends Exception {
-
-    }
-
-    private static final String AUTHORITY = "com.cocacola.climateambassador.files";
     private static final String QUICK_OFFICE_PACKAGE_NAME = "com.quickoffice.android";
 
     @Inject protected AppPackageFileWriter mAppPackageFileWriter;
@@ -61,30 +56,30 @@ public class DocumentViewerDelegate {
 
         Uri path = null;
 
-        // TODO Nested try blocks is a code smell
-        try {
-            path = createUriForFileName(fileType, fileName);
-        }
-        catch (FileNotInAppPackageException e) {
-
-            Log.w("FileNotInAppPackage yet: %s",fileName);
-
-            // Move the file from assets to package directory
-            try {
-                mAppPackageFileWriter.writeToPkgDir(fileName);
-                path = createUriForFileName(fileType, fileName);
-            }
-            catch (AppPackageFileWriter.PackageWriteException fileWriterE) {
-                Toaster.toast(mContext, "There was an error loading the file");
-            } catch (FileNotInAppPackageException e1) {
-                Toaster.toast(mContext, "There was an error opening the file: " + e.getMessage());
-            } finally {
-                launchActivityForValidatedPath(context, path, fileType);
-            }
-
-        }
-
-        launchActivityForValidatedPath(context, path, fileType);
+        //// TODO Nested try blocks is a code smell
+        //try {
+        //    path = createUriForFileName(fileType, fileName);
+        //}
+        //catch (FileNotInAppPackageException e) {
+        //
+        //    Log.w("FileNotInAppPackage yet: %s",fileName);
+        //
+        //    // Move the file from assets to package directory
+        //    try {
+        //        mAppPackageFileWriter.writeToPkgDir(fileName);
+        //        path = createUriForFileName(fileType, fileName);
+        //    }
+        //    catch (AppPackageFileWriter.PackageWriteException fileWriterE) {
+        //        Toaster.toast(mContext, "There was an error loading the file");
+        //    } catch (FileNotInAppPackageException e1) {
+        //        Toaster.toast(mContext, "There was an error opening the file: " + e.getMessage());
+        //    } finally {
+        //        launchActivityForValidatedPath(context, path, fileType);
+        //    }
+        //
+        //}
+        //
+        //launchActivityForValidatedPath(context, path, fileType);
 
     }
 
@@ -101,22 +96,6 @@ public class DocumentViewerDelegate {
 
     }
 
-    public Uri createUriForFileName(FileType fileType, String fileName) throws FileNotInAppPackageException {
-
-        File file = createFileForFileType(fileType, fileName);
-        Uri path = createUriForFile(file);
-
-        return path;
-
-    }
-
-    public Uri createUriForFile(File file) {
-
-        Uri uri = FileProvider.getUriForFile(mContext, AUTHORITY, file);
-        return uri;
-
-    }
-
     public File getFileTypeDirectory(FileType fileType) {
 
         // Shouldn't be responsible for creating directory, that is AppPackageFileWriter's responsibility
@@ -125,17 +104,6 @@ public class DocumentViewerDelegate {
 
         return fileTypeDir;
 
-    }
-
-    public File createFileForFileType(FileType fileType, String fileName) throws FileNotInAppPackageException {
-
-        File file =  new File(getFileTypeDirectory(fileType), fileName);
-
-        if(!file.exists()) {
-            throw new FileNotInAppPackageException();
-        }
-
-        return file;
     }
 
    public Intent createViewerIntent(Context context, Uri path, FileType fileType) {

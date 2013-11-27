@@ -1,6 +1,7 @@
 package com.cocacola.climateambassador.test.android.core.util;
 
 import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
+import com.cocacola.climateambassador.core.util.DocumentViewerDelegate;
 import com.cocacola.climateambassador.data.json.FileType;
 import com.cocacola.climateambassador.test.CaTestModule;
 import dagger.ObjectGraph;
@@ -74,6 +75,64 @@ public class AppPackageFileWriterTests extends CaFileTestCase {
 
     }
 
+    public void testWritesPkgToDir() {
+
+        InputStream in = getValidInputStream();
+        String fileName = getValidFileName();
+        FileType fileType = getValidFileType();
+
+        try {
+            mAppPackageFileWriter.writeToPkgDir(in, fileType.getDirectory(), fileName);
+            assertFileIsInDir(fileName);
+        } catch (AppPackageFileWriter.PackageWriteException e) {
+            e.printStackTrace();
+            fail("Threw FailedToWriteToPackageException");
+        }
+
+    }
+
+    public void testReturnsFileAfterWritingToPkgDir() {
+
+        InputStream in = getValidInputStream();
+        String fileName = getValidFileName();
+        FileType fileType = getValidFileType();
+
+        try {
+            mAppPackageFileWriter.writeToPkgDir(in, fileType.getDirectory(), fileName);
+            assertFileIsInDir(fileName);
+        } catch (AppPackageFileWriter.PackageWriteException e) {
+            e.printStackTrace();
+            fail("Threw FailedToWriteToPackageException");
+        }
+
+    }
+
+    public void testGetsProperFileTypeDirectory() {
+
+        FileType pdfType = FileType.PDF;
+        String expectedDir = "/data/data/com.cocacola.climateambassador/files/docs";
+
+        File fileTypeDir = mAppPackageFileWriter.getFileTypeDirectory(pdfType);
+
+        assertEquals(expectedDir, fileTypeDir.getAbsolutePath());
+
+
+    }
+
+    public void testCreatesFile() {
+
+        String fileName = VALID_PDF_FILENAME;
+        FileType fileType = FileType.getTypeForFilename(fileName);
+        String expectedPath = "/data/data/com.cocacola.climateambassador/files/docs/" + VALID_PDF_FILENAME;
+
+        File file = mAppPackageFileWriter.createFile(fileName);
+
+        assertTrue(file.exists());
+        assertEquals(expectedPath, file.getAbsolutePath());
+
+
+    }
+
     private InputStream getValidInputStream() {
 
         String fileName = VALID_PDF_FILENAME;
@@ -123,38 +182,6 @@ public class AppPackageFileWriterTests extends CaFileTestCase {
 
     private FileType getValidFileType() {
         return FileType.PDF;
-    }
-
-    public void testWritesPkgToDir() {
-
-        InputStream in = getValidInputStream();
-        String fileName = getValidFileName();
-        FileType fileType = getValidFileType();
-
-        try {
-            mAppPackageFileWriter.writeToPkgDir(in, fileType.getDirectory(), fileName);
-            assertFileIsInDir(fileName);
-        } catch (AppPackageFileWriter.PackageWriteException e) {
-            e.printStackTrace();
-            fail("Threw FailedToWriteToPackageException");
-        }
-
-    }
-
-    public void testReturnsFileAfterWritingToPkgDir() {
-
-        InputStream in = getValidInputStream();
-        String fileName = getValidFileName();
-        FileType fileType = getValidFileType();
-
-        try {
-            mAppPackageFileWriter.writeToPkgDir(in, fileType.getDirectory(), fileName);
-            assertFileIsInDir(fileName);
-        } catch (AppPackageFileWriter.PackageWriteException e) {
-            e.printStackTrace();
-            fail("Threw FailedToWriteToPackageException");
-        }
-
     }
 
 }
