@@ -15,7 +15,6 @@ import com.cocacola.climateambassador.core.views.DocumentView;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.favorites.fragment.FavoritesFragment;
 import com.cocacola.climateambassador.module.activity.ModuleActivity;
-import com.cocacola.climateambassador.module.fragment.DeprModuleFragment;
 import com.cocacola.climateambassador.module.fragment.ModuleFragment;
 import com.cocacola.climateambassador.module.internal.activity.ModuleCasesActivity;
 import com.cocacola.climateambassador.module.internal.activity.RoleOfClimateAmbassadorActivity;
@@ -41,7 +40,6 @@ import timber.log.Timber;
 @Module(injects = {
         CaApplication.class,
         MainActivity.class,
-        DeprModuleFragment.class,
         FavoritesFragment.class,
         InternalTrainingActivity.class,
         ForSuppliersActivity.class,
