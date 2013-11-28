@@ -1,15 +1,20 @@
 package com.cocacola.climateambassador.core.views;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.CaApplication;
 import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
-import com.cocacola.climateambassador.core.util.DocumentViewerDelegate;
+import com.cocacola.climateambassador.core.util.DocumentIntentBuilder;
+import com.cocacola.climateambassador.core.util.DocumentUriBuilder;
 import com.cocacola.climateambassador.core.util.Toaster;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.Document;
@@ -32,7 +37,8 @@ public class DocumentView extends LinearLayout {
     }
 
     @Inject protected DaoMaster mDaoMaster;
-    @Inject protected DocumentViewerDelegate mDocumentViewerDelegate;
+    @Inject protected DocumentUriBuilder mDocumentUriBuilder;
+    @Inject protected DocumentIntentBuilder mDocumentIntentBuilder;
 
     private TextView mTitleView;
     private ImageView mFavoriteBtn;
@@ -86,7 +92,11 @@ public class DocumentView extends LinearLayout {
             mTitleView.setText(doc.getLabel());
         }
 
-        setOnClickListener(new OnDocumentClickListener(doc));
+        setOnClickListener(new OnClickListener() {
+            @Override public void onClick(View v) {
+                onDocumentClick(doc);
+            }
+        });
 
     }
 
@@ -102,6 +112,25 @@ public class DocumentView extends LinearLayout {
 
     }
 
+    private void onDocumentClick(Document doc) {
+
+        try {
+
+            Uri documentUri = mDocumentUriBuilder.createUriForFilename(doc.getFileName());
+            Intent intent = mDocumentIntentBuilder.createViewerIntent(getContext(), documentUri, doc.getFileName());
+
+            getContext().startActivity(intent);
+
+        } catch (AppPackageFileWriter.PackageWriteException e) {
+            Toaster.toast(getContext(), e.getMessage());
+        } catch (DocumentIntentBuilder.PreferredAppNotInstalledException e) {
+            Toaster.toast(getContext(), e.getMessage());
+        } catch (ActivityNotFoundException e) {
+            Toaster.toast(getContext(), e.getMessage());
+        }
+
+    }
+
     private void onFavoriteClick(Document document) {
 
         boolean isFavorite = (document.getIsFavorite() != null) ? document.getIsFavorite() : false;
@@ -113,24 +142,5 @@ public class DocumentView extends LinearLayout {
         setDocument(document);
 
     }
-
-    private class OnDocumentClickListener implements OnClickListener {
-
-        private Document document;
-
-        public OnDocumentClickListener(Document document) {
-            this.document = document;
-        }
-
-        @Override
-        public void onClick(View v) {
-            try {
-                mDocumentViewerDelegate.startActivityForFile(getContext(), document.getFileName());
-            } catch (AppPackageFileWriter.PackageWriteException e) {
-                // TODO Do we really want to Toast?
-                Toaster.toast(v.getContext(), "Failed to write to pacakge: " + e.getFileName());
-            }
-        }
-    };
 
 }

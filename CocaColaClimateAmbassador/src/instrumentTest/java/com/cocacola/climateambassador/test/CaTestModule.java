@@ -4,11 +4,11 @@ import android.content.Context;
 
 import com.cocacola.climateambassador.core.CaProdModule;
 
+import com.cocacola.climateambassador.test.android.core.util.DocumentIntentBuilderTests;
 import com.cocacola.climateambassador.test.android.core.util.DocumentUriBuilderTests;
 import com.cocacola.climateambassador.test.android.core.util.FileTypeTests;
 import com.cocacola.climateambassador.test.android.ui.ModuleActivityTest;
 import com.cocacola.climateambassador.test.android.core.util.AppPackageFileWriterTests;
-import com.cocacola.climateambassador.test.android.core.util.DocumentViewDelegateTests;
 import com.cocacola.climateambassador.test.android.core.util.JsonAssetsLoaderTests;
 import com.cocacola.climateambassador.test.data.DataCheckerTests;
 import com.cocacola.climateambassador.test.data.DataSeederTests;
@@ -24,7 +24,7 @@ import dagger.Provides;
         overrides = true,
         injects = {
             AppPackageFileWriterTests.class,
-            DocumentViewDelegateTests.class,
+            DocumentIntentBuilderTests.class,
             JsonAssetsLoaderTests.class,
             DataSeederTests.class,
             DataCheckerTests.class, ModuleActivityTest.class, FileTypeTests.class,

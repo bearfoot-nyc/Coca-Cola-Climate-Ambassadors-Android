@@ -9,8 +9,8 @@ import com.cocacola.climateambassador.core.activity.MainActivity;
 import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.core.util.DataChecker;
 import com.cocacola.climateambassador.core.util.DataSeeder;
+import com.cocacola.climateambassador.core.util.DocumentIntentBuilder;
 import com.cocacola.climateambassador.core.util.DocumentUriBuilder;
-import com.cocacola.climateambassador.core.util.DocumentViewerDelegate;
 import com.cocacola.climateambassador.core.util.JsonAssetsLoader;
 import com.cocacola.climateambassador.core.views.DocumentView;
 import com.cocacola.climateambassador.data.DaoMaster;
@@ -45,7 +45,6 @@ import timber.log.Timber;
         InternalTrainingActivity.class,
         ForSuppliersActivity.class,
         ForSupplierOverviewFragment.class,
-        DocumentViewerDelegate.class,
         JsonAssetsLoader.class,
         CaseStudiesListFragment.class,
         InternalTrainingOverviewFragment.class,
@@ -56,7 +55,7 @@ import timber.log.Timber;
         DataSeeder.class, DataChecker.class, SectionModel.class, ModuleActivity.class,
         ModuleFragment.class, CaseActivity.class, CaseStudiesListFragment.class, ForSupplierOverviewFragment.class,
         ForSuppliersOverviewActivity.class, ModuleCasesActivity.class, ForSuppliersVisionFragment.class,
-        DocumentUriBuilder.class
+        DocumentUriBuilder.class, DocumentIntentBuilder.class
 })
 public class CaProdModule {
 
@@ -84,7 +83,7 @@ public class CaProdModule {
     }
 
     @Provides @Singleton SQLiteOpenHelper provideSQLiteOpenHelper(Context context) {
-        return new DaoMaster.DevOpenHelper(context, "titty-sprinkles", null);
+        return new DaoMaster.DevOpenHelper(context, "climateambassador", null);
     }
 
     @Provides @Singleton DaoMaster provideDaoMaster(SQLiteOpenHelper openHelper) {

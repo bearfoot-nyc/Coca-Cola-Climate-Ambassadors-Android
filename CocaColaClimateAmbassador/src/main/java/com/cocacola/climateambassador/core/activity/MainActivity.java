@@ -137,8 +137,8 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
         try {
             sectionList = SectionModel.getAllSections(mDaoMaster);
         } catch (Exception e) {
-            Toast.makeText(this, "Failed to load Sections", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
+            Toast.makeText(this, "Failed to load Sections: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            return mDrawerItems;
         }
 
         for(Section section : sectionList) {

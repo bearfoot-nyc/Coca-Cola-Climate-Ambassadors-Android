@@ -1,7 +1,6 @@
 package com.cocacola.climateambassador.test.data;
 
-import android.net.Uri;
-import com.cocacola.climateambassador.core.util.DocumentViewerDelegate;
+import com.cocacola.climateambassador.core.util.DocumentIntentBuilder;
 import com.cocacola.climateambassador.data.BulletPoint;
 import com.cocacola.climateambassador.data.BulletPointFrame;
 import com.cocacola.climateambassador.data.CaCase;
@@ -23,7 +22,7 @@ import javax.inject.Inject;
  */
 public class DataSeederTests extends AbsDataTests {
 
-    @Inject DocumentViewerDelegate mViewerDelegate;
+    @Inject DocumentIntentBuilder mViewerDelegate;
 
     public void testSeedsSections() throws Exception {
 
