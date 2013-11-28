@@ -3,6 +3,7 @@ package com.cocacola.climateambassador.test.android.core.util;
 import android.net.Uri;
 import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
 import com.cocacola.climateambassador.core.util.DocumentUriBuilder;
+import java.io.File;
 import javax.inject.Inject;
 
 /**
@@ -38,7 +39,6 @@ public class DocumentUriBuilderTests extends CaFileTestCase {
         String fileName = VALID_PPT_FILENAME;
 
         // File shouldn't exist yet
-
         Uri uri = mDocumentUriBuilder.createUriForFilename(fileName);
 
         assertValidUri(uri);
@@ -50,6 +50,12 @@ public class DocumentUriBuilderTests extends CaFileTestCase {
 
         assertNotNull(uri);
         assertEquals("Authorities not the same", DocumentUriBuilder.AUTHORITY, uri.getAuthority());
+
+        String fullPath = mContext.getFilesDir() + uri.getPath();
+
+        File file = new File(uri.getPath());
+        assertNotNull("Path points to a null file", file);
+        assertTrue("File doesn't exist", file.exists());
 
     }
 

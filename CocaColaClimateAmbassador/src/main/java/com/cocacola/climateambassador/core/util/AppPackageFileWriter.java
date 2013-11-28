@@ -51,36 +51,6 @@ public class AppPackageFileWriter {
         mAssetManager = mContext.getAssets();
     }
 
-    public InputStream createInputFromAsset(String directory, String fileName) throws IOException {
-
-        BufferedInputStream in = null;
-        in = new BufferedInputStream(mAssetManager.open(directory + File.separator + fileName));
-
-        return in;
-
-    }
-
-    public File getPackageDir() {
-        return mContext.getFilesDir();
-    }
-
-    public String createNewDirectoryString(String directory) {
-        return getPackageDir() + File.separator + directory;
-    }
-
-    public File createDirectoryItNotExists(String directory) {
-
-        File directoryFile = new File(createNewDirectoryString(directory));
-
-        if (!directoryFile.exists()) {
-            directoryFile.mkdirs();
-        }
-
-        return directoryFile;
-
-    }
-
-
     public File writeToPkgDir(String fileName) throws PackageWriteException {
 
         FileType fileType = FileType.getTypeForFilename(fileName);
@@ -132,6 +102,36 @@ public class AppPackageFileWriter {
         }
 
         return file;
+
+    }
+
+    public InputStream createInputFromAsset(String directory, String fileName) throws IOException {
+
+        BufferedInputStream in = null;
+        in = new BufferedInputStream(mAssetManager.open(directory + File.separator + fileName));
+
+        return in;
+
+    }
+
+    public File getPackageDir() {
+        return mContext.getFilesDir();
+    }
+
+    public String createNewDirectoryString(String directory) {
+        return getPackageDir() + File.separator + directory;
+    }
+
+
+    public File createDirectoryItNotExists(String directory) {
+
+        File directoryFile = new File(createNewDirectoryString(directory));
+
+        if (!directoryFile.exists()) {
+            directoryFile.mkdirs();
+        }
+
+        return directoryFile;
 
     }
 
