@@ -29,4 +29,9 @@
         android:background="@color/gray"
         android:padding="12dp"/>
 
+    <ImageView
+        android:id="@+id/doc_share_btn"
+        style="@style/Ca"
+        android:src="@drawable/ic_action_share" />
+
 </com.cocacola.climateambassador.core.views.DocumentView>

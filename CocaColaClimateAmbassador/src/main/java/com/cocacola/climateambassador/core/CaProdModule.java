@@ -11,6 +11,7 @@ import com.cocacola.climateambassador.core.util.DataChecker;
 import com.cocacola.climateambassador.core.util.DataSeeder;
 import com.cocacola.climateambassador.core.util.DocumentIntentBuilder;
 import com.cocacola.climateambassador.core.util.DocumentUriBuilder;
+import com.cocacola.climateambassador.core.util.EmailAttachmentIntentBuilder;
 import com.cocacola.climateambassador.core.util.JsonAssetsLoader;
 import com.cocacola.climateambassador.core.views.DocumentView;
 import com.cocacola.climateambassador.data.DaoMaster;
@@ -55,7 +56,7 @@ import timber.log.Timber;
         DataSeeder.class, DataChecker.class, SectionModel.class, ModuleActivity.class,
         ModuleFragment.class, CaseActivity.class, CaseStudiesListFragment.class, ForSupplierOverviewFragment.class,
         ForSuppliersOverviewActivity.class, ModuleCasesActivity.class, ForSuppliersVisionFragment.class,
-        DocumentUriBuilder.class, DocumentIntentBuilder.class
+        DocumentUriBuilder.class, DocumentIntentBuilder.class, EmailAttachmentIntentBuilder.class
 })
 public class CaProdModule {
 
