@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.cocacola.climateambassador.core.CaProdModule;
 
+import com.cocacola.climateambassador.core.model.DocumentModel;
+import com.cocacola.climateambassador.test.android.core.model.DocumentModelTests;
 import com.cocacola.climateambassador.test.android.core.util.DocumentIntentBuilderTests;
 import com.cocacola.climateambassador.test.android.core.util.DocumentUriBuilderTests;
 import com.cocacola.climateambassador.test.android.core.util.FileTypeTests;
@@ -28,7 +30,7 @@ import dagger.Provides;
             JsonAssetsLoaderTests.class,
             DataSeederTests.class,
             DataCheckerTests.class, ModuleActivityTest.class, FileTypeTests.class,
-            DocumentUriBuilderTests.class
+            DocumentUriBuilderTests.class, DocumentModelTests.class
         }
 )
 public class CaTestModule {

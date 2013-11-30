@@ -1,12 +1,16 @@
 package com.cocacola.climateambassador.core.model;
 
+import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.Document;
+import com.cocacola.climateambassador.data.DocumentDao;
 import com.cocacola.climateambassador.data.json.DocumentJson;
+import java.util.List;
 
 /**
  * Created by realandylawton on 11/27/13.
  */
 public class DocumentModel {
+
     public static Document fromJson(DocumentJson documentJson) {
 
         Document document = new Document();
@@ -15,6 +19,18 @@ public class DocumentModel {
         document.setIsFavorite(false);
 
         return document;
+
+    }
+
+    public static List<Document> search(DaoMaster daoMaster, String query) {
+
+        DocumentDao documentDao = daoMaster.newSession().getDocumentDao();
+
+        List<Document> results = documentDao.queryBuilder().
+            where(DocumentDao.Properties.Label.like("%"+query.toLowerCase()+"%")).
+            list();
+
+        return results;
 
     }
 
