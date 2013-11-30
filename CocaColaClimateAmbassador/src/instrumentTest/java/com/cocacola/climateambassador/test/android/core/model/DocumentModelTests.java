@@ -1,5 +1,6 @@
 package com.cocacola.climateambassador.test.android.core.model;
 
+import android.database.Cursor;
 import com.cocacola.climateambassador.core.model.DocumentModel;
 import com.cocacola.climateambassador.core.util.DataSeeder;
 import com.cocacola.climateambassador.data.Document;
@@ -17,6 +18,24 @@ public class DocumentModelTests extends AbsDataTests {
     @Override public void setUp() throws Exception {
         super.setUp();
         mDataSeeder.seed();
+    }
+
+    public void testGetsCursorForQuery() {
+
+        String query = "Climate";
+        Cursor cursor = DocumentModel.searchCursor(mDaoMaster, query);
+
+        int count = cursor.getCount();
+        for(int i = 0; i < count; i++) {
+            cursor.moveToPosition(i);
+
+            String label = cursor.getString(0);
+
+            assertNotNull(label);
+            assertTrue("Label did not contain query", label.contains(query));
+
+        }
+
     }
 
     public void testSearchesForQuery() {

@@ -26,8 +26,7 @@ import java.util.List;
 import butterknife.OnClick;
 import javax.inject.Inject;
 
-public class MainActivity extends CaDrawerActivity implements SearchView.OnQueryTextListener,
-    AdapterView.OnItemClickListener {
+public class MainActivity extends CaSearchableDrawerActivity implements AdapterView.OnItemClickListener {
 
     @Inject protected DataChecker mDataChecker;
     @Inject protected DataSeeder mDataSeeder;
@@ -157,4 +156,5 @@ public class MainActivity extends CaDrawerActivity implements SearchView.OnQuery
     @Override public boolean onQueryTextChange(String newText) {
         return false;
     }
+
 }
