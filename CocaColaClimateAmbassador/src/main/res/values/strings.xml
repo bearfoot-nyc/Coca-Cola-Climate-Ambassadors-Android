@@ -55,5 +55,6 @@ to the Coca-Cola business. </string>
     </string>
     <string name="share_email_body">We can put a message here.</string>
     <string name="search_query_hint">Search for documents</string>
+    <string name="favorites_empty_list">You have no favorite items.</string>
 
 </resources>

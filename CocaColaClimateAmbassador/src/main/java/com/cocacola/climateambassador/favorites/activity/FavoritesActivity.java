@@ -3,6 +3,7 @@ package com.cocacola.climateambassador.favorites.activity;
 import android.os.Bundle;
 import android.widget.ListView;
 import butterknife.InjectView;
+import butterknife.Views;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.activity.CaDrawerSearchableActivity;
 import com.cocacola.climateambassador.data.DaoMaster;
@@ -31,6 +32,7 @@ public class FavoritesActivity extends CaDrawerSearchableActivity {
                 FavoritesActivity.this.onFavoriteChanged();
             }
         };
+        //mListView.setEmptyView(Views.findById(this, android.R.id.empty));
         mListView.setAdapter(mListAdapter);
 
     }
