@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.InjectView;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.core.activity.CaActivity;
 import com.cocacola.climateambassador.core.activity.CaSearchableActivity;
 import com.cocacola.climateambassador.core.model.CaseModel;
 import com.cocacola.climateambassador.core.views.DocumentsLayout;
@@ -84,6 +83,8 @@ public class CaseActivity extends CaSearchableActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.case_activity);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         mCaseId = getCaseIdFromIntent(getIntent());
 
