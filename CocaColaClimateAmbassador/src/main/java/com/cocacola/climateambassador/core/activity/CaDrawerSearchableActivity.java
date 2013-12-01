@@ -1,6 +1,5 @@
 package com.cocacola.climateambassador.core.activity;
 
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -17,14 +16,7 @@ import com.cocacola.climateambassador.core.util.Toaster;
 import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.Navigable;
 import com.cocacola.climateambassador.data.Section;
-import com.cocacola.climateambassador.drawer.adapters.DeprDrawerListAdapter;
 import com.cocacola.climateambassador.drawer.adapters.DrawerListAdapter;
-import com.cocacola.climateambassador.drawer.model.ModuleDrawerItem;
-import com.cocacola.climateambassador.module.activity.AbsModuleActivity;
-import com.cocacola.climateambassador.module.fragment.ModuleFragment;
-import com.cocacola.climateambassador.module.internal.activity.ModuleCasesActivity;
-import com.cocacola.climateambassador.module.suppliers.fragment.ForSupplierOverviewFragment;
-import com.cocacola.climateambassador.module.suppliers.fragment.ForSuppliersVisionFragment;
 import java.util.LinkedList;
 import java.util.List;
 

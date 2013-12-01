@@ -4,26 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Toast;
 import butterknife.OnClick;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.core.model.SectionModel;
-import com.cocacola.climateambassador.core.util.DataChecker;
-import com.cocacola.climateambassador.core.util.DataSeeder;
-import com.cocacola.climateambassador.core.util.Toaster;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.Navigable;
 import com.cocacola.climateambassador.data.Section;
-import com.cocacola.climateambassador.drawer.adapters.DrawerListAdapter;
-import com.cocacola.climateambassador.drawer.adapters.MainDrawerListAdapter;
-import com.cocacola.climateambassador.drawer.model.MainDrawerItem;
 import com.cocacola.climateambassador.favorites.activity.FavoritesActivity;
 import com.cocacola.climateambassador.module.activity.AbsModuleActivity;
 import com.cocacola.climateambassador.module.activity.ModuleActivity;
 import com.cocacola.climateambassador.module.suppliers.activity.ForSuppliersOverviewActivity;
-import java.util.LinkedList;
-import java.util.List;
 import javax.inject.Inject;
 
 public class MainActivity extends CaDrawerSearchableActivity {
