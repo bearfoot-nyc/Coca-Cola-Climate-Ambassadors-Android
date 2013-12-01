@@ -54,5 +54,6 @@ to the Coca-Cola business. </string>
         app
     </string>
     <string name="share_email_body">We can put a message here.</string>
+    <string name="search_query_hint">Search for documents</string>
 
 </resources>

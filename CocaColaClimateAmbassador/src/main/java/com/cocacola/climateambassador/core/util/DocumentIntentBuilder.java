@@ -8,6 +8,7 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 
 import com.cocacola.climateambassador.core.CaApplication;
+import com.cocacola.climateambassador.data.Document;
 import com.cocacola.climateambassador.data.json.FileType;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class DocumentIntentBuilder {
 
     private static final String PREFERRED_APP_PACKAGE_NAME = "com.quickoffice.android";
 
-    @Inject protected AppPackageFileWriter mAppPackageFileWriter;
+    @Inject protected DocumentUriBuilder mUriBuilder;
     @Inject protected Timber Log;
 
     private Context mContext;
@@ -59,6 +60,15 @@ public class DocumentIntentBuilder {
         }
 
         return intent;
+
+    }
+
+    public Intent createViewerIntent(Context context, Document document)
+        throws PreferredAppNotInstalledException, AppPackageFileWriter.PackageWriteException {
+
+        Uri path = mUriBuilder.createUriForFilename(document.getFileName());
+
+        return createViewerIntent(context, path, document.getFileName());
 
     }
 

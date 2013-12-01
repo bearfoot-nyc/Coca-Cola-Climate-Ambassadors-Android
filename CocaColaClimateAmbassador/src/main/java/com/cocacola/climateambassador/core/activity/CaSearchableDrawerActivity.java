@@ -1,6 +1,5 @@
 package com.cocacola.climateambassador.core.activity;
 
-import android.app.SearchManager;
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
@@ -14,7 +13,9 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.model.DocumentModel;
+import com.cocacola.climateambassador.core.util.DocumentIntentBuilder;
 import com.cocacola.climateambassador.data.DaoMaster;
+import com.cocacola.climateambassador.data.Document;
 import javax.inject.Inject;
 
 /**
@@ -24,9 +25,10 @@ public abstract class CaSearchableDrawerActivity extends CaDrawerActivity implem
  SearchView.OnSuggestionListener {
 
     @Inject protected DaoMaster mDaoMaster;
-    protected SearchView mSearchView;
+    @Inject protected DocumentIntentBuilder mDocumentIntentBuilder;
 
-    protected SuggestionsAdapter mSuggestionsAdapter;
+    private SearchView mSearchView;
+    private SuggestionsAdapter mSuggestionsAdapter;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -37,31 +39,39 @@ public abstract class CaSearchableDrawerActivity extends CaDrawerActivity implem
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
         mSearchView = (SearchView) searchItem.getActionView();
-        mSearchView.setQueryHint("Search for countries…");
+        mSearchView.setQueryHint(getString(R.string.search_query_hint));
         mSearchView.setOnQueryTextListener(this);
         mSearchView.setOnSuggestionListener(this);
-
-        Cursor cursor = DocumentModel.searchCursor(mDaoMaster, "Climate");
-
-        if (mSuggestionsAdapter == null) {
-            mSuggestionsAdapter = new SuggestionsAdapter(this, cursor);
-        }
-
         mSearchView.setSuggestionsAdapter(mSuggestionsAdapter);
 
         return true;
     }
 
-    public SuggestionsAdapter getSuggestionsAdapter() {
-        return mSuggestionsAdapter;
+    public void updateDocumentSuggestions(String query) {
+
+        Cursor cursor = DocumentModel.searchCursor(mDaoMaster, query);
+
+        if(mSuggestionsAdapter == null) {
+            mSearchView.setSuggestionsAdapter(new SuggestionsAdapter(this, cursor));
+        }
+        else {
+            mSearchView.getSuggestionsAdapter().swapCursor(cursor);
+        }
+
     }
 
-    public void setSuggestionsAdapter(SuggestionsAdapter suggestionsAdapter) {
-        mSuggestionsAdapter = suggestionsAdapter;
-    }
+    public Document getSuggestedDocument(int position) {
 
-    public void swapCursor(Cursor cursor) {
-        mSearchView.getSuggestionsAdapter().swapCursor(cursor);
+        Cursor cursor = (Cursor) mSearchView.getSuggestionsAdapter().getItem(position);
+
+        Long cursorId = cursor.getLong(0);
+
+        Document document = mDaoMaster.newSession().getDocumentDao().load(cursorId);
+
+        return document;
+
+
+
     }
 
     private class SuggestionsAdapter extends CursorAdapter {
@@ -80,6 +90,7 @@ public abstract class CaSearchableDrawerActivity extends CaDrawerActivity implem
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
             TextView tv = (TextView) view;
+            tv.setTextColor(getResources().getColor(R.color.gray));
             tv.setText(cursor.getString(1));
         }
     }
