@@ -30,7 +30,6 @@ public class ModuleCasesFragment extends CaFragment {
 
         View view = inflater.inflate(R.layout.module_internal_frag_cases, null);
 
-        Views.inject(this, view);
         return view;
 
     }
@@ -42,11 +41,23 @@ public class ModuleCasesFragment extends CaFragment {
         ModuleFragment fragment = ModuleFragment.newInstance(getModuleId());
 
         // Set it as the content fragment
-        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.module_frag_case_container, fragment);
 
         transaction.commit();
 
+
+    }
+
+    @Override public void onDestroyView() {
+        super.onDestroyView();
+
+        ModuleFragment fragment =
+            (ModuleFragment) getChildFragmentManager().findFragmentById(R.id.module_frag_case_container);
+
+        if(fragment != null) {
+            getChildFragmentManager().beginTransaction().remove(fragment).commit();
+        }
 
     }
 
