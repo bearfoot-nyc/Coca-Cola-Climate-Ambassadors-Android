@@ -1,5 +1,6 @@
 package com.cocacola.climateambassador.core.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ public class LandingActivity extends CaActivity {
 
     @Inject protected DataChecker mDataChecker;
     @Inject protected DataSeeder mDataSeeder;
+
+    private ProgressDialog mProgressDialog;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +50,18 @@ public class LandingActivity extends CaActivity {
 
     private class DataSeedTask extends AsyncTask<DataSeeder, Void, DataSeeder.SeedFailedException> {
 
-        @Override protected DataSeeder.SeedFailedException doInBackground(DataSeeder... params) {
+        @Override protected void onPreExecute() {
+            super.onPreExecute();
+            mProgressDialog = new ProgressDialog(LandingActivity.this);
+            mProgressDialog.setTitle("Initializing");
+            mProgressDialog.setMessage("Please wait...");
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.setIndeterminate(true);
+            mProgressDialog.show();
+        }
 
+        @Override protected DataSeeder.SeedFailedException doInBackground(DataSeeder... params) {
+            
             DataSeeder dataSeeder = params[0];
 
             try {
@@ -64,6 +77,10 @@ public class LandingActivity extends CaActivity {
 
         @Override protected void onPostExecute(DataSeeder.SeedFailedException e) {
             super.onPostExecute(e);
+
+            if(mProgressDialog != null) {
+                mProgressDialog.dismiss();
+            }
 
             if(e == null) {
                 onSeeded();
