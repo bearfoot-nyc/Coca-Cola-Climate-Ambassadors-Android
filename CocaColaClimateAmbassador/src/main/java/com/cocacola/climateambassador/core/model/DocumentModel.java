@@ -30,6 +30,8 @@ public class DocumentModel {
         // Build the search query;
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT ");
+        sb.append(DocumentDao.Properties.Id.columnName);
+        sb.append(", ");
         sb.append(DocumentDao.Properties.Label.columnName);
         sb.append(" FROM ");
         sb.append(DocumentDao.TABLENAME);

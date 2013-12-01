@@ -29,8 +29,10 @@ public class DocumentModelTests extends AbsDataTests {
         for(int i = 0; i < count; i++) {
             cursor.moveToPosition(i);
 
-            String label = cursor.getString(0);
+            Long id = cursor.getLong(0);
+            String label = cursor.getString(1);
 
+            assertNotNull(id);
             assertNotNull(label);
             assertTrue("Label did not contain query", label.contains(query));
 

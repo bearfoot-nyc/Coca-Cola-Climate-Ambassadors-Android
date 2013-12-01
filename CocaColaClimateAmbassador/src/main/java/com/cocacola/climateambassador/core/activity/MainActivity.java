@@ -157,4 +157,11 @@ public class MainActivity extends CaSearchableDrawerActivity implements AdapterV
         return false;
     }
 
+    @Override public boolean onSuggestionSelect(int position) {
+        return false;
+    }
+
+    @Override public boolean onSuggestionClick(int position) {
+        return false;
+    }
 }

@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.cocacola.climateambassador.BuildConfig;
 import com.cocacola.climateambassador.cases.activity.CaseActivity;
+import com.cocacola.climateambassador.core.activity.CaSearchableDrawerActivity;
 import com.cocacola.climateambassador.core.activity.MainActivity;
 import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.core.util.DataChecker;
@@ -56,7 +57,8 @@ import timber.log.Timber;
         DataSeeder.class, DataChecker.class, SectionModel.class, ModuleActivity.class,
         ModuleFragment.class, CaseActivity.class, CaseStudiesListFragment.class, ForSupplierOverviewFragment.class,
         ForSuppliersOverviewActivity.class, ModuleCasesActivity.class, ForSuppliersVisionFragment.class,
-        DocumentUriBuilder.class, DocumentIntentBuilder.class, EmailAttachmentIntentBuilder.class
+        DocumentUriBuilder.class, DocumentIntentBuilder.class, EmailAttachmentIntentBuilder.class,
+        CaSearchableDrawerActivity.class
 })
 public class CaProdModule {
 
@@ -84,7 +86,7 @@ public class CaProdModule {
     }
 
     @Provides @Singleton SQLiteOpenHelper provideSQLiteOpenHelper(Context context) {
-        return new DaoMaster.DevOpenHelper(context, "climateambassador", null);
+        return new DaoMaster.DevOpenHelper(context, "cocacola", null);
     }
 
     @Provides @Singleton DaoMaster provideDaoMaster(SQLiteOpenHelper openHelper) {
