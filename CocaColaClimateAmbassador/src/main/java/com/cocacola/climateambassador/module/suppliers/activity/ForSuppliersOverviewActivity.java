@@ -3,6 +3,7 @@ package com.cocacola.climateambassador.module.suppliers.activity;
 import android.os.Bundle;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.module.activity.AbsModuleActivity;
+import com.cocacola.climateambassador.module.activity.SectionModuleActivity;
 import com.cocacola.climateambassador.module.suppliers.fragment.ForSupplierOverviewFragment;
 
 /**

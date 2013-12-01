@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.core.util.Toaster;
@@ -19,16 +18,8 @@ import com.cocacola.climateambassador.data.Navigable;
 import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.drawer.adapters.DrawerListAdapter;
 import com.cocacola.climateambassador.favorites.activity.FavoritesActivity;
-import com.cocacola.climateambassador.module.activity.AbsModuleActivity;
-import com.cocacola.climateambassador.module.activity.ModuleActivity;
-import com.cocacola.climateambassador.module.fragment.ModuleFragment;
-import com.cocacola.climateambassador.module.internal.activity.ModuleCasesActivity;
-import com.cocacola.climateambassador.module.suppliers.fragment.ForSupplierOverviewFragment;
-import com.cocacola.climateambassador.module.suppliers.fragment.ForSuppliersVisionFragment;
 import java.util.LinkedList;
 import java.util.List;
-
-import static com.cocacola.climateambassador.module.activity.AbsModuleActivity.*;
 
 /**
  * Created by realandylawton on 8/31/13.
@@ -42,6 +33,9 @@ public abstract class CaDrawerSearchableActivity extends CaSearchableActivity im
     public ActionBarDrawerToggle mDrawerToggle;
 
     private List<Navigable> mDrawerItems;
+
+    public abstract void onModuleItemClick(Navigable module);
+    public abstract void onSectionItemClick(Navigable section);
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -164,35 +158,18 @@ public abstract class CaDrawerSearchableActivity extends CaSearchableActivity im
 
         mDrawerLayout.closeDrawer(mDrawerList);
 
-        Intent intent;
-
-        if(item.getShortTitle().contains("Favorites")) {
-            intent = new Intent(this, FavoritesActivity.class);
+        if(SectionModel.isSection(item.getTitle())) {
+            if(item.getTitle().contains("Favorites")) {
+                Intent intent = new Intent(this, FavoritesActivity.class);
+                startActivity(intent);
+            }
+            else {
+                onSectionItemClick(item);
+            }
         }
-        else if(item.getShortTitle().contains("Key Interventions")) {
-
-            intent = new Intent(this, ModuleCasesActivity.class);
-            intent.putExtra(EXTRA_MODULE_ID, item.getId());
-
+        else {
+            onModuleItemClick(item);
         }
-        else if(item.getTitle().contains("Sustainable")) {
-
-            intent = new Intent(this, ModuleActivity.class);
-            intent.putExtra(EXTRA_MODULE_ID, item.getId());
-            intent.putExtra(EXTRA_MODULE_TYPE, MODULE_TYPE_SUSTAINABLE);
-
-        }
-        else if(item.getTitle().contains("2020 Vision")) {
-            intent = new Intent(this, ModuleActivity.class);
-            intent.putExtra(EXTRA_MODULE_ID, item.getId());
-            intent.putExtra(EXTRA_MODULE_TYPE, MODULE_TYPE_VISION);
-        }
-        else  {
-            intent = new Intent(this, ModuleActivity.class);
-            intent.putExtra(EXTRA_MODULE_ID, item.getId());
-        }
-
-        startActivity(intent);
 
     }
 

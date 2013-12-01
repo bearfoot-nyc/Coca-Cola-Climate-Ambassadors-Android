@@ -3,9 +3,8 @@ package com.cocacola.climateambassador.favorites.activity;
 import android.os.Bundle;
 import android.widget.ListView;
 import butterknife.InjectView;
-import butterknife.Views;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.core.activity.CaDrawerSearchableActivity;
+import com.cocacola.climateambassador.core.activity.RootDrawerActivity;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.Document;
 import com.cocacola.climateambassador.favorites.adapter.FavoriteListAdapter;
@@ -16,7 +15,7 @@ import javax.inject.Inject;
 /**
  * Created by realandylawton on 12/1/13.
  */
-public class FavoritesActivity extends CaDrawerSearchableActivity {
+public class FavoritesActivity extends RootDrawerActivity {
 
     @Inject protected DaoMaster mDaoMaster;
     @InjectView(android.R.id.list) protected ListView mListView;
@@ -44,4 +43,5 @@ public class FavoritesActivity extends CaDrawerSearchableActivity {
     private List<Document> getFavoritesList() {
         return FavoritesModel.getFavorites(mDaoMaster);
     }
+
 }

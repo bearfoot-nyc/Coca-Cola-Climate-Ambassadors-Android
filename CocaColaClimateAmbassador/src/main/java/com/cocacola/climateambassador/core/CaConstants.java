@@ -12,4 +12,7 @@ public class CaConstants {
     public static final String DOC = "doc";
     public static final String MOV = "mov";
 
+    public static final Long SECTION_ID_INTERNAL = 1l;
+    public static final Long SECTION_ID_SUPPLIERS = 2l;
+
 }

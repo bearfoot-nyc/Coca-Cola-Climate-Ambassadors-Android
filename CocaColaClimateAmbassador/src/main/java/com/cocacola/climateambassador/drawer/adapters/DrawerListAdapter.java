@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.data.Navigable;
 import com.cocacola.climateambassador.drawer.view.DrawerHeaderRowView;
 import com.cocacola.climateambassador.drawer.view.DrawerRowView;
@@ -33,7 +34,7 @@ public class DrawerListAdapter extends BaseAdapter {
     public int getItemViewType(int position) {
 
         Navigable item = getItem(position);
-        return isSection(item.getTitle()) ? 0 : 1;
+        return SectionModel.isSection(item.getTitle()) ? 0 : 1;
 
     }
 
@@ -53,7 +54,7 @@ public class DrawerListAdapter extends BaseAdapter {
 
         Navigable item = getItem(position);
 
-        return isSection(item.getTitle()) ? getHeaderView(item) : getRowView(item);
+        return SectionModel.isSection(item.getTitle()) ? getHeaderView(item) : getRowView(item);
 
     }
 
@@ -77,7 +78,4 @@ public class DrawerListAdapter extends BaseAdapter {
 
     }
 
-    private boolean isSection(String title) {
-        return title.contains("Favorites") || title.contains("Internal") || title.contains("For Suppliers");
-    }
 }

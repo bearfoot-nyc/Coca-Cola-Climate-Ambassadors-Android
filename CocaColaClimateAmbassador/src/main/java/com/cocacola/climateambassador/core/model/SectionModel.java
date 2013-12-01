@@ -36,4 +36,11 @@ public class SectionModel {
 
     }
 
+    public static boolean isSection(String title) {
+        return title.contains("Favorites") || title.contains("Internal") || title.contains("For Suppliers");
+    }
+
+    public static Section getSection(DaoMaster daoMaster, Long sectionId) {
+        return daoMaster.newSession().getSectionDao().load(sectionId);
+    }
 }
