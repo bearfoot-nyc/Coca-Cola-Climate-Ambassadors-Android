@@ -22,7 +22,7 @@ import com.cocacola.climateambassador.favorites.view.FavoriteRowView;
 import com.cocacola.climateambassador.module.activity.ModuleActivity;
 import com.cocacola.climateambassador.module.activity.SectionModuleActivity;
 import com.cocacola.climateambassador.module.fragment.ModuleFragment;
-import com.cocacola.climateambassador.module.internal.activity.ModuleCasesActivity;
+import com.cocacola.climateambassador.module.internal.fragment.ModuleCasesFragment;
 import com.cocacola.climateambassador.module.internal.activity.RoleOfClimateAmbassadorActivity;
 import com.cocacola.climateambassador.module.internal.fragment.CaseStudiesListFragment;
 import com.cocacola.climateambassador.module.internal.fragment.InternalTrainingOverviewFragment;
@@ -54,7 +54,7 @@ import timber.log.Timber;
         DocumentView.class,
         DataSeeder.class, DataChecker.class, SectionModel.class, ModuleActivity.class,
         ModuleFragment.class, CaseActivity.class, CaseStudiesListFragment.class, ForSupplierOverviewFragment.class,
-        ForSuppliersOverviewActivity.class, ModuleCasesActivity.class, ForSuppliersVisionFragment.class,
+        ForSuppliersOverviewActivity.class, ModuleCasesFragment.class, ForSuppliersVisionFragment.class,
         DocumentUriBuilder.class, DocumentIntentBuilder.class, EmailAttachmentIntentBuilder.class,
         CaSearchableActivity.class, LandingActivity.class, FavoritesActivity.class, FavoriteRowView.class,
         SectionModuleActivity.class

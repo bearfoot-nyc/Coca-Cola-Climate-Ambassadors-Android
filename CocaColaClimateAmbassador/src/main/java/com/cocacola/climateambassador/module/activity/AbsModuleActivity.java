@@ -1,9 +1,7 @@
 package com.cocacola.climateambassador.module.activity;
 
-import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.widget.AdapterView;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.CaConstants;
 import com.cocacola.climateambassador.core.activity.CaDrawerSearchableActivity;
@@ -15,7 +13,7 @@ import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.Navigable;
 import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.module.fragment.ModuleFragment;
-import com.cocacola.climateambassador.module.internal.activity.ModuleCasesActivity;
+import com.cocacola.climateambassador.module.internal.fragment.ModuleCasesFragment;
 import com.cocacola.climateambassador.module.suppliers.fragment.ForSupplierOverviewFragment;
 import com.cocacola.climateambassador.module.suppliers.fragment.ForSuppliersVisionFragment;
 import javax.inject.Inject;
@@ -25,7 +23,7 @@ import javax.inject.Inject;
  */
 public abstract class AbsModuleActivity extends CaDrawerSearchableActivity {
 
-    public static final int MODULE_TYPE_INTERVENTION = 1;
+    public static final int MODULE_TYPE_CASES = 1;
     public static final int MODULE_TYPE_SUSTAINABLE = 2;
     public static final int MODULE_TYPE_VISION = 3;
     public static final String EXTRA_MODULE_ID = "moduleId";
@@ -37,11 +35,8 @@ public abstract class AbsModuleActivity extends CaDrawerSearchableActivity {
 
         if(item.getShortTitle().contains("Key Interventions")) {
 
-            Intent intent = new Intent(this, ModuleCasesActivity.class);
-            intent.putExtra(EXTRA_MODULE_ID, item.getId());
-
-            startActivity(intent);
-
+            ModuleCasesFragment fragment = ModuleCasesFragment.newInstance(item.getId());
+            setContentFragment(fragment);
 
         }
         else if(item.getTitle().contains("Sustainable")) {

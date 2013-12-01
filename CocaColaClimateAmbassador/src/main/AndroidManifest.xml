@@ -60,7 +60,7 @@
         </activity>
 
         <activity
-            android:name=".module.internal.activity.ModuleCasesActivity"
+            android:name=".module.internal.fragment.ModuleCasesFragment"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape" >
         </activity>

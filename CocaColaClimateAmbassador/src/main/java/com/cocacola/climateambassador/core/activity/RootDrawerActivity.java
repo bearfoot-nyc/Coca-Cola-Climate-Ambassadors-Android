@@ -3,14 +3,14 @@ package com.cocacola.climateambassador.core.activity;
 import android.content.Intent;
 import com.cocacola.climateambassador.core.CaConstants;
 import com.cocacola.climateambassador.data.Navigable;
+import com.cocacola.climateambassador.module.activity.AbsModuleActivity;
 import com.cocacola.climateambassador.module.activity.ModuleActivity;
 import com.cocacola.climateambassador.module.activity.SectionModuleActivity;
-import com.cocacola.climateambassador.module.internal.activity.ModuleCasesActivity;
 import com.cocacola.climateambassador.module.suppliers.activity.ForSuppliersOverviewActivity;
 
 import static com.cocacola.climateambassador.module.activity.AbsModuleActivity.EXTRA_MODULE_ID;
 import static com.cocacola.climateambassador.module.activity.AbsModuleActivity.EXTRA_MODULE_TYPE;
-import static com.cocacola.climateambassador.module.activity.AbsModuleActivity.MODULE_TYPE_INTERVENTION;
+import static com.cocacola.climateambassador.module.activity.AbsModuleActivity.MODULE_TYPE_CASES;
 import static com.cocacola.climateambassador.module.activity.AbsModuleActivity.MODULE_TYPE_SUSTAINABLE;
 import static com.cocacola.climateambassador.module.activity.AbsModuleActivity.MODULE_TYPE_VISION;
 
@@ -24,8 +24,9 @@ public class RootDrawerActivity extends CaDrawerSearchableActivity {
 
         if(item.getShortTitle().contains("Key Interventions")) {
 
-            intent = new Intent(this, ModuleCasesActivity.class);
+            intent = new Intent(this, ModuleActivity.class);
             intent.putExtra(EXTRA_MODULE_ID, item.getId());
+            intent.putExtra(EXTRA_MODULE_TYPE, MODULE_TYPE_CASES);
 
         }
         else if(item.getTitle().contains("Sustainable")) {

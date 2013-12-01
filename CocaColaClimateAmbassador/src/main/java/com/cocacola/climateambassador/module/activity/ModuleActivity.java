@@ -4,10 +4,10 @@ import android.os.Bundle;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.fragment.CaFragment;
 import com.cocacola.climateambassador.module.fragment.ModuleFragment;
+import com.cocacola.climateambassador.module.internal.fragment.CaseStudiesListFragment;
+import com.cocacola.climateambassador.module.internal.fragment.ModuleCasesFragment;
 import com.cocacola.climateambassador.module.suppliers.fragment.ForSupplierOverviewFragment;
 import com.cocacola.climateambassador.module.suppliers.fragment.ForSuppliersVisionFragment;
-
-import static com.cocacola.climateambassador.module.activity.AbsModuleActivity.*;
 
 /**
  * Created by andrewlawton on 9/1/13.
@@ -33,7 +33,9 @@ public class ModuleActivity extends AbsModuleActivity {
             case MODULE_TYPE_VISION:
                 fragment = ForSuppliersVisionFragment.newInstance(moduleId);
                 break;
-            case MODULE_TYPE_INTERVENTION:
+            case MODULE_TYPE_CASES:
+                fragment = ModuleCasesFragment.newInstance(moduleId);
+                break;
             default:
                 fragment = ModuleFragment.newInstance(moduleId);
                 break;
