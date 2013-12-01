@@ -8,10 +8,10 @@ import de.greenrobot.dao.DaoException;
 /**
  * Entity mapped to table SECTION.
  */
-public class Section {
+public class Section implements Navigable {
 
     private Long id;
-    private String name;
+    private String title;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
@@ -28,9 +28,9 @@ public class Section {
         this.id = id;
     }
 
-    public Section(Long id, String name) {
+    public Section(Long id, String title) {
         this.id = id;
-        this.name = name;
+        this.title = title;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -47,12 +47,12 @@ public class Section {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /** To-many relationship, resolved on first access (and after reset). Changes to to-many relations are not persisted, make changes to the target entity. */

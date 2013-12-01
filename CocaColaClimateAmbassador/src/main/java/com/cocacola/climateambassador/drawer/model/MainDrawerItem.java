@@ -35,7 +35,7 @@ public class MainDrawerItem extends DrawerItem {
     }
 
     @Override public String getTitle() {
-        return mSection.getName();
+        return mSection.getTitle();
     }
 
 }

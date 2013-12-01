@@ -63,7 +63,7 @@ public class DataSeederTests extends AbsDataTests {
 
         // Assert Section is valid
         assertNotNull(section);
-        assertEquals("Section titles not the same", mContext.getString(sectionTitleRes), section.getName());
+        assertEquals("Section titles not the same", mContext.getString(sectionTitleRes), section.getTitle());
 
         // Inspect modules
         List<Module> moduleList = section.getModules();

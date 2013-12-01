@@ -10,11 +10,15 @@ import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.core.util.DataChecker;
 import com.cocacola.climateambassador.core.util.DataSeeder;
+import com.cocacola.climateambassador.core.util.Toaster;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.Module;
+import com.cocacola.climateambassador.data.Navigable;
 import com.cocacola.climateambassador.data.Section;
+import com.cocacola.climateambassador.drawer.adapters.DrawerListAdapter;
 import com.cocacola.climateambassador.drawer.adapters.MainDrawerListAdapter;
 import com.cocacola.climateambassador.drawer.model.MainDrawerItem;
+import com.cocacola.climateambassador.favorites.activity.FavoritesActivity;
 import com.cocacola.climateambassador.module.activity.AbsModuleActivity;
 import com.cocacola.climateambassador.module.activity.ModuleActivity;
 import com.cocacola.climateambassador.module.suppliers.activity.ForSuppliersOverviewActivity;
@@ -22,13 +26,9 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.inject.Inject;
 
-public class MainActivity extends CaDrawerSearchableActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends CaDrawerSearchableActivity {
 
-    @Inject protected DataChecker mDataChecker;
-    @Inject protected DataSeeder mDataSeeder;
     @Inject protected DaoMaster mDaoMaster;
-
-    private List<MainDrawerItem> mDrawerItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,26 +36,6 @@ public class MainActivity extends CaDrawerSearchableActivity implements AdapterV
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.main_activity);
-
-        // TODO Move this to a landing Activity
-        if(!mDataChecker.isDataSeeded()) {
-
-            try {
-                mDataSeeder.seed();
-            } catch (Exception e) {
-                Toast.makeText(this, "Failed to load data", Toast.LENGTH_SHORT).show();
-            }
-
-        }
-
-    }
-
-    @Override protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        mMenuAdapter = new MainDrawerListAdapter(this, getNavigationDrawerItems());
-        mDrawerList.setAdapter(mMenuAdapter);
-        mDrawerList.setOnItemClickListener(this);
 
     }
 
@@ -79,16 +59,24 @@ public class MainActivity extends CaDrawerSearchableActivity implements AdapterV
 
     @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        MainDrawerItem item = (MainDrawerItem) parent.getItemAtPosition(position);
+        Navigable item = (Navigable) parent.getItemAtPosition(position);
 
-        Intent intent = createIntentForSection(item.getSection());
+        Intent intent = null;
+
+        if(item.getTitle() == "Favorites") {
+            intent = new Intent(this, FavoritesActivity.class);
+        }
+        else {
+            intent = createIntentForSection(item.getTitle());
+        }
+
         startActivity(intent);
 
     }
 
-    private Intent createIntentForSection(String sectionName) {
+    private Intent createIntentForSection(String sectionTitle) {
 
-        Long sectionId = sectionName.contains("Internal") ?  1l : 2l;
+        Long sectionId = sectionTitle.contains("Internal") ?  1l : 2l;
 
         Section section = mDaoMaster.newSession().getSectionDao().load(sectionId);
 
@@ -110,7 +98,7 @@ public class MainActivity extends CaDrawerSearchableActivity implements AdapterV
 
         Class<?> fragmentClazz = null;
 
-        if(section.getName().contains("Internal")) {
+        if(section.getTitle().contains("Internal")) {
             fragmentClazz = ModuleActivity.class;
         }
         else {
@@ -121,27 +109,6 @@ public class MainActivity extends CaDrawerSearchableActivity implements AdapterV
         intent.putExtra(AbsModuleActivity.EXTRA_MODULE_ID, module.getId());
 
         return intent;
-
-    }
-
-    public List<MainDrawerItem> getNavigationDrawerItems() {
-
-        mDrawerItems = new LinkedList<MainDrawerItem>();
-        List<Section> sectionList = null;
-
-        try {
-            sectionList = SectionModel.getAllSections(mDaoMaster);
-        } catch (Exception e) {
-            Toast.makeText(this, "Failed to load Sections: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            return mDrawerItems;
-        }
-
-        for(Section section : sectionList) {
-            MainDrawerItem item = new MainDrawerItem(section);
-            mDrawerItems.add(item);
-        }
-
-        return mDrawerItems;
 
     }
 

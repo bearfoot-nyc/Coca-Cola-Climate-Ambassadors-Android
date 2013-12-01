@@ -8,12 +8,12 @@ import com.cocacola.climateambassador.drawer.model.DrawerItem;
 
 import java.util.List;
 
-public abstract class DrawerListAdapter extends BaseAdapter {
+public abstract class DeprDrawerListAdapter extends BaseAdapter {
 
     protected Context mContext;
     protected LayoutInflater mInflater;
 
-    public DrawerListAdapter(Context context) {
+    public DeprDrawerListAdapter(Context context) {
         mContext = context;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }

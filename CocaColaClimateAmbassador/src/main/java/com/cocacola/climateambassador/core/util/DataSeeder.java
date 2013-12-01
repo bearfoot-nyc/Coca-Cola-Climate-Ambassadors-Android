@@ -76,7 +76,7 @@ public class DataSeeder {
         SectionJson sectionJson = mJsonLoader.parseFromJsonFile(sectionJsonFile, SectionJson.class);
 
         Section section = new Section();
-        section.setName(sectionJson.getTitle());
+        section.setTitle(sectionJson.getTitle());
 
         SectionDao sectionDao = mDaoMaster.newSession().getSectionDao();
         long sectionId = sectionDao.insert(section);

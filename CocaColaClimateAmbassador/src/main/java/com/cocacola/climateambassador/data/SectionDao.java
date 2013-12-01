@@ -24,7 +24,7 @@ public class SectionDao extends AbstractDao<Section, Long> {
     */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property Name = new Property(1, String.class, "name", false, "NAME");
+        public final static Property Title = new Property(1, String.class, "title", false, "TITLE");
     };
 
     private DaoSession daoSession;
@@ -44,7 +44,7 @@ public class SectionDao extends AbstractDao<Section, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'SECTION' (" + //
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
-                "'NAME' TEXT);"); // 1: name
+                "'TITLE' TEXT);"); // 1: title
     }
 
     /** Drops the underlying database table. */
@@ -63,9 +63,9 @@ public class SectionDao extends AbstractDao<Section, Long> {
             stmt.bindLong(1, id);
         }
  
-        String name = entity.getName();
-        if (name != null) {
-            stmt.bindString(2, name);
+        String title = entity.getTitle();
+        if (title != null) {
+            stmt.bindString(2, title);
         }
     }
 
@@ -86,7 +86,7 @@ public class SectionDao extends AbstractDao<Section, Long> {
     public Section readEntity(Cursor cursor, int offset) {
         Section entity = new Section( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1) // name
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1) // title
         );
         return entity;
     }
@@ -95,7 +95,7 @@ public class SectionDao extends AbstractDao<Section, Long> {
     @Override
     public void readEntity(Cursor cursor, Section entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setTitle(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
      }
     
     /** @inheritdoc */

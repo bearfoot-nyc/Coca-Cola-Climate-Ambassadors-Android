@@ -6,14 +6,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.drawer.model.DrawerItem;
 import com.cocacola.climateambassador.drawer.model.ModuleDrawerItem;
 import java.util.List;
 
 /**
  * Created by realandylawton on 11/23/13.
  */
-public class ModuleDrawerListAdapter extends DrawerListAdapter {
+public class ModuleDrawerListAdapter extends DeprDrawerListAdapter {
 
     private List<ModuleDrawerItem> mNavigationItems;
 
@@ -71,10 +70,10 @@ public class ModuleDrawerListAdapter extends DrawerListAdapter {
 
     private View getNavigationDrawerItemView(ModuleDrawerItem item) {
 
-        View v = mInflater.inflate(R.layout.drawer_list_item, null);
+        View v = mInflater.inflate(R.layout.view_drawer_row, null);
 
-        TextView txtTitle = (TextView) v.findViewById(R.id.drawer_item_title);
-        ImageView imgIcon = (ImageView) v.findViewById(R.id.drawer_item_icon);
+        TextView txtTitle = (TextView) v.findViewById(R.id.drawer_row_title);
+        ImageView imgIcon = (ImageView) v.findViewById(R.id.drawer_row_icon);
 
         txtTitle.setText(item.getTitle());
 

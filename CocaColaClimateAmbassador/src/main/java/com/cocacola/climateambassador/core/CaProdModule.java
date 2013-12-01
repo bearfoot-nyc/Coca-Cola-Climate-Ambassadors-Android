@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.cocacola.climateambassador.BuildConfig;
 import com.cocacola.climateambassador.cases.activity.CaseActivity;
 import com.cocacola.climateambassador.core.activity.CaSearchableActivity;
+import com.cocacola.climateambassador.core.activity.LandingActivity;
 import com.cocacola.climateambassador.core.activity.MainActivity;
 import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.core.util.DataChecker;
@@ -16,6 +17,7 @@ import com.cocacola.climateambassador.core.util.EmailAttachmentIntentBuilder;
 import com.cocacola.climateambassador.core.util.JsonAssetsLoader;
 import com.cocacola.climateambassador.core.views.DocumentView;
 import com.cocacola.climateambassador.data.DaoMaster;
+import com.cocacola.climateambassador.favorites.activity.FavoritesActivity;
 import com.cocacola.climateambassador.favorites.fragment.FavoritesFragment;
 import com.cocacola.climateambassador.module.activity.ModuleActivity;
 import com.cocacola.climateambassador.module.fragment.ModuleFragment;
@@ -58,7 +60,7 @@ import timber.log.Timber;
         ModuleFragment.class, CaseActivity.class, CaseStudiesListFragment.class, ForSupplierOverviewFragment.class,
         ForSuppliersOverviewActivity.class, ModuleCasesActivity.class, ForSuppliersVisionFragment.class,
         DocumentUriBuilder.class, DocumentIntentBuilder.class, EmailAttachmentIntentBuilder.class,
-        CaSearchableActivity.class
+        CaSearchableActivity.class, LandingActivity.class, FavoritesActivity.class
 })
 public class CaProdModule {
 
@@ -86,7 +88,7 @@ public class CaProdModule {
     }
 
     @Provides @Singleton SQLiteOpenHelper provideSQLiteOpenHelper(Context context) {
-        return new DaoMaster.DevOpenHelper(context, "cocacola", null);
+        return new DaoMaster.DevOpenHelper(context, "ccca", null);
     }
 
     @Provides @Singleton DaoMaster provideDaoMaster(SQLiteOpenHelper openHelper) {

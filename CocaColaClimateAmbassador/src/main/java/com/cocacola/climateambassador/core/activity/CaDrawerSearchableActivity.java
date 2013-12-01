@@ -7,20 +7,30 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.core.model.SectionModel;
+import com.cocacola.climateambassador.core.util.Toaster;
+import com.cocacola.climateambassador.data.Navigable;
+import com.cocacola.climateambassador.drawer.adapters.DeprDrawerListAdapter;
 import com.cocacola.climateambassador.drawer.adapters.DrawerListAdapter;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by realandylawton on 8/31/13.
  */
-public abstract class CaDrawerSearchableActivity extends CaSearchableActivity {
+public abstract class CaDrawerSearchableActivity extends CaSearchableActivity implements
+    AdapterView.OnItemClickListener {
 
     public DrawerLayout mDrawerLayout;
     public ListView mDrawerList;
     public DrawerListAdapter mMenuAdapter;
     public ActionBarDrawerToggle mDrawerToggle;
+
+    private List<Navigable> mDrawerItems;
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -30,6 +40,11 @@ public abstract class CaDrawerSearchableActivity extends CaSearchableActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.navigation_drawer_list);
         mDrawerList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
+        // Initialize the adapter
+        mMenuAdapter = new DrawerListAdapter(this, getNavigationDrawerItems());
+        mDrawerList.setAdapter(mMenuAdapter);
+        mDrawerList.setOnItemClickListener(this);
 
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
@@ -55,7 +70,6 @@ public abstract class CaDrawerSearchableActivity extends CaSearchableActivity {
         };
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
 
         // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
@@ -85,6 +99,32 @@ public abstract class CaDrawerSearchableActivity extends CaSearchableActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public List<Navigable> getNavigationDrawerItems() {
+
+        if(mDrawerItems == null) {
+
+            mDrawerItems = new LinkedList<Navigable>();
+
+            try {
+                mDrawerItems.add(new Navigable() {
+                    @Override public Long getId() {
+                        return 0l;
+                    }
+
+                    @Override public String getTitle() {
+                        return "Favorites";
+                    }
+                });
+                mDrawerItems.addAll(SectionModel.getAllSections(mDaoMaster));
+            } catch (Exception e) {
+                Toaster.toast(this, "Failed to load Sections: " + e.getMessage());
+            }
+
+        }
+
+        return mDrawerItems;
+
+    }
 
     protected void setTitle(String title) {
         getActionBar().setTitle(title);

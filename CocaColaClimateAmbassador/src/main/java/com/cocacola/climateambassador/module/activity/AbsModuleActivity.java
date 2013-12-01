@@ -37,9 +37,9 @@ public class AbsModuleActivity extends CaDrawerSearchableActivity implements Ada
         super.onPostCreate(savedInstanceState);
 
         // Set up Menu List
-        mMenuAdapter = new ModuleDrawerListAdapter(this, getDrawerItems());
-        mDrawerList.setAdapter(mMenuAdapter);
-        mDrawerList.setOnItemClickListener(this);
+        //mMenuAdapter = new ModuleDrawerListAdapter(this, getDrawerItems());
+        //mDrawerList.setAdapter(mMenuAdapter);
+        //mDrawerList.setOnItemClickListener(this);
 
 
     }
@@ -73,7 +73,7 @@ public class AbsModuleActivity extends CaDrawerSearchableActivity implements Ada
 
                 for(Section section : sectionList) {
                     mDrawerItems.add(
-                        new ModuleDrawerItem(true, section.getName()));
+                        new ModuleDrawerItem(true, section.getTitle()));
                     for(Module module : section.getModules()) {
                         mDrawerItems.add(new ModuleDrawerItem(module, false));
                     }

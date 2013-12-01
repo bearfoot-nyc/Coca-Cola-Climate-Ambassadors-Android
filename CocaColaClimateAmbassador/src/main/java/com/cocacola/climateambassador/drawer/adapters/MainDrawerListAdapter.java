@@ -13,9 +13,11 @@ import java.util.List;
 /**
  * Created by realandylawton on 11/23/13.
  */
-public class MainDrawerListAdapter extends DrawerListAdapter {
+public class MainDrawerListAdapter extends DeprDrawerListAdapter {
 
     private List<MainDrawerItem> mDrawerItems;
+
+
 
     public MainDrawerListAdapter(Context context, List<MainDrawerItem> mainDrawerItems) {
         super(context);
@@ -36,10 +38,10 @@ public class MainDrawerListAdapter extends DrawerListAdapter {
 
     @Override public View getView(int position, View convertView, ViewGroup parent) {
 
-        View v = mInflater.inflate(R.layout.drawer_list_item, null);
+        View v = mInflater.inflate(R.layout.view_drawer_row, null);
 
-        TextView txtTitle = Views.findById(v, R.id.drawer_item_title);
-        ImageView imgIcon =  Views.findById(v, R.id.drawer_item_icon);
+        TextView txtTitle = Views.findById(v, R.id.drawer_row_title);
+        ImageView imgIcon =  Views.findById(v, R.id.drawer_row_icon);
 
         MainDrawerItem item = getItem(position);
 

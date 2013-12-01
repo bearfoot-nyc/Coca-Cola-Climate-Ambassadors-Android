@@ -14,7 +14,7 @@ public class ForSuppliersOverviewActivity extends AbsModuleActivity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.module_act);
+        setContentView(R.layout.module_activity);
 
         ForSupplierOverviewFragment fragment = ForSupplierOverviewFragment.newInstance();
         setContentFragment(fragment);

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by realandylawton on 11/19/13.
  */
-public class SectionModel extends Section {
+public class SectionModel {
 
     public static List<Section> getAllSections(DaoMaster daoMaster) throws Exception {
 
@@ -26,7 +26,7 @@ public class SectionModel extends Section {
 
         Section section = null;
         for(Section s : sectionList) {
-            if(s.getName().equals(title)) {
+            if(s.getTitle().equals(title)) {
                 section = s;
             }
         }

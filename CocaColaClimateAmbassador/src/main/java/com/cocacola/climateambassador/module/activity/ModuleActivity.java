@@ -13,7 +13,7 @@ public class ModuleActivity extends AbsModuleActivity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.module_act);
+        setContentView(R.layout.module_activity);
 
         // Show correct fragment
         Long moduleId = getModuleIdFromIntent(getIntent());

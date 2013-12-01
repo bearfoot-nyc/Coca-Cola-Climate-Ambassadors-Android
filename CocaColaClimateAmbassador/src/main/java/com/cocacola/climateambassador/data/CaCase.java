@@ -8,7 +8,7 @@ import de.greenrobot.dao.DaoException;
 /**
  * Entity mapped to table CA_CASE.
  */
-public class CaCase {
+public class CaCase implements Navigable {
 
     private Long id;
     private String title;

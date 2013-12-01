@@ -19,7 +19,8 @@ public class CaDaoGenerator {
         // Section
         Entity section = schema.addEntity("Section");
         section.addIdProperty();
-        section.addStringProperty("name");
+        section.addStringProperty("title");
+        section.implementsInterface("Navigable");
 
         // Module
         Entity module = generateModules(schema, section);
@@ -48,6 +49,7 @@ public class CaDaoGenerator {
         caseEntity.addIdProperty();
         caseEntity.addStringProperty("title");
         caseEntity.addStringProperty("bodyText");
+        caseEntity.implementsInterface("Navigable");
 
         // Module to Cases
         Property moduleId = caseEntity.addLongProperty("moduleId").notNull().getProperty();

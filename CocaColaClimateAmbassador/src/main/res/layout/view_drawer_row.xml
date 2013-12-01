@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.cocacola.climateambassador.drawer.view.DrawerRowView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp">
 ®
     <ImageView
         style="@style/Ca"
-        android:id="@+id/drawer_item_icon"
+        android:id="@+id/drawer_row_icon"
         android:layout_centerVertical="true"
         android:contentDescription="@string/navigation_drawer_icon"
         android:layout_marginLeft="5dp" />
 
     <TextView
         style="@style/Ca"
-        android:id="@+id/drawer_item_title"
+        android:id="@+id/drawer_row_title"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/drawer_item_icon"
+        android:layout_toRightOf="@id/drawer_row_icon"
         android:layout_marginLeft="10dp"
         android:textSize="16sp"
         android:textColor="@color/white" />
 
-</RelativeLayout>
+</com.cocacola.climateambassador.drawer.view.DrawerRowView>
