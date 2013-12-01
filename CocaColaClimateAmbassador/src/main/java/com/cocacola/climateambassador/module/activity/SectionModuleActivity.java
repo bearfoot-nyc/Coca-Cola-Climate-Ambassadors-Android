@@ -2,7 +2,6 @@ package com.cocacola.climateambassador.module.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.core.util.Toaster;

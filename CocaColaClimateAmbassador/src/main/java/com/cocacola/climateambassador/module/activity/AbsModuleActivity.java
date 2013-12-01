@@ -72,7 +72,7 @@ public abstract class AbsModuleActivity extends CaDrawerSearchableActivity {
 
             CaFragment fragment;
 
-            if(section.getId() == CaConstants.SECTION_ID_INTERNAL) {
+            if(section.getId() == CaConstants.SECTION_ID_SUPPLIERS) {
 
                 fragment = ForSupplierOverviewFragment.newInstance();
 
