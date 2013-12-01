@@ -1,5 +1,6 @@
 {
     "title": "For Suppliers",
+    "shortTitle": "For Suppliers",
     "modules" : [
          "suppliers_overview.json",
          "suppliers_2020_vision.json"

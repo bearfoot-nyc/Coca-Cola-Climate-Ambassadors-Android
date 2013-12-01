@@ -21,6 +21,7 @@ public class CaDaoGenerator {
         Entity section = schema.addEntity("Section");
         section.addIdProperty();
         section.addStringProperty("title");
+        section.addStringProperty("shortTitle");
         section.implementsInterface(INTERFACE_NAVIGABLE);
 
         // Module
@@ -88,6 +89,7 @@ public class CaDaoGenerator {
         module.addIdProperty();
         module.addStringProperty("title");
         module.addStringProperty("bodyText");
+        module.addStringProperty("shortTitle");
         module.implementsInterface(INTERFACE_NAVIGABLE);
 
         // Section To Modules

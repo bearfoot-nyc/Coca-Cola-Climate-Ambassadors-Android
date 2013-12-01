@@ -88,7 +88,7 @@ public class CaProdModule {
     }
 
     @Provides @Singleton SQLiteOpenHelper provideSQLiteOpenHelper(Context context) {
-        return new DaoMaster.DevOpenHelper(context, "ccca", null);
+        return new DaoMaster.DevOpenHelper(context, "climateambassador", null);
     }
 
     @Provides @Singleton DaoMaster provideDaoMaster(SQLiteOpenHelper openHelper) {

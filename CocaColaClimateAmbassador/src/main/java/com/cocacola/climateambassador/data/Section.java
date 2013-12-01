@@ -12,6 +12,7 @@ public class Section implements Navigable {
 
     private Long id;
     private String title;
+    private String shortTitle;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
@@ -28,9 +29,10 @@ public class Section implements Navigable {
         this.id = id;
     }
 
-    public Section(Long id, String title) {
+    public Section(Long id, String title, String shortTitle) {
         this.id = id;
         this.title = title;
+        this.shortTitle = shortTitle;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -53,6 +55,14 @@ public class Section implements Navigable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getShortTitle() {
+        return shortTitle;
+    }
+
+    public void setShortTitle(String shortTitle) {
+        this.shortTitle = shortTitle;
     }
 
     /** To-many relationship, resolved on first access (and after reset). Changes to to-many relations are not persisted, make changes to the target entity. */

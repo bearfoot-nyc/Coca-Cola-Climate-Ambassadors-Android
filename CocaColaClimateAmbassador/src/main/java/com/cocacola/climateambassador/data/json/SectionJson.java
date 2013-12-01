@@ -8,11 +8,20 @@ import java.util.List;
 public class SectionJson {
 
     private String title;
+    private String shortTitle;
     private List<String> modules;
 
     public SectionJson(String title, List<String> modules) {
         this.title = title;
         this.modules = modules;
+    }
+
+    public String getShortTitle() {
+        return shortTitle;
+    }
+
+    public void setShortTitle(String shortTitle) {
+        this.shortTitle = shortTitle;
     }
 
     public String getTitle() {

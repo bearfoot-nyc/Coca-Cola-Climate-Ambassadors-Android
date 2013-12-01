@@ -9,10 +9,13 @@ import java.util.List;
 public class ModuleJson {
 
     private String title;
+    private String shortTitle;
     private String bodyText;
     @SerializedName("caseStudies") private List<String> cases;
     private List<DocumentJson> documents;
     private BulletPointFrameJson bulletPointFrame;
+
+
     public String getTitle() {
         return title;
     }
@@ -54,6 +57,11 @@ public class ModuleJson {
         this.cases = cases;
     }
 
+    public String getShortTitle() {
+        return shortTitle;
+    }
 
-
+    public void setShortTitle(String shortTitle) {
+        this.shortTitle = shortTitle;
+    }
 }

@@ -13,6 +13,7 @@ public class Module implements Navigable {
     private Long id;
     private String title;
     private String bodyText;
+    private String shortTitle;
     private long sectionId;
     private Long bulletPointFrameId;
 
@@ -35,10 +36,11 @@ public class Module implements Navigable {
         this.id = id;
     }
 
-    public Module(Long id, String title, String bodyText, long sectionId, Long bulletPointFrameId) {
+    public Module(Long id, String title, String bodyText, String shortTitle, long sectionId, Long bulletPointFrameId) {
         this.id = id;
         this.title = title;
         this.bodyText = bodyText;
+        this.shortTitle = shortTitle;
         this.sectionId = sectionId;
         this.bulletPointFrameId = bulletPointFrameId;
     }
@@ -71,6 +73,14 @@ public class Module implements Navigable {
 
     public void setBodyText(String bodyText) {
         this.bodyText = bodyText;
+    }
+
+    public String getShortTitle() {
+        return shortTitle;
+    }
+
+    public void setShortTitle(String shortTitle) {
+        this.shortTitle = shortTitle;
     }
 
     public long getSectionId() {

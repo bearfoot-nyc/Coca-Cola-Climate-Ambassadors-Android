@@ -60,25 +60,4 @@ public class JsonAssetsLoader {
 
     }
 
-    // TODO Genercize this: T<Model> parseClassFromJsonfile
-    public CaseJson parseCaseFromJsonFile(String filename) throws IOException, JsonSyntaxException {
-
-        String json = parseAsString(filename);
-
-        CaseJson myCase = mGson.fromJson(json, CaseJson.class);
-
-        return myCase;
-
-    }
-
-    public ModuleJson parseModuleFromJsonFile(String filename) throws IOException, JsonSyntaxException {
-
-        String json = parseAsString(filename);
-
-        ModuleJson myModule = mGson.fromJson(json, ModuleJson.class);
-
-        return myModule;
-
-    }
-
 }

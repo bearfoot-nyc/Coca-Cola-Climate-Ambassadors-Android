@@ -85,7 +85,7 @@ public class ForSupplierOverviewFragment extends CaFragment implements HasJsonMo
         // Lazily create Model object from JSON file
         if(mModule == null) {
             try {
-                mModule = mJsonAssetsLoader.parseModuleFromJsonFile(getJsonAssetFilename());
+                mModule = mJsonAssetsLoader.parseFromJsonFile(getJsonAssetFilename(), ModuleJson.class);
             } catch (IOException e) {
                 onAssetLoadError();
             } catch (JsonSyntaxException e) {

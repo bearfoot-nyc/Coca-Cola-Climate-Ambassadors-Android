@@ -6,4 +6,5 @@ package com.cocacola.climateambassador.data;
 public interface Navigable {
     public Long getId();
     public String getTitle();
+    public String getShortTitle();
 }

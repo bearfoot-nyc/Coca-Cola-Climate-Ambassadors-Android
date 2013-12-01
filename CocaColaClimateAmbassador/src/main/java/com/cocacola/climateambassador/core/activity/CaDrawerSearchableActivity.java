@@ -117,6 +117,10 @@ public abstract class CaDrawerSearchableActivity extends CaSearchableActivity im
                     @Override public String getTitle() {
                         return "Favorites";
                     }
+
+                    @Override public String getShortTitle() {
+                        return "Favorites";
+                    }
                 });
 
                 // Get the sections

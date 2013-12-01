@@ -40,7 +40,7 @@ public class DrawerRowView extends LinearLayout implements HasModel<Navigable> {
 
     @Override public void setModel(Navigable model) {
 
-        mTitleView.setText(model.getTitle());
+        mTitleView.setText(model.getShortTitle());
 
     }
 }

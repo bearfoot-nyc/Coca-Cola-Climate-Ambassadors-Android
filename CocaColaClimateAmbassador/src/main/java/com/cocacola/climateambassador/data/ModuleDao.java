@@ -31,8 +31,9 @@ public class ModuleDao extends AbstractDao<Module, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Title = new Property(1, String.class, "title", false, "TITLE");
         public final static Property BodyText = new Property(2, String.class, "bodyText", false, "BODY_TEXT");
-        public final static Property SectionId = new Property(3, long.class, "sectionId", false, "SECTION_ID");
-        public final static Property BulletPointFrameId = new Property(4, Long.class, "bulletPointFrameId", false, "BULLET_POINT_FRAME_ID");
+        public final static Property ShortTitle = new Property(3, String.class, "shortTitle", false, "SHORT_TITLE");
+        public final static Property SectionId = new Property(4, long.class, "sectionId", false, "SECTION_ID");
+        public final static Property BulletPointFrameId = new Property(5, Long.class, "bulletPointFrameId", false, "BULLET_POINT_FRAME_ID");
     };
 
     private DaoSession daoSession;
@@ -55,8 +56,9 @@ public class ModuleDao extends AbstractDao<Module, Long> {
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
                 "'TITLE' TEXT," + // 1: title
                 "'BODY_TEXT' TEXT," + // 2: bodyText
-                "'SECTION_ID' INTEGER NOT NULL ," + // 3: sectionId
-                "'BULLET_POINT_FRAME_ID' INTEGER);"); // 4: bulletPointFrameId
+                "'SHORT_TITLE' TEXT," + // 3: shortTitle
+                "'SECTION_ID' INTEGER NOT NULL ," + // 4: sectionId
+                "'BULLET_POINT_FRAME_ID' INTEGER);"); // 5: bulletPointFrameId
     }
 
     /** Drops the underlying database table. */
@@ -84,11 +86,16 @@ public class ModuleDao extends AbstractDao<Module, Long> {
         if (bodyText != null) {
             stmt.bindString(3, bodyText);
         }
-        stmt.bindLong(4, entity.getSectionId());
+ 
+        String shortTitle = entity.getShortTitle();
+        if (shortTitle != null) {
+            stmt.bindString(4, shortTitle);
+        }
+        stmt.bindLong(5, entity.getSectionId());
  
         Long bulletPointFrameId = entity.getBulletPointFrameId();
         if (bulletPointFrameId != null) {
-            stmt.bindLong(5, bulletPointFrameId);
+            stmt.bindLong(6, bulletPointFrameId);
         }
     }
 
@@ -111,8 +118,9 @@ public class ModuleDao extends AbstractDao<Module, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // title
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // bodyText
-            cursor.getLong(offset + 3), // sectionId
-            cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4) // bulletPointFrameId
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // shortTitle
+            cursor.getLong(offset + 4), // sectionId
+            cursor.isNull(offset + 5) ? null : cursor.getLong(offset + 5) // bulletPointFrameId
         );
         return entity;
     }
@@ -123,8 +131,9 @@ public class ModuleDao extends AbstractDao<Module, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setTitle(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setBodyText(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setSectionId(cursor.getLong(offset + 3));
-        entity.setBulletPointFrameId(cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4));
+        entity.setShortTitle(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setSectionId(cursor.getLong(offset + 4));
+        entity.setBulletPointFrameId(cursor.isNull(offset + 5) ? null : cursor.getLong(offset + 5));
      }
     
     /** @inheritdoc */

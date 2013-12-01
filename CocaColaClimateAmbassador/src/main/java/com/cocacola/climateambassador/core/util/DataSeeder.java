@@ -77,6 +77,7 @@ public class DataSeeder {
 
         Section section = new Section();
         section.setTitle(sectionJson.getTitle());
+        section.setShortTitle(sectionJson.getShortTitle());
 
         SectionDao sectionDao = mDaoMaster.newSession().getSectionDao();
         long sectionId = sectionDao.insert(section);
@@ -97,13 +98,14 @@ public class DataSeeder {
     public Module seedModule(String fileName, Long sectionId)
         throws IOException, SeedFailedException {
 
-        ModuleJson moduleJson = mJsonLoader.parseModuleFromJsonFile(fileName);
+        ModuleJson moduleJson = mJsonLoader.parseFromJsonFile(fileName, ModuleJson.class);
 
         DaoSession session = mDaoMaster.newSession();
         ModuleDao dao = session.getModuleDao();
 
         Module moduleModel = new Module();
         moduleModel.setTitle(moduleJson.getTitle());
+        moduleModel.setShortTitle(moduleJson.getShortTitle());
         moduleModel.setBodyText(moduleJson.getBodyText());
         moduleModel.setSectionId(sectionId);
 

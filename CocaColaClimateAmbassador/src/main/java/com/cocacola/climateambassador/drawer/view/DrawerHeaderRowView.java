@@ -49,7 +49,7 @@ public class DrawerHeaderRowView extends LinearLayout implements HasModel<Naviga
 
     @Override public void setModel(Navigable model) {
 
-        mTitleView.setText(model.getTitle());
+        mTitleView.setText(model.getShortTitle());
         mIconView.setImageResource(sIcons.get(model.getTitle()));
 
     }
