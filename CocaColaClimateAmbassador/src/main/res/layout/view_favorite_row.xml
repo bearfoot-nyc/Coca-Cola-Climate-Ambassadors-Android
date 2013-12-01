@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cocacola.climateambassador.favorites.view.FavoriteRowView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Ca"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/doc_favorite_btn"
+        style="@style/Ca" />
+
+    <TextView
+        android:id="@+id/doc_title"
+        style="@style/Ca"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textStyle="bold"
+        android:textSize="14dp"
+        android:textColor="@color/coke_red"
+        android:background="@color/gray"
+        android:padding="8dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"/>
+
+    <ImageView
+        android:id="@+id/doc_share_btn"
+        style="@style/Ca"
+        android:src="@drawable/ic_action_share" />
+
+</com.cocacola.climateambassador.favorites.view.FavoriteRowView>

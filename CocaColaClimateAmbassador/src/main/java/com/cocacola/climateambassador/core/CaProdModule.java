@@ -18,7 +18,7 @@ import com.cocacola.climateambassador.core.util.JsonAssetsLoader;
 import com.cocacola.climateambassador.core.views.DocumentView;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.favorites.activity.FavoritesActivity;
-import com.cocacola.climateambassador.favorites.fragment.FavoritesFragment;
+import com.cocacola.climateambassador.favorites.view.FavoriteRowView;
 import com.cocacola.climateambassador.module.activity.ModuleActivity;
 import com.cocacola.climateambassador.module.fragment.ModuleFragment;
 import com.cocacola.climateambassador.module.internal.activity.ModuleCasesActivity;
@@ -45,7 +45,6 @@ import timber.log.Timber;
 @Module(injects = {
         CaApplication.class,
         MainActivity.class,
-        FavoritesFragment.class,
         InternalTrainingActivity.class,
         ForSuppliersActivity.class,
         ForSupplierOverviewFragment.class,
@@ -60,7 +59,7 @@ import timber.log.Timber;
         ModuleFragment.class, CaseActivity.class, CaseStudiesListFragment.class, ForSupplierOverviewFragment.class,
         ForSuppliersOverviewActivity.class, ModuleCasesActivity.class, ForSuppliersVisionFragment.class,
         DocumentUriBuilder.class, DocumentIntentBuilder.class, EmailAttachmentIntentBuilder.class,
-        CaSearchableActivity.class, LandingActivity.class, FavoritesActivity.class
+        CaSearchableActivity.class, LandingActivity.class, FavoritesActivity.class, FavoriteRowView.class
 })
 public class CaProdModule {
 

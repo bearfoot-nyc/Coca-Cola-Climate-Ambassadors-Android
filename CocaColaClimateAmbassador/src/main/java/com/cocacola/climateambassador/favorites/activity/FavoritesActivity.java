@@ -7,7 +7,7 @@ import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.activity.CaDrawerSearchableActivity;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.Document;
-import com.cocacola.climateambassador.favorites.FavoriteListAdapter;
+import com.cocacola.climateambassador.favorites.adapter.FavoriteListAdapter;
 import com.cocacola.climateambassador.favorites.model.FavoritesModel;
 import java.util.List;
 import javax.inject.Inject;
@@ -26,9 +26,20 @@ public class FavoritesActivity extends CaDrawerSearchableActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.favorites_activity);
 
-        List<Document> favoriteList = FavoritesModel.getFavorites(mDaoMaster);
-        mListAdapter = new FavoriteListAdapter(this, favoriteList);
+        mListAdapter = new FavoriteListAdapter(this, getFavoritesList()) {
+            @Override public void onFavoriteChanged(boolean favorited) {
+                FavoritesActivity.this.onFavoriteChanged();
+            }
+        };
         mListView.setAdapter(mListAdapter);
 
+    }
+
+    public void onFavoriteChanged() {
+        mListAdapter.setFavoriteList(getFavoritesList());
+    }
+
+    private List<Document> getFavoritesList() {
+        return FavoritesModel.getFavorites(mDaoMaster);
     }
 }

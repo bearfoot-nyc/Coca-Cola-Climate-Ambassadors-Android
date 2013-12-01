@@ -134,7 +134,7 @@ public class DocumentView extends LinearLayout {
 
     }
 
-    private void onDocumentClick(Document doc) {
+    protected void onDocumentClick(Document doc) {
 
         try {
 
@@ -153,7 +153,7 @@ public class DocumentView extends LinearLayout {
 
     }
 
-    private void onFavoriteClick(Document document) {
+    protected void onFavoriteClick(Document document) {
 
         boolean isFavorite = (document.getIsFavorite() != null) ? document.getIsFavorite() : false;
 
