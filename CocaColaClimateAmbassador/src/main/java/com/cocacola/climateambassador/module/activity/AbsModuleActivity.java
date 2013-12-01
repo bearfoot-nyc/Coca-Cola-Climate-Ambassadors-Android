@@ -1,5 +1,6 @@
 package com.cocacola.climateambassador.module.activity;
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.widget.AdapterView;
@@ -14,7 +15,12 @@ import javax.inject.Inject;
  */
 public class AbsModuleActivity extends CaDrawerSearchableActivity implements AdapterView.OnItemClickListener {
 
+    public static final int MODULE_TYPE_INTERVENTION = 1;
+    public static final int MODULE_TYPE_SUSTAINABLE = 2;
+    public static final int MODULE_TYPE_VISION = 3;
     public static final String EXTRA_MODULE_ID = "moduleId";
+    public static final String EXTRA_MODULE_TYPE = "fragmentClazz";
+
     @Inject protected DaoMaster mDaoMaster;
 
     protected void setContentFragment(CaFragment fragment) {
@@ -33,6 +39,16 @@ public class AbsModuleActivity extends CaDrawerSearchableActivity implements Ada
         Long id = intent.getLongExtra(EXTRA_MODULE_ID, 0);
 
         return id;
+
+    }
+
+    protected Integer getModuleTypeFromIntent(Intent intent) {
+
+        if(!intent.hasExtra(EXTRA_MODULE_TYPE)) {
+            return 0;
+        }
+
+        return intent.getIntExtra(EXTRA_MODULE_TYPE, 0);
 
     }
 

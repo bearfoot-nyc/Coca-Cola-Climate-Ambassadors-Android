@@ -1,5 +1,6 @@
 package com.cocacola.climateambassador.core.activity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -17,8 +18,17 @@ import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.Navigable;
 import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.drawer.adapters.DrawerListAdapter;
+import com.cocacola.climateambassador.favorites.activity.FavoritesActivity;
+import com.cocacola.climateambassador.module.activity.AbsModuleActivity;
+import com.cocacola.climateambassador.module.activity.ModuleActivity;
+import com.cocacola.climateambassador.module.fragment.ModuleFragment;
+import com.cocacola.climateambassador.module.internal.activity.ModuleCasesActivity;
+import com.cocacola.climateambassador.module.suppliers.fragment.ForSupplierOverviewFragment;
+import com.cocacola.climateambassador.module.suppliers.fragment.ForSuppliersVisionFragment;
 import java.util.LinkedList;
 import java.util.List;
+
+import static com.cocacola.climateambassador.module.activity.AbsModuleActivity.*;
 
 /**
  * Created by realandylawton on 8/31/13.
@@ -147,36 +157,42 @@ public abstract class CaDrawerSearchableActivity extends CaSearchableActivity im
 
     @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        //ModuleDrawerItem item = (ModuleDrawerItem) parent.getItemAtPosition(position);
-        //if(item.getModule() == null) {
-        //    return;
-        //}
-        //
-        //mDrawerLayout.closeDrawer(mDrawerList);
-        //
-        //// FIXME Use a Fragment with 2 child fragments instead of Activity
-        //if(item.getModule().getTitle().contains("Key Interventions")) {
-        //
-        //    Intent intent = new Intent(this, ModuleCasesActivity.class);
-        //    intent.putExtra(AbsModuleActivity.EXTRA_MODULE_ID, item.getModule().getId());
-        //
-        //    startActivity(intent);
-        //
-        //}
-        //else if(item.getModule().getTitle().contains("Sustainable")) {
-        //
-        //    ForSupplierOverviewFragment fragment = new ForSupplierOverviewFragment();
-        //    setContentFragment(fragment);
-        //
-        //}
-        //else if(item.getModule().getTitle().contains("2020 Vision")) {
-        //    ForSuppliersVisionFragment fragment = ForSuppliersVisionFragment.newInstance(item.getModule().getId());
-        //    setContentFragment(fragment);
-        //}
-        //else  {
-        //    ModuleFragment fragment = ModuleFragment.newInstance(item.getModule().getId());
-        //    setContentFragment(fragment);
-        //}
+        Navigable item = (Navigable) parent.getItemAtPosition(position);
+        if(item.getId() == null) {
+            return;
+        }
+
+        mDrawerLayout.closeDrawer(mDrawerList);
+
+        Intent intent;
+
+        if(item.getShortTitle().contains("Favorites")) {
+            intent = new Intent(this, FavoritesActivity.class);
+        }
+        else if(item.getShortTitle().contains("Key Interventions")) {
+
+            intent = new Intent(this, ModuleCasesActivity.class);
+            intent.putExtra(EXTRA_MODULE_ID, item.getId());
+
+        }
+        else if(item.getTitle().contains("Sustainable")) {
+
+            intent = new Intent(this, ModuleActivity.class);
+            intent.putExtra(EXTRA_MODULE_ID, item.getId());
+            intent.putExtra(EXTRA_MODULE_TYPE, MODULE_TYPE_SUSTAINABLE);
+
+        }
+        else if(item.getTitle().contains("2020 Vision")) {
+            intent = new Intent(this, ModuleActivity.class);
+            intent.putExtra(EXTRA_MODULE_ID, item.getId());
+            intent.putExtra(EXTRA_MODULE_TYPE, MODULE_TYPE_VISION);
+        }
+        else  {
+            intent = new Intent(this, ModuleActivity.class);
+            intent.putExtra(EXTRA_MODULE_ID, item.getId());
+        }
+
+        startActivity(intent);
 
     }
 

@@ -48,23 +48,6 @@ public class MainActivity extends CaDrawerSearchableActivity {
 
     }
 
-    @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-        Navigable item = (Navigable) parent.getItemAtPosition(position);
-
-        Intent intent;
-
-        if(item.getTitle() == "Favorites") {
-            intent = new Intent(this, FavoritesActivity.class);
-        }
-        else {
-            intent = createIntentForSection(item.getTitle());
-        }
-
-        startActivity(intent);
-
-    }
-
     private Intent createIntentForSection(String sectionTitle) {
 
         Long sectionId = sectionTitle.contains("Internal") ?  1l : 2l;
