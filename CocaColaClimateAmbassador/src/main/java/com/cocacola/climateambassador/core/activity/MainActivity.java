@@ -39,6 +39,7 @@ public class MainActivity extends CaDrawerSearchableActivity {
 
     }
 
+
     @OnClick({ R.id.home_btn_internal, R.id.home_btn_suppliers })
     public void onClickInternal(View view) {
 
@@ -61,7 +62,7 @@ public class MainActivity extends CaDrawerSearchableActivity {
 
         Navigable item = (Navigable) parent.getItemAtPosition(position);
 
-        Intent intent = null;
+        Intent intent;
 
         if(item.getTitle() == "Favorites") {
             intent = new Intent(this, FavoritesActivity.class);

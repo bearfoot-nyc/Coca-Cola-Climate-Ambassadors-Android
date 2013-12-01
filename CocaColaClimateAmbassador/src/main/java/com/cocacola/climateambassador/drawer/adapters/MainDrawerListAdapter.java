@@ -38,7 +38,7 @@ public class MainDrawerListAdapter extends DeprDrawerListAdapter {
 
     @Override public View getView(int position, View convertView, ViewGroup parent) {
 
-        View v = mInflater.inflate(R.layout.view_drawer_row, null);
+        View v = mInflater.inflate(R.layout.view_drawer_header_row, null);
 
         TextView txtTitle = Views.findById(v, R.id.drawer_row_title);
         ImageView imgIcon =  Views.findById(v, R.id.drawer_row_icon);

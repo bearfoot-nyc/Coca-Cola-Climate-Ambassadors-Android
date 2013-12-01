@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.data.Navigable;
+import com.cocacola.climateambassador.drawer.view.DrawerHeaderRowView;
 import com.cocacola.climateambassador.drawer.view.DrawerRowView;
 import java.util.List;
 
@@ -21,6 +22,19 @@ public class DrawerListAdapter extends BaseAdapter {
     public DrawerListAdapter(Context context, List<Navigable> navigableList) {
         mContext = context;
         mNavigableList = navigableList;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+
+        Navigable item = getItem(position);
+        return isSection(item.getTitle()) ? 0 : 1;
+
     }
 
     @Override public int getCount() {
@@ -39,11 +53,31 @@ public class DrawerListAdapter extends BaseAdapter {
 
         Navigable item = getItem(position);
 
+        return isSection(item.getTitle()) ? getHeaderView(item) : getRowView(item);
+
+    }
+
+    private DrawerHeaderRowView getHeaderView(Navigable item) {
+
+        DrawerHeaderRowView view =
+            (DrawerHeaderRowView) LayoutInflater.from(mContext).inflate(R.layout.view_drawer_header_row, null);
+        view.setModel(item);
+
+        return view;
+
+    }
+
+    private DrawerRowView getRowView(Navigable item) {
+
         DrawerRowView view =
             (DrawerRowView) LayoutInflater.from(mContext).inflate(R.layout.view_drawer_row, null);
         view.setModel(item);
 
         return view;
 
+    }
+
+    private boolean isSection(String title) {
+        return title.contains("Favorites") || title.contains("Internal") || title.contains("For Suppliers");
     }
 }

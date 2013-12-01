@@ -17,6 +17,6 @@ public class FavoritesActivity extends CaDrawerSearchableActivity {
     }
 
     @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        
+
     }
 }

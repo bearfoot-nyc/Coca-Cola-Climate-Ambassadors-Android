@@ -15,19 +15,27 @@ import java.util.Map;
 /**
  * Created by realandylawton on 12/1/13.
  */
-public class DrawerRowView extends LinearLayout implements HasModel<Navigable> {
+public class DrawerHeaderRowView extends LinearLayout implements HasModel<Navigable> {
+
+    private static Map<String, Integer> sIcons = new LinkedHashMap<String, Integer>();
+    static {
+        sIcons.put("Favorites", android.R.drawable.ic_media_play);
+        sIcons.put("Internal Training Materials", R.drawable.ic_drawer_folder);
+        sIcons.put("For Suppliers", R.drawable.ic_drawer_wrench);
+    }
 
     private TextView mTitleView;
+    private ImageView mIconView;
 
-    public DrawerRowView(Context context) {
+    public DrawerHeaderRowView(Context context) {
         super(context);
     }
 
-    public DrawerRowView(Context context, AttributeSet attrs) {
+    public DrawerHeaderRowView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DrawerRowView(Context context, AttributeSet attrs, int defStyle) {
+    public DrawerHeaderRowView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -35,12 +43,14 @@ public class DrawerRowView extends LinearLayout implements HasModel<Navigable> {
         super.onFinishInflate();
 
         mTitleView = Views.findById(this, R.id.drawer_row_title);
+        mIconView = Views.findById(this, R.id.drawer_row_icon);
 
     }
 
     @Override public void setModel(Navigable model) {
 
         mTitleView.setText(model.getTitle());
+        mIconView.setImageResource(sIcons.get(model.getTitle()));
 
     }
 }

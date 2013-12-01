@@ -8,7 +8,7 @@ import de.greenrobot.dao.DaoException;
 /**
  * Entity mapped to table MODULE.
  */
-public class Module {
+public class Module implements Navigable {
 
     private Long id;
     private String title;

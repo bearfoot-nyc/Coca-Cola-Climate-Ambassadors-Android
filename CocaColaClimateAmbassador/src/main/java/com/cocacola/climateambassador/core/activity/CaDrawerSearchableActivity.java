@@ -1,5 +1,6 @@
 package com.cocacola.climateambassador.core.activity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -13,9 +14,17 @@ import android.widget.ListView;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.core.util.Toaster;
+import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.Navigable;
+import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.drawer.adapters.DeprDrawerListAdapter;
 import com.cocacola.climateambassador.drawer.adapters.DrawerListAdapter;
+import com.cocacola.climateambassador.drawer.model.ModuleDrawerItem;
+import com.cocacola.climateambassador.module.activity.AbsModuleActivity;
+import com.cocacola.climateambassador.module.fragment.ModuleFragment;
+import com.cocacola.climateambassador.module.internal.activity.ModuleCasesActivity;
+import com.cocacola.climateambassador.module.suppliers.fragment.ForSupplierOverviewFragment;
+import com.cocacola.climateambassador.module.suppliers.fragment.ForSuppliersVisionFragment;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -106,6 +115,8 @@ public abstract class CaDrawerSearchableActivity extends CaSearchableActivity im
             mDrawerItems = new LinkedList<Navigable>();
 
             try {
+
+                // Add Favorites
                 mDrawerItems.add(new Navigable() {
                     @Override public Long getId() {
                         return 0l;
@@ -115,7 +126,19 @@ public abstract class CaDrawerSearchableActivity extends CaSearchableActivity im
                         return "Favorites";
                     }
                 });
-                mDrawerItems.addAll(SectionModel.getAllSections(mDaoMaster));
+
+                // Get the sections
+                List<Section> sections = SectionModel.getAllSections(mDaoMaster);
+                for(Section section : sections) {
+
+                    mDrawerItems.add(section);
+
+                    for(Module module : section.getModules()) {
+                        mDrawerItems.add(module);
+                    }
+
+                }
+
             } catch (Exception e) {
                 Toaster.toast(this, "Failed to load Sections: " + e.getMessage());
             }
@@ -123,6 +146,41 @@ public abstract class CaDrawerSearchableActivity extends CaSearchableActivity im
         }
 
         return mDrawerItems;
+
+    }
+
+    @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        //ModuleDrawerItem item = (ModuleDrawerItem) parent.getItemAtPosition(position);
+        //if(item.getModule() == null) {
+        //    return;
+        //}
+        //
+        //mDrawerLayout.closeDrawer(mDrawerList);
+        //
+        //// FIXME Use a Fragment with 2 child fragments instead of Activity
+        //if(item.getModule().getTitle().contains("Key Interventions")) {
+        //
+        //    Intent intent = new Intent(this, ModuleCasesActivity.class);
+        //    intent.putExtra(AbsModuleActivity.EXTRA_MODULE_ID, item.getModule().getId());
+        //
+        //    startActivity(intent);
+        //
+        //}
+        //else if(item.getModule().getTitle().contains("Sustainable")) {
+        //
+        //    ForSupplierOverviewFragment fragment = new ForSupplierOverviewFragment();
+        //    setContentFragment(fragment);
+        //
+        //}
+        //else if(item.getModule().getTitle().contains("2020 Vision")) {
+        //    ForSuppliersVisionFragment fragment = ForSuppliersVisionFragment.newInstance(item.getModule().getId());
+        //    setContentFragment(fragment);
+        //}
+        //else  {
+        //    ModuleFragment fragment = ModuleFragment.newInstance(item.getModule().getId());
+        //    setContentFragment(fragment);
+        //}
 
     }
 

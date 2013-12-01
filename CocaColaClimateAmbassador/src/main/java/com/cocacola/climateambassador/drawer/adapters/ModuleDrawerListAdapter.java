@@ -70,7 +70,7 @@ public class ModuleDrawerListAdapter extends DeprDrawerListAdapter {
 
     private View getNavigationDrawerItemView(ModuleDrawerItem item) {
 
-        View v = mInflater.inflate(R.layout.view_drawer_row, null);
+        View v = mInflater.inflate(R.layout.view_drawer_header_row, null);
 
         TextView txtTitle = (TextView) v.findViewById(R.id.drawer_row_title);
         ImageView imgIcon = (ImageView) v.findViewById(R.id.drawer_row_icon);

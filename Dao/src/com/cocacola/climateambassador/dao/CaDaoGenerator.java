@@ -10,6 +10,7 @@ import de.greenrobot.daogenerator.ToOne;
 public class CaDaoGenerator {
 
     private static final int DB_VERSION = DbConstants.VERSION;
+    private static final String INTERFACE_NAVIGABLE = "Navigable";
 
     public static void main(String[] args) throws Exception {
 
@@ -20,7 +21,7 @@ public class CaDaoGenerator {
         Entity section = schema.addEntity("Section");
         section.addIdProperty();
         section.addStringProperty("title");
-        section.implementsInterface("Navigable");
+        section.implementsInterface(INTERFACE_NAVIGABLE);
 
         // Module
         Entity module = generateModules(schema, section);
@@ -49,7 +50,6 @@ public class CaDaoGenerator {
         caseEntity.addIdProperty();
         caseEntity.addStringProperty("title");
         caseEntity.addStringProperty("bodyText");
-        caseEntity.implementsInterface("Navigable");
 
         // Module to Cases
         Property moduleId = caseEntity.addLongProperty("moduleId").notNull().getProperty();
@@ -88,6 +88,7 @@ public class CaDaoGenerator {
         module.addIdProperty();
         module.addStringProperty("title");
         module.addStringProperty("bodyText");
+        module.implementsInterface(INTERFACE_NAVIGABLE);
 
         // Section To Modules
         Property sectionId = module.addLongProperty("sectionId").notNull().getProperty();
