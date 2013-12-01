@@ -1,40 +1,28 @@
 package com.cocacola.climateambassador.core.activity;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.SearchView;
-
 import android.widget.Toast;
+import butterknife.OnClick;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.core.model.DocumentModel;
-import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
-import com.cocacola.climateambassador.core.util.DocumentIntentBuilder;
-import com.cocacola.climateambassador.core.util.Toaster;
-import com.cocacola.climateambassador.data.Document;
-import com.cocacola.climateambassador.data.Module;
-import com.cocacola.climateambassador.drawer.adapters.MainDrawerListAdapter;
-import com.cocacola.climateambassador.data.DaoMaster;
-import com.cocacola.climateambassador.data.Section;
-
-import com.cocacola.climateambassador.drawer.model.MainDrawerItem;
 import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.core.util.DataChecker;
 import com.cocacola.climateambassador.core.util.DataSeeder;
+import com.cocacola.climateambassador.data.DaoMaster;
+import com.cocacola.climateambassador.data.Module;
+import com.cocacola.climateambassador.data.Section;
+import com.cocacola.climateambassador.drawer.adapters.MainDrawerListAdapter;
+import com.cocacola.climateambassador.drawer.model.MainDrawerItem;
 import com.cocacola.climateambassador.module.activity.AbsModuleActivity;
 import com.cocacola.climateambassador.module.activity.ModuleActivity;
 import com.cocacola.climateambassador.module.suppliers.activity.ForSuppliersOverviewActivity;
 import java.util.LinkedList;
 import java.util.List;
-
-import butterknife.OnClick;
 import javax.inject.Inject;
 
-public class MainActivity extends CaSearchableDrawerActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends CaDrawerSearchableActivity implements AdapterView.OnItemClickListener {
 
     @Inject protected DataChecker mDataChecker;
     @Inject protected DataSeeder mDataSeeder;
@@ -157,41 +145,4 @@ public class MainActivity extends CaSearchableDrawerActivity implements AdapterV
 
     }
 
-    @Override public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-    @Override public boolean onQueryTextChange(String newText) {
-
-        updateDocumentSuggestions(newText);
-
-        return true;
-
-    }
-
-    @Override public boolean onSuggestionSelect(int position) {
-        return false;
-    }
-
-    @Override public boolean onSuggestionClick(int position) {
-
-        Document doc = getSuggestedDocument(position);
-
-        try {
-
-            Intent intent = mDocumentIntentBuilder.createViewerIntent(this, doc);
-
-            startActivity(intent);
-
-        } catch (AppPackageFileWriter.PackageWriteException e) {
-            Toaster.toast(this, e.getMessage());
-        } catch (DocumentIntentBuilder.PreferredAppNotInstalledException e) {
-            Toaster.toast(this, e.getMessage());
-        } catch (ActivityNotFoundException e) {
-            Toaster.toast(this, e.getMessage());
-        }
-
-        return true;
-
-    }
 }

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -112,7 +111,7 @@ public class CaseStudiesListFragment extends CaFragment {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, CaseActivity.class);
-                    intent.putExtra(CaseActivity.BUNDLE_KEY_CASE_ID, item.getId());
+                    intent.putExtra(CaseActivity.EXTRA_CASE_ID, item.getId());
                     mContext.startActivity(intent);
                 }
             });

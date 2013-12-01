@@ -15,8 +15,8 @@ import android.widget.Toast;
 import butterknife.InjectView;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.activity.CaActivity;
+import com.cocacola.climateambassador.core.activity.CaSearchableActivity;
 import com.cocacola.climateambassador.core.model.CaseModel;
-import com.cocacola.climateambassador.core.util.JsonAssetsLoader;
 import com.cocacola.climateambassador.core.views.DocumentsLayout;
 import com.cocacola.climateambassador.data.BulletPoint;
 import com.cocacola.climateambassador.data.BulletPointFrame;
@@ -32,9 +32,9 @@ import timber.log.Timber;
 /**
  * Created by Vinnie on 9/4/13.
  */
-public class CaseActivity extends CaActivity {
+public class CaseActivity extends CaSearchableActivity {
 
-    public static final String BUNDLE_KEY_CASE_ID = "caseId";
+    public static final String EXTRA_CASE_ID = "caseId";
 
     public static enum CaseResourceType {
 
@@ -72,7 +72,6 @@ public class CaseActivity extends CaActivity {
 
     @Inject protected Timber Log;
     @Inject protected DaoMaster mDaoMaster;
-    @Inject protected JsonAssetsLoader mJsonAssetsLoader;
 
     @InjectView(R.id.case_logo) protected ImageView mLogoView;
     @InjectView(R.id.scroll_view) protected ScrollView mScrollLayout;
@@ -107,12 +106,11 @@ public class CaseActivity extends CaActivity {
 
     private Long getCaseIdFromIntent(Intent intent) {
 
-        if(intent == null || !intent.hasExtra(BUNDLE_KEY_CASE_ID)) {
+        if(intent == null || !intent.hasExtra(EXTRA_CASE_ID)) {
             return null;
         }
 
-
-        return intent.getLongExtra(BUNDLE_KEY_CASE_ID, 0);
+        return intent.getLongExtra(EXTRA_CASE_ID, 0);
 
     }
 

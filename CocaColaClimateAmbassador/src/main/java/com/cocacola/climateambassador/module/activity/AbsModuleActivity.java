@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.core.activity.CaDrawerActivity;
+import com.cocacola.climateambassador.core.activity.CaDrawerSearchableActivity;
 import com.cocacola.climateambassador.core.fragment.CaFragment;
 import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.data.DaoMaster;
@@ -26,7 +26,7 @@ import javax.inject.Inject;
 /**
  * Created by realandylawton on 11/24/13.
  */
-public class AbsModuleActivity extends CaDrawerActivity implements AdapterView.OnItemClickListener {
+public class AbsModuleActivity extends CaDrawerSearchableActivity implements AdapterView.OnItemClickListener {
 
     public static final String EXTRA_MODULE_ID = "moduleId";
     @Inject protected DaoMaster mDaoMaster;

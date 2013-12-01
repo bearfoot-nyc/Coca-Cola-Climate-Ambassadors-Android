@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.cocacola.climateambassador.BuildConfig;
 import com.cocacola.climateambassador.cases.activity.CaseActivity;
-import com.cocacola.climateambassador.core.activity.CaSearchableDrawerActivity;
+import com.cocacola.climateambassador.core.activity.CaSearchableActivity;
 import com.cocacola.climateambassador.core.activity.MainActivity;
 import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.core.util.DataChecker;
@@ -25,8 +25,8 @@ import com.cocacola.climateambassador.module.internal.fragment.CaseStudiesListFr
 import com.cocacola.climateambassador.module.internal.fragment.InternalTrainingOverviewFragment;
 import com.cocacola.climateambassador.module.internal.fragment.RoleOfClimateAmbassadorFragment;
 import com.cocacola.climateambassador.module.suppliers.activity.ForSuppliersOverviewActivity;
-import com.cocacola.climateambassador.module.suppliers.fragment.ForSuppliersVisionFragment;
 import com.cocacola.climateambassador.module.suppliers.fragment.ForSupplierOverviewFragment;
+import com.cocacola.climateambassador.module.suppliers.fragment.ForSuppliersVisionFragment;
 import com.cocacola.climateambassador.section.activity.ForSuppliersActivity;
 import com.cocacola.climateambassador.section.activity.InternalTrainingActivity;
 import com.google.gson.Gson;
@@ -58,7 +58,7 @@ import timber.log.Timber;
         ModuleFragment.class, CaseActivity.class, CaseStudiesListFragment.class, ForSupplierOverviewFragment.class,
         ForSuppliersOverviewActivity.class, ModuleCasesActivity.class, ForSuppliersVisionFragment.class,
         DocumentUriBuilder.class, DocumentIntentBuilder.class, EmailAttachmentIntentBuilder.class,
-        CaSearchableDrawerActivity.class
+        CaSearchableActivity.class
 })
 public class CaProdModule {
 

@@ -15,7 +15,7 @@ import com.cocacola.climateambassador.drawer.adapters.DrawerListAdapter;
 /**
  * Created by realandylawton on 8/31/13.
  */
-public abstract class CaDrawerActivity extends CaActivity {
+public abstract class CaDrawerSearchableActivity extends CaSearchableActivity {
 
     public DrawerLayout mDrawerLayout;
     public ListView mDrawerList;
