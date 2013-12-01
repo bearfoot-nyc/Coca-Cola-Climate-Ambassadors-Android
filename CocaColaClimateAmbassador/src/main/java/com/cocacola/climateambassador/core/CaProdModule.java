@@ -8,6 +8,8 @@ import com.cocacola.climateambassador.cases.activity.CaseActivity;
 import com.cocacola.climateambassador.core.activity.CaSearchableActivity;
 import com.cocacola.climateambassador.core.activity.LandingActivity;
 import com.cocacola.climateambassador.core.activity.MainActivity;
+import com.cocacola.climateambassador.core.controller.DocumentController;
+import com.cocacola.climateambassador.core.fragment.PreferredAppDialogFragment;
 import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.core.util.DataChecker;
 import com.cocacola.climateambassador.core.util.DataSeeder;

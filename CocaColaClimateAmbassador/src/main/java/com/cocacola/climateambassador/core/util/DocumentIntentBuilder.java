@@ -31,8 +31,6 @@ public class DocumentIntentBuilder {
         }
     }
 
-    private static final String PREFERRED_APP_PACKAGE_NAME = "com.quickoffice.android";
-
     @Inject protected DocumentUriBuilder mUriBuilder;
     @Inject protected Timber Log;
 
@@ -45,7 +43,7 @@ public class DocumentIntentBuilder {
 
    public Intent createViewerIntent(Context context, Uri path, String fileName) throws PreferredAppNotInstalledException {
 
-        if(!isPreferredAppInstalled()) {
+        if(!PreferredAppHelper.isPreferredAppInstalled(context)) {
            throw new PreferredAppNotInstalledException("QuickOffice not installed");
         }
 
@@ -69,32 +67,6 @@ public class DocumentIntentBuilder {
         Uri path = mUriBuilder.createUriForFilename(document.getFileName());
 
         return createViewerIntent(context, path, document.getFileName());
-
-    }
-
-    public boolean isPreferredAppInstalled() {
-
-        PackageManager pm = mContext.getPackageManager();
-        List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
-
-        boolean isInstalled = false;
-        for(ApplicationInfo pkg : packages) {
-            if(PREFERRED_APP_PACKAGE_NAME.equals(pkg.packageName)) {
-                isInstalled = true;
-                break;
-            }
-        }
-
-        return isInstalled;
-
-    }
-
-    private void launchQuickOfficeInPlayStore() {
-
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setData(Uri.parse("market://details?id=" + PREFERRED_APP_PACKAGE_NAME));
-        mContext.startActivity(intent);
 
     }
 

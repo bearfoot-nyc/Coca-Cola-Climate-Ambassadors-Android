@@ -56,5 +56,9 @@ to the Coca-Cola business. </string>
     <string name="share_email_body">We can put a message here.</string>
     <string name="search_query_hint">Search for documents</string>
     <string name="favorites_empty_list">You have no favorite items.</string>
+    <string name="preferred_app_dialog_title">Download App</string>
+    <string name="preferred_app_dialog_message">Quickoffice is required to open documents.</string>
+    <string name="preferred_app_dialog_download">Download</string>
+    <string name="preferred_app_dialog_cancel">Cancel</string>
 
 </resources>

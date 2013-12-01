@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.core.controller.DocumentController;
 import com.cocacola.climateambassador.data.Document;
 import java.util.List;
 
@@ -13,6 +14,9 @@ import java.util.List;
  * Created by andrewlawton on 9/7/13.
  */
 public class DocumentsLayout extends LinearLayout {
+
+    private DocumentController mController;
+
     public DocumentsLayout(Context context) {
         super(context);
     }
@@ -47,5 +51,7 @@ public class DocumentsLayout extends LinearLayout {
 
     }
 
-
+    public void setController(DocumentController controller) {
+        mController = controller;
+    }
 }

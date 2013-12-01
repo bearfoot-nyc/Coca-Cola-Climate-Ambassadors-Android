@@ -13,6 +13,7 @@ import android.widget.Toast;
 import butterknife.Views;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.CaApplication;
+import com.cocacola.climateambassador.core.controller.DocumentController;
 import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
 import com.cocacola.climateambassador.core.util.DocumentIntentBuilder;
 import com.cocacola.climateambassador.core.util.DocumentUriBuilder;
@@ -43,6 +44,7 @@ public class DocumentView extends LinearLayout {
     @Inject protected DocumentIntentBuilder mDocumentIntentBuilder;
     @Inject protected EmailAttachmentIntentBuilder mEmailIntentBuilder;
 
+    private DocumentController mController;
     private TextView mTitleView;
     private ImageView mFavoriteBtn;
     private ImageView mShareBtn;
