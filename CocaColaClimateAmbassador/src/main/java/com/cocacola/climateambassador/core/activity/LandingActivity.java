@@ -62,6 +62,12 @@ public class LandingActivity extends CaActivity {
 
         @Override protected DataSeeder.SeedFailedException doInBackground(DataSeeder... params) {
 
+            try {
+                Thread.sleep(1000l);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             DataSeeder dataSeeder = params[0];
 
             try {

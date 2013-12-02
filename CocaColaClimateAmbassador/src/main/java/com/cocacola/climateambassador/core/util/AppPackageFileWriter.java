@@ -23,6 +23,8 @@ import timber.log.Timber;
 @Singleton
 public class AppPackageFileWriter {
 
+    private static final String DOCUMENTS_DIRECTORY = "docs";
+
     public class PackageWriteException extends Exception {
 
         private String fileName;
@@ -53,13 +55,12 @@ public class AppPackageFileWriter {
 
     public File writeToPkgDir(String fileName) throws PackageWriteException {
 
-        FileType fileType = FileType.getTypeForFilename(fileName);
         File file = null;
 
         InputStream in = null;
         try {
-            in = createInputFromAsset(fileType.getDirectory(), fileName);
-            file = writeToPkgDir(in, fileType.getDirectory(), fileName);
+            in = createInputFromAsset(fileName);
+            file = writeToPkgDir(in, fileName);
         } catch (IOException e) {
             throw new PackageWriteException(fileName);
         }
@@ -68,13 +69,10 @@ public class AppPackageFileWriter {
 
     }
 
-    public File writeToPkgDir(InputStream in, String directory, String fileName) throws
+    public File writeToPkgDir(InputStream in, String fileName) throws
         PackageWriteException {
 
-        // Create the directory if it doesn't exist
-        File directoryFile = createDirectoryItNotExists(directory);
-
-        File file = new File(directoryFile, fileName);
+        File file = new File(getPackageDir(), fileName);
 
         FileOutputStream out = null;
 
@@ -105,10 +103,10 @@ public class AppPackageFileWriter {
 
     }
 
-    public InputStream createInputFromAsset(String directory, String fileName) throws IOException {
+    public InputStream createInputFromAsset(String fileName) throws IOException {
 
         BufferedInputStream in = null;
-        in = new BufferedInputStream(mAssetManager.open(directory + File.separator + fileName));
+        in = new BufferedInputStream(mAssetManager.open(DOCUMENTS_DIRECTORY + File.separator + fileName));
 
         return in;
 
@@ -118,43 +116,9 @@ public class AppPackageFileWriter {
         return mContext.getFilesDir();
     }
 
-    public String createNewDirectoryString(String directory) {
-        return getPackageDir() + File.separator + directory;
-    }
-
-
-    public File createDirectoryItNotExists(String directory) {
-
-        File directoryFile = new File(createNewDirectoryString(directory));
-
-        if (!directoryFile.exists()) {
-            directoryFile.mkdirs();
-        }
-
-        return directoryFile;
-
-    }
-
-    public File getFileTypeDirectory(String fileName) {
-
-        FileType fileType = FileType.getTypeForFilename(fileName);
-
-        return getFileTypeDirectory(fileType);
-
-    }
-
-    public File getFileTypeDirectory(FileType fileType) {
-
-        File fileTypeDir = null;
-        fileTypeDir = new File(mContext.getFilesDir().getAbsolutePath() + File.separator + fileType.getDirectory());
-
-        return fileTypeDir;
-
-    }
-
    public File createFile(String fileName) {
 
-       File file =  new File(getFileTypeDirectory(fileName), fileName);
+       File file =  new File(getPackageDir(), fileName);
 
        return file;
 

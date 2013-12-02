@@ -39,7 +39,7 @@ public class AppPackageFileWriterTests extends CaFileTestCase {
 
         InputStream in = null;
         try {
-            in = mAppPackageFileWriter.createInputFromAsset(fileType.getDirectory(), fileName);
+            in = mAppPackageFileWriter.createInputFromAsset(fileName);
             assertNotNull(in);
         } catch (IOException e) {
            fail(e.getMessage());
@@ -54,23 +54,11 @@ public class AppPackageFileWriterTests extends CaFileTestCase {
 
         InputStream in = null;
         try {
-            in = mAppPackageFileWriter.createInputFromAsset(fileType.getDirectory(), fileName);
+            in = mAppPackageFileWriter.createInputFromAsset(fileName);
             fail("Should have thrown IO Exception");
         } catch (IOException e) {
             // Threw IO Exception as expected
         }
-
-    }
-
-    public void testCreatesDirectoryIfNotExists() {
-
-        File directory = mAppPackageFileWriter.createDirectoryItNotExists(FileType.PDF.getDirectory());
-
-        String expectedPath = "/data/data/com.cocacola.climateambassador/files/docs";
-
-        assertNotNull(directory);
-        assertEquals(expectedPath, directory.getAbsolutePath());
-
 
     }
 
@@ -81,7 +69,7 @@ public class AppPackageFileWriterTests extends CaFileTestCase {
         FileType fileType = getValidFileType();
 
         try {
-            mAppPackageFileWriter.writeToPkgDir(in, fileType.getDirectory(), fileName);
+            mAppPackageFileWriter.writeToPkgDir(in, fileName);
             assertFileIsInDir(fileName);
         } catch (AppPackageFileWriter.PackageWriteException e) {
             e.printStackTrace();
@@ -97,24 +85,12 @@ public class AppPackageFileWriterTests extends CaFileTestCase {
         FileType fileType = getValidFileType();
 
         try {
-            mAppPackageFileWriter.writeToPkgDir(in, fileType.getDirectory(), fileName);
+            mAppPackageFileWriter.writeToPkgDir(in, fileName);
             assertFileIsInDir(fileName);
         } catch (AppPackageFileWriter.PackageWriteException e) {
             e.printStackTrace();
             fail("Threw FailedToWriteToPackageException");
         }
-
-    }
-
-    public void testGetsProperFileTypeDirectory() {
-
-        FileType pdfType = FileType.PDF;
-        String expectedDir = "/data/data/com.cocacola.climateambassador/files/docs";
-
-        File fileTypeDir = mAppPackageFileWriter.getFileTypeDirectory(pdfType);
-
-        assertEquals(expectedDir, fileTypeDir.getAbsolutePath());
-
 
     }
 
@@ -140,7 +116,7 @@ public class AppPackageFileWriterTests extends CaFileTestCase {
         InputStream in = null;
 
         try {
-            in = mAppPackageFileWriter.createInputFromAsset(fileType.getDirectory(), fileName);
+            in = mAppPackageFileWriter.createInputFromAsset(fileName);
             assertNotNull(in);
         } catch (IOException e) {
             fail(e.getMessage());

@@ -1,5 +1,6 @@
 package com.cocacola.climateambassador.core.views;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -143,7 +144,9 @@ public class DocumentView extends LinearLayout {
             Uri documentUri = mDocumentUriBuilder.createUriForFilename(doc.getFileName());
             Intent intent = mDocumentIntentBuilder.createViewerIntent(getContext(), documentUri, doc.getFileName());
 
-            getContext().startActivity(intent);
+            Activity a = (Activity)getContext();
+            a.setResult(1000, intent);
+            a.startActivity(intent);
 
         } catch (AppPackageFileWriter.PackageWriteException e) {
             Toaster.toast(getContext(), e.getMessage());
