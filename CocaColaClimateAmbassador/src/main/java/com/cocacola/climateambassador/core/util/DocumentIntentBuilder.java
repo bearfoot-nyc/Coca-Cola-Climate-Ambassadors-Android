@@ -48,14 +48,12 @@ public class DocumentIntentBuilder {
         }
 
         FileType fileType = FileType.getTypeForFilename(fileName);
+        String mimeType = fileType.getMimeType();
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(path, fileType.getMimeType());
+        intent.setData(path);
+        intent.setType(mimeType);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-        if(context instanceof CaApplication) {
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        }
 
         return intent;
 
