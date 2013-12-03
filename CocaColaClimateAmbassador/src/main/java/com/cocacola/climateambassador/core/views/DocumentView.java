@@ -1,6 +1,5 @@
 package com.cocacola.climateambassador.core.views;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 import butterknife.Views;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.CaApplication;
+import com.cocacola.climateambassador.core.HasController;
 import com.cocacola.climateambassador.core.controller.DocumentController;
 import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
 import com.cocacola.climateambassador.core.util.DocumentIntentBuilder;
@@ -29,7 +29,7 @@ import javax.inject.Inject;
 /**
  * Created by andrewlawton on 9/7/13.
  */
-public class DocumentView extends LinearLayout {
+public class DocumentView extends LinearLayout implements HasController<DocumentController> {
 
     private static HashMap<FileType, Integer> sfileTypeResMap = new HashMap<FileType, Integer>();
     static {
@@ -74,6 +74,10 @@ public class DocumentView extends LinearLayout {
         mTitleView = (TextView) findViewById(R.id.doc_title);
         mFavoriteBtn = (ImageView) findViewById(R.id.doc_favorite_btn);
         mShareBtn = Views.findById(this, R.id.doc_share_btn);
+    }
+
+    @Override public void setController(DocumentController documentController) {
+        mController = documentController;
     }
 
     public void setDocument(final Document doc) {
@@ -138,21 +142,28 @@ public class DocumentView extends LinearLayout {
 
     protected void onDocumentClick(Document doc) {
 
-        try {
+        if(mController != null) {
+            mController.startActivityForDocument(doc);
+        }
+        else {
 
-            Context context = getContext();
+            try {
 
-            Uri documentUri = mDocumentUriBuilder.createUriForFilename(context, doc.getFileName());
-            Intent intent = mDocumentIntentBuilder.createViewerIntent(context, documentUri, doc.getFileName());
+                Context context = getContext();
 
-            context.startActivity(intent);
+                Uri documentUri = mDocumentUriBuilder.createUriForFilename(context, doc.getFileName());
+                Intent intent = mDocumentIntentBuilder.createViewerIntent(context, documentUri, doc.getFileName());
 
-        } catch (AppPackageFileWriter.PackageWriteException e) {
-            Toaster.toast(getContext(), e.getMessage());
-        } catch (DocumentIntentBuilder.PreferredAppNotInstalledException e) {
-            Toaster.toast(getContext(), e.getMessage());
-        } catch (ActivityNotFoundException e) {
-            Toaster.toast(getContext(), e.getMessage());
+                context.startActivity(intent);
+
+            } catch (AppPackageFileWriter.PackageWriteException e) {
+                Toaster.toast(getContext(), e.getMessage());
+            } catch (DocumentIntentBuilder.PreferredAppNotInstalledException e) {
+
+            } catch (ActivityNotFoundException e) {
+                Toaster.toast(getContext(), e.getMessage());
+            }
+
         }
 
     }

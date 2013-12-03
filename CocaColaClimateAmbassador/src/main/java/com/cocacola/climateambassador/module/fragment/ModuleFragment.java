@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.cocacola.climateambassador.core.controller.DocumentController;
 import com.cocacola.climateambassador.core.fragment.CaFragment;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.data.BulletPoint;
@@ -122,7 +123,8 @@ public class ModuleFragment extends CaFragment{
         List<Document> documentList = module.getDocuments();
         if(documentList.size() > 0) {
             DocumentsLayout documentsLayout = (DocumentsLayout) v.findViewById(R.id.module_documents);
-            documentsLayout.setDocuments(documentList);
+            documentsLayout.setController(new DocumentController(getActivity()));
+            documentsLayout.setModel(documentList);
         }
         else {
             courseMaterialsLabelView.setVisibility(View.INVISIBLE);

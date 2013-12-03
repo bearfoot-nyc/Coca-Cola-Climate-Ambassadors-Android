@@ -15,6 +15,7 @@ import android.widget.Toast;
 import butterknife.InjectView;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.activity.CaSearchableActivity;
+import com.cocacola.climateambassador.core.controller.DocumentController;
 import com.cocacola.climateambassador.core.model.CaseModel;
 import com.cocacola.climateambassador.core.views.DocumentsLayout;
 import com.cocacola.climateambassador.data.BulletPoint;
@@ -198,7 +199,8 @@ public class CaseActivity extends CaSearchableActivity {
         }
 
         // Show documents
-        mCaseStudiesLayout.setDocuments(_case.getCaseStudies());
+        mCaseStudiesLayout.setController(new DocumentController(this));
+        mCaseStudiesLayout.setModel(_case.getCaseStudies());
 
     }
 

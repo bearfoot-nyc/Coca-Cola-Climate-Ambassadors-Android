@@ -6,14 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.core.HasController;
 import com.cocacola.climateambassador.core.controller.DocumentController;
+import com.cocacola.climateambassador.core.util.HasModel;
 import com.cocacola.climateambassador.data.Document;
 import java.util.List;
 
 /**
  * Created by andrewlawton on 9/7/13.
  */
-public class DocumentsLayout extends LinearLayout {
+public class DocumentsLayout extends LinearLayout implements HasController<DocumentController>,
+    HasModel<List<Document>> {
 
     private DocumentController mController;
 
@@ -29,7 +32,12 @@ public class DocumentsLayout extends LinearLayout {
         super(context, attrs, defStyle);
     }
 
-    public void setDocuments(List<Document> documents) {
+    @Override
+    public void setController(DocumentController controller) {
+        mController = controller;
+    }
+
+    @Override public void setModel(List<Document> documents) {
 
         if(documents == null) {
             setVisibility(View.GONE);
@@ -42,6 +50,7 @@ public class DocumentsLayout extends LinearLayout {
 
             DocumentView docView = (DocumentView) inflater.inflate(R.layout.view_document, this, false);
             docView.setDocument(doc);
+            docView.setController(mController);
             addView(docView);
 
         }
@@ -49,9 +58,6 @@ public class DocumentsLayout extends LinearLayout {
         invalidate();
         requestLayout();
 
-    }
 
-    public void setController(DocumentController controller) {
-        mController = controller;
     }
 }

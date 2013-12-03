@@ -6,11 +6,11 @@ import android.os.Bundle;
 import com.cocacola.climateambassador.core.CaApplication;
 
 import butterknife.Views;
+import com.cocacola.climateambassador.core.controller.DocumentController;
 
-/**
- * Created by Vinnie Vendemia on 8/28/13.
- */
-public class CaFragment extends Fragment{
+public class CaFragment extends Fragment {
+
+    private DocumentController mDocumentController;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
