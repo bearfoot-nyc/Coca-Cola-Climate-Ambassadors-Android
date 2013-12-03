@@ -15,24 +15,27 @@ public class DocumentUriBuilder {
 
     @Inject AppPackageFileWriter mPackageFileWriter;
 
-    private Context mContext;
-
-    @Inject public DocumentUriBuilder(Context context) {
-        mContext = context;
+    @Inject
+    public DocumentUriBuilder() {
+        // empty constructor
     }
+
 
     /**
      * Create a URI pointing to the File representing the filename.
      * If the File doesn't exist yet, will attempt to write file to
      * package folder
      *
+     *
+     *
+     * @param context
      * @param fileName name of file.  Assumed to be in /assets directory.
      * @return URI pointing to File representing the filename
      */
-    public Uri createUriForFilename(String fileName)
+    public Uri createUriForFilename(Context context, String fileName)
         throws AppPackageFileWriter.PackageWriteException {
 
-        File file = null;
+        File file;
 
         if(!mPackageFileWriter.fileExists(fileName)) {
             file = mPackageFileWriter.writeToPkgDir(fileName);
@@ -41,13 +44,13 @@ public class DocumentUriBuilder {
             file = mPackageFileWriter.createFile(fileName);
         }
 
-        return createUri(file);
+        return createUri(context, file);
 
     }
 
-    private Uri createUri(File file) {
+    private Uri createUri(Context context, File file) {
 
-        Uri uri = FileProvider.getUriForFile(mContext, AUTHORITY, file);
+        Uri uri = FileProvider.getUriForFile(context, AUTHORITY, file);
         return uri;
 
     }

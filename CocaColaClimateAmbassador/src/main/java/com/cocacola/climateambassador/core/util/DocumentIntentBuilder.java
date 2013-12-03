@@ -2,12 +2,10 @@ package com.cocacola.climateambassador.core.util;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 
-import com.cocacola.climateambassador.core.CaApplication;
 import com.cocacola.climateambassador.data.Document;
 import com.cocacola.climateambassador.data.json.FileType;
 
@@ -62,7 +60,7 @@ public class DocumentIntentBuilder {
     public Intent createViewerIntent(Context context, Document document)
         throws PreferredAppNotInstalledException, AppPackageFileWriter.PackageWriteException {
 
-        Uri path = mUriBuilder.createUriForFilename(document.getFileName());
+        Uri path = mUriBuilder.createUriForFilename(context, document.getFileName());
 
         return createViewerIntent(context, path, document.getFileName());
 

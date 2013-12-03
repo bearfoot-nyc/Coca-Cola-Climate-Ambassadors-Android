@@ -6,7 +6,6 @@ import android.net.Uri;
 import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
 import com.cocacola.climateambassador.core.util.DataSeeder;
 import com.cocacola.climateambassador.core.util.DocumentUriBuilder;
-import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.Document;
 import com.cocacola.climateambassador.test.data.AbsDataTests;
 import java.io.File;
@@ -66,7 +65,7 @@ public class DocumentUriBuilderTests extends AbsDataTests {
         // Create the file if it doesn't exist
         createFileIfNotExists(fileName);
 
-        Uri uri = mDocumentUriBuilder.createUriForFilename(fileName);
+        Uri uri = mDocumentUriBuilder.createUriForFilename(mContext, fileName);
 
         assertValidUri(uri);
 
@@ -78,7 +77,7 @@ public class DocumentUriBuilderTests extends AbsDataTests {
         throws AppPackageFileWriter.PackageWriteException {
 
         // File shouldn't exist yet
-        Uri uri = mDocumentUriBuilder.createUriForFilename(fileName);
+        Uri uri = mDocumentUriBuilder.createUriForFilename(mContext, fileName);
 
         assertValidUri(uri);
 

@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import butterknife.Views;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.CaApplication;
@@ -117,7 +116,7 @@ public class DocumentView extends LinearLayout {
     private void onShareClick(Document document) {
 
         try {
-            Intent intent = mEmailIntentBuilder.createIntent(document);
+            Intent intent = mEmailIntentBuilder.createIntent(getContext(), document);
             getContext().startActivity(Intent.createChooser(intent, "Email To:"));
 
         } catch (AppPackageFileWriter.PackageWriteException e) {
@@ -143,7 +142,7 @@ public class DocumentView extends LinearLayout {
 
             Activity activity = (Activity)getContext();
 
-            Uri documentUri = mDocumentUriBuilder.createUriForFilename(doc.getFileName());
+            Uri documentUri = mDocumentUriBuilder.createUriForFilename(activity, doc.getFileName());
             Intent intent = mDocumentIntentBuilder.createViewerIntent(activity, documentUri, doc.getFileName());
 
             activity.startActivity(intent);

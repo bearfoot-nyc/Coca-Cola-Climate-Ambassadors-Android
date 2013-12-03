@@ -5,7 +5,6 @@ import android.net.Uri;
 import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
 import com.cocacola.climateambassador.core.util.DocumentIntentBuilder;
 import com.cocacola.climateambassador.core.util.DocumentUriBuilder;
-import com.cocacola.climateambassador.data.json.FileType;
 import javax.inject.Inject;
 import timber.log.Timber;
 
@@ -30,7 +29,7 @@ public class DocumentIntentBuilderTests extends CaFileTestCase {
 
         String fileName = VALID_PDF_FILENAME;
 
-        Uri path = mDocumentUriBuilder.createUriForFilename(fileName);
+        Uri path = mDocumentUriBuilder.createUriForFilename(mContext, fileName);
 
         Intent intent = mDocumentIntentBuilder.createViewerIntent(mContext, path, fileName);
 

@@ -22,19 +22,19 @@ public class EmailAttachmentIntentBuilder {
         mContext = context;
     }
 
-    public Intent createIntent(Document document)
+    public Intent createIntent(Context context, Document document)
         throws AppPackageFileWriter.PackageWriteException {
 
-        return createIntent(document.getFileName());
+        return createIntent(context, document.getFileName());
 
     }
 
-    public Intent createIntent(String fileName) throws AppPackageFileWriter.PackageWriteException {
+    public Intent createIntent(Context context, String fileName) throws AppPackageFileWriter.PackageWriteException {
 
-        Uri uri = mDocumentUriBuilder.createUriForFilename(fileName);
+        Uri uri = mDocumentUriBuilder.createUriForFilename(context, fileName);
         FileType fileType = FileType.getTypeForFilename(fileName);
 
-        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setType(fileType.getMimeType());
         emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getSubject());
         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, getBody());
