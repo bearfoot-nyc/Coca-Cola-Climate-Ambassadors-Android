@@ -60,15 +60,21 @@ public class DocumentUriBuilderTests extends AbsDataTests {
         return documentList;
     }
 
-    private void assertCreatesUriForExistingFilename(String fileName) throws AppPackageFileWriter.PackageWriteException {
+    private void assertCreatesUriForExistingFilename(String fileName) {
 
         // Create the file if it doesn't exist
-        createFileIfNotExists(fileName);
+        try {
+            createFileIfNotExists(fileName);
 
-        Uri uri = mDocumentUriBuilder.createUriForFilename(mContext, fileName);
+            Uri uri = mDocumentUriBuilder.createUriForFilename(mContext, fileName);
 
-        assertValidUri(uri);
+            assertValidUri(uri);
 
+
+
+        } catch (AppPackageFileWriter.PackageWriteException e) {
+            fail("PackageWriteException:" + fileName);
+        }
 
     }
 
