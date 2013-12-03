@@ -2,9 +2,9 @@ package com.cocacola.climateambassador.core.fragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.util.PreferredAppHelper;
 

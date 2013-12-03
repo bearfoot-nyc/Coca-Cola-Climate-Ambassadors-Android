@@ -2,8 +2,10 @@ package com.cocacola.climateambassador.core.controller;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.FragmentTransaction;
 import com.cocacola.climateambassador.core.CaApplication;
 import com.cocacola.climateambassador.core.activity.CaActivity;
+import com.cocacola.climateambassador.core.fragment.PreferredAppDialogFragment;
 import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
 import com.cocacola.climateambassador.core.util.DocumentIntentBuilder;
 import com.cocacola.climateambassador.core.util.DocumentUriBuilder;
@@ -31,9 +33,16 @@ public class DocumentController {
             Intent intent = mDocumentIntentBuilder.createViewerIntent(mActivity, doc);
             mActivity.startActivity(intent);
         } catch (DocumentIntentBuilder.PreferredAppNotInstalledException e) {
-            Toaster.toast(mActivity, e.getMessage());
+            showPreferredAppDialog();
         } catch (AppPackageFileWriter.PackageWriteException e) {
             Toaster.toast(mActivity, e.getMessage());
         }
+    }
+
+    private void showPreferredAppDialog() {
+
+        PreferredAppDialogFragment dialogFragment = PreferredAppDialogFragment.newInstance();
+        dialogFragment.show(mActivity.getFragmentManager(), "preferredApp");
+
     }
 }

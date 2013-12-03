@@ -14,6 +14,7 @@ import android.widget.CursorAdapter;
 import android.widget.SearchView;
 import android.widget.TextView;
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.core.controller.DocumentController;
 import com.cocacola.climateambassador.core.model.DocumentModel;
 import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
 import com.cocacola.climateambassador.core.util.DocumentIntentBuilder;
@@ -95,19 +96,8 @@ public abstract class CaSearchableActivity extends CaActivity implements SearchV
 
         Document doc = getSuggestedDocument(position);
 
-        try {
-
-            Intent intent = mDocumentIntentBuilder.createViewerIntent(this, doc);
-
-            startActivity(intent);
-
-        } catch (AppPackageFileWriter.PackageWriteException e) {
-            Toaster.toast(this, e.getMessage());
-        } catch (DocumentIntentBuilder.PreferredAppNotInstalledException e) {
-            Toaster.toast(this, e.getMessage());
-        } catch (ActivityNotFoundException e) {
-            Toaster.toast(this, e.getMessage());
-        }
+        DocumentController controller = new DocumentController(this);
+        controller.startActivityForDocument(doc);
 
         return true;
 

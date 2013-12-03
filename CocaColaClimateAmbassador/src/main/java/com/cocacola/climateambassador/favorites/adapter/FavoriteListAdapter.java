@@ -1,10 +1,12 @@
 package com.cocacola.climateambassador.favorites.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import com.cocacola.climateambassador.core.controller.DocumentController;
 import com.cocacola.climateambassador.data.Document;
 import com.cocacola.climateambassador.favorites.view.FavoriteRowView;
 import java.util.List;
@@ -42,6 +44,8 @@ public class FavoriteListAdapter extends BaseAdapter implements
         Document document = getItem(position);
 
         FavoriteRowView view = FavoriteRowView.inflate(mInflater, document);
+        view.setController(new DocumentController((Activity)parent.getContext()));
+
         view.setOnFavoriteChangedListener(this);
 
         return view;
