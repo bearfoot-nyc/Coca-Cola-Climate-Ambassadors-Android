@@ -86,6 +86,7 @@ public class DocumentView extends LinearLayout implements HasController<Document
             return;
         }
 
+        // Set Favorite icon on/off
         boolean isFavorite = (doc.getIsFavorite() != null) ? doc.getIsFavorite() : false;
         Integer iconRes = isFavorite ? R.drawable.favorite_selected : R.drawable.favorite_unselected;
 
@@ -96,9 +97,11 @@ public class DocumentView extends LinearLayout implements HasController<Document
             }
         });
 
+        // Show document type icon
         int iconResId = getResForExtension(doc.getFileName());
-        mTitleView.setCompoundDrawables(getResources().getDrawable(iconResId), null, null, null);
+        mTitleView.setCompoundDrawablesWithIntrinsicBounds(iconResId, 0, 0, 0);
 
+        // Set listener for share button
         mShareBtn.setOnClickListener(new OnClickListener() {
             @Override public void onClick(View v) {
                 onShareClick(doc);

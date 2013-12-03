@@ -27,7 +27,8 @@
         android:textSize="14dp"
         android:textColor="@color/coke_red"
         android:background="@color/gray"
-        android:padding="12dp"/>
+        android:padding="12dp"
+        android:drawablePadding="5dp" />
 
     <ImageView
         android:id="@+id/doc_share_btn"

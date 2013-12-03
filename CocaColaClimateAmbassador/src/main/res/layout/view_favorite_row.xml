@@ -21,7 +21,8 @@
         android:background="@color/gray"
         android:padding="8dp"
         android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"/>
+        android:layout_marginRight="6dp"
+        android:drawablePadding="5dp" />
 
     <ImageView
         android:id="@+id/doc_share_btn"
