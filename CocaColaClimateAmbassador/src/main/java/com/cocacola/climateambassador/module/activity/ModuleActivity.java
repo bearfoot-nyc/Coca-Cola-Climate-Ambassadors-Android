@@ -28,7 +28,7 @@ public class ModuleActivity extends AbsModuleActivity {
 
         switch (moduleType) {
             case MODULE_TYPE_SUSTAINABLE:
-                fragment = ForSupplierOverviewFragment.newInstance();
+                fragment = ForSupplierOverviewFragment.newInstance(moduleId);
                 break;
             case MODULE_TYPE_VISION:
                 fragment = ForSuppliersVisionFragment.newInstance(moduleId);

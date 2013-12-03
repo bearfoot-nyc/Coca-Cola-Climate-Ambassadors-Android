@@ -42,7 +42,7 @@ public abstract class AbsModuleActivity extends CaDrawerSearchableActivity {
         else if(item.getTitle().contains("Sustainable")) {
 
             // FIXME Load from Module instead of Json
-            ForSupplierOverviewFragment fragment = ForSupplierOverviewFragment.newInstance();
+            ForSupplierOverviewFragment fragment = ForSupplierOverviewFragment.newInstance(item.getId());
             setContentFragment(fragment);
 
         }
@@ -66,15 +66,12 @@ public abstract class AbsModuleActivity extends CaDrawerSearchableActivity {
         if(section != null && section.getModules() != null && section.getModules().size() > 0) {
 
             CaFragment fragment;
+            Module module = section.getModules().get(0);
 
             if(section.getId() == CaConstants.SECTION_ID_SUPPLIERS) {
-
-                fragment = ForSupplierOverviewFragment.newInstance();
-
+                fragment = ForSupplierOverviewFragment.newInstance(module.getId());
             }
             else {
-                Module module = section.getModules().get(0);
-
                 fragment = ModuleFragment.newInstance(module.getId());
             }
 

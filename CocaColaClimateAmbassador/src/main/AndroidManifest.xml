@@ -60,42 +60,6 @@
         </activity>
 
         <activity
-            android:name=".module.internal.fragment.ModuleCasesFragment"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="landscape" >
-        </activity>
-
-        <activity
-            android:name=".module.suppliers.activity.ForSuppliersOverviewActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="landscape" >
-        </activity>
-
-        <activity
-                android:name=".section.activity.ForSuppliersActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="@string/title_activity_business_case_module"
-                android:screenOrientation="landscape" >
-        </activity>
-        <activity
-                android:name=".section.activity.InternalTrainingActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="@string/title_activity_key_interventions_module"
-                android:screenOrientation="landscape" >
-        </activity>
-        <activity
-                android:name=".module.internal.activity.RoleOfClimateAmbassadorActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="@string/nav_item_internal_training_climate_ambassador"
-                android:screenOrientation="landscape">
-        </activity>
-        <activity
-                android:name=".module.suppliers.fragment.ForSuppliersVisionFragment"
-                android:configChanges="orientation|keyboardHidden"
-                android:label="@string/nav_item_for_suppliers_2020_vision"
-                android:screenOrientation="landscape">
-        </activity>
-        <activity
             android:name=".cases.activity.CaseActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape">

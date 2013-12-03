@@ -3,10 +3,8 @@ package com.cocacola.climateambassador.core.activity;
 import android.content.Intent;
 import com.cocacola.climateambassador.core.CaConstants;
 import com.cocacola.climateambassador.data.Navigable;
-import com.cocacola.climateambassador.module.activity.AbsModuleActivity;
 import com.cocacola.climateambassador.module.activity.ModuleActivity;
 import com.cocacola.climateambassador.module.activity.SectionModuleActivity;
-import com.cocacola.climateambassador.module.suppliers.activity.ForSuppliersOverviewActivity;
 
 import static com.cocacola.climateambassador.module.activity.AbsModuleActivity.EXTRA_MODULE_ID;
 import static com.cocacola.climateambassador.module.activity.AbsModuleActivity.EXTRA_MODULE_TYPE;
@@ -52,18 +50,10 @@ public class RootDrawerActivity extends CaDrawerSearchableActivity {
 
     @Override public void onSectionItemClick(Navigable section) {
 
-        Intent intent;
-
-        if(section.getId() == CaConstants.SECTION_ID_SUPPLIERS) {
-            intent = new Intent(this, ForSuppliersOverviewActivity.class);
-        }
-        else {
-            intent = new Intent(this, SectionModuleActivity.class);
-            intent.putExtra(SectionModuleActivity.EXTRA_SECTION_ID, section.getId());
-        }
+        Intent intent = new Intent(this, SectionModuleActivity.class);
+        intent.putExtra(SectionModuleActivity.EXTRA_SECTION_ID, section.getId());
 
         startActivity(intent);
-
 
     }
 }

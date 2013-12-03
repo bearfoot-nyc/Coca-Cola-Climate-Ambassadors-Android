@@ -11,10 +11,12 @@ import com.cocacola.climateambassador.core.model.DocumentModel;
 import com.cocacola.climateambassador.core.util.HasJsonModel;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.data.Document;
+import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.json.DocumentJson;
 import com.cocacola.climateambassador.data.json.ModuleJson;
 import com.cocacola.climateambassador.core.views.DocumentView;
 import com.cocacola.climateambassador.core.util.JsonAssetsLoader;
+import com.cocacola.climateambassador.module.fragment.ModuleFragment;
 import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
@@ -25,17 +27,19 @@ import butterknife.InjectView;
 import butterknife.Views;
 import timber.log.Timber;
 
-public class ForSupplierOverviewFragment extends CaFragment implements HasJsonModel<ModuleJson> {
+public class ForSupplierOverviewFragment extends ModuleFragment {
 
-    public static ForSupplierOverviewFragment newInstance() {
-        return new ForSupplierOverviewFragment();
+    public static ForSupplierOverviewFragment newInstance(Long moduleId) {
+
+        ForSupplierOverviewFragment fragment = new ForSupplierOverviewFragment();
+        fragment.setArguments(createBundleWithModuleId(moduleId));
+
+        return fragment;
+
     }
 
-    @Inject protected JsonAssetsLoader mJsonAssetsLoader;
     @Inject protected Timber Log;
     @InjectView(R.id.suppliers_document) protected DocumentView mDocumentView;
-
-    private ModuleJson mModule;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,9 +48,8 @@ public class ForSupplierOverviewFragment extends CaFragment implements HasJsonMo
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.suppliers_frag_overview, container, false);
 
+        View view = inflater.inflate(R.layout.suppliers_frag_overview, container, false);
         Views.inject(this, view);
 
         return view;
@@ -54,8 +57,8 @@ public class ForSupplierOverviewFragment extends CaFragment implements HasJsonMo
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
+        // FIXME Content is hardcoded in XML layout....lame
         mDocumentView.setDocument(getSupplierDocument());
 
     }
@@ -68,42 +71,13 @@ public class ForSupplierOverviewFragment extends CaFragment implements HasJsonMo
 
     private Document getSupplierDocument() {
 
-        DocumentJson documentJson = new DocumentJson(
-            "PartneringToReduceCarboninValueChain.pdf",
-            "Partnering to Reduce Carbon along Our Value Chain"
-        );
-
-        Document document = DocumentModel.fromJson(documentJson);
-
-        return document;
-
-    }
-
-    @Override
-    public ModuleJson getModel() {
-
-        // Lazily create Model object from JSON file
-        if(mModule == null) {
-            try {
-                mModule = mJsonAssetsLoader.parseFromJsonFile(getJsonAssetFilename(), ModuleJson.class);
-            } catch (IOException e) {
-                onAssetLoadError();
-            } catch (JsonSyntaxException e) {
-                onAssetLoadError();
-            }
+        Module module = getModule();
+        if(module == null || module.getDocuments() == null || module.getDocuments().size() < 1) {
+            return null;
         }
 
-        return mModule;
+        return module.getDocuments().get(0);
 
     }
 
-    @Override
-    public String getJsonAssetFilename() {
-        return "suppliers_overview.json";
-    }
-
-    private void onAssetLoadError() {
-        Log.e("Failed loading %s", getJsonAssetFilename());
-        Toast.makeText(getActivity(), "Failed To Load: " + getJsonAssetFilename(), Toast.LENGTH_SHORT);
-    }
 }

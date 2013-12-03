@@ -3,12 +3,14 @@ package com.cocacola.climateambassador.module.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.core.CaConstants;
 import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.core.util.Toaster;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.Section;
 import com.cocacola.climateambassador.module.fragment.ModuleFragment;
+import com.cocacola.climateambassador.module.suppliers.fragment.ForSupplierOverviewFragment;
 import javax.inject.Inject;
 
 /**
@@ -26,19 +28,22 @@ public class SectionModuleActivity extends AbsModuleActivity {
         setContentView(R.layout.module_activity);
 
         Long sectionId = getSectionIdFromIntent(getIntent());
-        if(sectionId != null) {
+        if(sectionId == null) {
 
-            Section section = SectionModel.getSection(mDaoMaster, sectionId);
-            Module module = section.getModules().get(0);
-
-            if(module != null) {
-                ModuleFragment fragment = ModuleFragment.newInstance(module.getId());
-                setContentFragment(fragment);
-            }
+            Toaster.toast(this, "Failed to load Module");
+            return;
 
         }
-        else {
-            Toaster.toast(this, "Failed to load Module");
+
+        Module module = getOverviewModule(sectionId);
+
+        if(CaConstants.SECTION_ID_INTERNAL == sectionId) {
+            ModuleFragment fragment = ModuleFragment.newInstance(module.getId());
+            setContentFragment(fragment);
+        }
+        else if(CaConstants.SECTION_ID_SUPPLIERS == sectionId) {
+            ForSupplierOverviewFragment fragment = ForSupplierOverviewFragment.newInstance(module.getId());
+            setContentFragment(fragment);
         }
 
     }
@@ -50,6 +55,15 @@ public class SectionModuleActivity extends AbsModuleActivity {
         }
 
         return intent.getLongExtra(EXTRA_SECTION_ID, 0);
+
+    }
+
+    private Module getOverviewModule(Long sectionId) {
+
+        Section section = SectionModel.getSection(mDaoMaster, sectionId);
+        Module module = section.getModules().get(0);
+
+        return module;
 
     }
 }
