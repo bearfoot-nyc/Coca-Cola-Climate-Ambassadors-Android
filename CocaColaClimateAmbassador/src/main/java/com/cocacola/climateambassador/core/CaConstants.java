@@ -15,4 +15,5 @@ public class CaConstants {
     public static final Long SECTION_ID_INTERNAL = 1l;
     public static final Long SECTION_ID_SUPPLIERS = 2l;
 
+    public static final String DATABASE_NAME = "cokeclimateambassador";
 }

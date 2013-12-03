@@ -60,5 +60,6 @@ to the Coca-Cola business. </string>
     <string name="preferred_app_dialog_message">Quickoffice is required to open documents.</string>
     <string name="preferred_app_dialog_download">Download</string>
     <string name="preferred_app_dialog_cancel">Cancel</string>
+    <string name="landing_loading_text">Loading content, please wait...</string>
 
 </resources>

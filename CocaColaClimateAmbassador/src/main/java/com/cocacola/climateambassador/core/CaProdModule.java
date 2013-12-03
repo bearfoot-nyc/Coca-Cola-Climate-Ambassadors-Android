@@ -70,23 +70,20 @@ public class CaProdModule {
         mContext = context;
     }
 
-    @Provides @Singleton
-    Context provideContext() {
+    @Provides @Singleton Context provideContext() {
         return mContext;
     }
 
-    @Provides @Singleton
-    Timber provideTimber() {
+    @Provides @Singleton Timber provideTimber() {
         return BuildConfig.DEBUG ? Timber.DEBUG : Timber.PROD;
     }
 
-    @Provides
-    Gson provideGson() {
+    @Provides Gson provideGson() {
         return new GsonBuilder().create();
     }
 
     @Provides @Singleton SQLiteOpenHelper provideSQLiteOpenHelper(Context context) {
-        return new DaoMaster.DevOpenHelper(context, "climateambassador", null);
+        return new DaoMaster.DevOpenHelper(context, CaConstants.DATABASE_NAME, null);
     }
 
     @Provides @Singleton DaoMaster provideDaoMaster(SQLiteOpenHelper openHelper) {

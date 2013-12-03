@@ -1,6 +1,5 @@
 package com.cocacola.climateambassador.core.activity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,15 +18,12 @@ public class LandingActivity extends CaActivity {
     @Inject protected DataChecker mDataChecker;
     @Inject protected DataSeeder mDataSeeder;
 
-    private ProgressDialog mProgressDialog;
-
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.landing_activity);
 
         if(!mDataChecker.isDataSeeded()) {
-            showLoading();
             new DataSeedTask().execute(mDataSeeder);
         }
         else {
@@ -45,20 +41,7 @@ public class LandingActivity extends CaActivity {
         Toaster.toast(this, "Failed to load content: " + e.getMessage());
     }
 
-    private void showLoading() {
-    }
-
     private class DataSeedTask extends AsyncTask<DataSeeder, Void, DataSeeder.SeedFailedException> {
-
-        @Override protected void onPreExecute() {
-            super.onPreExecute();
-            //mProgressDialog = new ProgressDialog(LandingActivity.this);
-            //mProgressDialog.setTitle("Initializing");
-            //mProgressDialog.setMessage("Please wait...");
-            //mProgressDialog.setCancelable(false);
-            //mProgressDialog.setIndeterminate(true);
-            //mProgressDialog.show();
-        }
 
         @Override protected DataSeeder.SeedFailedException doInBackground(DataSeeder... params) {
 
@@ -77,10 +60,6 @@ public class LandingActivity extends CaActivity {
 
         @Override protected void onPostExecute(DataSeeder.SeedFailedException e) {
             super.onPostExecute(e);
-
-            //if(mProgressDialog != null) {
-            //    mProgressDialog.dismiss();
-            //}
 
             if(e == null) {
                 onSeeded();
