@@ -19,7 +19,7 @@ public class DrawerHeaderRowView extends LinearLayout implements HasModel<Naviga
 
     private static Map<String, Integer> sIcons = new LinkedHashMap<String, Integer>();
     static {
-        sIcons.put("Favorites", android.R.drawable.ic_media_play);
+        sIcons.put("Favorites", R.drawable.ic_favorites);
         sIcons.put("Internal Training Materials", R.drawable.ic_drawer_folder);
         sIcons.put("For Suppliers", R.drawable.ic_drawer_wrench);
     }

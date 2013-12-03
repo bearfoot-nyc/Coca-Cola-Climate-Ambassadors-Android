@@ -3,14 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:gravity="center_vertical">
 ®
     <ImageView
         style="@style/Ca"
         android:id="@+id/drawer_row_icon"
         android:layout_centerVertical="true"
         android:contentDescription="@string/navigation_drawer_icon"
-        android:layout_marginLeft="5dp" />
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp" />
 
     <TextView
         style="@style/Ca"
@@ -18,7 +20,8 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/drawer_row_icon"
         android:layout_marginLeft="10dp"
-        android:textSize="16sp"
-        android:textColor="@color/white" />
+        android:textSize="16dp"
+        android:textAllCaps="true"
+        android:textColor="#cccccc" />
 
 </com.cocacola.climateambassador.drawer.view.DrawerHeaderRowView>
