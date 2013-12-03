@@ -49,8 +49,7 @@ public class DocumentIntentBuilder {
         String mimeType = fileType.getMimeType();
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(path);
-        intent.setType(mimeType);
+        intent.setDataAndType(path, mimeType);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
         return intent;

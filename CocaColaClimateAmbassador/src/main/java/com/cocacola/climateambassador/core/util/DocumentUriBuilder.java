@@ -26,8 +26,6 @@ public class DocumentUriBuilder {
      * If the File doesn't exist yet, will attempt to write file to
      * package folder
      *
-     *
-     *
      * @param context
      * @param fileName name of file.  Assumed to be in /assets directory.
      * @return URI pointing to File representing the filename

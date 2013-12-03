@@ -52,21 +52,15 @@ public class LandingActivity extends CaActivity {
 
         @Override protected void onPreExecute() {
             super.onPreExecute();
-            mProgressDialog = new ProgressDialog(LandingActivity.this);
-            mProgressDialog.setTitle("Initializing");
-            mProgressDialog.setMessage("Please wait...");
-            mProgressDialog.setCancelable(false);
-            mProgressDialog.setIndeterminate(true);
-            mProgressDialog.show();
+            //mProgressDialog = new ProgressDialog(LandingActivity.this);
+            //mProgressDialog.setTitle("Initializing");
+            //mProgressDialog.setMessage("Please wait...");
+            //mProgressDialog.setCancelable(false);
+            //mProgressDialog.setIndeterminate(true);
+            //mProgressDialog.show();
         }
 
         @Override protected DataSeeder.SeedFailedException doInBackground(DataSeeder... params) {
-
-            try {
-                Thread.sleep(1000l);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
             DataSeeder dataSeeder = params[0];
 
@@ -84,9 +78,9 @@ public class LandingActivity extends CaActivity {
         @Override protected void onPostExecute(DataSeeder.SeedFailedException e) {
             super.onPostExecute(e);
 
-            if(mProgressDialog != null) {
-                mProgressDialog.dismiss();
-            }
+            //if(mProgressDialog != null) {
+            //    mProgressDialog.dismiss();
+            //}
 
             if(e == null) {
                 onSeeded();

@@ -140,12 +140,12 @@ public class DocumentView extends LinearLayout {
 
         try {
 
-            Activity activity = (Activity)getContext();
+            Context context = getContext();
 
-            Uri documentUri = mDocumentUriBuilder.createUriForFilename(activity, doc.getFileName());
-            Intent intent = mDocumentIntentBuilder.createViewerIntent(activity, documentUri, doc.getFileName());
+            Uri documentUri = mDocumentUriBuilder.createUriForFilename(context, doc.getFileName());
+            Intent intent = mDocumentIntentBuilder.createViewerIntent(context, documentUri, doc.getFileName());
 
-            activity.startActivity(intent);
+            context.startActivity(intent);
 
         } catch (AppPackageFileWriter.PackageWriteException e) {
             Toaster.toast(getContext(), e.getMessage());

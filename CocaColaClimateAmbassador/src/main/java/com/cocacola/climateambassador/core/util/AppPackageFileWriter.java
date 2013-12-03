@@ -128,7 +128,7 @@ public class AppPackageFileWriter {
 
         File file =  createFile(fileName);
 
-        return file != null || file.exists();
+        return file != null && file.exists();
 
     }
 
