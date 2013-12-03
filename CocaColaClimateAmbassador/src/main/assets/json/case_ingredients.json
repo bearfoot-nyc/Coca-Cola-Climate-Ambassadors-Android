@@ -19,21 +19,45 @@
                                               "label" : "Coca-Cola Business Case for Good Fertilizer Use in Citrus"
                                           },
                                           {
-                                              "fileName" : "INGREDIENT_Danone-Reduces-Methane-through-Better-Cow-Nutrition-France-US.pdf",
-                                              "label" : "Danone Reduces Methane through Better Cow Nutrition - France US"
-                                          },
-                                           {
-                                              "fileName" : "INGREDIENT_Drip-Irrigation-to-Reduce-Climate-Impact_US_India.pdf",
-                                              "label" : "Drip Irrigation to Reduce Climate Impact"
-                                          },
-                                          {
                                                "fileName" : "INGREDIENT_EU-Juice-Fertilizer-Emissions-Analysis_Crude Numbers-20120319_.pptx",
                                                "label" : "Juice Fertilizer Emissions Analysis"
-                                           },
+                                          },
                                           {
                                                "fileName" : "INGREDIENT_Good-Soil-Management.pdf",
                                                "label" : "Good Soil Management"
                                            },
+                                          {
+                                              "fileName" : "INGREDIENT_Drip-Irrigation-to-Reduce-Climate-Impact_US_India.pdf",
+                                              "label" : "Drip Irrigation to Reduce Climate Impact"
+                                          },
+                                          {
+                                               "fileName" : "INGREDIENT_Sustainable-Farming-Unnati-India.pdf",
+                                               "label" : "Sustainable Mango Farming for Coca-Cola in Unnati India Increases Production"
+                                          },
+                                          {
+                                              "fileName" : "INGREDIENT_The-Case-for-Organic-Sugar-Farming-in-India.pdf",
+                                              "label" : "The Case for Organic Sugar Farming in India"
+                                          },
+                                          {
+                                               "fileName" : "INGREDIENT_Reclaiming-Methane-and-Utilizing-Biogas_Animal-farming-Cargill-Global.pdf",
+                                               "label" : "Reclaiming Methane and Utilizing Biogas Animal Farming Cargill Global"
+                                          },
+                                          {
+                                                "fileName": "INGREDIENT_Walmart_Fertilizer_Optimization.pdf",
+                                                "label" : "Walmart Fertilizer Optimization Kit"
+                                          },
+                                          {
+                                               "fileName" : "INGREDIENT_Unilever-and-Cargill-Partner-to-Green-Supply-Chain-Together.pdf",
+                                               "label" : "Unilever and Cargill Green Ingredient Supply Chain Together"
+                                         },
+                                          {
+                                               "fileName" : "INGREDIENT_Reducing-fertilizer-orange-supply-chain-at-Tropicana.pdf",
+                                               "label" : "Reducing Fertilizer in Orange Supply Chain at Tropicana_US"
+                                          },
+                                          {
+                                              "fileName" : "INGREDIENT_Danone-Reduces-Methane-through-Better-Cow-Nutrition-France-US.pdf",
+                                              "label" : "Danone Reduces Methane through Better Cow Nutrition - France US"
+                                          },
                                           {
                                               "fileName" : "INGREDIENT_Nestle-HIVOS-Partnership-for-Biogas-Energy-from-Dairy-Cows_Rural Indonesia.pdf",
                                               "label" : "Nestle HIVOS Partnership for Biogas Energy from Dairy Cows_Rural Indonesia"
@@ -41,27 +65,7 @@
                                           {
                                                "fileName" : "INGREDIENT_WALMARTs-Fertilizer -ptimization-SUPPLIER-Toolkit-5-30-13.pdf",
                                                "label" : "Finding Value in Waste"
-                                          },
-                                          {
-                                               "fileName" : "INGREDIENT_Reclaiming-Methane-and-Utilizing-Biogas_Animal-farming-Cargill-Global.pdf",
-                                               "label" : "Reclaiming Methane and Utilizing Biogas_Animal farming Cargill Global"
-                                          },
-                                          {
-                                               "fileName" : "INGREDIENT_Reducing-fertilizer-orange-supply-chain-at-Tropicana.pdf",
-                                               "label" : "Reducing Fertilizer in Orange Supply Chain at Tropicana_US"
-                                          },
-                                          {
-                                               "fileName" : "INGREDIENT_Sustainable-Farming-Unnati-India.pdf",
-                                               "label" : "Sustainable Farming in Unnati India"
-                                          },
-                                          {
-                                              "fileName" : "INGREDIENT_The-Case-for-Organic-Sugar-Farming-in-India.pdf",
-                                              "label" : "The Case for Organic Sugar Farming in India"
-                                          },
-                                          {
-                                               "fileName" : "INGREDIENT_Unilever-and-Cargill-Partner-to-Green-Supply-Chain-Together.pdf",
-                                               "label" : "Unilever and Cargill Green Ingredient Supply Chain Together"
-                                         }
+                                          }
                                     ]
                                 }
 
