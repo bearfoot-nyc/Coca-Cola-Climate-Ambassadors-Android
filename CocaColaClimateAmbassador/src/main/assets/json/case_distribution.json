@@ -12,26 +12,26 @@
     },
     "textFrames" : [],
     "caseStudies" : [
-    {
-        "fileName" : "DISTRIBUTION_ABInBev-Shared-Fleet.pdf",
-        "label" : "AB InBev Shared Logistics"
-    },
-    {
-         "fileName" : "DISTRIBUTION_CC-Fleet-Running-on-CNG-in-India.pdf",
-         "label" : "Fleet Running on Compressed Natural Gas in India"
-    },
-    {
-         "fileName" : "DISTRIBUTION_CCE_Transport-Strategy.pdf",
-         "label" : "Lower Carbon Emission Distribution and Logistics"
-    },
-    {
-         "fileName" : "DISTRIBUTION_Coolant_edited.pdf",
-         "label" : "Plant-Based Coolants"
-    },
-    {
-         "fileName" : "DISTRIBUTION_No-Idling-Policy.pdf",
-         "label" : "No Idling Policy in Fleet"
-    }
+        {
+             "fileName" : "DISTRIBUTION_No-Idling-Policy.pdf",
+             "label" : "No Idling Policy in Fleet"
+        },
+        {
+            "fileName" : "DISTRIBUTION_ABInBev-Shared-Fleet.pdf",
+            "label" : "AB InBev Shared Logistics"
+        },
+        {
+             "fileName" : "DISTRIBUTION_CC-Fleet-Running-on-CNG-in-India.pdf",
+             "label" : "Fleet Running on Compressed Natural Gas in India"
+        },
+        {
+             "fileName" : "DISTRIBUTION_CCE_Transport-Strategy.pdf",
+             "label" : "Lower Carbon Emission Distribution and Logistics"
+        },
+        {
+             "fileName" : "DISTRIBUTION_Coolant_edited.pdf",
+             "label" : "Plant-Based Coolants"
+        }
     ],
     "documents" : []
 }
