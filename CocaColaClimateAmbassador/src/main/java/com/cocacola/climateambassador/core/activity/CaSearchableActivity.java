@@ -1,8 +1,6 @@
 package com.cocacola.climateambassador.core.activity;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,9 +14,7 @@ import android.widget.TextView;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.controller.DocumentController;
 import com.cocacola.climateambassador.core.model.DocumentModel;
-import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
 import com.cocacola.climateambassador.core.util.DocumentIntentBuilder;
-import com.cocacola.climateambassador.core.util.Toaster;
 import com.cocacola.climateambassador.data.DaoMaster;
 import com.cocacola.climateambassador.data.Document;
 import javax.inject.Inject;

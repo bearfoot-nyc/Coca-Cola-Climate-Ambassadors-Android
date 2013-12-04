@@ -41,7 +41,7 @@ public class CaseStudiesListFragment extends CaFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.frag_case_studies_list, container, true);
+        View v = inflater.inflate(R.layout.frag_case_studies_list, null);
         return v;
     }
 
@@ -60,6 +60,10 @@ public class CaseStudiesListFragment extends CaFragment {
         }
 
         return mCaseStudyList;
+    }
+
+    public static CaseStudiesListFragment newInstance() {
+        return new CaseStudiesListFragment();
     }
 
     private static class CaseStudyListAdapter extends BaseAdapter {

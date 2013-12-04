@@ -1,6 +1,5 @@
 package com.cocacola.climateambassador.module.activity;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.CaConstants;
@@ -85,10 +84,10 @@ public abstract class AbsModuleActivity extends CaDrawerSearchableActivity {
     }
 
     protected void setContentFragment(CaFragment fragment) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.module_frag_container, fragment);
 
-        transaction.commit();
+        getSupportFragmentManager().beginTransaction()
+            .replace(R.id.module_frag_container, fragment)
+            .commit();
     }
 
     protected Long getModuleIdFromIntent(Intent intent) {

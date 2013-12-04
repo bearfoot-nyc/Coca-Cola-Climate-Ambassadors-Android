@@ -1,19 +1,16 @@
 package com.cocacola.climateambassador.core.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
-
-import com.cocacola.climateambassador.core.CaApplication;
-
-import javax.inject.Inject;
-
+import android.support.v4.app.FragmentActivity;
 import butterknife.Views;
+import com.cocacola.climateambassador.core.CaApplication;
+import javax.inject.Inject;
 import timber.log.Timber;
 
 /**
  * Created by andrewlawton on 8/21/13.
  */
-public class CaActivity extends Activity {
+public class CaActivity extends FragmentActivity {
 
     @Inject
     Timber Log;

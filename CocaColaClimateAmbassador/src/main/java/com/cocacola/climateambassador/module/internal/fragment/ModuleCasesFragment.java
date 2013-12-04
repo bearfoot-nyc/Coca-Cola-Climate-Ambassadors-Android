@@ -39,25 +39,12 @@ public class ModuleCasesFragment extends CaFragment {
 
         // Create a Module fragment
         ModuleFragment fragment = ModuleFragment.newInstance(getModuleId());
+        CaseStudiesListFragment listFragment = CaseStudiesListFragment.newInstance();
 
-        // Set it as the content fragment
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.module_frag_case_container, fragment);
-
-        transaction.commit();
-
-
-    }
-
-    @Override public void onDestroyView() {
-        super.onDestroyView();
-
-        ModuleFragment fragment =
-            (ModuleFragment) getChildFragmentManager().findFragmentById(R.id.module_frag_case_container);
-
-        if(fragment != null) {
-            getChildFragmentManager().beginTransaction().remove(fragment).commit();
-        }
+        getChildFragmentManager().beginTransaction()
+            .replace(R.id.module_frag_case_container, fragment)
+            .replace(R.id.module_frag_case_case_studies_list, listFragment)
+            .commit();
 
     }
 
