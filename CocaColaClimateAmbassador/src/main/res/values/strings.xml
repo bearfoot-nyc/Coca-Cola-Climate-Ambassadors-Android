@@ -53,7 +53,7 @@ to the Coca-Cola business. </string>
     <string name="share_email_subject">You have a document from Coca Cola Climate Ambassador Android
         app
     </string>
-    <string name="share_email_body">We can put a message here.</string>
+    <string name="share_email_body">""</string>
     <string name="search_query_hint">Search for documents</string>
     <string name="favorites_empty_list">You have no favorite items.</string>
     <string name="preferred_app_dialog_title">Download App</string>
