@@ -37,7 +37,6 @@ public class EmailAttachmentIntentBuilder {
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setType(fileType.getMimeType());
         emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getSubject());
-        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, getBody());
         emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
  
         return emailIntent;
@@ -46,10 +45,6 @@ public class EmailAttachmentIntentBuilder {
 
     private String getSubject() {
         return mContext.getString(R.string.share_email_subject);
-    }
-
-    private String getBody() {
-        return mContext.getString(R.string.share_email_body);
     }
 
 }
