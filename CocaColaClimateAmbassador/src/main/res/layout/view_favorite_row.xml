@@ -27,6 +27,6 @@
     <ImageView
         android:id="@+id/doc_share_btn"
         style="@style/Ca"
-        android:src="@drawable/ic_action_share" />
+        android:src="@drawable/ic_action_mail" />
 
 </com.cocacola.climateambassador.favorites.view.FavoriteRowView>

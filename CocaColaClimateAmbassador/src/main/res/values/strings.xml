@@ -50,9 +50,7 @@ to the Coca-Cola business. </string>
     <string name="nav_item_internal_training_climate_ambassador">Role of the Climate Ambassador</string>
     <string name="nav_item_for_suppliers_2020_vision">2020 Vision</string>
     <string name="no_activity_available">There is no app installed to open ====qa`1`11                                                                                                                                                      this file type.</string>
-    <string name="share_email_subject">You have a document from Coca Cola Climate Ambassador Android
-        app
-    </string>
+    <string name="share_email_subject">A Climate Ambassador from Coca-Cola is sharing this file with you. Click in to see more.</string>
     <string name="share_email_body">A Climate Ambassador from Coca-Cola is sharing this file with you. Click in to see more.</string>
     <string name="search_query_hint">Search for documents</string>
     <string name="favorites_empty_list">You have no favorite items.</string>
