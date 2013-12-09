@@ -42,6 +42,14 @@
         }
     ],
     "caseStudies" : [
+                {
+                         "fileName" : "PACKAGING_PlantBottle_Water_Toolkit_v8-082813.pdf",
+                         "label" : "PlantBottle Water Toolkit"
+                },
+                {
+                         "fileName" : "PACKAGING_PlantBottlePresEX.pdf",
+                          "label" : "PlantBottle Presentation"
+                },
         {
                 "fileName" : "ILOHAS-AllTogether_Water_Case_in_Japan.pdf",
                 "label" : "All Together Water Case in Japan"
@@ -57,14 +65,6 @@
         {
                  "fileName" : "PACKAGING_Partnerships-in-Recycled-Materials.pdf",
                  "label" : "Partnerships in Recycled Materials"
-        },
-        {
-                 "fileName" : "PACKAGING_PlantBottle_Water_Toolkit_v8-082813.pdf",
-                 "label" : "PlantBottle Water Toolkit"
-        },
-        {
-                 "fileName" : "PACKAGING_PlantBottlePresEX.pdf",
-                  "label" : "PlantBottle Presentation"
         }
     ],
     "documents" : [
