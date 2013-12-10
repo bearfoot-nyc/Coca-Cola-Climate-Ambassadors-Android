@@ -1,19 +1,10 @@
 package com.cocacola.climateambassador.test.android.ui;
 
-import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
-import butterknife.Views;
-import com.cocacola.climateambassador.R;
-import com.cocacola.climateambassador.core.model.ModuleModel;
 import com.cocacola.climateambassador.core.util.DataSeeder;
-import com.cocacola.climateambassador.core.views.DocumentsLayout;
 import com.cocacola.climateambassador.data.DaoMaster;
-import com.cocacola.climateambassador.data.Module;
-import com.cocacola.climateambassador.module.activity.AbsModuleActivity;
 import com.cocacola.climateambassador.module.activity.ModuleActivity;
 import com.cocacola.climateambassador.module.fragment.ModuleFragment;
-import com.cocacola.climateambassador.test.CaTestModule;
-import dagger.ObjectGraph;
 import javax.inject.Inject;
 
 /**
@@ -71,11 +62,11 @@ public class ModuleActivityTest extends ActivityInstrumentationTestCase2<ModuleA
 
     }
 
-    private ModuleFragment getModuleFragment() {
-
-        return (ModuleFragment) mModuleActivity.
-            getFragmentManager().findFragmentById(R.id.module_frag_container);
-
-    }
+    //private ModuleFragment getModuleFragment() {
+    //
+    //    return (ModuleFragment) mModuleActivity.
+    //        getFragmentManager().findFragmentById(R.id.module_frag_container);
+    //
+    //}
 
 }
