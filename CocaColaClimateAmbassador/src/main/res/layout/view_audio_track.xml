@@ -16,9 +16,4 @@
         style="@style/Ca.DocumentBody"
         android:drawableLeft="@drawable/ic_doc_audio"/>
 
-    <ImageView
-        android:id="@+id/audio_share_btn"
-        style="@style/Ca"
-        android:src="@drawable/ic_action_mail" />
-
 </com.cocacola.climateambassador.core.views.AudioTrackView>

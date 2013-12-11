@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import butterknife.OnClick;
 import butterknife.Views;
 import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.CaApplication;
@@ -32,7 +31,6 @@ public class AudioTrackView extends LinearLayout implements HasModel<Document>, 
     @Inject protected EmailAttachmentIntentBuilder mEmailIntentBuilder;
 
     private ImageView mActionBtn;
-    private ImageView mShareBtn;
     private TextView mTitleView;
     private AudioController mAudioController;
     private Document mDocument;
@@ -56,7 +54,6 @@ public class AudioTrackView extends LinearLayout implements HasModel<Document>, 
         super.onFinishInflate();
 
         mActionBtn = Views.findById(this, R.id.audio_action_btn);
-        mShareBtn = Views.findById(this, R.id.audio_share_btn);
         mTitleView = Views.findById(this, R.id.audio_title);
 
     }
@@ -81,11 +78,6 @@ public class AudioTrackView extends LinearLayout implements HasModel<Document>, 
         mActionBtn.setOnClickListener(new OnClickListener() {
             @Override public void onClick(View v) {
                 onActionClick();
-            }
-        });
-        mShareBtn.setOnClickListener(new OnClickListener() {
-            @Override public void onClick(View v) {
-                onShareClick();
             }
         });
     }

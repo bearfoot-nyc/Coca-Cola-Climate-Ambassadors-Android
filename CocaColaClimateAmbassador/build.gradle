@@ -44,9 +44,6 @@ android {
 
         release {
             storeFile file("../keystore/climate-ambassador-release.keystore")
-            storePassword "Httr4l67"
-            keyAlias "climate-ambassador"
-            keyPassword "Httr4l67"
             //storeFile file(System.console().readLine("\n\$ Enter keystore path: "))
             //storePassword System.console().readLine("\n\$ Enter keystore password: ")
             //keyAlias System.console().readLine("\n\$ Enter key alias: ")
