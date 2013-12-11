@@ -56,20 +56,23 @@
             android:orientation="vertical" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="10sp"
-            android:text="@string/case_studies"
-            android:textColor="@color/white"/>
+            android:id="@+id/case_links_header"
+            android:text="@string/case_links"
+            style="@style/Ca.DocumentHeader"
+            android:visibility="gone"/>
 
         <com.cocacola.climateambassador.core.views.DocumentsLayout
-                android:id="@+id/case_studies"
-                android:layout_height="wrap_content"
-                android:layout_width="850dp"
-                android:orientation="vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="20dp" />
+            android:id="@+id/case_links_list"
+            style="@style/Ca.DocumentList"
+            android:visibility="gone"/>
+
+        <TextView
+            android:text="@string/case_studies"
+            style="@style/Ca.DocumentHeader"/>
+
+        <com.cocacola.climateambassador.core.views.DocumentsLayout
+            android:id="@+id/case_case_studies_list"
+            style="@style/Ca.DocumentList"/>
 
     </LinearLayout>
 

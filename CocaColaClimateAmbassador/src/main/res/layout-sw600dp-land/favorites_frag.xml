@@ -34,7 +34,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/case_studies"
+        android:id="@+id/case_case_studies_list"
         android:layout_height="wrap_content"
         android:layout_width="850dp"
         android:orientation="vertical"

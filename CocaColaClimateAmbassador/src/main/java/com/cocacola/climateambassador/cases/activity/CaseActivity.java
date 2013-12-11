@@ -22,9 +22,12 @@ import com.cocacola.climateambassador.data.BulletPoint;
 import com.cocacola.climateambassador.data.BulletPointFrame;
 import com.cocacola.climateambassador.data.CaCase;
 import com.cocacola.climateambassador.data.DaoMaster;
+import com.cocacola.climateambassador.data.Document;
 import com.cocacola.climateambassador.data.SubtitleTextPair;
 import com.cocacola.climateambassador.data.TextFrame;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
 import timber.log.Timber;
@@ -75,7 +78,9 @@ public class CaseActivity extends CaSearchableActivity {
 
     @InjectView(R.id.case_logo) protected ImageView mLogoView;
     @InjectView(R.id.scroll_view) protected ScrollView mScrollLayout;
-    @InjectView(R.id.case_studies) protected DocumentsLayout mCaseStudiesLayout;
+    @InjectView(R.id.case_case_studies_list) protected DocumentsLayout mCaseStudiesLayout;
+    @InjectView(R.id.case_links_header) protected TextView mLinksHeader;
+    @InjectView(R.id.case_links_list) protected DocumentsLayout mLinksLayout;
 
     private Long mCaseId;
 
@@ -198,12 +203,35 @@ public class CaseActivity extends CaSearchableActivity {
             }
         }
 
+        if("Ingredients".equals(_case.getTitle())) {
+
+            mLinksHeader.setVisibility(View.VISIBLE);
+
+            mLinksLayout.setController(new DocumentController(this));
+            mLinksLayout.setVisibility(View.VISIBLE);
+            mLinksLayout.setModel(getIngredientsLinks());
+
+        }
+
         // Show documents
         mCaseStudiesLayout.setController(new DocumentController(this));
         mCaseStudiesLayout.setModel(_case.getCaseStudies());
 
     }
 
+    private List<Document> getIngredientsLinks() {
+
+        List<Document> documentList = new LinkedList<Document>();
+
+        Document link = new Document();
+        link.setLabel("Cool Farm Tool");
+        link.setFileName("http://www.coolfarmtool.org/");
+
+        documentList.add(link);
+
+        return documentList;
+
+    }
 
 
 }

@@ -80,4 +80,10 @@ public class DocumentModel {
 
     }
 
+    public static boolean isLink(Document document) {
+
+        return document.getFileName().contains("http://");
+
+    }
+
 }

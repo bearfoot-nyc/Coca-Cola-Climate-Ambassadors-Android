@@ -37,33 +37,8 @@ public class DocumentIntentBuilderTests extends CaFileTestCase {
 
     }
 
-    public void testDetectsQuickOfficeIsInstalled() {
+    public void testCreatesBrowserIntent() {
 
-        // FIXME How can you test this?  Can't uninstall/install packages totally programmatically
-
-        //
-        //boolean isPreferredAppInstalled = mDocumentViewerDelegate.isPreferredAppInstalled();
-        //
-        //assertFalse("Quick office should not be installed yet", isPreferredAppInstalled);
-
-    }
-
-    public void testLaunchesDocumentInQuickOffice() throws AppPackageFileWriter.PackageWriteException {
-
-        //String fileName = VALID_PDF_FILENAME;
-        //String playStorePkgName = "com.android.vending";
-        //
-        //mDocumentViewerDelegate.startActivityForFile(mContext, fileName);
-        //
-        //// Get current running app
-        //ActivityManager am = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
-        //
-        //// get the info from the currently running task
-        //List< ActivityManager.RunningTaskInfo > taskInfo = am.getRunningTasks(1);
-        //
-        //ComponentName componentInfo = taskInfo.get(0).topActivity;
-        //
-        //assertEquals("Current package is not Play Store", playStorePkgName, componentInfo.getPackageName());
 
 
     }

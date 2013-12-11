@@ -14,6 +14,7 @@ import com.cocacola.climateambassador.R;
 import com.cocacola.climateambassador.core.CaApplication;
 import com.cocacola.climateambassador.core.HasController;
 import com.cocacola.climateambassador.core.controller.DocumentController;
+import com.cocacola.climateambassador.core.model.DocumentModel;
 import com.cocacola.climateambassador.core.util.AppPackageFileWriter;
 import com.cocacola.climateambassador.core.util.DocumentIntentBuilder;
 import com.cocacola.climateambassador.core.util.DocumentUriBuilder;
@@ -47,6 +48,7 @@ public class DocumentView extends LinearLayout implements HasController<Document
     private DocumentController mController;
     private TextView mTitleView;
     private ImageView mFavoriteBtn;
+    private View mSeparator;
     private ImageView mShareBtn;
 
     public DocumentView(Context context) {
@@ -74,6 +76,7 @@ public class DocumentView extends LinearLayout implements HasController<Document
         mTitleView = (TextView) findViewById(R.id.doc_title);
         mFavoriteBtn = (ImageView) findViewById(R.id.doc_favorite_btn);
         mShareBtn = Views.findById(this, R.id.doc_share_btn);
+        mSeparator = Views.findById(this, R.id.doc_separator);
     }
 
     @Override public void setController(DocumentController documentController) {
@@ -86,35 +89,47 @@ public class DocumentView extends LinearLayout implements HasController<Document
             return;
         }
 
+        // Set Title
+        if(doc.getLabel() != null) {
+            mTitleView.setText(doc.getLabel());
+        }
+
+        // Add click listener to body
+        setOnClickListener(new OnClickListener() {
+            @Override public void onClick(View v) {
+                onDocumentClick(doc);
+            }
+        });
+
+        // Don't add favorites or share if it's a document
+        if(DocumentModel.isLink(doc)) {
+
+            mFavoriteBtn.setVisibility(View.GONE);
+            mSeparator.setVisibility(View.GONE);
+            mShareBtn.setVisibility(View.GONE);
+
+            return;
+        }
+
+        // Show document type icon
+        int iconResId = getResForExtension(doc.getFileName());
+        mTitleView.setCompoundDrawablesWithIntrinsicBounds(iconResId, 0, 0, 0);
+
         // Set Favorite icon on/off
         boolean isFavorite = (doc.getIsFavorite() != null) ? doc.getIsFavorite() : false;
-        Integer iconRes = isFavorite ? R.drawable.favorite_selected : R.drawable.favorite_unselected;
+        Integer favoriteIconRes = isFavorite ? R.drawable.favorite_selected : R.drawable.favorite_unselected;
 
-        mFavoriteBtn.setImageResource(iconRes);
+        mFavoriteBtn.setImageResource(favoriteIconRes);
         mFavoriteBtn.setOnClickListener(new OnClickListener() {
             @Override public void onClick(View v) {
                 onFavoriteClick(doc);
             }
         });
 
-        // Show document type icon
-        int iconResId = getResForExtension(doc.getFileName());
-        mTitleView.setCompoundDrawablesWithIntrinsicBounds(iconResId, 0, 0, 0);
-
         // Set listener for share button
         mShareBtn.setOnClickListener(new OnClickListener() {
             @Override public void onClick(View v) {
                 onShareClick(doc);
-            }
-        });
-
-        if(doc.getLabel() != null) {
-            mTitleView.setText(doc.getLabel());
-        }
-
-        setOnClickListener(new OnClickListener() {
-            @Override public void onClick(View v) {
-                onDocumentClick(doc);
             }
         });
 

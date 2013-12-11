@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 
+import com.cocacola.climateambassador.core.model.DocumentModel;
 import com.cocacola.climateambassador.data.Document;
 import com.cocacola.climateambassador.data.json.FileType;
 
@@ -59,9 +60,22 @@ public class DocumentIntentBuilder {
     public Intent createViewerIntent(Context context, Document document)
         throws PreferredAppNotInstalledException, AppPackageFileWriter.PackageWriteException {
 
+        if(DocumentModel.isLink(document)) {
+            return createBrowserIntent(context, document);
+        }
+
         Uri path = mUriBuilder.createUriForFilename(context, document.getFileName());
 
         return createViewerIntent(context, path, document.getFileName());
+
+    }
+
+    private Intent createBrowserIntent(Context context, Document document) {
+
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(document.getFileName()));
+
+        return i;
 
     }
 
