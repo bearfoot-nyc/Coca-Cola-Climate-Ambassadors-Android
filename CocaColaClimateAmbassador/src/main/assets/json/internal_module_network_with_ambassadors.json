@@ -1,0 +1,23 @@
+{
+    "title": "Network With Ambassadors",
+    "shortTitle" : "Network With Ambassadors",
+    "bodyText" : "Lorem ipsum dolor sit amet",
+    "bulletPointFrame": {
+        "title" : "",
+        "subtitle" : "",
+        "bulletPoints" : [
+            "Some bullet point"
+        ]
+    },
+    "textFrames" : [
+    ],
+    "caseStudies" : [
+    ],
+    "documents" : [
+        {
+            "fileName" : "INTERNAL_climate_ambassador_list.xlsx",
+            "label" : "Climate Ambassadors List",
+            "fileType" : "XLS"
+        }
+    ]
+}
