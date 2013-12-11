@@ -8,6 +8,7 @@ import com.cocacola.climateambassador.cases.activity.CaseActivity;
 import com.cocacola.climateambassador.core.activity.CaSearchableActivity;
 import com.cocacola.climateambassador.core.activity.LandingActivity;
 import com.cocacola.climateambassador.core.activity.MainActivity;
+import com.cocacola.climateambassador.core.controller.AudioController;
 import com.cocacola.climateambassador.core.controller.DocumentController;
 import com.cocacola.climateambassador.core.model.SectionModel;
 import com.cocacola.climateambassador.core.util.DataChecker;
@@ -50,7 +51,7 @@ import timber.log.Timber;
         ModuleFragment.class, CaseActivity.class, CaseStudiesListFragment.class, ForSupplierOverviewFragment.class, ModuleCasesFragment.class, ForSuppliersVisionFragment.class,
         DocumentUriBuilder.class, DocumentIntentBuilder.class, EmailAttachmentIntentBuilder.class,
         CaSearchableActivity.class, LandingActivity.class, FavoritesActivity.class, FavoriteRowView.class,
-        SectionModuleActivity.class, DocumentController.class
+        SectionModuleActivity.class, DocumentController.class, AudioController.class
 })
 public class CaProdModule {
 

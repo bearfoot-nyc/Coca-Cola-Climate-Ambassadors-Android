@@ -16,15 +16,12 @@ import javax.inject.Inject;
 /**
  * Created by realandylawton on 12/1/13.
  */
-public class DocumentController {
+public class DocumentController extends CaController {
 
     @Inject protected DocumentIntentBuilder mDocumentIntentBuilder;
 
-    private Activity mActivity;
-
     public DocumentController(Activity activity) {
-        mActivity = activity;
-        CaApplication.getObjectGraph(mActivity).inject(this);
+        super(activity);
     }
 
     public void startActivityForDocument(Document doc) {

@@ -6,11 +6,11 @@ import android.support.v4.app.Fragment;
 import com.cocacola.climateambassador.core.CaApplication;
 
 import butterknife.Views;
-import com.cocacola.climateambassador.core.controller.DocumentController;
+import com.cocacola.climateambassador.core.controller.CaController;
 
 public class CaFragment extends Fragment {
 
-    private DocumentController mDocumentController;
+    private CaController mCaController;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

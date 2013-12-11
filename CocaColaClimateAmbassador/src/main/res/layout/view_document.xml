@@ -20,15 +20,8 @@
 
     <TextView
         android:id="@+id/doc_title"
-        style="@style/Ca"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:textStyle="bold"
-        android:textSize="14dp"
-        android:textColor="@color/coke_red"
-        android:background="@color/gray"
-        android:padding="12dp"
-        android:drawablePadding="5dp" />
+        style="@style/Ca.DocumentBody"
+        />
 
     <ImageView
         android:id="@+id/doc_share_btn"

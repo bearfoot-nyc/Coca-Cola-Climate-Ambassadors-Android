@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.cocacola.climateambassador.core.controller.AudioController;
 import com.cocacola.climateambassador.core.fragment.CaFragment;
 import com.cocacola.climateambassador.core.model.DocumentModel;
 import com.cocacola.climateambassador.core.util.HasJsonModel;
 import com.cocacola.climateambassador.R;
+import com.cocacola.climateambassador.core.views.AudioTrackView;
 import com.cocacola.climateambassador.data.Document;
 import com.cocacola.climateambassador.data.Module;
 import com.cocacola.climateambassador.data.json.DocumentJson;
@@ -39,6 +41,7 @@ public class ForSupplierOverviewFragment extends ModuleFragment {
     }
 
     @Inject protected Timber Log;
+    @InjectView(R.id.suppliers_audio) protected AudioTrackView mAudioTrackView;
     @InjectView(R.id.suppliers_document) protected DocumentView mDocumentView;
 
     @Override
@@ -59,12 +62,19 @@ public class ForSupplierOverviewFragment extends ModuleFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         // FIXME Content is hardcoded in XML layout....lame
+
         mDocumentView.setDocument(getSupplierDocument());
+
+        mAudioTrackView.setController(new AudioController(getActivity()));
+        mAudioTrackView.setModel(getAudioTrack());
 
     }
 
     @Override
     public void onDestroyView() {
+        if(mAudioTrackView != null) {
+            mAudioTrackView.releaseAudio();
+        }
         super.onDestroyView();
         Views.reset(this);
     }
@@ -77,6 +87,17 @@ public class ForSupplierOverviewFragment extends ModuleFragment {
         }
 
         return module.getDocuments().get(0);
+
+    }
+
+    private Document getAudioTrack() {
+
+        Document audioTrack = new Document();
+        audioTrack.setLabel("Listen to a Short Introduction");
+        audioTrack.setFileName("track3");
+
+        return audioTrack;
+
 
     }
 
