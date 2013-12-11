@@ -4,6 +4,7 @@
     "modules" : [
          "internal_module_training_overview.json",
          "internal_module_role_of_climate_ambassador.json",
+         "internal_module_network_with_ambassadors.json",
          "internal_module_one.json",
          "internal_module_two.json",
          "internal_module_three.json",

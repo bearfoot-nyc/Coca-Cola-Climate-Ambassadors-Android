@@ -8,6 +8,7 @@ public enum FileType {
     PDF("application/pdf", "pdf", "docs"),
     PPT("application/vnd.ms-powerpoint", "pptx", "docs"),
     MP4("video/mp4", "mp4", "docs"),
+    XLS("application/vnd.ms-excel", "xlsx", "docs"),
     THREEGP("video/mp4", "3gp", "docs");
 
     private String extension;
@@ -53,6 +54,9 @@ public enum FileType {
         }
         else  if(extension.equals(FileType.MP4.getExtension())) {
             fileType = FileType.MP4;
+        }
+        else if(extension.equals(FileType.XLS.getExtension())) {
+            fileType = FileType.XLS;
         }
         else if(extension.equals(FileType.THREEGP.getExtension())) {
             fileType = FileType.THREEGP;

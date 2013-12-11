@@ -38,6 +38,7 @@ public class DocumentView extends LinearLayout implements HasController<Document
         sfileTypeResMap.put(FileType.PPT, R.drawable.ic_doc_ppt);
         sfileTypeResMap.put(FileType.MP4, R.drawable.ic_doc_mov);
         sfileTypeResMap.put(FileType.THREEGP, R.drawable.ic_doc_mov);
+        sfileTypeResMap.put(FileType.XLS, R.drawable.ic_doc_xls);
     }
 
     @Inject protected DaoMaster mDaoMaster;
