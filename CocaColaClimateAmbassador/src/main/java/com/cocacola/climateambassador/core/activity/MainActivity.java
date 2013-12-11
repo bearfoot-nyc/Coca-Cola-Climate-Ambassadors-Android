@@ -77,7 +77,7 @@ public class MainActivity extends RootDrawerActivity {
     public Document getAudioTrack() {
 
         Document document = new Document();
-        document.setLabel("Listen to this Track");
+        document.setLabel("Listen");
         document.setFileName("track1");
 
         return document;
