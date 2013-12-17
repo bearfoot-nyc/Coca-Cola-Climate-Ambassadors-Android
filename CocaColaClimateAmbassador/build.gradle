@@ -43,11 +43,11 @@ android {
     signingConfigs {
 
         release {
-            storeFile file("../keystore/climate-ambassador-release.keystore")
             //storeFile file(System.console().readLine("\n\$ Enter keystore path: "))
-            //storePassword System.console().readLine("\n\$ Enter keystore password: ")
-            //keyAlias System.console().readLine("\n\$ Enter key alias: ")
-            //keyPassword System.console().readLine("\n\$ Enter key password: ")
+            storePassword System.console().readLine("\n\$ Enter keystore password: ")
+            storeFile file("../keystore/climate-ambassador-release.keystore")
+            keyAlias System.console().readLine("\n\$ Enter key alias: ")
+            keyPassword System.console().readLine("\n\$ Enter key password: ")
         }
 
     }

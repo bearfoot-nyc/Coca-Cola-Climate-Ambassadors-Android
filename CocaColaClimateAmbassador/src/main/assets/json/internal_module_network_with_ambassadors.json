@@ -1,12 +1,11 @@
 {
     "title": "Network With Ambassadors",
     "shortTitle" : "Network With Ambassadors",
-    "bodyText" : "Lorem ipsum dolor sit amet",
+    "bodyText" : "",
     "bulletPointFrame": {
         "title" : "",
         "subtitle" : "",
         "bulletPoints" : [
-            "Some bullet point"
         ]
     },
     "textFrames" : [
